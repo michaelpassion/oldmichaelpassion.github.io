@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Leetcode | My Octopress Blog]]></title>
+  <link href="http://michaelpassion.github.io/blog/categories/leetcode/atom.xml" rel="self"/>
+  <link href="http://michaelpassion.github.io/"/>
+  <updated>2014-08-02T19:41:48+08:00</updated>
+  <id>http://michaelpassion.github.io/</id>
+  <author>
+    <name><![CDATA[Your Name]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Search in Rotated Sorted Array.md]]></title>
+    <link href="http://michaelpassion.github.io/blog/2014/08/02/search-in-rotated-sorted-array-dot-md/"/>
+    <updated>2014-08-02T19:16:49+08:00</updated>
+    <id>http://michaelpassion.github.io/blog/2014/08/02/search-in-rotated-sorted-array-dot-md</id>
+    <content type="html"><![CDATA[<blockquote><p>Suppose a sorted array is rotated at some pivot unknown to you beforehand.</p>
+
+<p>(i.e., 0 1 2 4 5 6 7 might become 4 5 6 7 0 1 2).</p>
+
+<p>You are given a target value to search. If found in the array return its index, otherwise return -1.</p>
+
+<p>You may assume no duplicate exists in the arra</p></blockquote>
+
+<hr />
+
+<pre><code class="c++">class Solution {
+public:
+    int search(int A[], int n, int target) {
+        int p = 0;
+        while(p&lt;n-1)
+        {
+            if(A[p]&lt;A[p+1])
+                p++;
+            else
+                break;
+        }
+
+
+        if(p == n-1 )
+        {
+            int low=0;
+            int high =p;
+            while(low &lt;= high)
+            {
+                int mid = (low + high)/2;
+                if(A[mid] == target)
+                    return mid;
+                else if(A[mid] &gt; target)
+                    high = mid -1;
+                else
+                    low = mid +1;
+            }
+            return -1;
+        }
+        int low=0;
+        int high =p;
+        while(low &lt;= high)
+        {
+            int mid = (low + high)/2;
+            if(A[mid] == target)
+                return mid;
+            else if(A[mid] &gt; target)
+                high = mid -1;
+            else
+                low = mid +1;
+        }
+
+
+        low = p+1;
+        high = n-1;
+        while(low &lt;= high)
+          {
+            int mid = (low + high)/2;
+            if(A[mid] == target)
+                return mid;
+            else if(A[mid] &gt; target)
+                high = mid -1;
+            else
+                low = mid +1;
+        }
+
+        return -1;
+    }
+</code></pre>
+]]></content>
+  </entry>
+  
+</feed>
