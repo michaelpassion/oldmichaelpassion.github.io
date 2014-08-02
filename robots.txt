@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: 
+
+Sitemap: http://michaelpassion.github.io/sitemap.xml 
