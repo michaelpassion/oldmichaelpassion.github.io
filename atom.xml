@@ -4,7 +4,7 @@
   <title><![CDATA[My Octopress Blog]]></title>
   <link href="http://michaelpassion.github.io/atom.xml" rel="self"/>
   <link href="http://michaelpassion.github.io/"/>
-  <updated>2014-08-02T18:58:58+08:00</updated>
+  <updated>2014-08-02T19:17:46+08:00</updated>
   <id>http://michaelpassion.github.io/</id>
   <author>
     <name><![CDATA[Your Name]]></name>
@@ -12,6 +12,15 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Search in Rotated Sorted Array.md]]></title>
+    <link href="http://michaelpassion.github.io/blog/2014/08/02/search-in-rotated-sorted-array-dot-md/"/>
+    <updated>2014-08-02T19:16:49+08:00</updated>
+    <id>http://michaelpassion.github.io/blog/2014/08/02/search-in-rotated-sorted-array-dot-md</id>
+    <content type="html"><![CDATA[
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Zombie Ninjas Attack: A Survivor's Retrospective]]></title>
