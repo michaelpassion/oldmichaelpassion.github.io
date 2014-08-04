@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Leetcode | My Octopress Blog]]></title>
+  <title><![CDATA[Category: leetcode | My Progressing Blog]]></title>
   <link href="http://michaelpassion.github.io/blog/categories/leetcode/atom.xml" rel="self"/>
   <link href="http://michaelpassion.github.io/"/>
-  <updated>2014-08-02T19:41:48+08:00</updated>
+  <updated>2014-08-04T22:23:02+08:00</updated>
   <id>http://michaelpassion.github.io/</id>
   <author>
-    <name><![CDATA[Your Name]]></name>
+    <name><![CDATA[Michael]]></name>
     
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>

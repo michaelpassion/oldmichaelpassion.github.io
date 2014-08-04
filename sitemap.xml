@@ -3,6 +3,12 @@
   
   
   <url>
+    <loc>http://michaelpassion.github.io/blog/2014/08/03/search-in-rotated-sorted-array/</loc>
+    <lastmod>2014-08-03T00:00:00+08:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
     <loc>http://michaelpassion.github.io/blog/2014/08/02/he-lan-guo-qi-pai-xu-de-ji-chong-jie-fa/</loc>
     <lastmod>2014-08-02T19:32:51+08:00</lastmod>
     <priority>0.8</priority>
@@ -23,16 +29,23 @@
   
   <url>
     <loc>http://michaelpassion.github.io/blog/archives/</loc>
-    <lastmod>2014-08-02T19:41:48+08:00</lastmod>
+    <lastmod>2014-08-04T22:23:02+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
     <loc>http://michaelpassion.github.io/</loc>
-    <lastmod>2014-08-02T19:41:48+08:00</lastmod>
+    <lastmod>2014-08-04T22:23:02+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+  </url>
+  
+  <url>
+    <loc>http://michaelpassion.github.io/blog/categories/</loc>
+    <lastmod>2014-08-04T22:23:02+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
   
   
