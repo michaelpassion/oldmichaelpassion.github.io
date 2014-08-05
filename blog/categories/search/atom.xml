@@ -4,7 +4,7 @@
   <title><![CDATA[Category: search | My Progressing Blog]]></title>
   <link href="http://michaelpassion.github.io/blog/categories/search/atom.xml" rel="self"/>
   <link href="http://michaelpassion.github.io/"/>
-  <updated>2014-08-04T22:23:02+08:00</updated>
+  <updated>2014-08-05T12:00:24+08:00</updated>
   <id>http://michaelpassion.github.io/</id>
   <author>
     <name><![CDATA[Michael]]></name>
@@ -25,6 +25,9 @@
 <p>You are given a target value to search. If found in the array return its index, otherwise return -1.</p>
 
 <p>You may assume no duplicate exists in the arra</p></blockquote>
+
+<!--More-->
+
 
 <hr />
 
