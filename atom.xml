@@ -4,7 +4,7 @@
   <title><![CDATA[My Progressing Blog]]></title>
   <link href="http://michaelpassion.github.io/atom.xml" rel="self"/>
   <link href="http://michaelpassion.github.io/"/>
-  <updated>2014-08-10T10:38:20+08:00</updated>
+  <updated>2014-08-10T11:10:43+08:00</updated>
   <id>http://michaelpassion.github.io/</id>
   <author>
     <name><![CDATA[Michael]]></name>
@@ -24,6 +24,9 @@
 
 <p>Note:
 You are not suppose to use the library&rsquo;s sort function for this problem.</p></blockquote>
+
+<!--more-->
+
 
 <p><a href="https://oj.leetcode.com/problems/sort-colors/">leetcode Sort Colors</a></p>
 
@@ -224,7 +227,10 @@ You are not suppose to use the library&rsquo;s sort function for this problem.</
 
 <p>You are given a target value to search. If found in the array return its index, otherwise return -1.</p>
 
-<p>You may assume no duplicate exists in the arra</p></blockquote>
+<p>You may assume no duplicate exists in the array</p></blockquote>
+
+<!--more-->
+
 
 <hr />
 
@@ -346,15 +352,6 @@ You are not suppose to use the library&rsquo;s sort function for this problem.</
 </span><span class='line'>    <span class="p">}</span>
 </span></code></pre></td></tr></table></div></figure>
 
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Zombie Ninjas Attack: A survivor's retrospective]]></title>
-    <link href="http://michaelpassion.github.io/blog/2014/08/02/zombie-ninjas-attack-a-survivors-retrospective/"/>
-    <updated>2014-08-02T17:44:42+08:00</updated>
-    <id>http://michaelpassion.github.io/blog/2014/08/02/zombie-ninjas-attack-a-survivors-retrospective</id>
-    <content type="html"><![CDATA[
 ]]></content>
   </entry>
   
