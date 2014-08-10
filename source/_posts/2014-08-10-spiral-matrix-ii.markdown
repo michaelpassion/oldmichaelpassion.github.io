@@ -3,7 +3,7 @@ layout: post
 title: "Spiral Matrix II"
 date: 2014-08-10 22:15:15 +0800
 comments: true
-categories: leetcode 矩阵
+categories: leetcode 矩阵 Matrix
 ---
 Given an integer n, generate a square matrix filled with elements from 1 to n2 in spiral order.
 
@@ -17,6 +17,8 @@ You should return the following matrix:
 	 [ 8, 9, 4 ],
 	 [ 7, 6, 5 ]
 	]
+
+<!--more-->
 	
 [leetcode 传送](https://oj.leetcode.com/problems/spiral-matrix-ii/)
 
