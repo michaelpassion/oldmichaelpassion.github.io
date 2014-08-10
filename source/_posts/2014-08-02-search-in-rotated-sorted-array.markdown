@@ -1,9 +1,10 @@
 ---
 layout: post
-title: "Search in Rotated Sorted Array"
-date: 2014-08-03 14:09:13 +0800
+title: "Search in Rotated Sorted Array.md"
+date: 2014-08-02 19:16:49 +0800
 comments: true
-categories:leetcode 二分
+categories: leetcode 二分
+
 ---
 
 >Suppose a sorted array is rotated at some pivot unknown to you beforehand.
@@ -75,7 +76,3 @@ public:
         return -1;
     }
 ```
-
-
-
-
