@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: 动态规划 | My Progressing Blog]]></title>
+  <link href="http://michaelpassion.github.io/blog/categories/dong-tai-gui-hua/atom.xml" rel="self"/>
+  <link href="http://michaelpassion.github.io/"/>
+  <updated>2014-08-10T17:00:49+08:00</updated>
+  <id>http://michaelpassion.github.io/</id>
+  <author>
+    <name><![CDATA[Michael]]></name>
+    <email><![CDATA[carter1373043@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Unique paths]]></title>
+    <link href="http://michaelpassion.github.io/blog/2014/08/10/unique-paths/"/>
+    <updated>2014-08-10T16:56:05+08:00</updated>
+    <id>http://michaelpassion.github.io/blog/2014/08/10/unique-paths</id>
+    <content type="html"><![CDATA[<blockquote><p>A robot is located at the top-left corner of a m x n grid (marked &lsquo;Start&rsquo; in the diagram below).</p>
+
+<p>The robot can only move either down or right at any point in time. The robot is trying to reach the bottom-right corner of the grid (marked &lsquo;Finish&rsquo; in the diagram below).</p>
+
+<p>How many possible unique paths are there?</p>
+
+<p>Above is a 3 x 7 grid. How many possible unique paths are there?</p>
+
+<p>Note: m and n will be at most 100.</p></blockquote>
+
+<!--more-->
+
+
+<p><em>Method 1</em>
+利用分治思想，假设矩阵A[m][n],要求A[m][n]共有多少 unique paths,可以求<br/>
+A[m][n] = A[m][n-1]+ A[m-1][n] （因为只能朝下方和右方走）
+还可以用一维数组直接简化二维数组
+<code>c++
+class Solution {
+public:
+    int uniquePaths(int m, int n) {
+        if (m &gt; n)
+        swap(m,n);
+        int map[n] = {1};
+        for(int i=1; i&lt;m;++i)
+        {
+            for(int j=1; j&lt;m; ++j)
+                map[j]+=map[j-1];
+        }
+    }
+}
+</code>
+<em>Method 2</em>
+DP
+<code>c++
+class Solution {
+public:
+    int uniquePaths(int m, int n) {
+       if(m &lt; n)
+            swap(m,n);
+        int a[101][101]={0};
+        for(int i=0; i&lt;m; i++)
+            a[i][0] = 1;
+        for(int i=1; i&lt;n; i++)
+            a[0][i] = 1;
+        for(int i = 1; i&lt;=m; i++)
+            for(int j=1; j&lt;=n;++j)
+                a[i][j]= a[i-1][j] + a[i][j-1];
+        return a[m-1][n-1];
+    }
+};
+</code></p>
+]]></content>
+  </entry>
+  
+</feed>

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: leetcode | My Progressing Blog]]></title>
   <link href="http://michaelpassion.github.io/blog/categories/leetcode/atom.xml" rel="self"/>
   <link href="http://michaelpassion.github.io/"/>
-  <updated>2014-08-10T16:01:36+08:00</updated>
+  <updated>2014-08-10T17:00:49+08:00</updated>
   <id>http://michaelpassion.github.io/</id>
   <author>
     <name><![CDATA[Michael]]></name>
@@ -14,82 +14,315 @@
 
   
   <entry>
-    <title type="html"><![CDATA[Search in Rotated Sorted Array.md]]></title>
-    <link href="http://michaelpassion.github.io/blog/2014/08/02/search-in-rotated-sorted-array/"/>
-    <updated>2014-08-02T19:16:49+08:00</updated>
-    <id>http://michaelpassion.github.io/blog/2014/08/02/search-in-rotated-sorted-array</id>
-    <content type="html"><![CDATA[<blockquote><p>Suppose a sorted array is rotated at some pivot unknown to you beforehand.</p>
+    <title type="html"><![CDATA[Unique paths]]></title>
+    <link href="http://michaelpassion.github.io/blog/2014/08/10/unique-paths/"/>
+    <updated>2014-08-10T16:56:05+08:00</updated>
+    <id>http://michaelpassion.github.io/blog/2014/08/10/unique-paths</id>
+    <content type="html"><![CDATA[<blockquote><p>A robot is located at the top-left corner of a m x n grid (marked &lsquo;Start&rsquo; in the diagram below).</p>
 
-<p>(i.e., 0 1 2 4 5 6 7 might become 4 5 6 7 0 1 2).</p>
+<p>The robot can only move either down or right at any point in time. The robot is trying to reach the bottom-right corner of the grid (marked &lsquo;Finish&rsquo; in the diagram below).</p>
 
-<p>You are given a target value to search. If found in the array return its index, otherwise return -1.</p>
+<p>How many possible unique paths are there?</p>
 
-<p>You may assume no duplicate exists in the array</p></blockquote>
+<p>Above is a 3 x 7 grid. How many possible unique paths are there?</p>
+
+<p>Note: m and n will be at most 100.</p></blockquote>
 
 <!--more-->
 
 
-<hr />
-
-<pre><code class="c++">class Solution {
+<p><em>Method 1</em>
+利用分治思想，假设矩阵A[m][n],要求A[m][n]共有多少 unique paths,可以求<br/>
+A[m][n] = A[m][n-1]+ A[m-1][n] （因为只能朝下方和右方走）
+还可以用一维数组直接简化二维数组
+<code>c++
+class Solution {
 public:
-    int search(int A[], int n, int target) {
-        int p = 0;
-        while(p&lt;n-1)
+    int uniquePaths(int m, int n) {
+        if (m &gt; n)
+        swap(m,n);
+        int map[n] = {1};
+        for(int i=1; i&lt;m;++i)
         {
-            if(A[p]&lt;A[p+1])
-                p++;
-            else
-                break;
+            for(int j=1; j&lt;m; ++j)
+                map[j]+=map[j-1];
         }
-
-
-        if(p == n-1 )
-        {
-            int low=0;
-            int high =p;
-            while(low &lt;= high)
-            {
-                int mid = (low + high)/2;
-                if(A[mid] == target)
-                    return mid;
-                else if(A[mid] &gt; target)
-                    high = mid -1;
-                else
-                    low = mid +1;
-            }
-            return -1;
-        }
-        int low=0;
-        int high =p;
-        while(low &lt;= high)
-        {
-            int mid = (low + high)/2;
-            if(A[mid] == target)
-                return mid;
-            else if(A[mid] &gt; target)
-                high = mid -1;
-            else
-                low = mid +1;
-        }
-
-
-        low = p+1;
-        high = n-1;
-        while(low &lt;= high)
-          {
-            int mid = (low + high)/2;
-            if(A[mid] == target)
-                return mid;
-            else if(A[mid] &gt; target)
-                high = mid -1;
-            else
-                low = mid +1;
-        }
-
-        return -1;
     }
+}
+</code>
+<em>Method 2</em>
+DP
+<code>c++
+class Solution {
+public:
+    int uniquePaths(int m, int n) {
+       if(m &lt; n)
+            swap(m,n);
+        int a[101][101]={0};
+        for(int i=0; i&lt;m; i++)
+            a[i][0] = 1;
+        for(int i=1; i&lt;n; i++)
+            a[0][i] = 1;
+        for(int i = 1; i&lt;=m; i++)
+            for(int j=1; j&lt;=n;++j)
+                a[i][j]= a[i-1][j] + a[i][j-1];
+        return a[m-1][n-1];
+    }
+};
+</code></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Linked List Cycle]]></title>
+    <link href="http://michaelpassion.github.io/blog/2014/08/10/linked-list-cycle/"/>
+    <updated>2014-08-10T16:53:50+08:00</updated>
+    <id>http://michaelpassion.github.io/blog/2014/08/10/linked-list-cycle</id>
+    <content type="html"><![CDATA[<blockquote><p>Given a linked list, determine if it has a cycle in it.</p>
+
+<p>Follow up:
+Can you solve it without using extra space?
+<a href="https://oj.leetcode.com/problems/linked-list-cycle/">题目地址</a></p></blockquote>
+
+<!--more-->
+
+
+<p><em>Method 1</em>
+快慢指针, 如果慢指针最终追上快指针，说明有环。否则，快指针先到达链表终点说明没有环。
+<img src="http://img.blog.csdn.net/20131105220928500?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvY3NfZ3VveGlhb3podQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="img" />
+&#8220;`c++
+/<em><em>
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode </em>next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ </em>/
+class Solution {
+public:
+    bool hasCycle(ListNode <em>head) {
+        if (head == NULL ) return false;
+        ListNode </em>slow = head->next;
+           if(slow == NULL)
+            return false;
+        ListNode *fast = head->next->next;
+        while(fast != NULL &amp;&amp; slow != fast)
+        {
+            slow =slow->next;
+            fast = fast->next ? fast->next->next : fast->next;
+        }</p>
+
+<pre><code>    if(fast != NULL)
+        return true;
+    else
+        return false;
+}
 </code></pre>
+
+<p>};
+&#8220;`</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Linked List Cycle II]]></title>
+    <link href="http://michaelpassion.github.io/blog/2014/08/10/linked-list-cycle-ii/"/>
+    <updated>2014-08-10T16:52:54+08:00</updated>
+    <id>http://michaelpassion.github.io/blog/2014/08/10/linked-list-cycle-ii</id>
+    <content type="html"><![CDATA[<blockquote><p>Given a linked list, return the node where the cycle begins. If there is no cycle, return null.</p>
+
+<p>Follow up:
+Can you solve it without using extra space?</p></blockquote>
+
+<!--more-->
+
+
+<p>寻找环的过程参考 这一篇 <a href="https://zybuluo.com/michaelpassion/note/24977">Linked List Cycle</a></p>
+
+<p>借用一张图，其中Y点为环的入口，由上篇可知，通过快慢指针可以发现环，假设快慢指针相交于Z点，则fast指针走过的路程为 <code>a+n(b+c)+b</code>， slow指针走过的路程为<code>a+b</code>。又 fast走过的路程为 slow 的2倍，所以 <code>a+n(b+c)+b = 2(a+b)</code> 则<code>a=n(b+c)-b</code>。 将slow指针指向head，然后slow，fast指针都以1的速度移动，slow由X点走向Y点路程为<code>a</code>, fast 路程也为<code>n(b+c)-b</code>在Y点（如果没有-b，fast指针绕了n圈又回到Z点）
+<img src="http://images.cnitblog.com/blog/354747/201311/05171805-64db9f059a1641e7afaf3dd8223c4fe7.jpg" alt="" />
+&#8220;`c++
+/<em><em>
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode </em>next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ </em>/
+class Solution {
+public:
+    ListNode <em>detectCycle(ListNode </em>head) {
+        if(head == NULL) return NULL;</p>
+
+<pre><code>    ListNode *slow = head-&gt;next;
+    if (slow == NULL) return NULL;
+    ListNode *fast = head-&gt;next-&gt;next;
+
+    while(fast != NULL &amp;&amp; slow != fast)
+    {
+        slow = slow-&gt;next;
+        fast = fast-&gt;next ? fast-&gt;next-&gt;next :fast-&gt;next;
+    }
+
+    if(!fast) return NULL;
+    slow = head;
+    while(slow != fast)
+    {
+        slow=slow-&gt;next;
+        fast=fast-&gt;next;
+    }
+    return slow;
+}
+</code></pre>
+
+<p>};
+&#8220;`</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Search Insert Position]]></title>
+    <link href="http://michaelpassion.github.io/blog/2014/08/10/search-insert-position/"/>
+    <updated>2014-08-10T16:51:38+08:00</updated>
+    <id>http://michaelpassion.github.io/blog/2014/08/10/search-insert-position</id>
+    <content type="html"><![CDATA[<blockquote><p>Given a sorted array and a target value, return the index if the target is found. If not, return the index where it would be if it were inserted in order.</p>
+
+<p>You may assume no duplicates in the array.</p>
+
+<p>Here are few examples.</p>
+
+<p>[1,3,5,6], 5 → 2</p>
+
+<p>[1,3,5,6], 2 → 1</p>
+
+<p>[1,3,5,6], 7 → 4</p>
+
+<p>[1,3,5,6], 0 → 0</p></blockquote>
+
+<!--more-->
+
+
+<p>代码如下，比较丑，以后更新
+&#8220;`c++
+class Solution {
+public:
+    int searchInsert(int A[], int n, int target) {</p>
+
+<pre><code>    if(A[0] &gt; target) return 0;
+    if(A[n-1] &lt; target) return n;
+    devide(A,n,0,target);
+}
+
+int devide(int A[], int high, int low, int target)
+{
+    int mid = (low + high)/2;
+
+    if(A[mid] == target)
+        return mid;
+    else if(A[mid] &gt; target)
+    {
+         devide(A,mid,0,target);
+    } else if(A[mid] &lt; target)
+    {
+        if(A[mid+1] &gt; target)
+            return mid+1;
+        else 
+            devide(A,high,mid,target);
+    }
+}
+</code></pre>
+
+<p>};
+&#8220;`</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[# Search for a Range]]></title>
+    <link href="http://michaelpassion.github.io/blog/2014/08/10/number-search-for-a-range/"/>
+    <updated>2014-08-10T16:48:21+08:00</updated>
+    <id>http://michaelpassion.github.io/blog/2014/08/10/number-search-for-a-range</id>
+    <content type="html"><![CDATA[<blockquote><p>Given a sorted array of integers, find the starting and ending position of a given target value.</p>
+
+<p>Your algorithm&rsquo;s runtime complexity must be in the order of O(log n).</p>
+
+<p>If the target is not found in the array, return [-1, -1].</p>
+
+<p>For example,
+Given [5, 7, 7, 8, 8, 10] and target value 8,
+return [3, 4].</p></blockquote>
+
+<!--more-->
+
+
+<p><a href="https://oj.leetcode.com/problems/search-for-a-range/">原题传送门</a></p>
+
+<p><em>解析</em>
+因为数组是有序的，所以可以使用二分去查找。其实本题是二分的变形。
+&#8220;`c++
+class Solution {
+public:
+    vector<int> searchRange(int A[], int n, int target) {</p>
+
+<pre><code>  vector&lt;int&gt; ret(2,-1);
+  if(n == 0 || A[0]&gt;target || A[n-1]&lt;target)
+        return ret;
+    int low=0,high=n-1;
+    int mid = (low+high)/2;
+
+    //第一次二分，找target
+    while(low&lt;=high)
+    {
+        mid = (low+high)/2;
+        if(A[mid] == target)
+        {
+            ret[0]=mid;
+            ret[1]=mid;
+            break;
+        }
+        else if (A[mid] &gt; target)
+        {
+            high = mid-1;
+        }
+        else 
+            low = mid +1;
+    }
+    if(A[mid] != target)
+        return ret;
+    //第二次二分找target的右边界
+    int newL = mid;
+    int newR = n-1;
+    while(newL &lt;= newR)
+    {
+        int newMid = (newR+newL)/2;
+        if(A[newMid] == target)
+            newL = newMid+1;
+        else
+            newR = newMid-1;
+    }
+
+    ret[1] = newR;
+    //第三次二分找target的左边界
+    newL=0;
+    newR=mid;
+    while(newL&lt;=newR)
+    {
+        int newMid = (newL+newR)/2;
+        if(A[newMid] == target)
+            newR = newMid-1;
+        else
+            newL = newMid+1;
+    }
+
+    ret[0] = newL;
+    return ret;
+}
+</code></pre>
+
+<p>};
+&#8220;`</p>
 ]]></content>
   </entry>
   

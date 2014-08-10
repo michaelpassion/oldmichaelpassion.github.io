@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: 算法 | My Progressing Blog]]></title>
+  <link href="http://michaelpassion.github.io/blog/categories/suan-fa/atom.xml" rel="self"/>
+  <link href="http://michaelpassion.github.io/"/>
+  <updated>2014-08-10T17:00:49+08:00</updated>
+  <id>http://michaelpassion.github.io/</id>
+  <author>
+    <name><![CDATA[Michael]]></name>
+    <email><![CDATA[carter1373043@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Two Sum]]></title>
+    <link href="http://michaelpassion.github.io/blog/2014/08/10/two-sum/"/>
+    <updated>2014-08-10T16:43:32+08:00</updated>
+    <id>http://michaelpassion.github.io/blog/2014/08/10/two-sum</id>
+    <content type="html"><![CDATA[<blockquote><p>Given an array of integers, find two numbers such that they add up to a specific target number.</p>
+
+<p>The function twoSum should return indices of the two numbers such that they add up to the target, where index1 must be less than index2. Please note that your returned answers (both index1 and index2) are not zero-based.</p>
+
+<p>You may assume that each input would have exactly one solution.</p>
+
+<p>Input: numbers={2, 7, 11, 15}, target=9
+Output: index1=1, index2=2</p></blockquote>
+
+<!--more-->
+
+
+<p><strong>时间复杂度为O(n)</strong>
+&#8220;`C++
+class Solution {
+public:
+    vector<int> twoSum(vector<int> &amp;numbers, int target) {
+        int len = numbers.size();
+        assert(len >= 2); <br/>
+        vector<int> ret(2,0);
+        map&lt;int, int> mapping;
+        vector<long long> mul(len,0);
+        for(int i=0; i&lt;len; ++i)
+        {
+            mul[i] = (target - numbers[i]) * numbers[i];
+            if(mapping[mul[i]] >0)
+            {
+                if(numbers[mapping[mul[i]] -1] + numbers[i] == target)
+                {
+                    ret[0] = mapping[mul[i]];
+                    ret[1] = i+1;
+                    return ret;
+                }
+            }
+            else
+            {
+                mapping[mul[i]] = i+1;
+            }
+        }</p>
+
+<pre><code>}
+</code></pre>
+
+<p>};
+&#8220;`</p>
+]]></content>
+  </entry>
+  
+</feed>

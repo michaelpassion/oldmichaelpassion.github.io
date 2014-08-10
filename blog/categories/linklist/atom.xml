@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: linklist | My Progressing Blog]]></title>
+  <link href="http://michaelpassion.github.io/blog/categories/linklist/atom.xml" rel="self"/>
+  <link href="http://michaelpassion.github.io/"/>
+  <updated>2014-08-10T17:00:49+08:00</updated>
+  <id>http://michaelpassion.github.io/</id>
+  <author>
+    <name><![CDATA[Michael]]></name>
+    <email><![CDATA[carter1373043@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Linked List Cycle]]></title>
+    <link href="http://michaelpassion.github.io/blog/2014/08/10/linked-list-cycle/"/>
+    <updated>2014-08-10T16:53:50+08:00</updated>
+    <id>http://michaelpassion.github.io/blog/2014/08/10/linked-list-cycle</id>
+    <content type="html"><![CDATA[<blockquote><p>Given a linked list, determine if it has a cycle in it.</p>
+
+<p>Follow up:
+Can you solve it without using extra space?
+<a href="https://oj.leetcode.com/problems/linked-list-cycle/">题目地址</a></p></blockquote>
+
+<!--more-->
+
+
+<p><em>Method 1</em>
+快慢指针, 如果慢指针最终追上快指针，说明有环。否则，快指针先到达链表终点说明没有环。
+<img src="http://img.blog.csdn.net/20131105220928500?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvY3NfZ3VveGlhb3podQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="img" />
+&#8220;`c++
+/<em><em>
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode </em>next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ </em>/
+class Solution {
+public:
+    bool hasCycle(ListNode <em>head) {
+        if (head == NULL ) return false;
+        ListNode </em>slow = head->next;
+           if(slow == NULL)
+            return false;
+        ListNode *fast = head->next->next;
+        while(fast != NULL &amp;&amp; slow != fast)
+        {
+            slow =slow->next;
+            fast = fast->next ? fast->next->next : fast->next;
+        }</p>
+
+<pre><code>    if(fast != NULL)
+        return true;
+    else
+        return false;
+}
+</code></pre>
+
+<p>};
+&#8220;`</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Linked List Cycle II]]></title>
+    <link href="http://michaelpassion.github.io/blog/2014/08/10/linked-list-cycle-ii/"/>
+    <updated>2014-08-10T16:52:54+08:00</updated>
+    <id>http://michaelpassion.github.io/blog/2014/08/10/linked-list-cycle-ii</id>
+    <content type="html"><![CDATA[<blockquote><p>Given a linked list, return the node where the cycle begins. If there is no cycle, return null.</p>
+
+<p>Follow up:
+Can you solve it without using extra space?</p></blockquote>
+
+<!--more-->
+
+
+<p>寻找环的过程参考 这一篇 <a href="https://zybuluo.com/michaelpassion/note/24977">Linked List Cycle</a></p>
+
+<p>借用一张图，其中Y点为环的入口，由上篇可知，通过快慢指针可以发现环，假设快慢指针相交于Z点，则fast指针走过的路程为 <code>a+n(b+c)+b</code>， slow指针走过的路程为<code>a+b</code>。又 fast走过的路程为 slow 的2倍，所以 <code>a+n(b+c)+b = 2(a+b)</code> 则<code>a=n(b+c)-b</code>。 将slow指针指向head，然后slow，fast指针都以1的速度移动，slow由X点走向Y点路程为<code>a</code>, fast 路程也为<code>n(b+c)-b</code>在Y点（如果没有-b，fast指针绕了n圈又回到Z点）
+<img src="http://images.cnitblog.com/blog/354747/201311/05171805-64db9f059a1641e7afaf3dd8223c4fe7.jpg" alt="" />
+&#8220;`c++
+/<em><em>
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode </em>next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ </em>/
+class Solution {
+public:
+    ListNode <em>detectCycle(ListNode </em>head) {
+        if(head == NULL) return NULL;</p>
+
+<pre><code>    ListNode *slow = head-&gt;next;
+    if (slow == NULL) return NULL;
+    ListNode *fast = head-&gt;next-&gt;next;
+
+    while(fast != NULL &amp;&amp; slow != fast)
+    {
+        slow = slow-&gt;next;
+        fast = fast-&gt;next ? fast-&gt;next-&gt;next :fast-&gt;next;
+    }
+
+    if(!fast) return NULL;
+    slow = head;
+    while(slow != fast)
+    {
+        slow=slow-&gt;next;
+        fast=fast-&gt;next;
+    }
+    return slow;
+}
+</code></pre>
+
+<p>};
+&#8220;`</p>
+]]></content>
+  </entry>
+  
+</feed>

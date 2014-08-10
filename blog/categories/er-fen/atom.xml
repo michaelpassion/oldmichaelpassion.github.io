@@ -4,7 +4,7 @@
   <title><![CDATA[Category: 二分 | My Progressing Blog]]></title>
   <link href="http://michaelpassion.github.io/blog/categories/er-fen/atom.xml" rel="self"/>
   <link href="http://michaelpassion.github.io/"/>
-  <updated>2014-08-10T16:01:36+08:00</updated>
+  <updated>2014-08-10T17:00:49+08:00</updated>
   <id>http://michaelpassion.github.io/</id>
   <author>
     <name><![CDATA[Michael]]></name>
@@ -12,6 +12,227 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Search Insert Position]]></title>
+    <link href="http://michaelpassion.github.io/blog/2014/08/10/search-insert-position/"/>
+    <updated>2014-08-10T16:51:38+08:00</updated>
+    <id>http://michaelpassion.github.io/blog/2014/08/10/search-insert-position</id>
+    <content type="html"><![CDATA[<blockquote><p>Given a sorted array and a target value, return the index if the target is found. If not, return the index where it would be if it were inserted in order.</p>
+
+<p>You may assume no duplicates in the array.</p>
+
+<p>Here are few examples.</p>
+
+<p>[1,3,5,6], 5 → 2</p>
+
+<p>[1,3,5,6], 2 → 1</p>
+
+<p>[1,3,5,6], 7 → 4</p>
+
+<p>[1,3,5,6], 0 → 0</p></blockquote>
+
+<!--more-->
+
+
+<p>代码如下，比较丑，以后更新
+&#8220;`c++
+class Solution {
+public:
+    int searchInsert(int A[], int n, int target) {</p>
+
+<pre><code>    if(A[0] &gt; target) return 0;
+    if(A[n-1] &lt; target) return n;
+    devide(A,n,0,target);
+}
+
+int devide(int A[], int high, int low, int target)
+{
+    int mid = (low + high)/2;
+
+    if(A[mid] == target)
+        return mid;
+    else if(A[mid] &gt; target)
+    {
+         devide(A,mid,0,target);
+    } else if(A[mid] &lt; target)
+    {
+        if(A[mid+1] &gt; target)
+            return mid+1;
+        else 
+            devide(A,high,mid,target);
+    }
+}
+</code></pre>
+
+<p>};
+&#8220;`</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[# Search for a Range]]></title>
+    <link href="http://michaelpassion.github.io/blog/2014/08/10/number-search-for-a-range/"/>
+    <updated>2014-08-10T16:48:21+08:00</updated>
+    <id>http://michaelpassion.github.io/blog/2014/08/10/number-search-for-a-range</id>
+    <content type="html"><![CDATA[<blockquote><p>Given a sorted array of integers, find the starting and ending position of a given target value.</p>
+
+<p>Your algorithm&rsquo;s runtime complexity must be in the order of O(log n).</p>
+
+<p>If the target is not found in the array, return [-1, -1].</p>
+
+<p>For example,
+Given [5, 7, 7, 8, 8, 10] and target value 8,
+return [3, 4].</p></blockquote>
+
+<!--more-->
+
+
+<p><a href="https://oj.leetcode.com/problems/search-for-a-range/">原题传送门</a></p>
+
+<p><em>解析</em>
+因为数组是有序的，所以可以使用二分去查找。其实本题是二分的变形。
+&#8220;`c++
+class Solution {
+public:
+    vector<int> searchRange(int A[], int n, int target) {</p>
+
+<pre><code>  vector&lt;int&gt; ret(2,-1);
+  if(n == 0 || A[0]&gt;target || A[n-1]&lt;target)
+        return ret;
+    int low=0,high=n-1;
+    int mid = (low+high)/2;
+
+    //第一次二分，找target
+    while(low&lt;=high)
+    {
+        mid = (low+high)/2;
+        if(A[mid] == target)
+        {
+            ret[0]=mid;
+            ret[1]=mid;
+            break;
+        }
+        else if (A[mid] &gt; target)
+        {
+            high = mid-1;
+        }
+        else 
+            low = mid +1;
+    }
+    if(A[mid] != target)
+        return ret;
+    //第二次二分找target的右边界
+    int newL = mid;
+    int newR = n-1;
+    while(newL &lt;= newR)
+    {
+        int newMid = (newR+newL)/2;
+        if(A[newMid] == target)
+            newL = newMid+1;
+        else
+            newR = newMid-1;
+    }
+
+    ret[1] = newR;
+    //第三次二分找target的左边界
+    newL=0;
+    newR=mid;
+    while(newL&lt;=newR)
+    {
+        int newMid = (newL+newR)/2;
+        if(A[newMid] == target)
+            newR = newMid-1;
+        else
+            newL = newMid+1;
+    }
+
+    ret[0] = newL;
+    return ret;
+}
+</code></pre>
+
+<p>};
+&#8220;`</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Sqrt(x)]]></title>
+    <link href="http://michaelpassion.github.io/blog/2014/08/10/sqrt-x/"/>
+    <updated>2014-08-10T16:46:19+08:00</updated>
+    <id>http://michaelpassion.github.io/blog/2014/08/10/sqrt-x</id>
+    <content type="html"><![CDATA[<blockquote><p>Implement int sqrt(int x).</p>
+
+<p>Compute and return the square root of x.</p></blockquote>
+
+<!--more-->
+
+
+<p><em>Method 1</em> 二分法
+<code>c++
+class Solution {
+public:
+    int sqrt(int x) {
+        if(x&lt;0) return -1;
+        if(x==0 || x==1) return x;
+        unsigned long long l=0,r=x;
+        while(l&lt;r)
+        {
+            unsigned long long m =(l+r)/2;
+            if(x/m == m)
+                return m;
+            else if(x/m&gt;m)
+                l=m+1;
+            else
+                r=m-1;
+        }
+      unsigned long long tmp = r*r;
+      if(tmp &gt; x)
+        return r-1;
+        else
+        return r;
+    }
+};
+</code>
+<em>Method 2</em> 牛顿迭代法</p>
+
+<p>假设 $ x<sup>2</sup>= n$ 令$ f(x)= x<sup>2</sup>-n$ 图像如下：
+<img src="http://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Ganzhi001.jpg/200px-Ganzhi001.jpg" alt="" />
+f(x)函数图像与x轴的交点即为函数的解，也即 $x<sup>2</sup>=n$
+求交点的过程如下：
+首先，选择一个接近函数$f(x)$零点的$x_0$,计算$x_0<sup>2</sup>$是否等于n,如果不相等，则做$（x_0，f(x_0)）$点的切线，交点为$x_1$。
+接着，验证$x_1$是否为所求，若$x_1$不符合条件，继续做$（x_1，f(x_1)）$点的切线，与x轴交于$x_2$,再验证$x_2$是否为所求。
+以此类推，得到$x_k$无限接近$f(x)=0$的解。判断xk是否是f(x)=0的解有两种方法：
+1. 直接计算f(xk)是否等于0；
+2. 判断前后两个解$x_k和x<em>{k-1}$是否无限接近。
+经过$（x_k,f(x_k))$点的切线方程为 $g(x_k)=f(x_k)+f&#8217;(x_k)(x-x_k)$,
+本题中$f&#8217;(x)=2x$， 令$g(x_k)=0$,得到$x</em>{k+1} = x_k -\frac{f(x_k)} {f&#8217;(x)} $
+继续化简 $x<em>{k+1}=x_k-\frac {x_k<sup>2</sup>-n} {2x_k} = \frac 12(x_k+ \frac{n}{x_k}) $;
+迭代公式即为$x</em>{k+1}= \frac 12(x_k+ \frac{n}{x_k}) $;
+<a href="http://blog.csdn.net/doc_sgl/article/details/12404971">上面分析过程参考hackersun007</a>
+&#8220;`c++
+class Solution {
+public:
+    int sqrt(int x) {
+            if (x==0 || x==1)
+                return x;
+            double pre;
+            double cur =1;</p>
+
+<pre><code>        do
+        {
+            pre = cur;
+            cur = (pre + x/pre)/2;
+        }while(abs(cur-pre) &gt; 0.00001);
+        return int(cur);
+    }
+}
+</code></pre>
+
+<p>&#8220;`</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Search in Rotated Sorted Array.md]]></title>
