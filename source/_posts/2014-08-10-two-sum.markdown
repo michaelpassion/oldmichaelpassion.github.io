@@ -1,0 +1,49 @@
+---
+layout: post
+title: "Two Sum"
+date: 2014-08-10 16:43:32 +0800
+comments: true
+categories: leetcode c++ 算法 hash
+---
+>Given an array of integers, find two numbers such that they add up to a specific target number.
+
+>The function twoSum should return indices of the two numbers such that they add up to the target, where index1 must be less than index2. Please note that your returned answers (both index1 and index2) are not zero-based.
+
+>You may assume that each input would have exactly one solution.
+
+>Input: numbers={2, 7, 11, 15}, target=9
+>Output: index1=1, index2=2
+<!--more-->
+**时间复杂度为O(n)**
+```C++
+class Solution {
+public:
+    vector<int> twoSum(vector<int> &numbers, int target) {
+        int len = numbers.size();
+        assert(len >= 2);   
+        vector<int> ret(2,0);
+        map<int, int> mapping;
+        vector<long long> mul(len,0);
+        for(int i=0; i<len; ++i)
+        {
+            mul[i] = (target - numbers[i]) * numbers[i];
+            if(mapping[mul[i]] >0)
+            {
+                if(numbers[mapping[mul[i]] -1] + numbers[i] == target)
+                {
+                    ret[0] = mapping[mul[i]];
+                    ret[1] = i+1;
+                    return ret;
+                }
+            }
+            else
+            {
+                mapping[mul[i]] = i+1;
+            }
+        }
+      
+    }
+};
+```
+
+

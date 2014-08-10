@@ -1,0 +1,72 @@
+---
+layout: post
+title: "Sqrt(x)"
+date: 2014-08-10 16:46:19 +0800
+comments: true
+categories: leetcode 二分
+---
+>Implement int sqrt(int x).
+
+>Compute and return the square root of x.
+<!--more-->
+
+*Method 1* 二分法
+```c++
+class Solution {
+public:
+    int sqrt(int x) {
+        if(x<0) return -1;
+        if(x==0 || x==1) return x;
+        unsigned long long l=0,r=x;
+        while(l<r)
+        {
+            unsigned long long m =(l+r)/2;
+            if(x/m == m)
+                return m;
+            else if(x/m>m)
+                l=m+1;
+            else
+                r=m-1;
+        }
+      unsigned long long tmp = r*r;
+      if(tmp > x)
+        return r-1;
+        else 
+        return r;
+    }
+};
+```
+*Method 2* 牛顿迭代法
+
+假设 $ x^2= n$ 令$ f(x)= x^2-n$ 图像如下：
+![](http://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Ganzhi001.jpg/200px-Ganzhi001.jpg)
+f(x)函数图像与x轴的交点即为函数的解，也即 $x^2=n$
+求交点的过程如下：
+首先，选择一个接近函数$f(x)$零点的$x_0$,计算$x_0^2$是否等于n,如果不相等，则做$（x_0，f(x_0)）$点的切线，交点为$x_1$。
+接着，验证$x_1$是否为所求，若$x_1$不符合条件，继续做$（x_1，f(x_1)）$点的切线，与x轴交于$x_2$,再验证$x_2$是否为所求。
+以此类推，得到$x_k$无限接近$f(x)=0$的解。判断xk是否是f(x)=0的解有两种方法：
+1. 直接计算f(xk)是否等于0；
+2. 判断前后两个解$x_k和x_{k-1}$是否无限接近。
+经过$（x_k,f(x_k))$点的切线方程为 $g(x_k)=f(x_k)+f'(x_k)(x-x_k)$,
+本题中$f'(x)=2x$， 令$g(x_k)=0$,得到$x_{k+1} = x_k -\frac{f(x_k)} {f'(x)} $
+继续化简 $x_{k+1}=x_k-\frac {x_k^2-n} {2x_k} = \frac 12(x_k+ \frac{n}{x_k}) $;
+迭代公式即为$x_{k+1}= \frac 12(x_k+ \frac{n}{x_k}) $;
+[上面分析过程参考hackersun007](http://blog.csdn.net/doc_sgl/article/details/12404971)
+```c++
+class Solution {
+public:
+    int sqrt(int x) {
+            if (x==0 || x==1)
+                return x;
+            double pre;
+            double cur =1;
+            
+            do
+            {
+                pre = cur;
+                cur = (pre + x/pre)/2;
+            }while(abs(cur-pre) > 0.00001);
+            return int(cur);
+        }
+    }
+```

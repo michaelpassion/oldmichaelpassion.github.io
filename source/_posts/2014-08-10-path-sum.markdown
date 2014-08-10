@@ -1,0 +1,54 @@
+---
+layout: post
+title: "Path Sum"
+date: 2014-08-10 16:40:49 +0800
+comments: true
+categories: leetcode BinaryTree DFS 递归
+---
+>Given a binary tree and a sum, determine if the tree has a root-to-leaf path such that adding up all the values along the path equals the given sum.
+
+>For example:
+Given the below binary tree and sum = 22,
+<!--more-->
+
+[leetcode path sum](https://oj.leetcode.com/problems/path-sum/)
+
+
+```c++
+/**
+ * Definition for binary tree
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    bool hasPathSum(TreeNode *root, int sum) {
+        vector<int> paths;
+        tranverse(root,0,paths);
+        
+        for(int i=0; i<paths.size(); ++i)
+        {
+            if(paths[i] == sum) 
+                return true;
+        }
+        return false;
+    }
+    
+    void tranverse(TreeNode *root, int sum, vector<int> &paths)
+    {
+        if(!root) return;
+        if(!root->left && !root->right)
+        {
+            paths.push_back(sum+root->val);
+            return;
+        }
+        tranverse(root->left, sum+root->val, paths);
+        tranverse(root->right,sum+root->val, paths);
+    }
+
+};
+```
