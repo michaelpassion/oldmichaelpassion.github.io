@@ -11,13 +11,16 @@ categories:
 
 >Note:
 You are not suppose to use the library's sort function for this problem.
+<!--more-->
+
 
 [leetcode Sort Colors][1]
+
 
 *Method 1*
 统计各颜色出现的次数，然后重新给颜色数组赋值
 
-```
+```c++
 //时间复杂度 O(n),空间复杂度O(1)
 class Sloution {
 public:
@@ -36,7 +39,7 @@ public:
 *Method 2*
 利用快速排序的思想,遍历，交换元素
 
-```
+```c++
 //时间复杂度 O(n),空间复杂度O(1)
 class Solution {
 public:
@@ -65,7 +68,7 @@ public:
 *Method 3*
 同样维护三个指针，指向0，1，2的三个数组的起始位置。如果下一个数字是0，向右移动1,2两个指针的位置，将0放到合适的位置。移动指针时，并没有移动整个数组，只需要3个位置需要改变。 1和2同上
 
-```
+```c++
 //时间复杂度 O(n),空间复杂度O(1)
 class Solution {
 public:
@@ -96,7 +99,7 @@ public:
 *Method 4*
 两个指针，和快排的解法一样
 
-```
+```c++
 //时间复杂度O(n)，空间复杂度O(1)
 class Solution {
 public:

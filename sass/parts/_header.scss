@@ -301,7 +301,9 @@ $header-height: 30px;
 	}
 	.social{
 		float: left;
-		margin-right: 15px;
+		margin-right: 5px;
+        margin-bottom: 15px;
+
 		@media screen and (max-width: 1040px){
 			float: none;
 			margin-right: 0;
@@ -325,6 +327,13 @@ $header-height: 30px;
 				border: 1px solid #050505;
 				&:hover{
 					border: 1px solid darken(#050505, 10%);
+				}
+			}
+            &.weibo{
+				background: image-url('social/weibo.png') center no-repeat #e32529;
+				border: 1px solid #e32529;
+				&:hover{
+					border: 1px solid darken(#e32529, 10%);
 				}
 			}
 			&.facebook{
