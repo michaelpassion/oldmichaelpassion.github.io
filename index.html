@@ -9,7 +9,7 @@
 	<meta name="author" content="Michael">
 
 	
-	<meta name="description" content="Aug 10th, 2014 leetcode, 矩阵 Spiral Matrix II Given an integer n, generate a square matrix filled with elements from 1 to n2 in spiral order. For &hellip;">
+	<meta name="description" content="Aug 10th, 2014 leetcode, matrix, 矩阵 Spiral Matrix II Given an integer n, generate a square matrix filled with elements from 1 to n2 in spiral order &hellip;">
 	
 
   <!-- http://t.co/dKP3o1e -->
@@ -121,7 +121,7 @@
 		<div class="tags">
 
 
-	<a class='category' href='/blog/categories/leetcode/'>leetcode</a>, <a class='category' href='/blog/categories/ju-zhen/'>矩阵</a>
+	<a class='category' href='/blog/categories/leetcode/'>leetcode</a>, <a class='category' href='/blog/categories/matrix/'>matrix</a>, <a class='category' href='/blog/categories/ju-zhen/'>矩阵</a>
 
 
 </div>
@@ -143,66 +143,9 @@ Given n = 3,</p>
 ]
 </code></pre>
 
-<p><a href="https://oj.leetcode.com/problems/spiral-matrix-ii/">leetcode 传送</a></p>
-
-<hr />
-
-<p><em>思路</em>
-主要是坐标的计算，在矩阵上比划下，就很清晰了，没有什么算法思想</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-</pre></td><td class='code'><pre><code class='c++'><span class='line'><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
-</span><span class='line'><span class="k">public</span><span class="o">:</span>
-</span><span class='line'>    <span class="n">vector</span><span class="o">&lt;</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="o">&gt;</span> <span class="n">generateMatrix</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>        <span class="kt">int</span> <span class="n">level</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-</span><span class='line'>        <span class="n">vector</span><span class="o">&lt;</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="o">&gt;</span><span class="n">matrix</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="mi">0</span><span class="p">));</span>
-</span><span class='line'>
-</span><span class='line'>        <span class="kt">int</span> <span class="n">num</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-</span><span class='line'>        <span class="k">while</span><span class="p">(</span><span class="n">num</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="o">*</span><span class="n">n</span><span class="p">)</span>
-</span><span class='line'>        <span class="p">{</span>
-</span><span class='line'>            <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">level</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span> <span class="n">n</span><span class="o">-</span><span class="n">level</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
-</span><span class='line'>                <span class="n">matrix</span><span class="p">[</span><span class="n">level</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">num</span><span class="o">++</span><span class="p">;</span>
-</span><span class='line'>            <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">level</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">n</span><span class="o">-</span><span class="n">level</span><span class="p">;</span><span class="o">++</span><span class="n">i</span><span class="p">)</span>
-</span><span class='line'>                <span class="n">matrix</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">n</span><span class="o">-</span><span class="n">level</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">num</span><span class="o">++</span><span class="p">;</span>
-</span><span class='line'>            <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">n</span><span class="o">-</span><span class="mi">2</span><span class="o">-</span><span class="n">level</span><span class="p">;</span> <span class="n">i</span><span class="o">&gt;=</span><span class="n">level</span><span class="p">;</span><span class="o">--</span><span class="n">i</span><span class="p">)</span>
-</span><span class='line'>                <span class="n">matrix</span><span class="p">[</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="o">-</span><span class="n">level</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">num</span><span class="o">++</span><span class="p">;</span>
-</span><span class='line'>            <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">n</span><span class="o">-</span><span class="mi">2</span><span class="o">-</span><span class="n">level</span><span class="p">;</span> <span class="n">i</span><span class="o">&gt;</span><span class="n">level</span><span class="p">;</span> <span class="o">--</span><span class="n">i</span><span class="p">)</span>
-</span><span class='line'>                <span class="n">matrix</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">level</span><span class="p">]</span> <span class="o">=</span> <span class="n">num</span><span class="o">++</span><span class="p">;</span>
-</span><span class='line'>            <span class="n">level</span><span class="o">++</span><span class="p">;</span>
-</span><span class='line'>        <span class="p">}</span>
-</span><span class='line'>            <span class="k">return</span> <span class="n">matrix</span><span class="p">;</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="p">};</span>
-</span></code></pre></td></tr></table></div></figure>
-
 
 		
-		
+		<a href="/blog/2014/08/10/spiral-matrix-ii/" class="more-link">继续阅读 &rarr;</a>
 	</div>
 
 </article>

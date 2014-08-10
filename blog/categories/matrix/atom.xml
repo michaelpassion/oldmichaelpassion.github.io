@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: 矩阵 | My Progressing Blog]]></title>
-  <link href="http://michaelpassion.github.io/blog/categories/ju-zhen/atom.xml" rel="self"/>
+  <title><![CDATA[Category: matrix | My Progressing Blog]]></title>
+  <link href="http://michaelpassion.github.io/blog/categories/matrix/atom.xml" rel="self"/>
   <link href="http://michaelpassion.github.io/"/>
   <updated>2014-08-10T22:25:09+08:00</updated>
   <id>http://michaelpassion.github.io/</id>
