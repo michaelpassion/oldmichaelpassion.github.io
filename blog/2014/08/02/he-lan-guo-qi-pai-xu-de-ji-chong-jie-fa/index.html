@@ -41,7 +41,7 @@
 	<script src="/javascripts/md5.js"></script>
 	<script type="text/javascript">
 		$(function(){
-			$('.profilepic').append("<img src='http://www.gravatar.com/avatar/" + MD5("") + "?s=160' alt='Profile Picture' style='width: 160px;' />");
+			$('.profilepic').append("<img src='http://www.gravatar.com/avatar/" + MD5("carter1373043@gmail.com") + "?s=160' alt='Profile Picture' style='width: 160px;' />");
 		});
 	</script>
 	
@@ -49,16 +49,28 @@
 
 <nav id="main-nav"><ul class="main">
     <li><a href="/">Blog</a></li>
-    <li><a href="http://about.me/shashankmehta">About</a></li>
+    <li><a href="/about">About</a></li>
     <li><a href="/blog/archives">Archives</a></li>
 </ul>
 </nav>
 <nav id="sub-nav">
 	<div class="social">
 		
+			<a class="email" href="mailto:carter1373043@gmail.com" title="Email">Email</a>
+		
+        
+        <a class="weibo" href="http://www.weibo.com/michaelpassion" title="Weibo">Weibo</a>
+        
+        
 		
 		
+			<a class="google" href="https://plus.google.com/carter1373043@gmail.com" rel="author" title="Google+">Google+</a>
 		
+		
+			<a class="twitter" href="http://twitter.com/carter1373043@gmial.com" title="Twitter">Twitter</a>
+		
+		
+			<a class="github" href="https://github.com/michaelpassion" title="GitHub">GitHub</a>
 		
 		
 		
@@ -100,7 +112,7 @@ You are not suppose to use the library&rsquo;s sort function for this problem.</
 <p><em>Method 1</em>
 统计各颜色出现的次数，然后重新给颜色数组赋值</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -114,26 +126,27 @@ You are not suppose to use the library&rsquo;s sort function for this problem.</
 <span class='line-number'>12</span>
 <span class='line-number'>13</span>
 <span class='line-number'>14</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>//时间复杂度 O(n),空间复杂度O(1)
-</span><span class='line'>class Sloution {
-</span><span class='line'>public:
-</span><span class='line'>    void sortColorts(int A[], int n) {
-</span><span class='line'>        int colors[3]={0};
-</span><span class='line'>        for( int i = 0; i &lt; n; ++i)
-</span><span class='line'>            colors[A[i]]++;
-</span><span class='line'>        for(int i = 0, index =0; i &lt; 3; ++i)
-</span><span class='line'>        {
-</span><span class='line'>            for(int j=0; j&lt; colors[i]; ++j)
-</span><span class='line'>                A[index++] = i;
-</span><span class='line'>        }
-</span><span class='line'>    }
-</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+</pre></td><td class='code'><pre><code class='c++'><span class='line'><span class="c1">//时间复杂度 O(n),空间复杂度O(1)</span>
+</span><span class='line'><span class="k">class</span> <span class="nc">Sloution</span> <span class="p">{</span>
+</span><span class='line'><span class="k">public</span><span class="o">:</span>
+</span><span class='line'>    <span class="kt">void</span> <span class="n">sortColorts</span><span class="p">(</span><span class="kt">int</span> <span class="n">A</span><span class="p">[],</span> <span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="kt">int</span> <span class="n">colors</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">=</span><span class="p">{</span><span class="mi">0</span><span class="p">};</span>
+</span><span class='line'>        <span class="k">for</span><span class="p">(</span> <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+</span><span class='line'>            <span class="n">colors</span><span class="p">[</span><span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span><span class="o">++</span><span class="p">;</span>
+</span><span class='line'>        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">index</span> <span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+</span><span class='line'>        <span class="p">{</span>
+</span><span class='line'>            <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">j</span><span class="o">&lt;</span> <span class="n">colors</span><span class="p">[</span><span class="n">i</span><span class="p">];</span> <span class="o">++</span><span class="n">j</span><span class="p">)</span>
+</span><span class='line'>                <span class="n">A</span><span class="p">[</span><span class="n">index</span><span class="o">++</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p><em>Method 2</em>
 利用快速排序的思想,遍历，交换元素</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -156,35 +169,36 @@ You are not suppose to use the library&rsquo;s sort function for this problem.</
 <span class='line-number'>21</span>
 <span class='line-number'>22</span>
 <span class='line-number'>23</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>//时间复杂度 O(n),空间复杂度O(1)
-</span><span class='line'>class Solution {
-</span><span class='line'>public:
-</span><span class='line'>    void sortColors(int A[], int n) {
-</span><span class='line'>        int begin = 0, cur = 0, end = n-1;
-</span><span class='line'>        while(cur != end)
-</span><span class='line'>        {
-</span><span class='line'>            if(A[cur] == 0)
-</span><span class='line'>            {
-</span><span class='line'>                swap(A[begin],A[cur]);
-</span><span class='line'>                begin++;
-</span><span class='line'>                cur++;
-</span><span class='line'>            } else if(A[cur] == 1)
-</span><span class='line'>            {
-</span><span class='line'>                cur++;
-</span><span class='line'>            } else
-</span><span class='line'>            {
-</span><span class='line'>                swap(A[cur], A[end]);
-</span><span class='line'>                end--;
-</span><span class='line'>            }
-</span><span class='line'>        }
-</span><span class='line'>    }
-</span><span class='line'>};</span></code></pre></td></tr></table></div></figure>
+</pre></td><td class='code'><pre><code class='c++'><span class='line'><span class="c1">//时间复杂度 O(n),空间复杂度O(1)</span>
+</span><span class='line'><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+</span><span class='line'><span class="k">public</span><span class="o">:</span>
+</span><span class='line'>    <span class="kt">void</span> <span class="n">sortColors</span><span class="p">(</span><span class="kt">int</span> <span class="n">A</span><span class="p">[],</span> <span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="kt">int</span> <span class="n">begin</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">cur</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">end</span> <span class="o">=</span> <span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+</span><span class='line'>        <span class="k">while</span><span class="p">(</span><span class="n">cur</span> <span class="o">!=</span> <span class="n">end</span><span class="p">)</span>
+</span><span class='line'>        <span class="p">{</span>
+</span><span class='line'>            <span class="k">if</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="n">cur</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+</span><span class='line'>            <span class="p">{</span>
+</span><span class='line'>                <span class="n">swap</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="n">begin</span><span class="p">],</span><span class="n">A</span><span class="p">[</span><span class="n">cur</span><span class="p">]);</span>
+</span><span class='line'>                <span class="n">begin</span><span class="o">++</span><span class="p">;</span>
+</span><span class='line'>                <span class="n">cur</span><span class="o">++</span><span class="p">;</span>
+</span><span class='line'>            <span class="p">}</span> <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="n">cur</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span>
+</span><span class='line'>            <span class="p">{</span>
+</span><span class='line'>                <span class="n">cur</span><span class="o">++</span><span class="p">;</span>
+</span><span class='line'>            <span class="p">}</span> <span class="k">else</span>
+</span><span class='line'>            <span class="p">{</span>
+</span><span class='line'>                <span class="n">swap</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="n">cur</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="n">end</span><span class="p">]);</span>
+</span><span class='line'>                <span class="n">end</span><span class="o">--</span><span class="p">;</span>
+</span><span class='line'>            <span class="p">}</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'><span class="p">};</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p><em>Method 3</em>
 同样维护三个指针，指向0，1，2的三个数组的起始位置。如果下一个数字是0，向右移动1,2两个指针的位置，将0放到合适的位置。移动指针时，并没有移动整个数组，只需要3个位置需要改变。 1和2同上</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -209,37 +223,38 @@ You are not suppose to use the library&rsquo;s sort function for this problem.</
 <span class='line-number'>23</span>
 <span class='line-number'>24</span>
 <span class='line-number'>25</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>//时间复杂度 O(n),空间复杂度O(1)
-</span><span class='line'>class Solution {
-</span><span class='line'>public:
-</span><span class='line'>    void sortColors(int A[], int n) {
-</span><span class='line'>        int i=-1,j=-1,k=-1;
-</span><span class='line'>        for(int p = 0; p &lt; n; ++p)
-</span><span class='line'>        {
-</span><span class='line'>            if(A[p] == 0)
-</span><span class='line'>            {
-</span><span class='line'>                A[++k] = 2;
-</span><span class='line'>                A[++j] = 1;
-</span><span class='line'>                A[++i] = 0;
-</span><span class='line'>            }
-</span><span class='line'>            else if (A[p] == 1)
-</span><span class='line'>            {
-</span><span class='line'>                A[++k] = 2;
-</span><span class='line'>                A[++j] = 1;
-</span><span class='line'>            }
-</span><span class='line'>            else if (A[p] == 2)
-</span><span class='line'>            {
-</span><span class='line'>                A[++k] = 2;
-</span><span class='line'>            }
-</span><span class='line'>        }
-</span><span class='line'>    }
-</span><span class='line'>};</span></code></pre></td></tr></table></div></figure>
+</pre></td><td class='code'><pre><code class='c++'><span class='line'><span class="c1">//时间复杂度 O(n),空间复杂度O(1)</span>
+</span><span class='line'><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+</span><span class='line'><span class="k">public</span><span class="o">:</span>
+</span><span class='line'>    <span class="kt">void</span> <span class="n">sortColors</span><span class="p">(</span><span class="kt">int</span> <span class="n">A</span><span class="p">[],</span> <span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="kt">int</span> <span class="n">i</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span><span class="n">j</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span><span class="n">k</span><span class="o">=-</span><span class="mi">1</span><span class="p">;</span>
+</span><span class='line'>        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">p</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">p</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">p</span><span class="p">)</span>
+</span><span class='line'>        <span class="p">{</span>
+</span><span class='line'>            <span class="k">if</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="n">p</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+</span><span class='line'>            <span class="p">{</span>
+</span><span class='line'>                <span class="n">A</span><span class="p">[</span><span class="o">++</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+</span><span class='line'>                <span class="n">A</span><span class="p">[</span><span class="o">++</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</span><span class='line'>                <span class="n">A</span><span class="p">[</span><span class="o">++</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'>            <span class="p">}</span>
+</span><span class='line'>            <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="n">p</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span>
+</span><span class='line'>            <span class="p">{</span>
+</span><span class='line'>                <span class="n">A</span><span class="p">[</span><span class="o">++</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+</span><span class='line'>                <span class="n">A</span><span class="p">[</span><span class="o">++</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</span><span class='line'>            <span class="p">}</span>
+</span><span class='line'>            <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="n">p</span><span class="p">]</span> <span class="o">==</span> <span class="mi">2</span><span class="p">)</span>
+</span><span class='line'>            <span class="p">{</span>
+</span><span class='line'>                <span class="n">A</span><span class="p">[</span><span class="o">++</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+</span><span class='line'>            <span class="p">}</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'><span class="p">};</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p><em>Method 4</em>
 两个指针，和快排的解法一样</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -259,26 +274,27 @@ You are not suppose to use the library&rsquo;s sort function for this problem.</
 <span class='line-number'>18</span>
 <span class='line-number'>19</span>
 <span class='line-number'>20</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>//时间复杂度O(n)，空间复杂度O(1)
-</span><span class='line'>class Solution {
-</span><span class='line'>public:
-</span><span class='line'>    void sortColors(int A[], int n) {
-</span><span class='line'>        int red = 0, blue = n-1;
-</span><span class='line'>        for （int i = 0; i &lt; n; ++i)
-</span><span class='line'>        {
-</span><span class='line'>            if(A[i] == 0)
-</span><span class='line'>                swap(A[i++], A[red++]);
-</span><span class='line'>            else if (A[i] == 2)
-</span><span class='line'>            {
-</span><span class='line'>                swap(A[i++],A[blue--]);
-</span><span class='line'>            }
-</span><span class='line'>            else
-</span><span class='line'>            {
-</span><span class='line'>                i++;
-</span><span class='line'>            }
-</span><span class='line'>        }
-</span><span class='line'>    }
-</span><span class='line'>};</span></code></pre></td></tr></table></div></figure>
+</pre></td><td class='code'><pre><code class='c++'><span class='line'><span class="c1">//时间复杂度O(n)，空间复杂度O(1)</span>
+</span><span class='line'><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+</span><span class='line'><span class="k">public</span><span class="o">:</span>
+</span><span class='line'>    <span class="kt">void</span> <span class="n">sortColors</span><span class="p">(</span><span class="kt">int</span> <span class="n">A</span><span class="p">[],</span> <span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="kt">int</span> <span class="n">red</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">blue</span> <span class="o">=</span> <span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+</span><span class='line'>        <span class="k">for</span> <span class="err">（</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+</span><span class='line'>        <span class="p">{</span>
+</span><span class='line'>            <span class="k">if</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+</span><span class='line'>                <span class="n">swap</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="o">++</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="n">red</span><span class="o">++</span><span class="p">]);</span>
+</span><span class='line'>            <span class="k">else</span> <span class="nf">if</span> <span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="mi">2</span><span class="p">)</span>
+</span><span class='line'>            <span class="p">{</span>
+</span><span class='line'>                <span class="n">swap</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="o">++</span><span class="p">],</span><span class="n">A</span><span class="p">[</span><span class="n">blue</span><span class="o">--</span><span class="p">]);</span>
+</span><span class='line'>            <span class="p">}</span>
+</span><span class='line'>            <span class="k">else</span>
+</span><span class='line'>            <span class="p">{</span>
+</span><span class='line'>                <span class="n">i</span><span class="o">++</span><span class="p">;</span>
+</span><span class='line'>            <span class="p">}</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'><span class="p">};</span>
+</span></code></pre></td></tr></table></div></figure>
 
 </div>
 
@@ -291,12 +307,43 @@ You are not suppose to use the library&rsquo;s sort function for this problem.</
 	<a class="addthis_button_tweet"></a>
 	
 	
+	<a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+	
 	<a class="addthis_counter addthis_pill_style"></a>
 	</div>
   <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid="></script>
+  
 </div>
 
 
+
+<section id="comment">
+    <h1 class="title">Comments</h1>
+    <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+<a class="jiathis_button_qzone"></a>
+<a class="jiathis_button_tsina"></a>
+<a class="jiathis_button_tqq"></a>
+<a class="jiathis_button_weixin"></a>
+<a class="jiathis_button_renren"></a>
+<a href="http://www.jiathis.com/share?uid=1956361" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+var jiathis_config={
+	data_track_clickback:true,
+	hideMore:false
+}
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code_mini/jia.js?uid=1956361" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+<!-- UY BEGIN -->
+<div id="uyan_frame"></div>
+<script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=1956361"></script>
+<!-- UY END -->
+
+</section>
 </div>
 			</div>
 			<footer id="footer" class="inner">Copyright &copy; 2014
@@ -312,6 +359,14 @@ Design credit: <a href="http://shashankmehta.in/archive/2012/greyshade.html">Sha
 
 
 
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
 
 
 
