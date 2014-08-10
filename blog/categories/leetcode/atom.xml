@@ -4,7 +4,7 @@
   <title><![CDATA[Category: leetcode | My Progressing Blog]]></title>
   <link href="http://michaelpassion.github.io/blog/categories/leetcode/atom.xml" rel="self"/>
   <link href="http://michaelpassion.github.io/"/>
-  <updated>2014-08-10T19:44:20+08:00</updated>
+  <updated>2014-08-10T22:22:19+08:00</updated>
   <id>http://michaelpassion.github.io/</id>
   <author>
     <name><![CDATA[Michael]]></name>
@@ -12,6 +12,60 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Spiral Matrix II]]></title>
+    <link href="http://michaelpassion.github.io/blog/2014/08/10/spiral-matrix-ii/"/>
+    <updated>2014-08-10T22:15:15+08:00</updated>
+    <id>http://michaelpassion.github.io/blog/2014/08/10/spiral-matrix-ii</id>
+    <content type="html"><![CDATA[<p>Given an integer n, generate a square matrix filled with elements from 1 to n2 in spiral order.</p>
+
+<p>For example,
+Given n = 3,</p>
+
+<p>You should return the following matrix:</p>
+
+<pre><code>[
+ [ 1, 2, 3 ],
+ [ 8, 9, 4 ],
+ [ 7, 6, 5 ]
+]
+</code></pre>
+
+<p><a href="https://oj.leetcode.com/problems/spiral-matrix-ii/">leetcode 传送</a></p>
+
+<hr />
+
+<p><em>思路</em>
+主要是坐标的计算，在矩阵上比划下，就很清晰了，没有什么算法思想</p>
+
+<pre><code class="c++">class Solution {
+public:
+    vector&lt;vector&lt;int&gt; &gt; generateMatrix(int n) {
+        int level = 0;
+        vector&lt;vector&lt;int&gt; &gt;matrix(n,vector&lt;int&gt;(n,0));
+
+        int num = 1;
+        while(num &lt;= n*n)
+        {
+            for(int i = level; i&lt; n-level; ++i)
+                matrix[level][i] = num++;
+            for(int i = level+1; i&lt;n-level;++i)
+                matrix[i][n-level-1] = num++;
+            for(int i = n-2-level; i&gt;=level;--i)
+                matrix[n-1-level][i] = num++;
+            for(int i = n-2-level; i&gt;level; --i)
+                matrix[i][level] = num++;
+            level++;
+        }
+            return matrix;
+
+    }
+
+};
+</code></pre>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Insertion Sort List]]></title>
@@ -236,63 +290,6 @@ public:
         fast=fast-&gt;next;
     }
     return slow;
-}
-</code></pre>
-
-<p>};
-&#8220;`</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Search Insert Position]]></title>
-    <link href="http://michaelpassion.github.io/blog/2014/08/10/search-insert-position/"/>
-    <updated>2014-08-10T16:51:38+08:00</updated>
-    <id>http://michaelpassion.github.io/blog/2014/08/10/search-insert-position</id>
-    <content type="html"><![CDATA[<blockquote><p>Given a sorted array and a target value, return the index if the target is found. If not, return the index where it would be if it were inserted in order.</p>
-
-<p>You may assume no duplicates in the array.</p>
-
-<p>Here are few examples.</p>
-
-<p>[1,3,5,6], 5 → 2</p>
-
-<p>[1,3,5,6], 2 → 1</p>
-
-<p>[1,3,5,6], 7 → 4</p>
-
-<p>[1,3,5,6], 0 → 0</p></blockquote>
-
-<!--more-->
-
-
-<p>代码如下，比较丑，以后更新
-&#8220;`c++
-class Solution {
-public:
-    int searchInsert(int A[], int n, int target) {</p>
-
-<pre><code>    if(A[0] &gt; target) return 0;
-    if(A[n-1] &lt; target) return n;
-    devide(A,n,0,target);
-}
-
-int devide(int A[], int high, int low, int target)
-{
-    int mid = (low + high)/2;
-
-    if(A[mid] == target)
-        return mid;
-    else if(A[mid] &gt; target)
-    {
-         devide(A,mid,0,target);
-    } else if(A[mid] &lt; target)
-    {
-        if(A[mid+1] &gt; target)
-            return mid+1;
-        else 
-            devide(A,high,mid,target);
-    }
 }
 </code></pre>
 
