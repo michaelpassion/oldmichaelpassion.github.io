@@ -5,12 +5,12 @@ date: 2014-08-10 22:15:15 +0800
 comments: true
 categories: leetcode 矩阵 Matrix
 ---
-Given an integer n, generate a square matrix filled with elements from 1 to n2 in spiral order.
+>Given an integer n, generate a square matrix filled with elements from 1 to n2 in spiral order.
 
-For example,
+>For example,
 Given n = 3,
 
-You should return the following matrix:
+>You should return the following matrix:
 
 	[
  	 [ 1, 2, 3 ],
