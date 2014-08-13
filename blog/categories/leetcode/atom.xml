@@ -4,7 +4,7 @@
   <title><![CDATA[Category: leetcode | My Progressing Blog]]></title>
   <link href="http://michaelpassion.github.io/blog/categories/leetcode/atom.xml" rel="self"/>
   <link href="http://michaelpassion.github.io/"/>
-  <updated>2014-08-10T22:25:09+08:00</updated>
+  <updated>2014-08-13T10:59:45+08:00</updated>
   <id>http://michaelpassion.github.io/</id>
   <author>
     <name><![CDATA[Michael]]></name>
@@ -14,16 +14,73 @@
 
   
   <entry>
+    <title type="html"><![CDATA[Remove Duplicates from Sorted List]]></title>
+    <link href="http://michaelpassion.github.io/blog/2014/08/13/remove-duplicates-from-sorted-list/"/>
+    <updated>2014-08-13T10:55:33+08:00</updated>
+    <id>http://michaelpassion.github.io/blog/2014/08/13/remove-duplicates-from-sorted-list</id>
+    <content type="html"><![CDATA[<blockquote><p>Given a sorted linked list, delete all duplicates such that each element appear only once.</p>
+
+<p>For example,</p>
+
+<p>Given 1->1->2, return 1->2.</p>
+
+<p>Given 1->1->2->3->3, return 1->2->3.</p></blockquote>
+
+<!--more-->
+
+
+<p><a href="https://oj.leetcode.com/problems/remove-duplicates-from-sorted-list/">leetcode 传送门</a></p>
+
+<p>这题比较简单，直接上代码</p>
+
+<pre><code class="c++">/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode *deleteDuplicates(ListNode *head) {
+        if(head==NULL || head-&gt;next == NULL ) return head;
+        ListNode *p = head;
+        ListNode *q =p-&gt;next;
+
+        while(q)
+        {
+            if(p-&gt;val == q-&gt;val)
+            {
+                ListNode *tmp = q;
+                q=q-&gt;next;
+                delete(tmp);
+                p-&gt;next = q;
+            }
+            else
+            {
+                p = q;
+                q= q-&gt;next;
+            }
+        }
+        return head;
+    }
+};
+</code></pre>
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[Spiral Matrix II]]></title>
     <link href="http://michaelpassion.github.io/blog/2014/08/10/spiral-matrix-ii/"/>
     <updated>2014-08-10T22:15:15+08:00</updated>
     <id>http://michaelpassion.github.io/blog/2014/08/10/spiral-matrix-ii</id>
-    <content type="html"><![CDATA[<p>Given an integer n, generate a square matrix filled with elements from 1 to n2 in spiral order.</p>
+    <content type="html"><![CDATA[<blockquote><p>Given an integer n, generate a square matrix filled with elements from 1 to n2 in spiral order.</p>
 
 <p>For example,
 Given n = 3,</p>
 
-<p>You should return the following matrix:</p>
+<p>You should return the following matrix:</p></blockquote>
 
 <pre><code>[
  [ 1, 2, 3 ],
@@ -236,63 +293,6 @@ public:
         return true;
     else
         return false;
-}
-</code></pre>
-
-<p>};
-&#8220;`</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Linked List Cycle II]]></title>
-    <link href="http://michaelpassion.github.io/blog/2014/08/10/linked-list-cycle-ii/"/>
-    <updated>2014-08-10T16:52:54+08:00</updated>
-    <id>http://michaelpassion.github.io/blog/2014/08/10/linked-list-cycle-ii</id>
-    <content type="html"><![CDATA[<blockquote><p>Given a linked list, return the node where the cycle begins. If there is no cycle, return null.</p>
-
-<p>Follow up:
-Can you solve it without using extra space?</p></blockquote>
-
-<!--more-->
-
-
-<p>寻找环的过程参考 这一篇 <a href="https://zybuluo.com/michaelpassion/note/24977">Linked List Cycle</a></p>
-
-<p>借用一张图，其中Y点为环的入口，由上篇可知，通过快慢指针可以发现环，假设快慢指针相交于Z点，则fast指针走过的路程为 <code>a+n(b+c)+b</code>， slow指针走过的路程为<code>a+b</code>。又 fast走过的路程为 slow 的2倍，所以 <code>a+n(b+c)+b = 2(a+b)</code> 则<code>a=n(b+c)-b</code>。 将slow指针指向head，然后slow，fast指针都以1的速度移动，slow由X点走向Y点路程为<code>a</code>, fast 路程也为<code>n(b+c)-b</code>在Y点（如果没有-b，fast指针绕了n圈又回到Z点）
-<img src="http://images.cnitblog.com/blog/354747/201311/05171805-64db9f059a1641e7afaf3dd8223c4fe7.jpg" alt="" />
-&#8220;`c++
-/<em><em>
- * Definition for singly-linked list.
- * struct ListNode {
- *     int val;
- *     ListNode </em>next;
- *     ListNode(int x) : val(x), next(NULL) {}
- * };
- </em>/
-class Solution {
-public:
-    ListNode <em>detectCycle(ListNode </em>head) {
-        if(head == NULL) return NULL;</p>
-
-<pre><code>    ListNode *slow = head-&gt;next;
-    if (slow == NULL) return NULL;
-    ListNode *fast = head-&gt;next-&gt;next;
-
-    while(fast != NULL &amp;&amp; slow != fast)
-    {
-        slow = slow-&gt;next;
-        fast = fast-&gt;next ? fast-&gt;next-&gt;next :fast-&gt;next;
-    }
-
-    if(!fast) return NULL;
-    slow = head;
-    while(slow != fast)
-    {
-        slow=slow-&gt;next;
-        fast=fast-&gt;next;
-    }
-    return slow;
 }
 </code></pre>
 
