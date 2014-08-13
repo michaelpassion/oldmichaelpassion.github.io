@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: 递归 | My Progressing Blog]]></title>
-  <link href="http://michaelpassion.github.io/blog/categories/di-gui/atom.xml" rel="self"/>
+  <title><![CDATA[Category: 二叉树 | My Progressing Blog]]></title>
+  <link href="http://michaelpassion.github.io/blog/categories/er-cha-shu/atom.xml" rel="self"/>
   <link href="http://michaelpassion.github.io/"/>
   <updated>2014-08-13T22:23:05+08:00</updated>
   <id>http://michaelpassion.github.io/</id>
@@ -61,61 +61,6 @@ public:
         return  min(dfs(root-&gt;left,depth),dfs(root-&gt;right,depth));
 
     }
-};
-</code></pre>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Path Sum]]></title>
-    <link href="http://michaelpassion.github.io/blog/2014/08/10/path-sum/"/>
-    <updated>2014-08-10T16:40:49+08:00</updated>
-    <id>http://michaelpassion.github.io/blog/2014/08/10/path-sum</id>
-    <content type="html"><![CDATA[<blockquote><p>Given a binary tree and a sum, determine if the tree has a root-to-leaf path such that adding up all the values along the path equals the given sum.</p>
-
-<p>For example:
-Given the below binary tree and sum = 22,</p></blockquote>
-
-<!--more-->
-
-
-<p><a href="https://oj.leetcode.com/problems/path-sum/">leetcode path sum</a></p>
-
-<pre><code class="c++">/**
- * Definition for binary tree
- * struct TreeNode {
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
- * };
- */
-class Solution {
-public:
-    bool hasPathSum(TreeNode *root, int sum) {
-        vector&lt;int&gt; paths;
-        tranverse(root,0,paths);
-
-        for(int i=0; i&lt;paths.size(); ++i)
-        {
-            if(paths[i] == sum) 
-                return true;
-        }
-        return false;
-    }
-
-    void tranverse(TreeNode *root, int sum, vector&lt;int&gt; &amp;paths)
-    {
-        if(!root) return;
-        if(!root-&gt;left &amp;&amp; !root-&gt;right)
-        {
-            paths.push_back(sum+root-&gt;val);
-            return;
-        }
-        tranverse(root-&gt;left, sum+root-&gt;val, paths);
-        tranverse(root-&gt;right,sum+root-&gt;val, paths);
-    }
-
 };
 </code></pre>
 ]]></content>
