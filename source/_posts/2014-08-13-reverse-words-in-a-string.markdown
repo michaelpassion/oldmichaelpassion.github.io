@@ -13,7 +13,7 @@ categories: leetcode reverse string 模拟
 
 >return "blue is sky the".
 
-
+<!--more-->
 >Clarification:
 What constitutes a word?
 A sequence of non-space characters constitutes a word.
