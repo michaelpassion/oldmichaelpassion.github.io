@@ -4,7 +4,7 @@
   <title><![CDATA[Category: leetcode | My Progressing Blog]]></title>
   <link href="http://michaelpassion.github.io/blog/categories/leetcode/atom.xml" rel="self"/>
   <link href="http://michaelpassion.github.io/"/>
-  <updated>2014-08-13T22:23:05+08:00</updated>
+  <updated>2014-08-14T12:02:17+08:00</updated>
   <id>http://michaelpassion.github.io/</id>
   <author>
     <name><![CDATA[Michael]]></name>
@@ -12,6 +12,87 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Binary Tree Zigzag Level Order Traversal]]></title>
+    <link href="http://michaelpassion.github.io/blog/2014/08/14/binary-tree-zigzag-level-order-traversal/"/>
+    <updated>2014-08-14T11:38:34+08:00</updated>
+    <id>http://michaelpassion.github.io/blog/2014/08/14/binary-tree-zigzag-level-order-traversal</id>
+    <content type="html"><![CDATA[<blockquote><p>Given a binary tree, return the zigzag level order traversal of its nodes&#8217; values. (ie, from left to right, then right to left for the next level and alternate between).</p>
+
+<p>For example:
+Given binary tree {3,9,20,#,#,15,7},
+<code>
+    3
+   / \
+  9  20
+    /  \
+   15   7
+</code></p>
+
+<p>return its zigzag level order traversal as:</p></blockquote>
+
+<pre><code>[
+  [3],
+  [20,9],
+  [15,7]
+]
+</code></pre>
+
+<!--more-->
+
+
+<p><a href="https://oj.leetcode.com/problems/binary-tree-zigzag-level-order-traversal/">leetcode 传送门</a></p>
+
+<p><em>思路</em></p>
+
+<p>层序遍历，奇数层将遍历本层结点得到的vector逆置以下再加入结果vector中。</p>
+
+<pre><code class="c++">/**
+ * Definition for binary tree
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    vector&lt;vector&lt;int&gt; &gt; zigzagLevelOrder(TreeNode *root) {
+        vector&lt;vector&lt;int&gt; &gt; ret;
+        if(!root) return ret;
+        vector&lt;TreeNode *&gt; nodes;
+        vector&lt;int&gt; nums;
+        nodes.push_back(root);
+        int cur = 0;
+        int last = 1;
+        bool oddlevel = true;
+        while(cur &lt; nodes.size())
+        {
+            last = nodes.size();
+            while(cur &lt; last)
+            {
+                nums.push_back(nodes[cur]-&gt;val);
+                 if(nodes[cur]-&gt;right)
+                    nodes.push_back(nodes[cur]-&gt;right);
+                     if(nodes[cur]-&gt;left)
+                    nodes.push_back(nodes[cur]-&gt;left);
+                cur++;
+            }
+            if(oddlevel)
+                reverse(nums.begin(),nums.end());
+            oddlevel = !oddlevel;
+            ret.push_back(nums);
+            nums.clear();
+
+        }
+        return ret;
+    }
+};
+</code></pre>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Minimum Depth of Binary Tree]]></title>
@@ -235,68 +316,6 @@ public:
 
     }
 
-};
-</code></pre>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Insertion Sort List]]></title>
-    <link href="http://michaelpassion.github.io/blog/2014/08/10/insertion-sort-list/"/>
-    <updated>2014-08-10T19:35:54+08:00</updated>
-    <id>http://michaelpassion.github.io/blog/2014/08/10/insertion-sort-list</id>
-    <content type="html"><![CDATA[<blockquote><p>Sort a linked list using insertion sort.</p></blockquote>
-
-<!--more-->
-
-
-<p><a href="https://oj.leetcode.com/problems/insertion-sort-list/">leetcode 传送门</a></p>
-
-<hr />
-
-<p><em>思路</em>
-过程比较清晰的链表操作题，一开始提交出现RE，看了下原来是</p>
-
-<p><code>while(p-&gt;next &amp;&amp; p-&gt;next-&gt;val &lt; cur-&gt;val)</code> 写成了</p>
-
-<p><code>while(p-&gt;next-&gt;val &lt; cur-&gt;val &amp;&amp; p-&gt;next)</code> 如果不先判断Node是否为空就去取值必然出现问题。</p>
-
-<pre><code class="c++">/**
- * Definition for singly-linked list.
- * struct ListNode {
- *     int val;
- *     ListNode *next;
- *     ListNode(int x) : val(x), next(NULL) {}
- * };
- */
-class Solution {
-public:
-    ListNode *insertionSortList(ListNode *head) {
-
-        ListNode *p = head;
-        if(p == NULL || p-&gt;next == NULL) return head;
-
-        ListNode *dummy = new ListNode(-1);
-        dummy-&gt;next = head;
-        ListNode *cur = head-&gt;next;
-        head-&gt;next = NULL;
-
-        while(cur)
-        {
-            ListNode *p = dummy;
-            while(p-&gt;next &amp;&amp; p-&gt;next-&gt;val &lt; cur-&gt;val)
-            {
-                p=p-&gt;next;
-            }
-
-            ListNode *tmp = cur;
-            cur=cur-&gt;next;
-            tmp-&gt;next = p-&gt;next;
-            p-&gt;next = tmp;
-        }
-        return dummy-&gt;next;
-
-    }
 };
 </code></pre>
 ]]></content>
