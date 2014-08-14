@@ -4,7 +4,7 @@
   <title><![CDATA[Category: leetcode | My Progressing Blog]]></title>
   <link href="http://michaelpassion.github.io/blog/categories/leetcode/atom.xml" rel="self"/>
   <link href="http://michaelpassion.github.io/"/>
-  <updated>2014-08-14T12:05:39+08:00</updated>
+  <updated>2014-08-14T12:09:41+08:00</updated>
   <id>http://michaelpassion.github.io/</id>
   <author>
     <name><![CDATA[Michael]]></name>
@@ -47,9 +47,9 @@
 
 <p><em>思路</em></p>
 
-<p>层序遍历，奇数层将遍历本层结点得到的vector逆置以下再加入结果vector中。</p>
+<p>层序遍历，奇数层将遍历本层结点得到的vector逆置以下再加入结果vector中</p>
 
-<pre><code class="c++">/**
+<pre><code>/**
  * Definition for binary tree
  * struct TreeNode {
  *     int val;

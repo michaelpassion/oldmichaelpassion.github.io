@@ -4,7 +4,7 @@
   <title><![CDATA[My Progressing Blog]]></title>
   <link href="http://michaelpassion.github.io/atom.xml" rel="self"/>
   <link href="http://michaelpassion.github.io/"/>
-  <updated>2014-08-14T12:05:39+08:00</updated>
+  <updated>2014-08-14T12:09:41+08:00</updated>
   <id>http://michaelpassion.github.io/</id>
   <author>
     <name><![CDATA[Michael]]></name>
@@ -32,7 +32,6 @@
 <span class='line-number'>6</span>
 <span class='line-number'>7</span>
 <span class='line-number'>8</span>
-<span class='line-number'>9</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>     3
 </span><span class='line'>   / \
 </span><span class='line'>  9  20
@@ -41,7 +40,6 @@
 </span><span class='line'> ```
 </span><span class='line'> 
 </span><span class='line'>return its zigzag level order traversal as:
-</span><span class='line'>
 </span></code></pre></td></tr></table></div></figure>
 
 
@@ -57,17 +55,20 @@
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
 <span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;!--more--&gt;
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>
+</span><span class='line'>&lt;!--more--&gt;
+</span><span class='line'>
 </span><span class='line'>[leetcode 传送门](https://oj.leetcode.com/problems/binary-tree-zigzag-level-order-traversal/)
 </span><span class='line'>
 </span><span class='line'>*思路*
 </span><span class='line'>
-</span><span class='line'>层序遍历，奇数层将遍历本层结点得到的vector逆置以下再加入结果vector中。
+</span><span class='line'>层序遍历，奇数层将遍历本层结点得到的vector逆置以下再加入结果vector中
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>c++
-/<em><em>
+<p>/<em><em>
  * Definition for binary tree
  * struct TreeNode {
  *     int val;
@@ -110,8 +111,9 @@ public:
 }
 </code></pre>
 
-<p>};
-&#8220;`</p>
+<p>};</p>
+
+<p>&#8220;`</p>
 ]]></content>
   </entry>
   
