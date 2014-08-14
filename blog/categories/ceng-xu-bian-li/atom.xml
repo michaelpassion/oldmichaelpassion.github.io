@@ -4,7 +4,7 @@
   <title><![CDATA[Category: 层序遍历 | My Progressing Blog]]></title>
   <link href="http://michaelpassion.github.io/blog/categories/ceng-xu-bian-li/atom.xml" rel="self"/>
   <link href="http://michaelpassion.github.io/"/>
-  <updated>2014-08-14T12:09:41+08:00</updated>
+  <updated>2014-08-14T12:19:03+08:00</updated>
   <id>http://michaelpassion.github.io/</id>
   <author>
     <name><![CDATA[Michael]]></name>
@@ -20,28 +20,28 @@
     <id>http://michaelpassion.github.io/blog/2014/08/14/binary-tree-zigzag-level-order-traversal</id>
     <content type="html"><![CDATA[<blockquote><p>Given a binary tree, return the zigzag level order traversal of its nodes&#8217; values. (ie, from left to right, then right to left for the next level and alternate between).</p></blockquote>
 
-<p>For example:</p>
+<!--more-->
 
-<p>Given binary tree {3,9,20,#,#,15,7},</p>
+
+<blockquote><p>For example:</p>
+
+<p>Given binary tree {3,9,20,#,#,15,7},</p></blockquote>
 
 <pre><code>    3
    / \
   9  20
-    /  \
-   15   7
+ /     \
+15      7
 </code></pre>
 
 <p>return its zigzag level order traversal as:</p>
 
 <pre><code>[
-  [3],
-  [20,9],
-  [15,7]
+  [3],  
+  [20,9],  
+  [15,7]  
 ]
 </code></pre>
-
-<!--more-->
-
 
 <p><a href="https://oj.leetcode.com/problems/binary-tree-zigzag-level-order-traversal/">leetcode 传送门</a></p>
 
@@ -49,7 +49,7 @@
 
 <p>层序遍历，奇数层将遍历本层结点得到的vector逆置以下再加入结果vector中</p>
 
-<pre><code>/**
+<pre><code class="c++">/**
  * Definition for binary tree
  * struct TreeNode {
  *     int val;
@@ -58,6 +58,7 @@
  *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
  * };
  */
+
 class Solution {
 public:
     vector&lt;vector&lt;int&gt; &gt; zigzagLevelOrder(TreeNode *root) {

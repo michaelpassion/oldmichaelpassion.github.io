@@ -103,100 +103,125 @@
 	<h1 class="title" itemprop="name">Binary Tree Zigzag Level Order Traversal</h1>
 	<div class="entry-content" itemprop="articleBody"><blockquote><p>Given a binary tree, return the zigzag level order traversal of its nodes&#8217; values. (ie, from left to right, then right to left for the next level and alternate between).</p></blockquote>
 
-<p>For example:</p>
-
-<p>Given binary tree {3,9,20,#,#,15,7},</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>     3
-</span><span class='line'>   / \
-</span><span class='line'>  9  20
-</span><span class='line'>    /  \
-</span><span class='line'>   15   7
-</span><span class='line'> ```
-</span><span class='line'> 
-</span><span class='line'>return its zigzag level order traversal as:
-</span></code></pre></td></tr></table></div></figure>
+<!--more-->
 
 
-<p>[
-  [3],
-  [20,9],
-  [15,7]
-]</p>
+<blockquote><p>For example:</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>
-</span><span class='line'>&lt;!--more--&gt;
-</span><span class='line'>
-</span><span class='line'>[leetcode 传送门](https://oj.leetcode.com/problems/binary-tree-zigzag-level-order-traversal/)
-</span><span class='line'>
-</span><span class='line'>*思路*
-</span><span class='line'>
-</span><span class='line'>层序遍历，奇数层将遍历本层结点得到的vector逆置以下再加入结果vector中
-</span></code></pre></td></tr></table></div></figure>
+<p>Given binary tree {3,9,20,#,#,15,7},</p></blockquote>
 
-
-<p>/<em><em>
- * Definition for binary tree
- * struct TreeNode {
- *     int val;
- *     TreeNode </em>left;
- *     TreeNode </em>right;
- *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
- * };
- <em>/
-class Solution {
-public:
-    vector&lt;vector<int> > zigzagLevelOrder(TreeNode </em>root) {
-        vector&lt;vector<int> > ret;
-        if(!root) return ret;
-        vector<TreeNode *> nodes;
-        vector<int> nums;
-        nodes.push_back(root);
-        int cur = 0;
-        int last = 1;
-        bool oddlevel = true;
-        while(cur &lt; nodes.size())
-        {
-            last = nodes.size();
-            while(cur &lt; last)
-            {
-                nums.push_back(nodes[cur]->val);
-                 if(nodes[cur]->right)
-                    nodes.push_back(nodes[cur]->right);
-                     if(nodes[cur]->left)
-                    nodes.push_back(nodes[cur]->left);
-                cur++;
-            }
-            if(oddlevel)
-                reverse(nums.begin(),nums.end());
-            oddlevel = !oddlevel;
-            ret.push_back(nums);
-            nums.clear();</p>
-
-<pre><code>    }
-    return ret;
-}
+<pre><code>    3
+   / \
+  9  20
+ /     \
+15      7
 </code></pre>
 
-<p>};</p>
+<p>return its zigzag level order traversal as:</p>
 
-<p>&#8220;`</p>
+<pre><code>[
+  [3],  
+  [20,9],  
+  [15,7]  
+]
+</code></pre>
+
+<p><a href="https://oj.leetcode.com/problems/binary-tree-zigzag-level-order-traversal/">leetcode 传送门</a></p>
+
+<p><em>思路</em></p>
+
+<p>层序遍历，奇数层将遍历本层结点得到的vector逆置以下再加入结果vector中</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+</pre></td><td class='code'><pre><code class='c++'><span class='line'><span class="cm">/**</span>
+</span><span class='line'><span class="cm"> * Definition for binary tree</span>
+</span><span class='line'><span class="cm"> * struct TreeNode {</span>
+</span><span class='line'><span class="cm"> *     int val;</span>
+</span><span class='line'><span class="cm"> *     TreeNode *left;</span>
+</span><span class='line'><span class="cm"> *     TreeNode *right;</span>
+</span><span class='line'><span class="cm"> *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}</span>
+</span><span class='line'><span class="cm"> * };</span>
+</span><span class='line'><span class="cm"> */</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+</span><span class='line'><span class="k">public</span><span class="o">:</span>
+</span><span class='line'>    <span class="n">vector</span><span class="o">&lt;</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="o">&gt;</span> <span class="n">zigzagLevelOrder</span><span class="p">(</span><span class="n">TreeNode</span> <span class="o">*</span><span class="n">root</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="n">vector</span><span class="o">&lt;</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="o">&gt;</span> <span class="n">ret</span><span class="p">;</span>
+</span><span class='line'>        <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">root</span><span class="p">)</span> <span class="k">return</span> <span class="n">ret</span><span class="p">;</span>
+</span><span class='line'>        <span class="n">vector</span><span class="o">&lt;</span><span class="n">TreeNode</span> <span class="o">*&gt;</span> <span class="n">nodes</span><span class="p">;</span>
+</span><span class='line'>        <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">nums</span><span class="p">;</span>
+</span><span class='line'>        <span class="n">nodes</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">root</span><span class="p">);</span>
+</span><span class='line'>        <span class="kt">int</span> <span class="n">cur</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'>        <span class="kt">int</span> <span class="n">last</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</span><span class='line'>        <span class="kt">bool</span> <span class="n">oddlevel</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+</span><span class='line'>        <span class="k">while</span><span class="p">(</span><span class="n">cur</span> <span class="o">&lt;</span> <span class="n">nodes</span><span class="p">.</span><span class="n">size</span><span class="p">())</span>
+</span><span class='line'>        <span class="p">{</span>
+</span><span class='line'>            <span class="n">last</span> <span class="o">=</span> <span class="n">nodes</span><span class="p">.</span><span class="n">size</span><span class="p">();</span>
+</span><span class='line'>            <span class="k">while</span><span class="p">(</span><span class="n">cur</span> <span class="o">&lt;</span> <span class="n">last</span><span class="p">)</span>
+</span><span class='line'>            <span class="p">{</span>
+</span><span class='line'>                <span class="n">nums</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">nodes</span><span class="p">[</span><span class="n">cur</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">val</span><span class="p">);</span>
+</span><span class='line'>                 <span class="k">if</span><span class="p">(</span><span class="n">nodes</span><span class="p">[</span><span class="n">cur</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">right</span><span class="p">)</span>
+</span><span class='line'>                    <span class="n">nodes</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">nodes</span><span class="p">[</span><span class="n">cur</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">right</span><span class="p">);</span>
+</span><span class='line'>                     <span class="k">if</span><span class="p">(</span><span class="n">nodes</span><span class="p">[</span><span class="n">cur</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">left</span><span class="p">)</span>
+</span><span class='line'>                    <span class="n">nodes</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">nodes</span><span class="p">[</span><span class="n">cur</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">left</span><span class="p">);</span>
+</span><span class='line'>                <span class="n">cur</span><span class="o">++</span><span class="p">;</span>
+</span><span class='line'>            <span class="p">}</span>
+</span><span class='line'>            <span class="k">if</span><span class="p">(</span><span class="n">oddlevel</span><span class="p">)</span>
+</span><span class='line'>                <span class="n">reverse</span><span class="p">(</span><span class="n">nums</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span><span class="n">nums</span><span class="p">.</span><span class="n">end</span><span class="p">());</span>
+</span><span class='line'>            <span class="n">oddlevel</span> <span class="o">=</span> <span class="o">!</span><span class="n">oddlevel</span><span class="p">;</span>
+</span><span class='line'>            <span class="n">ret</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">nums</span><span class="p">);</span>
+</span><span class='line'>            <span class="n">nums</span><span class="p">.</span><span class="n">clear</span><span class="p">();</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>        <span class="k">return</span> <span class="n">ret</span><span class="p">;</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'><span class="p">};</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
 </div>
 
 </article>
