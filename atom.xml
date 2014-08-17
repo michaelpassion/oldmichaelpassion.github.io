@@ -4,7 +4,7 @@
   <title><![CDATA[My Progressing Blog]]></title>
   <link href="http://michaelpassion.github.io/atom.xml" rel="self"/>
   <link href="http://michaelpassion.github.io/"/>
-  <updated>2014-08-16T11:37:19+08:00</updated>
+  <updated>2014-08-17T16:38:42+08:00</updated>
   <id>http://michaelpassion.github.io/</id>
   <author>
     <name><![CDATA[Michael]]></name>
@@ -12,6 +12,175 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Reorder List]]></title>
+    <link href="http://michaelpassion.github.io/blog/2014/08/17/reorder-list/"/>
+    <updated>2014-08-17T16:32:11+08:00</updated>
+    <id>http://michaelpassion.github.io/blog/2014/08/17/reorder-list</id>
+    <content type="html"><![CDATA[<blockquote><p>Given a singly linked list L: <code>L0→L1→…→Ln-1→Ln,</code></p>
+
+<p>reorder it to: <code>L0→Ln→L1→Ln-1→L2→Ln-2→…</code></p>
+
+<p>You must do this in-place without altering the nodes&#8217; values.</p>
+
+<p>For example,
+Given <code>{1,2,3,4}</code>, reorder it to <code>{1,4,2,3}</code>.</p></blockquote>
+
+<!--more-->
+
+
+<p><a href="https://oj.leetcode.com/problems/reorder-list/">leetcode express</a></p>
+
+<p><em>思路</em></p>
+
+<p> 这题的难度在于问题的规模上，需要把一个字符串划分成两个字符串（快慢指针），将第二个字符串（后半个）逆置（原地逆置，头插法），再将两个字符串合并。代码如下.
+ </p>
+
+<figure class='code'><figcaption><span>Reorder List</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+<span class='line-number'>64</span>
+<span class='line-number'>65</span>
+<span class='line-number'>66</span>
+<span class='line-number'>67</span>
+<span class='line-number'>68</span>
+<span class='line-number'>69</span>
+<span class='line-number'>70</span>
+</pre></td><td class='code'><pre><code class='c++'><span class='line'><span class="cm">/**</span>
+</span><span class='line'><span class="cm"> * Definition for singly-linked list.</span>
+</span><span class='line'><span class="cm"> * struct ListNode {</span>
+</span><span class='line'><span class="cm"> *     int val;</span>
+</span><span class='line'><span class="cm"> *     ListNode *next;</span>
+</span><span class='line'><span class="cm"> *     ListNode(int x) : val(x), next(NULL) {}</span>
+</span><span class='line'><span class="cm"> * };</span>
+</span><span class='line'><span class="cm"> */</span>
+</span><span class='line'><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+</span><span class='line'><span class="k">public</span><span class="o">:</span>
+</span><span class='line'>    <span class="n">ListNode</span><span class="o">*</span> <span class="n">findHalfNode</span><span class="p">(</span><span class="n">ListNode</span> <span class="o">*</span><span class="n">head</span><span class="p">)</span>
+</span><span class='line'>    <span class="p">{</span>
+</span><span class='line'>        <span class="n">ListNode</span> <span class="o">*</span><span class="n">fast</span> <span class="o">=</span> <span class="n">head</span><span class="p">;</span>
+</span><span class='line'>        <span class="n">ListNode</span> <span class="o">*</span><span class="n">slow</span> <span class="o">=</span> <span class="n">head</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="k">while</span><span class="p">(</span><span class="n">fast</span> <span class="o">&amp;&amp;</span> <span class="n">fast</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">)</span>
+</span><span class='line'>        <span class="p">{</span>
+</span><span class='line'>            <span class="n">fast</span> <span class="o">=</span> <span class="n">fast</span><span class="o">-&gt;</span><span class="n">next</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+</span><span class='line'>            <span class="n">slow</span> <span class="o">=</span> <span class="n">slow</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>        <span class="k">return</span> <span class="n">slow</span><span class="p">;</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">ListNode</span><span class="o">*</span> <span class="n">reverseList</span><span class="p">(</span><span class="n">ListNode</span> <span class="o">*</span><span class="n">head</span><span class="p">)</span>
+</span><span class='line'>    <span class="p">{</span>
+</span><span class='line'>        <span class="n">ListNode</span> <span class="o">*</span><span class="n">dummy</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ListNode</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+</span><span class='line'>        <span class="n">dummy</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="n">head</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">ListNode</span> <span class="o">*</span><span class="n">cur</span> <span class="o">=</span> <span class="n">head</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+</span><span class='line'>        <span class="n">head</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+</span><span class='line'>        <span class="k">while</span><span class="p">(</span><span class="n">cur</span><span class="p">)</span>
+</span><span class='line'>        <span class="p">{</span>
+</span><span class='line'>            <span class="n">ListNode</span> <span class="o">*</span><span class="n">tmp</span> <span class="o">=</span> <span class="n">cur</span><span class="p">;</span>
+</span><span class='line'>            <span class="n">cur</span> <span class="o">=</span><span class="n">cur</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+</span><span class='line'>            <span class="n">tmp</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="n">dummy</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+</span><span class='line'>            <span class="n">dummy</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="n">tmp</span><span class="p">;</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>        <span class="n">head</span> <span class="o">=</span> <span class="n">dummy</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+</span><span class='line'>        <span class="k">delete</span><span class="p">(</span><span class="n">dummy</span><span class="p">);</span>
+</span><span class='line'>        <span class="k">return</span> <span class="n">head</span><span class="p">;</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="kt">void</span> <span class="n">mergeTwoList</span><span class="p">(</span><span class="n">ListNode</span> <span class="o">*</span><span class="n">first</span><span class="p">,</span> <span class="n">ListNode</span> <span class="o">*</span><span class="n">second</span><span class="p">)</span>
+</span><span class='line'>    <span class="p">{</span>
+</span><span class='line'>        <span class="n">ListNode</span> <span class="o">*</span><span class="n">pFir</span> <span class="o">=</span> <span class="n">first</span><span class="p">;</span>
+</span><span class='line'>        <span class="n">ListNode</span> <span class="o">*</span><span class="n">pSec</span> <span class="o">=</span> <span class="n">second</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="k">while</span><span class="p">(</span><span class="n">pSec</span><span class="p">)</span>
+</span><span class='line'>        <span class="p">{</span>
+</span><span class='line'>            <span class="n">ListNode</span> <span class="o">*</span><span class="n">tmp</span> <span class="o">=</span> <span class="n">pSec</span><span class="p">;</span>
+</span><span class='line'>            <span class="n">pSec</span> <span class="o">=</span> <span class="n">pSec</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+</span><span class='line'>            <span class="n">tmp</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="n">pFir</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+</span><span class='line'>            <span class="n">pFir</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="n">tmp</span><span class="p">;</span>
+</span><span class='line'>            <span class="n">pFir</span> <span class="o">=</span> <span class="n">tmp</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>    <span class="kt">void</span> <span class="n">reorderList</span><span class="p">(</span><span class="n">ListNode</span> <span class="o">*</span><span class="n">head</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">head</span> <span class="o">||</span> <span class="o">!</span><span class="n">head</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">||</span> <span class="o">!</span><span class="n">head</span><span class="o">-&gt;</span><span class="n">next</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+</span><span class='line'>        <span class="n">ListNode</span> <span class="o">*</span><span class="n">sec</span><span class="p">,</span> <span class="o">*</span><span class="n">fir</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">sec</span> <span class="o">=</span> <span class="n">findHalfNode</span><span class="p">(</span><span class="n">head</span><span class="p">);</span>
+</span><span class='line'>        <span class="n">fir</span> <span class="o">=</span> <span class="n">sec</span><span class="p">;</span>
+</span><span class='line'>        <span class="n">sec</span> <span class="o">=</span> <span class="n">sec</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+</span><span class='line'>        <span class="n">fir</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+</span><span class='line'>        <span class="n">fir</span> <span class="o">=</span> <span class="n">head</span><span class="p">;</span>
+</span><span class='line'>        <span class="n">sec</span> <span class="o">=</span> <span class="n">reverseList</span><span class="p">(</span><span class="n">sec</span><span class="p">);</span>
+</span><span class='line'>        <span class="n">mergeTwoList</span><span class="p">(</span><span class="n">fir</span><span class="p">,</span><span class="n">sec</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'><span class="p">};</span>
+</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Permutations II]]></title>
@@ -1844,145 +2013,6 @@ You are not suppose to use the library&rsquo;s sort function for this problem.</
 </span><span class='line'>        <span class="p">}</span>
 </span><span class='line'>    <span class="p">}</span>
 </span><span class='line'><span class="p">};</span>
-</span></code></pre></td></tr></table></div></figure>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Search in Rotated Sorted Array.md]]></title>
-    <link href="http://michaelpassion.github.io/blog/2014/08/02/search-in-rotated-sorted-array/"/>
-    <updated>2014-08-02T19:16:49+08:00</updated>
-    <id>http://michaelpassion.github.io/blog/2014/08/02/search-in-rotated-sorted-array</id>
-    <content type="html"><![CDATA[<blockquote><p>Suppose a sorted array is rotated at some pivot unknown to you beforehand.</p>
-
-<p>(i.e., 0 1 2 4 5 6 7 might become 4 5 6 7 0 1 2).</p>
-
-<p>You are given a target value to search. If found in the array return its index, otherwise return -1.</p>
-
-<p>You may assume no duplicate exists in the array</p></blockquote>
-
-<!--more-->
-
-
-<hr />
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-<span class='line-number'>39</span>
-<span class='line-number'>40</span>
-<span class='line-number'>41</span>
-<span class='line-number'>42</span>
-<span class='line-number'>43</span>
-<span class='line-number'>44</span>
-<span class='line-number'>45</span>
-<span class='line-number'>46</span>
-<span class='line-number'>47</span>
-<span class='line-number'>48</span>
-<span class='line-number'>49</span>
-<span class='line-number'>50</span>
-<span class='line-number'>51</span>
-<span class='line-number'>52</span>
-<span class='line-number'>53</span>
-<span class='line-number'>54</span>
-<span class='line-number'>55</span>
-<span class='line-number'>56</span>
-<span class='line-number'>57</span>
-<span class='line-number'>58</span>
-</pre></td><td class='code'><pre><code class='c++'><span class='line'><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
-</span><span class='line'><span class="k">public</span><span class="o">:</span>
-</span><span class='line'>    <span class="kt">int</span> <span class="n">search</span><span class="p">(</span><span class="kt">int</span> <span class="n">A</span><span class="p">[],</span> <span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="kt">int</span> <span class="n">target</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>        <span class="kt">int</span> <span class="n">p</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-</span><span class='line'>        <span class="k">while</span><span class="p">(</span><span class="n">p</span><span class="o">&lt;</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
-</span><span class='line'>        <span class="p">{</span>
-</span><span class='line'>            <span class="k">if</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="n">p</span><span class="p">]</span><span class="o">&lt;</span><span class="n">A</span><span class="p">[</span><span class="n">p</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span>
-</span><span class='line'>                <span class="n">p</span><span class="o">++</span><span class="p">;</span>
-</span><span class='line'>            <span class="k">else</span>
-</span><span class='line'>                <span class="k">break</span><span class="p">;</span>
-</span><span class='line'>        <span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>        <span class="k">if</span><span class="p">(</span><span class="n">p</span> <span class="o">==</span> <span class="n">n</span><span class="o">-</span><span class="mi">1</span> <span class="p">)</span>
-</span><span class='line'>        <span class="p">{</span>
-</span><span class='line'>            <span class="kt">int</span> <span class="n">low</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
-</span><span class='line'>            <span class="kt">int</span> <span class="n">high</span> <span class="o">=</span><span class="n">p</span><span class="p">;</span>
-</span><span class='line'>            <span class="k">while</span><span class="p">(</span><span class="n">low</span> <span class="o">&lt;=</span> <span class="n">high</span><span class="p">)</span>
-</span><span class='line'>            <span class="p">{</span>
-</span><span class='line'>                <span class="kt">int</span> <span class="n">mid</span> <span class="o">=</span> <span class="p">(</span><span class="n">low</span> <span class="o">+</span> <span class="n">high</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
-</span><span class='line'>                <span class="k">if</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">==</span> <span class="n">target</span><span class="p">)</span>
-</span><span class='line'>                    <span class="k">return</span> <span class="n">mid</span><span class="p">;</span>
-</span><span class='line'>                <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">target</span><span class="p">)</span>
-</span><span class='line'>                    <span class="n">high</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
-</span><span class='line'>                <span class="k">else</span>
-</span><span class='line'>                    <span class="n">low</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">+</span><span class="mi">1</span><span class="p">;</span>
-</span><span class='line'>            <span class="p">}</span>
-</span><span class='line'>            <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
-</span><span class='line'>        <span class="p">}</span>
-</span><span class='line'>        <span class="kt">int</span> <span class="n">low</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
-</span><span class='line'>        <span class="kt">int</span> <span class="n">high</span> <span class="o">=</span><span class="n">p</span><span class="p">;</span>
-</span><span class='line'>        <span class="k">while</span><span class="p">(</span><span class="n">low</span> <span class="o">&lt;=</span> <span class="n">high</span><span class="p">)</span>
-</span><span class='line'>        <span class="p">{</span>
-</span><span class='line'>            <span class="kt">int</span> <span class="n">mid</span> <span class="o">=</span> <span class="p">(</span><span class="n">low</span> <span class="o">+</span> <span class="n">high</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
-</span><span class='line'>            <span class="k">if</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">==</span> <span class="n">target</span><span class="p">)</span>
-</span><span class='line'>                <span class="k">return</span> <span class="n">mid</span><span class="p">;</span>
-</span><span class='line'>            <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">target</span><span class="p">)</span>
-</span><span class='line'>                <span class="n">high</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
-</span><span class='line'>            <span class="k">else</span>
-</span><span class='line'>                <span class="n">low</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">+</span><span class="mi">1</span><span class="p">;</span>
-</span><span class='line'>        <span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>        <span class="n">low</span> <span class="o">=</span> <span class="n">p</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span>
-</span><span class='line'>        <span class="n">high</span> <span class="o">=</span> <span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span>
-</span><span class='line'>        <span class="k">while</span><span class="p">(</span><span class="n">low</span> <span class="o">&lt;=</span> <span class="n">high</span><span class="p">)</span>
-</span><span class='line'>          <span class="p">{</span>
-</span><span class='line'>            <span class="kt">int</span> <span class="n">mid</span> <span class="o">=</span> <span class="p">(</span><span class="n">low</span> <span class="o">+</span> <span class="n">high</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
-</span><span class='line'>            <span class="k">if</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">==</span> <span class="n">target</span><span class="p">)</span>
-</span><span class='line'>                <span class="k">return</span> <span class="n">mid</span><span class="p">;</span>
-</span><span class='line'>            <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">target</span><span class="p">)</span>
-</span><span class='line'>                <span class="n">high</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
-</span><span class='line'>            <span class="k">else</span>
-</span><span class='line'>                <span class="n">low</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">+</span><span class="mi">1</span><span class="p">;</span>
-</span><span class='line'>        <span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'>        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
-</span><span class='line'>    <span class="p">}</span>
 </span></code></pre></td></tr></table></div></figure>
 
 ]]></content>
