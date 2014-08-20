@@ -4,7 +4,7 @@
   <title><![CDATA[Category: 链表 | My Progressing Blog]]></title>
   <link href="http://michaelpassion.github.io/blog/categories/lian-biao/atom.xml" rel="self"/>
   <link href="http://michaelpassion.github.io/"/>
-  <updated>2014-08-17T17:44:37+08:00</updated>
+  <updated>2014-08-20T16:46:37+08:00</updated>
   <id>http://michaelpassion.github.io/</id>
   <author>
     <name><![CDATA[Michael]]></name>
@@ -12,6 +12,78 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Copy List with Random Pointer]]></title>
+    <link href="http://michaelpassion.github.io/blog/2014/08/19/copy-list-with-random-pointer/"/>
+    <updated>2014-08-19T22:52:45+08:00</updated>
+    <id>http://michaelpassion.github.io/blog/2014/08/19/copy-list-with-random-pointer</id>
+    <content type="html"><![CDATA[<blockquote><p>A linked list is given such that each node contains an additional random pointer which could point to any node in the list or null.</p>
+
+<p>Return a deep copy of the list.</p></blockquote>
+
+<!--more-->
+
+
+<p><a href="http://www.cnblogs.com/TenosDoIt/p/3387000.html">参考JustDoIT的cnblog</a></p>
+
+<hr />
+
+<pre><code class="c++ 复杂链表的复制">
+/**
+ * Definition for singly-linked list with a random pointer.
+ * struct RandomListNode {
+ *     int label;
+ *     RandomListNode *next, *random;
+ *     RandomListNode(int x) : label(x), next(NULL), random(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    RandomListNode *copyRandomList(RandomListNode *head) {
+        if (!head) return NULL;
+
+        map&lt;RandomListNode *, RandomListNode *&gt; oldListMap;
+
+        RandomListNode *cur = head;
+        RandomListNode *copyHead = new RandomListNode(-1);
+        RandomListNode *curCopy = copyHead;
+
+
+        while(cur)
+        {
+            oldListMap.insert(map&lt;RandomListNode *, RandomListNode *&gt;::value_type(cur,cur-&gt;next));
+            RandomListNode *node = new RandomListNode(cur-&gt;label);
+            node-&gt;random = cur;
+            RandomListNode *p = cur;
+            cur=cur-&gt;next;
+            p-&gt;next = node;
+            curCopy-&gt;next = node;
+            curCopy=node;
+        }
+
+        curCopy = copyHead-&gt;next;
+        while(curCopy)
+        {
+            if(curCopy-&gt;random-&gt;random)
+                 curCopy-&gt;random = curCopy-&gt;random-&gt;random-&gt;next;
+            else 
+                curCopy-&gt;random = NULL;
+            curCopy=curCopy-&gt;next;
+        }
+
+        cur = head;
+        for(int i = 1; i&lt;= oldListMap.size(); i++)
+        {
+            cur-&gt;next = oldListMap[cur];
+            cur=cur-&gt;next;
+        }
+        return copyHead-&gt;next;
+    }
+};
+</code></pre>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Reorder List]]></title>
