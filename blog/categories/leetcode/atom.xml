@@ -4,7 +4,7 @@
   <title><![CDATA[Category: leetcode | My Progressing Blog]]></title>
   <link href="http://michaelpassion.github.io/blog/categories/leetcode/atom.xml" rel="self"/>
   <link href="http://michaelpassion.github.io/"/>
-  <updated>2014-08-20T16:46:37+08:00</updated>
+  <updated>2014-08-21T12:03:32+08:00</updated>
   <id>http://michaelpassion.github.io/</id>
   <author>
     <name><![CDATA[Michael]]></name>
@@ -12,6 +12,84 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[sort list]]></title>
+    <link href="http://michaelpassion.github.io/blog/2014/08/20/sort-list/"/>
+    <updated>2014-08-20T19:07:30+08:00</updated>
+    <id>http://michaelpassion.github.io/blog/2014/08/20/sort-list</id>
+    <content type="html"><![CDATA[<blockquote><p>Sort a linked list in O(n log n) time using constant space complexity.</p></blockquote>
+
+<p><em>解法一</em></p>
+
+<p>用递归方法将链表分组，再将每一层的分组两两合并。</p>
+
+<pre><code class="c++ 时间复杂度 O(n log n) , 空间复杂度 O(1)">/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+
+    ListNode* mergeList(ListNode *fir, ListNode *sec)
+    {
+        if(!fir) return sec;
+        if(!sec) return fir;
+       ListNode *dummy = new ListNode(-1);
+       ListNode *p = dummy;
+
+       while(fir &amp;&amp; sec)
+       {
+           if(fir-&gt;val &lt; sec-&gt;val)
+           {
+               p-&gt;next = fir;
+               fir = fir-&gt;next;
+           }
+           else 
+           {
+               p-&gt;next = sec;
+               sec = sec-&gt;next;
+           }
+           p = p-&gt;next;
+       }
+
+       if(!fir) 
+            p-&gt;next = sec;
+       else
+            p-&gt;next = fir;
+
+        p=dummy-&gt;next;
+        delete(dummy);
+        return p;
+    }
+
+    ListNode *sortList(ListNode *head) {
+        if(!head || !head-&gt;next) return head;
+        ListNode *slow = head, *fast = head;
+
+        // 防止指针越界
+        while(fast-&gt;next &amp;&amp; fast-&gt;next-&gt;next)
+        {
+            slow = slow-&gt;next;
+            fast = fast-&gt;next-&gt;next;
+        }
+        fast = slow;
+        slow = slow-&gt;next;
+        fast-&gt;next = NULL;
+
+        fast = sortList(head);
+        slow = sortList(slow);
+
+        return mergeList(fast,slow);
+    }
+};
+</code></pre>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Longest Palindromic Substring]]></title>
@@ -443,78 +521,6 @@ void reorderList(ListNode *head) {
 <p>};</p>
 
 <p>&#8220;`</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Permutations II]]></title>
-    <link href="http://michaelpassion.github.io/blog/2014/08/16/permutations-ii/"/>
-    <updated>2014-08-16T11:18:57+08:00</updated>
-    <id>http://michaelpassion.github.io/blog/2014/08/16/permutations-ii</id>
-    <content type="html"><![CDATA[<blockquote><p>Given a collection of numbers that might contain duplicates, return all possible unique permutations.</p>
-
-<p>For example,</p>
-
-<p>[1,1,2] have the following unique permutations:</p>
-
-<p>[1,1,2], [1,2,1], and [2,1,1].</p></blockquote>
-
-<!--more-->
-
-
-<p><a href="https://oj.leetcode.com/problems/permutations-ii/">leetcode传送门</a></p>
-
-<p><em>思路</em></p>
-
-<p>用回溯法，求全排列的顺序同permutation</p>
-
-<p>permutation</p>
-
-<ol>
-<li>首先固定首位元素，从第二位开始依次与第一位交换</li>
-<li>对去除首位的子序列，进行全排列。同样固定子序列的首位元素，从子序列的第二位起，依次与第一位交换。</li>
-<li>交换到最后一位，将此时的序列打印，递归返回。</li>
-</ol>
-
-
-<p>permutation II 有重复数字，所以和相同的数字交换位置，就会得到重复的序列，通过一个无序集保存当前已经交换个位置的数，如果要交换位置的数已经在无序集中，就不交换进入下一个循环</p>
-
-<pre><code class="c++ permutation II">class Solution {
-public:
-    vector&lt;vector&lt;int&gt; &gt; permuteUnique(vector&lt;int&gt; &amp;num) {
-       vector&lt;vector&lt;int&gt; &gt; ret;
-       if(num.size() &lt; 2)
-       {
-           ret.push_back(num);
-           return ret;
-       }
-
-       perm(num,ret,0);
-       return ret;
-    }
-
-    void perm(vector&lt;int&gt; &amp;num, vector&lt;vector&lt;int&gt; &gt; &amp;ret, int t)
-    {
-        if(t == num.size())
-        {
-            ret.push_back(num);
-            return;
-        }
-
-        unordered_set&lt;int&gt; used;
-        for(int i=t; i&lt; num.size(); ++i)
-        {
-            if(used.find(num[i]) == used.end())
-            {
-                swap(num[t],num[i]);
-                perm(num,ret,t+1);
-                swap(num[t],num[i]);
-                used.insert(num[i]);
-            }
-        }
-    }
-};
-</code></pre>
 ]]></content>
   </entry>
   
