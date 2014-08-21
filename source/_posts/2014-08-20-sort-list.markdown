@@ -1,0 +1,78 @@
+---
+layout: post
+title: "sort list"
+date: 2014-08-20 19:07:30 +0800
+comments: true
+categories: leetcode 链表 二分
+---
+>Sort a linked list in O(n log n) time using constant space complexity.
+
+*解法一*
+
+用递归方法将链表分组，再将每一层的分组两两合并。
+
+``` c++ 时间复杂度 O(n log n) , 空间复杂度 O(1)
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+
+    ListNode* mergeList(ListNode *fir, ListNode *sec)
+    {
+        if(!fir) return sec;
+        if(!sec) return fir;
+       ListNode *dummy = new ListNode(-1);
+       ListNode *p = dummy;
+       
+       while(fir && sec)
+       {
+           if(fir->val < sec->val)
+           {
+               p->next = fir;
+               fir = fir->next;
+           }
+           else 
+           {
+               p->next = sec;
+               sec = sec->next;
+           }
+           p = p->next;
+       }
+       
+       if(!fir) 
+            p->next = sec;
+       else
+            p->next = fir;
+            
+        p=dummy->next;
+        delete(dummy);
+        return p;
+    }
+    
+    ListNode *sortList(ListNode *head) {
+        if(!head || !head->next) return head;
+        ListNode *slow = head, *fast = head;
+        
+        // 防止指针越界
+        while(fast->next && fast->next->next)
+        {
+            slow = slow->next;
+            fast = fast->next->next;
+        }
+        fast = slow;
+        slow = slow->next;
+        fast->next = NULL;
+        
+        fast = sortList(head);
+        slow = sortList(slow);
+        
+        return mergeList(fast,slow);
+    }
+};
+```
