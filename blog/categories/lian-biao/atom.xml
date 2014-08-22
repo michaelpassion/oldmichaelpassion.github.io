@@ -4,7 +4,7 @@
   <title><![CDATA[Category: 链表 | My Progressing Blog]]></title>
   <link href="http://michaelpassion.github.io/blog/categories/lian-biao/atom.xml" rel="self"/>
   <link href="http://michaelpassion.github.io/"/>
-  <updated>2014-08-21T12:03:32+08:00</updated>
+  <updated>2014-08-22T18:13:26+08:00</updated>
   <id>http://michaelpassion.github.io/</id>
   <author>
     <name><![CDATA[Michael]]></name>
@@ -12,6 +12,82 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Remove Nth Node From End of List]]></title>
+    <link href="http://michaelpassion.github.io/blog/2014/08/22/remove-nth-node-from-end-of-list/"/>
+    <updated>2014-08-22T18:03:53+08:00</updated>
+    <id>http://michaelpassion.github.io/blog/2014/08/22/remove-nth-node-from-end-of-list</id>
+    <content type="html"><![CDATA[<blockquote><p>Given a linked list, remove the nth node from the end of list and return its head.</p>
+
+<p>For example,</p></blockquote>
+
+<pre><code> Given linked list: 1-&gt;2-&gt;3-&gt;4-&gt;5, and n = 2.
+ After removing the second node from the end, the linked list becomes 1-&gt;2-&gt;3-&gt;5.
+</code></pre>
+
+<blockquote><p>Note:</p>
+
+<p>Given n will always be valid.</p>
+
+<p>Try to do this in one pass.</p></blockquote>
+
+<!--more-->
+
+
+<p><a href="https://oj.leetcode.com/problems/remove-nth-node-from-end-of-list/">leetcode express</a></p>
+
+<p><em>思路</em></p>
+
+<ul>
+<li>利用快慢指针，慢指针比快指针慢<code>n-1</code>步.</li>
+<li>快指针指向最后一个结点时，慢指针指向倒数第<code>n+1</code>个结点（不能直接找倒数第n个结点，不方便删除）</li>
+<li>为链表加一个多余的头结点，用来处理链表只有一个结点，并且要删除这个结点。</li>
+</ul>
+
+
+<pre><code class="c++ 时间复杂度 O(n)，空间复杂度 O(1)">
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode *removeNthFromEnd(ListNode *head, int n) {
+
+        ListNode *dummy = new ListNode(-1);
+        dummy-&gt;next = head;
+        ListNode *slow = dummy;
+        ListNode *fast = dummy;
+
+        while(n &gt; 0)
+        {
+            fast = fast-&gt;next;
+            n--;
+        }
+
+        while(fast-&gt;next)
+        {
+            fast = fast-&gt;next;
+            slow = slow-&gt;next;
+        }
+
+        ListNode *tmp = slow-&gt;next;
+        slow-&gt;next = tmp-&gt;next;
+        delete(tmp);
+        tmp = dummy-&gt;next;
+        delete(dummy);
+
+        return tmp;
+    }
+};
+</code></pre>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[sort list]]></title>
@@ -316,68 +392,6 @@ public:
             }
         }
         return head;
-    }
-};
-</code></pre>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Insertion Sort List]]></title>
-    <link href="http://michaelpassion.github.io/blog/2014/08/10/insertion-sort-list/"/>
-    <updated>2014-08-10T19:35:54+08:00</updated>
-    <id>http://michaelpassion.github.io/blog/2014/08/10/insertion-sort-list</id>
-    <content type="html"><![CDATA[<blockquote><p>Sort a linked list using insertion sort.</p></blockquote>
-
-<!--more-->
-
-
-<p><a href="https://oj.leetcode.com/problems/insertion-sort-list/">leetcode 传送门</a></p>
-
-<hr />
-
-<p><em>思路</em>
-过程比较清晰的链表操作题，一开始提交出现RE，看了下原来是</p>
-
-<p><code>while(p-&gt;next &amp;&amp; p-&gt;next-&gt;val &lt; cur-&gt;val)</code> 写成了</p>
-
-<p><code>while(p-&gt;next-&gt;val &lt; cur-&gt;val &amp;&amp; p-&gt;next)</code> 如果不先判断Node是否为空就去取值必然出现问题。</p>
-
-<pre><code class="c++">/**
- * Definition for singly-linked list.
- * struct ListNode {
- *     int val;
- *     ListNode *next;
- *     ListNode(int x) : val(x), next(NULL) {}
- * };
- */
-class Solution {
-public:
-    ListNode *insertionSortList(ListNode *head) {
-
-        ListNode *p = head;
-        if(p == NULL || p-&gt;next == NULL) return head;
-
-        ListNode *dummy = new ListNode(-1);
-        dummy-&gt;next = head;
-        ListNode *cur = head-&gt;next;
-        head-&gt;next = NULL;
-
-        while(cur)
-        {
-            ListNode *p = dummy;
-            while(p-&gt;next &amp;&amp; p-&gt;next-&gt;val &lt; cur-&gt;val)
-            {
-                p=p-&gt;next;
-            }
-
-            ListNode *tmp = cur;
-            cur=cur-&gt;next;
-            tmp-&gt;next = p-&gt;next;
-            p-&gt;next = tmp;
-        }
-        return dummy-&gt;next;
-
     }
 };
 </code></pre>
