@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: prefix | My Progressing Blog]]></title>
+  <link href="http://michaelpassion.github.io/blog/categories/prefix/atom.xml" rel="self"/>
+  <link href="http://michaelpassion.github.io/"/>
+  <updated>2014-08-23T10:43:22+08:00</updated>
+  <id>http://michaelpassion.github.io/</id>
+  <author>
+    <name><![CDATA[Michael]]></name>
+    <email><![CDATA[carter1373043@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Longest Common Prefix]]></title>
+    <link href="http://michaelpassion.github.io/blog/2014/08/22/longest-common-prefix/"/>
+    <updated>2014-08-22T20:26:21+08:00</updated>
+    <id>http://michaelpassion.github.io/blog/2014/08/22/longest-common-prefix</id>
+    <content type="html"><![CDATA[<blockquote><p>Write a function to find the longest common prefix string amongst an array of strings.</p></blockquote>
+
+<!--more-->
+
+
+<p><a href="https://oj.leetcode.com/problems/longest-common-prefix/">leetcode express</a></p>
+
+<p><em>思路</em></p>
+
+<ul>
+<li>从vector中找到长度最短的string，作为prefix</li>
+<li>依次比较每个字串，如果前缀不同，则将prefix的最后一个字符删去，继续比较</li>
+</ul>
+
+
+<pre><code class="c++ 时间复杂度 O(mn),空间复杂度O(1)">
+class Solution {
+public:
+    string longestCommonPrefix(vector&lt;string&gt; &amp;strs) {
+        if (strs.size() == 0)
+            return "";
+
+        //find the shortest string's index
+        //to prevent performance degradation
+        int _min_len_ = strs[0].size();
+        int _min_len_index_ = 0;        
+        for (int i = 0; i &lt; strs.size(); ++i)
+        {
+            if (strs[i].size() &lt; _min_len_)
+            {
+                _min_len_ = strs[i].size();
+                _min_len_index_ = i;
+            }
+        }
+
+
+        string prefix = strs[_min_len_index_];
+        for (int i = 0; i &lt; strs.size(); ++i)
+        {
+            if (strs[i].find(prefix) != 0)
+            {
+                prefix = prefix.substr(0, prefix.size() - 1);
+                --i;
+            }
+        }
+        return prefix;
+
+    }
+};
+</code></pre>
+]]></content>
+  </entry>
+  
+</feed>
