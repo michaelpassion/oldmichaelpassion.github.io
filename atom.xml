@@ -4,7 +4,7 @@
   <title><![CDATA[My Progressing Blog]]></title>
   <link href="http://michaelpassion.github.io/atom.xml" rel="self"/>
   <link href="http://michaelpassion.github.io/"/>
-  <updated>2014-08-25T11:53:33+08:00</updated>
+  <updated>2014-08-25T20:45:14+08:00</updated>
   <id>http://michaelpassion.github.io/</id>
   <author>
     <name><![CDATA[Michael]]></name>
@@ -12,6 +12,168 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Unique Binary Search Trees]]></title>
+    <link href="http://michaelpassion.github.io/blog/2014/08/25/unique-binary-search-trees/"/>
+    <updated>2014-08-25T20:17:26+08:00</updated>
+    <id>http://michaelpassion.github.io/blog/2014/08/25/unique-binary-search-trees</id>
+    <content type="html"><![CDATA[<blockquote><p>Given n, how many structurally unique BST&rsquo;s (binary search trees) that store values 1&hellip;n?</p>
+
+<p>For example,</p>
+
+<p>Given n = 3, there are a total of 5 unique BST&rsquo;s.</p></blockquote>
+
+<!--more-->
+
+
+<p><a href="https://oj.leetcode.com/problems/unique-binary-search-trees/">leetcode express</a></p>
+
+<p><em>思路</em><br/>
+二叉搜索树分为左子树，根，右子树。而每一个左子树又可继续划分为以上结构。同理右子树也可以进行同样的划分。使用一个数组来记录n个节点的二叉搜索树有多少种。后面使用时直接查询即可。</p>
+
+<p>依次把每个节点作为根节点，左边节点作为左子树，右边节点作为右子树，那么总的数目等于左子树数目*右子树数目。</p>
+
+<figure class='code'><figcaption><span>DP</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='c++'><span class='line'><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+</span><span class='line'><span class="k">public</span><span class="o">:</span>
+</span><span class='line'>    <span class="kt">int</span> <span class="n">numTrees</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="kt">int</span> <span class="n">array</span><span class="p">[</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">];</span>
+</span><span class='line'>        <span class="n">memset</span><span class="p">(</span><span class="n">array</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="k">sizeof</span><span class="p">(</span><span class="n">array</span><span class="p">));</span>
+</span><span class='line'>        <span class="n">array</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;=</span><span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+</span><span class='line'>            <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">j</span><span class="o">&lt;</span><span class="n">i</span><span class="p">;</span><span class="n">j</span><span class="o">++</span><span class="p">)</span>
+</span><span class='line'>                <span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+=</span> <span class="n">array</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">*</span><span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="o">-</span><span class="n">j</span><span class="p">];</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="k">return</span> <span class="n">array</span><span class="p">[</span><span class="n">n</span><span class="p">];</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'><span class="p">};</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p></p>
+
+<p>实际上只需计算前半部分作为根节点的树的数目，然后乘以2（奇数节点还要加上中间节点作为根的二叉搜索树的数目）</p>
+
+<figure class='code'><figcaption><span>只计算前半段划分</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+</pre></td><td class='code'><pre><code class='c++'><span class='line'><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+</span><span class='line'><span class="k">public</span><span class="o">:</span>
+</span><span class='line'>    <span class="kt">int</span> <span class="n">numTrees</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="kt">int</span> <span class="n">array</span><span class="p">[</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">];</span>
+</span><span class='line'>        <span class="n">memset</span><span class="p">(</span><span class="n">array</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="k">sizeof</span><span class="p">(</span><span class="n">array</span><span class="p">));</span>
+</span><span class='line'>        <span class="n">array</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;=</span><span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+</span><span class='line'>        <span class="p">{</span>
+</span><span class='line'>            <span class="kt">int</span> <span class="n">tmp</span> <span class="o">=</span> <span class="n">i</span><span class="o">&gt;&gt;</span><span class="mi">1</span><span class="p">;</span>
+</span><span class='line'>            <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">j</span><span class="o">&lt;=</span><span class="n">tmp</span><span class="p">;</span><span class="n">j</span><span class="o">++</span><span class="p">)</span>
+</span><span class='line'>            <span class="p">{</span>
+</span><span class='line'>                <span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+=</span> <span class="n">array</span><span class="p">[</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="n">j</span><span class="p">];</span>
+</span><span class='line'>            <span class="p">}</span>
+</span><span class='line'>            <span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;&lt;=</span> <span class="mi">1</span><span class="p">;</span>
+</span><span class='line'>            <span class="k">if</span><span class="p">(</span><span class="n">i</span> <span class="o">&amp;</span> <span class="mh">0x1</span><span class="p">)</span>
+</span><span class='line'>                <span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+=</span> <span class="n">array</span><span class="p">[</span><span class="n">tmp</span><span class="p">]</span> <span class="o">*</span> <span class="n">array</span><span class="p">[</span><span class="n">tmp</span><span class="p">];</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="k">return</span> <span class="n">array</span><span class="p">[</span><span class="n">n</span><span class="p">];</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'><span class="p">};</span>
+</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[哈希表相关]]></title>
+    <link href="http://michaelpassion.github.io/blog/2014/08/25/ha-xi-biao-xiang-guan/"/>
+    <updated>2014-08-25T16:04:35+08:00</updated>
+    <id>http://michaelpassion.github.io/blog/2014/08/25/ha-xi-biao-xiang-guan</id>
+    <content type="html"><![CDATA[<blockquote><p>先从面试题说起：搜索引擎会通过日志文件把用户每次检索使用的所有检索串都记录下来，每个查询串的长度为1-255字节。</p>
+
+<p>假设目前有一千万个记录（这些查询串的重复度比较高，虽然总数是1千万，但如果除去重复后，不超过3百万个。一个查询串的重复度越高，说明查询它的用户越多，也就是越热门。），请你统计最热门的10个查询串，要求使用的内存不能超过1G。</p></blockquote>
+
+<h1>哈希表 （Hash table）</h1>
+
+<p>hash table 是根据关键码值直接访问的数据结构（key value）。也就是说，它通过把关键码值映射到表中一个位置来访问记录，以加快查找的速度。这个映射函数叫做散列函数，存放记录的数组叫做散列表。</p>
+
+<p>hashtable的做法就是把key通过固定的哈希函数转换成一个整型数字，然后将该数字对数组长度取余，取余结果当做key的数组下表，将value存储在下标对应的数组空间里。 使用哈希表进行查询的时候，再次使用哈希函数将key转换为对应的数组下标，并定位到该空间获取value，利用数组的快速定位的性能来进行数据定位。</p>
+
+<p>问题解析：</p>
+
+<p>要统计最热门查询，首先就是要统计每个Query出现的次数，然后根据统计结果，找出Top 10.</p>
+
+<h3>1. Query统计</h3>
+
+<p>Query统计有两种方法：</p>
+
+<ul>
+<li><p>直接排序</p>
+
+<ol>
+<li>首先对日志中所有的Query排序，再遍历排序后的Query，统计每个Query出现的次数。题目中要求内存不超过1G，一千万条记录每条记录255Byte，大概需要2G多内存。不满足要求。当数据量较大内存无法装下时，可以采用外排序的方法，这里了采用归并排序。时间复杂度为O（NlgN）。</li>
+<li>排序后再对已经有序的Query文件进行表里，统计每个Query出现的次数，写入文件中，时间复杂度O（n）。</li>
+<li>综合分析一下，排序的时间复杂度是O(NlgN)，而遍历的时间复杂度是O(N)，因此该算法的总体时间复杂度就是O(N+NlgN)=O（NlgN）。</li>
+</ol>
+</li>
+<li><p>Hash Table法</p>
+
+<ol>
+<li>题目中说明如遇Query重复读较高，实际只有300万的Query，每个Query255Byte，实际占用内存不超过<code>255*3M</code>，1G内存完全够用，因此可以把他们都放在内存中，现在只需要一个合适的数据结构，来降低查询所用的时间，Hash Table是首选，因为Hash Table的时间复杂度几乎为 <code>O(1)</code>。</li>
+<li>维护一个Key为uQuery字串，Value为该Query出现的次数的Hash Table，每次读取一个Query，如果该字串不在Table中，就加入该字串，并将Value付志伟1；如果该字串在Table中，那么该字串的统计次数加一。最终在<code>O(n)</code>的时间复杂度完成了该海量数据的处理。</li>
+<li>与算法1比时间复杂度提高了一个数量级，而且该算法复杂度只需要对数据文件进行一次IO操作，而算法1的IO操作较多，因此算法2更佳。</li>
+</ol>
+</li>
+</ul>
+
+
+<h3>2. 找出Top 10</h3>
+
+<ul>
+<li>算法一 普通排序 <br/>
+我想对于排序算法大家都已经不陌生了，这里不在赘述，我们要注意的是排序算法的时间复杂度是NlgN，在本题目中，三百万条记录，用1G内存是可以存下的。</li>
+<li>算法二 部分排序<br/>
+题目要求是求出Top 10，因此我们没有必要对所有的Query都进行排序，我们只需要维护一个10个大小的数组，初始化放入10个Query，按照每个Query的统计次数由大到小排序，然后遍历这300万条记录，每读一条记录就和数组最后一个Query对比，如果小于这个Query，那么继续遍历，否则，将数组中最后一条数据淘汰，加入当前的Query。最后当所有的数据都遍历完毕之后，那么这个数组中的10个Query便是我们要找的Top10了。这样，算法的最坏时间复杂度是 <code>O(N*K)</code>， 其中K是指top多少。</li>
+<li>算法三 堆  <br/>
+在算法二中，我们已经将时间复杂度由NlogN优化到NK。每次比较完成之后，需要把元素插入到线性表中，而且采用的时顺序比较，如果采用二分查找的话，操作的复杂度就降低到logK，不过数据移动次数没有什么变化。</li>
+</ul>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[two sum]]></title>
@@ -486,7 +648,7 @@
 <ul>
 <li>男，汉族，1989年12月生人，现居北京市海淀区 研究生找工作中。</li>
 <li>电话： 186-1152-6680</li>
-<li>邮箱： <a href="&#x6d;&#97;&#105;&#x6c;&#x74;&#x6f;&#x3a;&#x63;&#x61;&#x72;&#116;&#101;&#114;&#49;&#51;&#55;&#51;&#x30;&#x34;&#x33;&#64;&#x67;&#109;&#97;&#105;&#x6c;&#x2e;&#99;&#111;&#x6d;">&#99;&#97;&#x72;&#116;&#x65;&#114;&#49;&#51;&#x37;&#x33;&#48;&#52;&#x33;&#64;&#103;&#x6d;&#97;&#105;&#108;&#46;&#x63;&#x6f;&#x6d;</a></li>
+<li>邮箱： <a href="&#109;&#x61;&#x69;&#x6c;&#116;&#111;&#x3a;&#99;&#x61;&#x72;&#116;&#x65;&#x72;&#49;&#51;&#x37;&#51;&#48;&#52;&#51;&#64;&#103;&#109;&#x61;&#105;&#x6c;&#46;&#x63;&#x6f;&#109;">&#x63;&#97;&#x72;&#116;&#x65;&#114;&#x31;&#51;&#55;&#51;&#48;&#x34;&#x33;&#x40;&#x67;&#x6d;&#97;&#x69;&#x6c;&#46;&#99;&#111;&#x6d;</a></li>
 <li>GitHub: <a href="https://github.com/michaelpassion">github.com/michaelpassion</a></li>
 <li>个人博客：<a href="http://michaelpassion.github.io">michaelpassion.github.io/</a></li>
 </ul>
@@ -521,7 +683,7 @@
 
 <p>  项目时间：2011/9&ndash;2012/1 <br/>
   项目描述：ios抽奖类应用，模拟现实生活中的转盘，转动转盘抽奖，转盘中的内容可以自定义<br/>
-  项目职责：负责编程工作并*自主测试。<br/>
+  项目职责：负责编程工作并自主测试。<br/>
   收获：通过这个项目熟悉了Xcode开发环境和Obj-C语言，并成功发布到APP Store中。</p></li>
 <li><p>PowerPPT(iOS, Xcode)</p>
 
@@ -2087,188 +2249,6 @@ Reduce them to a single space in the reversed string.</p></blockquote>
 </span><span class='line'>        <span class="n">pre</span> <span class="o">=</span> <span class="n">dummy</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
 </span><span class='line'>        <span class="k">delete</span> <span class="n">dummy</span><span class="p">;</span>
 </span><span class='line'>        <span class="k">return</span> <span class="n">pre</span><span class="p">;</span>
-</span><span class='line'>    <span class="p">}</span>
-</span><span class='line'><span class="p">};</span>
-</span></code></pre></td></tr></table></div></figure>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Spiral Matrix II]]></title>
-    <link href="http://michaelpassion.github.io/blog/2014/08/10/spiral-matrix-ii/"/>
-    <updated>2014-08-10T22:15:15+08:00</updated>
-    <id>http://michaelpassion.github.io/blog/2014/08/10/spiral-matrix-ii</id>
-    <content type="html"><![CDATA[<blockquote><p>Given an integer n, generate a square matrix filled with elements from 1 to n2 in spiral order.</p>
-
-<p>For example,
-Given n = 3,</p>
-
-<p>You should return the following matrix:</p></blockquote>
-
-<pre><code>[
- [ 1, 2, 3 ],
- [ 8, 9, 4 ],
- [ 7, 6, 5 ]
-]
-</code></pre>
-
-<!--more-->
-
-
-<p><a href="https://oj.leetcode.com/problems/spiral-matrix-ii/">leetcode 传送</a></p>
-
-<hr />
-
-<p><em>思路</em>
-主要是坐标的计算，在矩阵上比划下，就很清晰了，没有什么算法思想</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-</pre></td><td class='code'><pre><code class='c++'><span class='line'><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
-</span><span class='line'><span class="k">public</span><span class="o">:</span>
-</span><span class='line'>    <span class="n">vector</span><span class="o">&lt;</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="o">&gt;</span> <span class="n">generateMatrix</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>        <span class="kt">int</span> <span class="n">level</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-</span><span class='line'>        <span class="n">vector</span><span class="o">&lt;</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="o">&gt;</span><span class="n">matrix</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="mi">0</span><span class="p">));</span>
-</span><span class='line'>
-</span><span class='line'>        <span class="kt">int</span> <span class="n">num</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-</span><span class='line'>        <span class="k">while</span><span class="p">(</span><span class="n">num</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="o">*</span><span class="n">n</span><span class="p">)</span>
-</span><span class='line'>        <span class="p">{</span>
-</span><span class='line'>            <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">level</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span> <span class="n">n</span><span class="o">-</span><span class="n">level</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
-</span><span class='line'>                <span class="n">matrix</span><span class="p">[</span><span class="n">level</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">num</span><span class="o">++</span><span class="p">;</span>
-</span><span class='line'>            <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">level</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">n</span><span class="o">-</span><span class="n">level</span><span class="p">;</span><span class="o">++</span><span class="n">i</span><span class="p">)</span>
-</span><span class='line'>                <span class="n">matrix</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">n</span><span class="o">-</span><span class="n">level</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">num</span><span class="o">++</span><span class="p">;</span>
-</span><span class='line'>            <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">n</span><span class="o">-</span><span class="mi">2</span><span class="o">-</span><span class="n">level</span><span class="p">;</span> <span class="n">i</span><span class="o">&gt;=</span><span class="n">level</span><span class="p">;</span><span class="o">--</span><span class="n">i</span><span class="p">)</span>
-</span><span class='line'>                <span class="n">matrix</span><span class="p">[</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="o">-</span><span class="n">level</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">num</span><span class="o">++</span><span class="p">;</span>
-</span><span class='line'>            <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">n</span><span class="o">-</span><span class="mi">2</span><span class="o">-</span><span class="n">level</span><span class="p">;</span> <span class="n">i</span><span class="o">&gt;</span><span class="n">level</span><span class="p">;</span> <span class="o">--</span><span class="n">i</span><span class="p">)</span>
-</span><span class='line'>                <span class="n">matrix</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">level</span><span class="p">]</span> <span class="o">=</span> <span class="n">num</span><span class="o">++</span><span class="p">;</span>
-</span><span class='line'>            <span class="n">level</span><span class="o">++</span><span class="p">;</span>
-</span><span class='line'>        <span class="p">}</span>
-</span><span class='line'>            <span class="k">return</span> <span class="n">matrix</span><span class="p">;</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="p">};</span>
-</span></code></pre></td></tr></table></div></figure>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Insertion Sort List]]></title>
-    <link href="http://michaelpassion.github.io/blog/2014/08/10/insertion-sort-list/"/>
-    <updated>2014-08-10T19:35:54+08:00</updated>
-    <id>http://michaelpassion.github.io/blog/2014/08/10/insertion-sort-list</id>
-    <content type="html"><![CDATA[<blockquote><p>Sort a linked list using insertion sort.</p></blockquote>
-
-<!--more-->
-
-
-<p><a href="https://oj.leetcode.com/problems/insertion-sort-list/">leetcode 传送门</a></p>
-
-<hr />
-
-<p><em>思路</em>
-过程比较清晰的链表操作题，一开始提交出现RE，看了下原来是</p>
-
-<p><code>while(p-&gt;next &amp;&amp; p-&gt;next-&gt;val &lt; cur-&gt;val)</code> 写成了</p>
-
-<p><code>while(p-&gt;next-&gt;val &lt; cur-&gt;val &amp;&amp; p-&gt;next)</code> 如果不先判断Node是否为空就去取值必然出现问题。</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-</pre></td><td class='code'><pre><code class='c++'><span class='line'><span class="cm">/**</span>
-</span><span class='line'><span class="cm"> * Definition for singly-linked list.</span>
-</span><span class='line'><span class="cm"> * struct ListNode {</span>
-</span><span class='line'><span class="cm"> *     int val;</span>
-</span><span class='line'><span class="cm"> *     ListNode *next;</span>
-</span><span class='line'><span class="cm"> *     ListNode(int x) : val(x), next(NULL) {}</span>
-</span><span class='line'><span class="cm"> * };</span>
-</span><span class='line'><span class="cm"> */</span>
-</span><span class='line'><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
-</span><span class='line'><span class="k">public</span><span class="o">:</span>
-</span><span class='line'>    <span class="n">ListNode</span> <span class="o">*</span><span class="n">insertionSortList</span><span class="p">(</span><span class="n">ListNode</span> <span class="o">*</span><span class="n">head</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>
-</span><span class='line'>        <span class="n">ListNode</span> <span class="o">*</span><span class="n">p</span> <span class="o">=</span> <span class="n">head</span><span class="p">;</span>
-</span><span class='line'>        <span class="k">if</span><span class="p">(</span><span class="n">p</span> <span class="o">==</span> <span class="nb">NULL</span> <span class="o">||</span> <span class="n">p</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span> <span class="k">return</span> <span class="n">head</span><span class="p">;</span>
-</span><span class='line'>
-</span><span class='line'>        <span class="n">ListNode</span> <span class="o">*</span><span class="n">dummy</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ListNode</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
-</span><span class='line'>        <span class="n">dummy</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="n">head</span><span class="p">;</span>
-</span><span class='line'>        <span class="n">ListNode</span> <span class="o">*</span><span class="n">cur</span> <span class="o">=</span> <span class="n">head</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
-</span><span class='line'>        <span class="n">head</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
-</span><span class='line'>
-</span><span class='line'>        <span class="k">while</span><span class="p">(</span><span class="n">cur</span><span class="p">)</span>
-</span><span class='line'>        <span class="p">{</span>
-</span><span class='line'>            <span class="n">ListNode</span> <span class="o">*</span><span class="n">p</span> <span class="o">=</span> <span class="n">dummy</span><span class="p">;</span>
-</span><span class='line'>            <span class="k">while</span><span class="p">(</span><span class="n">p</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">&amp;&amp;</span> <span class="n">p</span><span class="o">-&gt;</span><span class="n">next</span><span class="o">-&gt;</span><span class="n">val</span> <span class="o">&lt;</span> <span class="n">cur</span><span class="o">-&gt;</span><span class="n">val</span><span class="p">)</span>
-</span><span class='line'>            <span class="p">{</span>
-</span><span class='line'>                <span class="n">p</span><span class="o">=</span><span class="n">p</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
-</span><span class='line'>            <span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'>            <span class="n">ListNode</span> <span class="o">*</span><span class="n">tmp</span> <span class="o">=</span> <span class="n">cur</span><span class="p">;</span>
-</span><span class='line'>            <span class="n">cur</span><span class="o">=</span><span class="n">cur</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
-</span><span class='line'>            <span class="n">tmp</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="n">p</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
-</span><span class='line'>            <span class="n">p</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="n">tmp</span><span class="p">;</span>
-</span><span class='line'>        <span class="p">}</span>
-</span><span class='line'>        <span class="k">return</span> <span class="n">dummy</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
-</span><span class='line'>
 </span><span class='line'>    <span class="p">}</span>
 </span><span class='line'><span class="p">};</span>
 </span></code></pre></td></tr></table></div></figure>

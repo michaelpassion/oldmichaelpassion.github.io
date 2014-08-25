@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: hash | My Progressing Blog]]></title>
-  <link href="http://michaelpassion.github.io/blog/categories/hash/atom.xml" rel="self"/>
+  <title><![CDATA[Category: 哈希表 | My Progressing Blog]]></title>
+  <link href="http://michaelpassion.github.io/blog/categories/ha-xi-biao/atom.xml" rel="self"/>
   <link href="http://michaelpassion.github.io/"/>
   <updated>2014-08-25T20:45:14+08:00</updated>
   <id>http://michaelpassion.github.io/</id>
@@ -67,59 +67,6 @@
 在算法二中，我们已经将时间复杂度由NlogN优化到NK。每次比较完成之后，需要把元素插入到线性表中，而且采用的时顺序比较，如果采用二分查找的话，操作的复杂度就降低到logK，不过数据移动次数没有什么变化。</li>
 </ul>
 
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Two Sum]]></title>
-    <link href="http://michaelpassion.github.io/blog/2014/08/10/two-sum/"/>
-    <updated>2014-08-10T16:43:32+08:00</updated>
-    <id>http://michaelpassion.github.io/blog/2014/08/10/two-sum</id>
-    <content type="html"><![CDATA[<blockquote><p>Given an array of integers, find two numbers such that they add up to a specific target number.</p>
-
-<p>The function twoSum should return indices of the two numbers such that they add up to the target, where index1 must be less than index2. Please note that your returned answers (both index1 and index2) are not zero-based.</p>
-
-<p>You may assume that each input would have exactly one solution.</p>
-
-<p>Input: numbers={2, 7, 11, 15}, target=9
-Output: index1=1, index2=2</p></blockquote>
-
-<!--more-->
-
-
-<p><strong>时间复杂度为O(n)</strong>
-&#8220;`C++
-class Solution {
-public:
-    vector<int> twoSum(vector<int> &amp;numbers, int target) {
-        int len = numbers.size();
-        assert(len >= 2); <br/>
-        vector<int> ret(2,0);
-        map&lt;int, int> mapping;
-        vector<long long> mul(len,0);
-        for(int i=0; i&lt;len; ++i)
-        {
-            mul[i] = (target - numbers[i]) * numbers[i];
-            if(mapping[mul[i]] >0)
-            {
-                if(numbers[mapping[mul[i]] -1] + numbers[i] == target)
-                {
-                    ret[0] = mapping[mul[i]];
-                    ret[1] = i+1;
-                    return ret;
-                }
-            }
-            else
-            {
-                mapping[mul[i]] = i+1;
-            }
-        }</p>
-
-<pre><code>}
-</code></pre>
-
-<p>};
-&#8220;`</p>
 ]]></content>
   </entry>
   
