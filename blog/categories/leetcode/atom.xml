@@ -4,7 +4,7 @@
   <title><![CDATA[Category: leetcode | My Progressing Blog]]></title>
   <link href="http://michaelpassion.github.io/blog/categories/leetcode/atom.xml" rel="self"/>
   <link href="http://michaelpassion.github.io/"/>
-  <updated>2014-08-24T20:06:35+08:00</updated>
+  <updated>2014-08-25T11:30:47+08:00</updated>
   <id>http://michaelpassion.github.io/</id>
   <author>
     <name><![CDATA[Michael]]></name>
@@ -12,6 +12,108 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[two sum]]></title>
+    <link href="http://michaelpassion.github.io/blog/2014/08/25/two-sum/"/>
+    <updated>2014-08-25T11:08:14+08:00</updated>
+    <id>http://michaelpassion.github.io/blog/2014/08/25/two-sum</id>
+    <content type="html"><![CDATA[<blockquote><p>Given an array of integers, find two numbers such that they add up to a specific target number.</p>
+
+<p>The function twoSum should return indices of the two numbers such that they add up to the target, where index1 must be less than index2. Please note that your returned answers (both index1 and index2) are not zero-based.</p>
+
+<p>You may assume that each input would have exactly one solution.</p>
+
+<p>  Input: numbers={2, 7, 11, 15}, target=9</p>
+
+<p>  Output: index1=1, index2=2</p></blockquote>
+
+<!--more-->
+
+
+<p><em>思路</em></p>
+
+<ol>
+<li>用map存储整个vector，用vector中每个元素的值做pair的key，元素的index作为pair值，插入到map中</li>
+<li>遍历数组时，从图中查找target-num[i]，利用图来降低时间复杂度 O(logN);</li>
+</ol>
+
+
+<pre><code class="c++ 时间复杂度 O(n), 空间复杂度O(n) ">class Solution {
+public:
+    vector&lt;int&gt; twoSum(vector&lt;int&gt; &amp;numbers, int target) {
+        vector&lt;int&gt; ret;
+        if(numbers.size() &lt; 2) return ret;
+        int i = 0, j = 0;
+        map&lt;int,int&gt; nums;
+        for(int i=0; i&lt; numbers.size(); i++)
+        {
+            nums.insert(pair&lt;int,int&gt;(numbers[i],i+1));
+        }
+        for(; i &lt; numbers.size(); i++)
+        {
+            int tmp = target - numbers[i];
+            map&lt;int,int&gt;::iterator it = nums.find(tmp);
+            if(it != nums.end())
+            {
+                int index1 = i+1;
+                int index2 = it-&gt;second;
+                if(index1&lt; index2)
+                {
+                    ret.push_back(index1);
+                    ret.push_back(index2);
+                    return ret;
+                } 
+                else if (index1 &gt; index2)
+                {
+                    ret.push_back(index2);
+                    ret.push_back(index1);
+                    return ret;
+                }
+            }
+        }
+
+        return ret;
+
+    }
+};
+</code></pre>
+
+<p><em>另一种解法</em></p>
+
+<pre><code class="c++">class Solution {
+public:
+    vector&lt;int&gt; twoSum(vector&lt;int&gt; &amp;numbers, int target) {
+        int len = numbers.size();
+        assert(len &gt;= 2);   
+        vector&lt;int&gt; ret(2,0);
+        map&lt;int, int&gt; mapping;
+        vector&lt;long long&gt; mul(len,0);
+
+        for(int i=0; i&lt;len; ++i)
+        {
+            mul[i] = (target - numbers[i]) * numbers[i];
+            if(mapping[mul[i]] &gt;0)
+            {
+                // 排除 numbers[i] == target/2 的情况
+                if(numbers[mapping[mul[i]] -1] + numbers[i] == target)
+                {
+                    ret[0] = mapping[mul[i]];
+                    ret[1] = i+1;
+                    return ret;
+                }
+            }
+            else
+            {
+                mapping[mul[i]] = i+1;
+            }
+        }
+
+    }
+};
+</code></pre>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Longest Common Prefix]]></title>
@@ -403,78 +505,6 @@ public:
         }
         res.push_back('^');//以^作为字符串的结尾
         return res;
-    }
-};
-</code></pre>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Copy List with Random Pointer]]></title>
-    <link href="http://michaelpassion.github.io/blog/2014/08/19/copy-list-with-random-pointer/"/>
-    <updated>2014-08-19T22:52:45+08:00</updated>
-    <id>http://michaelpassion.github.io/blog/2014/08/19/copy-list-with-random-pointer</id>
-    <content type="html"><![CDATA[<blockquote><p>A linked list is given such that each node contains an additional random pointer which could point to any node in the list or null.</p>
-
-<p>Return a deep copy of the list.</p></blockquote>
-
-<!--more-->
-
-
-<p><a href="http://www.cnblogs.com/TenosDoIt/p/3387000.html">参考JustDoIT的cnblog</a></p>
-
-<hr />
-
-<pre><code class="c++ 复杂链表的复制">
-/**
- * Definition for singly-linked list with a random pointer.
- * struct RandomListNode {
- *     int label;
- *     RandomListNode *next, *random;
- *     RandomListNode(int x) : label(x), next(NULL), random(NULL) {}
- * };
- */
-class Solution {
-public:
-    RandomListNode *copyRandomList(RandomListNode *head) {
-        if (!head) return NULL;
-
-        map&lt;RandomListNode *, RandomListNode *&gt; oldListMap;
-
-        RandomListNode *cur = head;
-        RandomListNode *copyHead = new RandomListNode(-1);
-        RandomListNode *curCopy = copyHead;
-
-
-        while(cur)
-        {
-            oldListMap.insert(map&lt;RandomListNode *, RandomListNode *&gt;::value_type(cur,cur-&gt;next));
-            RandomListNode *node = new RandomListNode(cur-&gt;label);
-            node-&gt;random = cur;
-            RandomListNode *p = cur;
-            cur=cur-&gt;next;
-            p-&gt;next = node;
-            curCopy-&gt;next = node;
-            curCopy=node;
-        }
-
-        curCopy = copyHead-&gt;next;
-        while(curCopy)
-        {
-            if(curCopy-&gt;random-&gt;random)
-                 curCopy-&gt;random = curCopy-&gt;random-&gt;random-&gt;next;
-            else 
-                curCopy-&gt;random = NULL;
-            curCopy=curCopy-&gt;next;
-        }
-
-        cur = head;
-        for(int i = 1; i&lt;= oldListMap.size(); i++)
-        {
-            cur-&gt;next = oldListMap[cur];
-            cur=cur-&gt;next;
-        }
-        return copyHead-&gt;next;
     }
 };
 </code></pre>
