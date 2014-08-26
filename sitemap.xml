@@ -3,6 +3,12 @@
   
   
   <url>
+    <loc>http://michaelpassion.github.io/blog/2014/08/25/nei-cun-xiang-guan/</loc>
+    <lastmod>2014-08-25T22:24:17+08:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
     <loc>http://michaelpassion.github.io/blog/2014/08/25/unique-binary-search-trees/</loc>
     <lastmod>2014-08-25T20:17:26+08:00</lastmod>
     <priority>0.8</priority>
@@ -197,28 +203,28 @@
   
   <url>
     <loc>http://michaelpassion.github.io/blog/archives/</loc>
-    <lastmod>2014-08-25T20:45:14+08:00</lastmod>
+    <lastmod>2014-08-26T10:27:15+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
     <loc>http://michaelpassion.github.io/</loc>
-    <lastmod>2014-08-25T20:45:14+08:00</lastmod>
+    <lastmod>2014-08-26T10:27:15+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   
   <url>
     <loc>http://michaelpassion.github.io/blog/categories/</loc>
-    <lastmod>2014-08-25T20:45:14+08:00</lastmod>
+    <lastmod>2014-08-26T10:27:15+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
     <loc>http://michaelpassion.github.io/about/</loc>
-    <lastmod>2014-08-25T20:45:14+08:00</lastmod>
+    <lastmod>2014-08-26T10:27:15+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
