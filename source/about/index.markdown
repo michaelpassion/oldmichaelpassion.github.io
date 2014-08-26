@@ -1,21 +1,18 @@
 ---
 layout: page
-title: "about"
-date: 2014-08-10 13:33
+title: "about me"
+date: 2014-08-26 10:32
 comments: true
 sharing: true
 footer: true
-
 ---
----
-<!--more-->
-本人精通Word、Excel、Access、PowerPoint、Outlook、Express等软件以及Adobe旗下的，Photoshop、Dreamweaver、Flash、Illustrator、After Effects等工具的安装与卸载；熟练掌握VB、C++、FoxPro、SQL、java等单词的拼写；熟悉Win7、Winphone、Linux、Mac、Android、IOS等操作系统的开关机；深谙英语六级，初级会计资格等等级考试的发卷收卷流程。
 
-上了这么久的学，最终庸庸碌碌，靠别人不如靠自己。
+>本人精通Word、Excel、Access、PowerPoint、Outlook、Express等软件以及Adobe旗下的,Photoshop、Dreamweaver、Flash、Illustrator、After Effects等工具的安装与卸载；熟练掌握VB、C++、FoxPro、SQL、java等单词的拼写；熟悉Win7、Winphone、Linux、Mac、Android、IOS等操作系统的开关机；深谙英语六级，初级会计资格等等级考试的发卷收卷流程。
+>上了这么久的学，最终庸庸碌碌，靠别人不如靠自己。  
 
 * * *
 
-##尹帅的简历    <img src="http://himg.bdimg.com/sys/portrait/item/e93779656c69646f6e67303631337915.jpg" align="right"></img>
+#尹帅的简历    <img src="http://himg.bdimg.com/sys/portrait/item/e93779656c69646f6e67303631337915.jpg" align="right"></img>
 ---
 * 男，汉族，1989年12月生人，现居北京市海淀区 研究生找工作中。
 * 电话： 186-1152-6680
