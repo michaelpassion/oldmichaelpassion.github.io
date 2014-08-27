@@ -9,7 +9,10 @@
 	<meta name="author" content="Michael">
 
 	
-	<meta name="description" content="Aug 26th, 2014 leetcode, permutation Next_permutation Implement next permutation, which rearranges numbers into the lexicographically next greater &hellip;">
+	<meta name="description" content="Aug 27th, 2014 leetcode Pow(x Implement pow(x, n). read on &rarr; Aug 27th, 2014 笔试, 面试 基础知识回顾 死锁
+产生死锁的四个必要条件：
+互斥条件：一个资源每次只能被一个进程（线程）使用。
+请求与保持条件： &hellip;">
 	
 
   <!-- http://t.co/dKP3o1e -->
@@ -117,6 +120,236 @@
   
 
 
+<time datetime="2014-08-27T23:25:37+08:00" data-updated="true" itemprop="datePublished">Aug 27<sup>th</sup>, 2014</time></div>
+		<div class="tags">
+
+
+	<a class='category' href='/blog/categories/leetcode/'>leetcode</a>
+
+
+</div>
+		
+	</div>
+	<h1 class="title" itemprop="name"><a href="/blog/2014/08/27/pow-x/" itemprop="url">Pow(x</a></h1>
+	<div class="entry-content" itemprop="articleBody">
+		<blockquote><p>Implement pow(x, n).</p></blockquote>
+
+
+		
+		<a href="/blog/2014/08/27/pow-x/" class="more-link">read on &rarr;</a>
+	</div>
+
+</article>
+
+
+    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+	<div class="meta">
+		<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-08-27T09:43:47+08:00" data-updated="true" itemprop="datePublished">Aug 27<sup>th</sup>, 2014</time></div>
+		<div class="tags">
+
+
+	<a class='category' href='/blog/categories/bi-shi/'>笔试</a>, <a class='category' href='/blog/categories/mian-shi/'>面试</a>
+
+
+</div>
+		
+	</div>
+	<h1 class="title" itemprop="name"><a href="/blog/2014/08/27/ji-chu-zhi-shi-hui-gu/" itemprop="url">基础知识回顾</a></h1>
+	<div class="entry-content" itemprop="articleBody">
+		<ol>
+<li>死锁<br/>
+产生死锁的四个必要条件：</li>
+<li>互斥条件：一个资源每次只能被一个进程（线程）使用。</li>
+<li>请求与保持条件：一个进程（线程）因请求资源而阻塞时，对已获得的资源保持不放</li>
+<li>不剥夺条件：进程（线程）已经获得的资源，在未使用完之前，不能强行剥夺</li>
+<li>循环等待条件：多个进程（线程）之间形成一种头尾相接的循环等待资源关系。</li>
+</ol>
+
+
+<p>死锁的预防：<br/>
+1. <strong>破坏请求保持</strong> 每个进程必须一次性请求它们所需的所有资源，若无法全部获取就等待，知道满足为止，也可以采用事务机制，确保可以回滚，既把获取、释放的资源做成原子性的。这样可以解决某些某些进程无法事先预估自己需要哪些资源<br/>
+2. <strong>破坏不可剥夺条件</strong> 一个已占有资源的进程若要再申请新的资源，它必须先释放已占有的资源。若随后再需要这些资源，需要重新申请。<br/>
+3. <strong>破坏循环等待条件</strong> 将系统中所有的资源设置标志位、排序，规定所有的进程申请资源必须以一定的顺序（升序或降序）做操作。</p>
+
+<hr />
+
+<p><strong>fork</strong><br/>
+在UNIX中，除了PID=0 的交换进程，所有进程都是其他进程使用系统调用fork创建的，这里调用fork创建新进程的进程即为父进程，而穿件的进程为子进程，因而除了进程0以为爱的进程都只有一个父进程，但一个进程可以有多个子进程。如果用户fork一个子进程后exit，子进程的父进程将为init。<br/>
+进程在linux中呈树桩结构，init为根节点，其它进程均有父进程。<br/>
+fork的作用是复制一个与当前一样的进程。新进程的所有数据（变量，环境变量，程序计数器等）数值都与袁金成一致，但是是一个全新的进程，并作为原进程的子进程。<code>fork函数被调用一次但返回两次</code>。两次返回的唯一区别是<code>子进程中返回0值</code>而<code>父进程中返回子进程的ID</code>。</p>
+
+<blockquote><p><a href="http://music.douban.com/subject/1460454/">转  Linux fork 运行机制  </a></p></blockquote>
+
+<p> 给出如下C程序，在linux下使用gcc编译：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='c++'><span class='line'><span class="cp">#include &quot;stdio.h&quot;</span>
+</span><span class='line'><span class="cp">#include &quot;sys/types.h&quot;</span>
+</span><span class='line'><span class="cp">#include &quot;unistd.h&quot;</span>
+</span><span class='line'> <span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="kt">pid_t</span> <span class="n">pid1</span><span class="p">;</span>
+</span><span class='line'>    <span class="kt">pid_t</span> <span class="n">pid2</span><span class="p">;</span>
+</span><span class='line'>    <span class="n">pid1</span> <span class="o">=</span> <span class="n">fork</span><span class="p">();</span>
+</span><span class='line'>    <span class="n">pid2</span> <span class="o">=</span> <span class="n">fork</span><span class="p">();</span>
+</span><span class='line'>    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;pid1:%d, pid2:%d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">pid1</span><span class="p">,</span> <span class="n">pid2</span><span class="p">);</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>
+要求如下：</p>
+
+<p>已知从这个程序执行到这个程序的所有进程结束这个时间段内，没有其它新进程执行。<br/>
+1、请说出执行这个程序后，将一共运行几个进程。<br/>
+2、如果其中一个进程的输出结果是“pid1:1001, pid2:1002”，写出其他进程的输出结果（不考虑进程执行顺序）。</p>
+
+<p><strong>预备知识</strong><br/>
+1. 进程可以看做程序的一次执行过程。在Linux下，每个进程有唯一的PID标志进程，PID是一个从1到32768得正整数，其中1一般是特殊进程，其它进程从2开始依次编号。当用完32768后，从2重新开始。<br/>
+2. linux中有一个叫进程表的结构用来存储当前正在运行的进程。可以使用“ps aux”命令查看所有正在运行的进程。<br/>
+3. 进程在linux中呈树状结构，init为根节点，其它进程均有父进程，某进程的父进程就是启动这个进程的进程，这个进程叫做父进程的子进程。<br/>
+4. fork的作用是复制一个与当前进程一样的进程。新进程的所有数据（变量、环境变量、程序计数器等）数值都和原进程一致，但是是一个全新的进程，并作为原进程的子进程。</p>
+
+<p><strong>解题关键</strong></p>
+
+<p><img src="http://pic001.cnblogs.com/images/2010/155795/2010100817495697.gif" alt="" /></p>
+
+<p>上图表示一个含有fork的程序，而fork语句可以看成将程序切为A、B两个部分。然后整个程序会如下运行：</p>
+
+<p>step1、设由shell直接执行程序，生成了进程P。P执行完Part. A的所有代码。</p>
+
+<p>step2、当执行到pid = fork();时，P启动一个进程Q，Q是P的子进程，和P是同一个程序的进程。Q继承P的所有变量、环境变量、程序计数器的当前值。</p>
+
+<p>step3、在P进程中，fork()将Q的PID返回给变量pid，并继续执行Part. B的代码。</p>
+
+<p>step4、在进程Q中，将0赋给pid，并继续执行Part. B的代码。</p>
+
+<p><strong>1、P执行了所有程序，而Q只执行了Part. B，即fork()后面的程序。这是因为Q继承了P的PC-程序计数器
+</strong> <br/>
+<strong>2、Q继承了fork( )语句执行时当前的环境，而不是程序的初始环境。
+</strong><br/>
+<strong>3、P中fork( )语句启动子进程Q，并将Q的PID返回，而Q中的fork( )语句不启动新进程，仅将0返回。</strong></p>
+
+<p><strong>解题</strong>
+1. 从shell中执行此程序，启动了一个进程，假设这个进程为P0,设其PID为xxx；
+2. 当执行到<code>pid1 = fork();</code>时，Po启动的一个子进程P1，由题目知P1的PID为1001，暂且不管P1。
+3. Po中得fork返回1001给<code>pid1</code>，继续执行到<code>pid2 = fork();</code>，此时启动另一个新进程，设为P2,由题目知pid2为1002。同样暂且不管P2。
+4. P0中的第二个fork返回1002给pid2，继续执行完后续程序，结束。所以，P0的结果为“pid1:1001, pid2:1002”。
+5. 再看P2，P2生成时，P0中pid1=1001，所以P2中pid1继承P0的1001，而作为子进程pid2=0。P2从第二个fork后开始执行，结束后输出“pid1:1001, pid2:0”。
+6. 接着看P1，P1中第一条fork返回0给pid1，然后接着执行后面的语句。而后面接着的语句是pid2 = fork();执行到这里，P1又产生了一个新进程，设为P3。先不管P3。
+7. P1中第二条fork将P3的PID返回给pid2，由预备知识知P3的PID为1003，所以P1的pid2=1003。P1继续执行后续程序，结束，输出“pid1:0, pid2:1003”。
+8. P3作为P1的子进程，继承P1中pid1=0，并且第二条fork将0返回给pid2，所以P3最后输出“pid1:0, pid2:0”。
+9. 至此，整个执行过程完毕。</p>
+
+<p><strong>所得答案：</strong></p>
+
+<pre><code>  1、一共执行了四个进程。（P0, P1, P2, P3）
+
+  2、另外几个进程的输出分别为：
+
+  pid1:1001, pid2:0
+
+  pid1:0, pid2:1003
+
+  pid1:0, pid2:0  
+</code></pre>
+
+<p><img src="http://pic001.cnblogs.com/images/2010/155795/2010100817501849.gif" alt="" /></p>
+
+<h2><strong>raid</strong></h2>
+
+<hr />
+
+<p>其基本思想就是把多个相对便宜的硬盘组合起来,成为一个硬盘阵列组,使性能达到甚 至超过一个价格昂贵、容量巨大的硬盘。根据选择的版本不同,RAID 比单颗硬盘有以下一 个或多个方面的好处:增强资料整合度,增强容错功能,增加处理量或容量。另外,磁碟阵 列对于电脑来说, 看起来就像一个单独的硬盘或逻辑存储单元。  RAID 把多个硬盘组合成为一个逻辑磁区,因此,作业系统只会把它当作一个硬盘。RAID 目前有 0~7 及其中的若干两种组合等十余种不同的等级,不同的 RAID 方法各有其优缺点,<br/>
+ RAID 0: 将多个硬盘合为一个,一个损坏,即不可用,<br/>
+ RAID 1: 镜像方式存储,利用率仅 &frac12;,但可靠性高</p>
+
+<p> ##堆栈数据代码区 ___
+ 在UNIX中，从高地址到低地址一次为 stack heap data text</p>
+
+<ul>
+<li>栈区(stack) 由编译器自动分配释放，存放函数的参数值，局部变量值等。</li>
+<li>堆区 （heap）一般由程序员分配释放，如程序员不释放，程序结束时可能由OS回收。</li>
+<li>全局区（静态区 static）全局变量和静态变量的存储是放在一起的，初始化的全局变量和静态变量在一块区域data段，未初始化的全局变量和未初始化的静态变量在相邻的另一块区域bss段。程序结束后由系统释放</li>
+<li>文字常量区 常量字符串就是放在这里。常量字符串不恩能够修改，否则程序会在运行期崩溃。程序结束后由系统释放。</li>
+<li>程序代码区 存放函数体的二进制代码。</li>
+</ul>
+
+
+<h2>c++面向对象语言 </h2>
+
+<hr />
+
+<p><strong>const</strong></p>
+
+<pre><code>int b = 500;const int* a = &amp;b; [1]int const *a = &amp;b; [2]  ￼int* const a = &amp;b; [3]const int* const a = &amp;b; [4]
+</code></pre>
+
+<p>如果const位于<code>*</code>左侧，则const就是用来修饰指针所指向的变量，既指针指向为常量；<br/>
+如果const位于<code>*</code>右侧，则const就是修饰指针本身，既指针本身是常量。<br/>
+还有一个有效的办法是反着读： 如[1] a指向（<code>*</code>）int型常量；[2]a指向(<code>*</code>)常量是int型；[3]a是常量指针指向(<code>*</code>)int型变量; [4]a是常量指针指向(<code>*</code>)int型常量</p>
+
+<h2>深拷贝 和 浅拷贝</h2>
+
+<hr />
+
+<p>浅拷贝：被复制的对象的所有变量都含有原来对象相同的值，而其所有的对其他对象的引用都仍然指向原来的对象。浅拷贝复制时，将这个对象的值字段和引用字段（均为非晶态字段）全部复制过去，获得了这个对象的值和地址。即：当其中一个对象的引用字段所指向的地址中的变量变化时，所有浅拷贝对象中的该引用字段都会发生变化。<br/>
+深拷贝：被复制对象会讲所有非引用类型的字段复制给新对象，同事将引用类型所指向地址中存储的对象复制给新的对象。深拷贝与浅拷贝的具备在于对引用类型的对待上，一个是复制地址（浅拷贝）。另一个是复制地址指向位置的数据(深拷贝)。</p>
+
+<h2>c/c++可变参数的实现</h2>
+
+<hr />
+
+<ol>
+<li>可变参数的原理</li>
+<li>可变长书的设计</li>
+<li>可变参数的实现</li>
+</ol>
+
+
+		
+		
+	</div>
+
+</article>
+
+
+    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+	<div class="meta">
+		<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
 <time datetime="2014-08-26T13:51:45+08:00" data-updated="true" itemprop="datePublished">Aug 26<sup>th</sup>, 2014</time></div>
 		<div class="tags">
 
@@ -186,6 +419,263 @@ Here are some examples. Inputs are in the left-hand column and its corresponding
 <p>在C++中，struct与class的区别有两点，一是struct中成员变量和函数的默认访问权限为public，而class的为private。二是由于C++中struct兼容了C中的struct的所有特性，可以定义的时候直接
 以{ }对其成员变量赋初值，而class则不能。</p>
 
+<h3>cpu与外设之间的数据传送方式</h3>
+
+<ol>
+<li><p>程序传送方式</p>
+
+<ul>
+<li>程序查询方式分为无条件传送方式和查询方式（条件传送方式）两种。
+
+<ul>
+<li><p>微机系统中的一些简单的外设，如开关、继电器、数码管、发光二极管等，在它们工作时，可以认为输入设备已随时准备好向CPU提供数据，而输出设备也随时准备好接收CPU送来的数据，这样，在CPU需要同外设交换信息时，就能够用IN或OUT指令直接对这些外设进行输入/输出操作。由于在这种方式下CPU对外设进行输入/输出操作时无需考虑外设的状态，故称之为无条件传送方式。</p></li>
+<li><p>查询传送也称为条件传送，是指在执行输入指令（IN）或输出指令（OUT）前，要先查询相应设备的状态，当输入设备处于准备好状态、输出设备处于空闲状态时，CPU才执行输入/输出指令与外设交换信息。为此，接口电路中既要有数据端口，还要有状态端口。</p>
+
+<p>1．CPU从接口中读取状态字；<br/>
+2．CPU检测相应的状态位是否满足“就绪”条件；<br/>
+3．如果不满足，则重复1、2步；若外设已处于“就绪”状态，则传送数据。</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>中断传送方式</p>
+
+<ul>
+<li>中断传送方式是指当外设需要与CPU进行信息交换时，由外设向CPU发出请求信号，使CPU暂停正在执行的程序，转去执行数据的输入/输出操作，数据传送结束后，CPU再继续执行被暂停的程序。</li>
+</ul>
+</li>
+<li><p>直接存储器存取（DMA）</p>
+
+<ul>
+<li>DMA传送方式是在存储器和外设之间、存储器和存储器之间直接进行数据传送(如磁盘与内存间交换数据、高速数据采集、内存和内存间的高速数据块传送等)，传送过程无需CPU介入，这样，在传送时就不必进行保护现场等一系列额外操作，传输速度基本取决于存储器和外设的速度。DMA传送方式需要一个专用接口芯片DMA控制器（DMAC）对传送过程加以控制和管理。进行DMA传送期间，CPU放弃总线控制权，将系统总线交由DMAC控制，由DMAC发出地址及读/写信号来实现高速数据传输。传送结束后DMAC再将总线控制权交还给CPU。</li>
+</ul>
+</li>
+</ol>
+
+
+<h3>map reduce</h3>
+
+<p><img src="http://www.opensourceforu.com/wp-content/uploads/2011/03/MapReduce.jpg" alt="" /></p>
+
+<h3>数据库</h3>
+
+<ol>
+<li>事务的属性包括四大类 ACID <code>atomic 原子性</code> <code>consistency 一致性</code> <code>isolation 隔离性</code> <code>durability 持久性</code></li>
+<li>查询 student 表 第5到10条数据 select * from student limit 5,10</li>
+</ol>
+
+
+<p>MYSQL 操作 出处：<a href="http://jilili.blog.51cto.com/6617089/1190014">http://jilili.blog.51cto.com/6617089/1190014</a><br/>
+3、修改表
+ALTER TABLE tb_name;     <br/>
+mysql>alter table students change course Course varchar(100) after name;  <br/>
+mysql>alter table students add course varchar(100);     <br/>
+向表中插入数据</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>insert into tb_name （col，col2，....) values (val1,val2,....）;      
+</span><span class='line'>insert into tutors （Tname，Gender，Age） values ('jerry','M',24);  -----批量插入方式
+</span><span class='line'>insert into tutors set Tname='Tom',Genser='F',Age=30;            -----只能实现单个字段</span></code></pre></td></tr></table></div></figure>
+
+
+<p> <br/>
+插入</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>insert into tutors （Tname,Gender,Age) select Name,Genser,Age from students where Age &gt;=20  
+</span><span class='line'>select * from tutors order by TID desc limit 1;          -----查看降序的第一行  
+</span><span class='line'>select last_insert_ID（）;      -----查询插入的最后一个序列号 </span></code></pre></td></tr></table></div></figure>
+
+
+<p> <br/>
+更改数据库</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>UPDATE tb_name SET column=value where   
+</span><span class='line'>mysql&gt;update students set Course='wg' where Name='j'; ' -----更改j的课程为wg   </span></code></pre></td></tr></table></div></figure>
+
+
+<p>`
+删除表中的某一字段</p>
+
+<p><code>DELETE FROM students  WHERE Course='';</code></p>
+
+<p>6、select语句练习</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>select distict Gender from students;         ------相同的内容只显示一次    
+</span><span class='line'> 
+</span><span class='line'>查找年龄大于20的同学并且按降序排列:   
+</span><span class='line'>select Name,Age from students where Age&gt;20 order by Age desc;    
+</span><span class='line'>年龄大于等于20并且是男性的同学:     
+</span><span class='line'>select Name from students where Age&gt;20 and Gender='M';  
+</span><span class='line'>年龄不大于20的同学:  
+</span><span class='line'>select Name,Age,Gender from students where not Age&gt;20;    
+</span><span class='line'>小于等于20的女同学:  
+</span><span class='line'>select Name,Age,Gender from students where not （Age&gt;20 or Gender=‘M’）;  
+</span><span class='line'>年龄在（21-24）之间的同学(以下两种方式）：  
+</span><span class='line'>select Name，Age from students where Age&gt;20 and Age&lt;25;  
+</span><span class='line'>select Name，Age from students where Age between 20 and 25;   
+</span><span class='line'>显示以Y开头的名称（这里限定了姓名的长度）("_"表示任意单个字符):   
+</span><span class='line'>select Name from students where Name like 'Y___';  
+</span><span class='line'>显示以Y开头的姓名：   
+</span><span class='line'>`select Name from students where Name like 'Y%';  `    
+</span><span class='line'>名称中含有ing的名称（“%”表示任意长度的任意字符):    
+</span><span class='line'>`select Name from students where Name like '%ing%';  `     
+</span><span class='line'>显示以M或N或Y开头的名字（支持正则表达式）:  
+</span><span class='line'>`select Name from students where Name rlike '^[MNY].*$'; `    
+</span><span class='line'>显示年龄是18、20、25的同学：  
+</span><span class='line'>`select Name from students where Age IN （18,20,25）; `     
+</span><span class='line'>显示挑选课程号(CID1)为空的同学：   
+</span><span class='line'>`select Name from students where CID1 is null; `   
+</span><span class='line'>把查询后的结果进行降序排序（ASC升序，desc降序）   
+</span><span class='line'>`select Name,CID1 from students where CID1 is not null order by CID1 desc;  ` 
+</span><span class='line'>显示查询的Name表头名变为name    
+</span><span class='line'>`select Name AS Student_Name from students;  `   
+</span><span class='line'>隔两行数据向后取三行数据：  
+</span><span class='line'>`select Name from students limit 2,3;  ` 
+</span><span class='line'>所有同学的平均年龄:  
+</span><span class='line'>`select AVG（age） from students;  `  
+</span><span class='line'>显示年龄最大的同学：  
+</span><span class='line'>select MAX（age） from students;   
+</span><span class='line'>显示年龄最小的同学：   
+</span><span class='line'>`select MIN（age） from students;  `  
+</span><span class='line'>显示所有同学的年龄总和：   
+</span><span class='line'>`select SUM（age） from students;  `  
+</span><span class='line'>显示所有同学的个数：    
+</span><span class='line'>`select count（age） from students; `   
+</span><span class='line'>显示所有男同学的平均年龄：  
+</span><span class='line'>`select AVG（age） from students where Gender=’M‘;`    
+</span><span class='line'>显示所有女同学的平均年龄：   
+</span><span class='line'>`select AVG（age） from students where Gender=’F‘; `  
+</span><span class='line'>显示男女同学的平均年龄：  
+</span><span class='line'>`select Gender,avg(age) from students group by Gender; `  
+</span><span class='line'>显示选修CID1的同学   
+</span><span class='line'>``select count(CID1) AS  Persons,CID1 from students group by CID1;`  
+</span><span class='line'>显示选修人数大于2的课程：   
+</span><span class='line'>``select count(CID1) AS  Persons,CID1 from students group by CID1 having Persons&gt;=2;``
+</span><span class='line'> 
+</span><span class='line'>**多表查询**   
+</span><span class='line'>每位同学及其他所学习的课程名称（以下四种方式）  </span></code></pre></td></tr></table></div></figure>
+
+
+<p>
+select students.Name,courses.Cname from students，courses where   students.CID1=courses.CID;<br/>
+select s.Name,c.Cname from students AS s,courses AS c where s.CID1=c.CID; <br/>
+select s.Name,c.Cname from students AS s left jion courses AS c on s.CID1=c.CID;(左连接）
+select s.Name,c.Cname from students AS s right jion courses AS c on s.CID1=c.CID;（右连接)</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>显示各个同学与他相对应的导师：   
+</span><span class='line'>`select c.Name as student,s.Name as teacher from students as s,students as c where
+</span><span class='line'> s.SID=c.TID;  ` 
+</span><span class='line'>显示每一位老师及其所教授的课程；没有教授的课程保持为NULL:    
+</span><span class='line'>`select t.Tname,c.Cname from tutors as t left join courses as c on t.TID=c.TID; `
+</span><span class='line'>显示每一个课程及其相关的老师，没有老师教授的课程将其老师显示为空:   
+</span><span class='line'>`select t.Tname,c.Cname from tutors as t right jion courses as c on t.TID=c.TID; `
+</span><span class='line'>显示每位同学CID1课程的课程名及其讲授了相关课程的老师的名称：  </span></code></pre></td></tr></table></div></figure>
+
+
+<p>sql
+select Name,Cname,Tname from students,courses,tutors where students.CID1=courses.CID<br/>
+and courses.TID=tutors.TID;</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>查看同学的成绩及姓名，并且按升序排列：  </span></code></pre></td></tr></table></div></figure>
+
+
+<p> sql
+select students.Name,scores.Score from students,scores where students.SID=scores.SID<br/>
+order by scores.Score desc;
+&#8220;`</p>
+
+<p><strong>子查询</strong> <br/>
+挑选出courses表中没有被students中的CID2学习的课程的课程名称：<br/>
+<code>select Cname from courses where CID not IN (select CID2 from students where  
+CID2 is not null);</code>
+挑选出没有教授任何课程的老师，每个老师及其所教授课程的对应关系在courses表中： <br/>
+<code>select Tname from tutors where TID not in (select distinct TID from courses);</code>
+找出students表中CID1有两个或两个以上同学学习了的同一个门课程的课程名称： <br/>
+<code>select Cname from courses where CID in (select CID1 from students group by CID1
+ having count(CID1) &gt;=2);</code>
+年龄大于平均年龄的同学：(使用子查询时，子查询只能返回单个值）：<br/>
+<code>select Name,Age from students where Age &gt; (select avg(age) from students); </code>
+查询学生和老师各自的年龄并写在一个表中： <br/>
+<code>(select Name，Age from students) union (select Tname，Age from tutors);</code></p>
+
+<h3>进程</h3>
+
+<p>进程通信<br/>
+windows的进程间的通信方式有:<br/>
+1.文件映射；2. 共享内存（是文件映射的一种特殊情况）；3.邮件槽（mailslot）（点对点消息队列）; 4.匿名管道；5；命名管道； 6. 剪贴板；7.动态数据交换；8.对象链接与嵌入；9.远程过程调用；10.动态链接库；11.socket；12.WM_COPYDATA .<br/>
+linux进程间通信的方式有：1.管道 2.信号量 3.共享内存 4.消息队列 5.套接字 6.信号<br/>
+windows和linux共有的进程间通信方式：1. 消息（linux中叫做信号） 2. 共享内存  3. 邮槽  4. 管道   5.socket</p>
+
 		
 		
 	</div>
@@ -232,133 +722,6 @@ Here are some examples. Inputs are in the left-hand column and its corresponding
 
 </article>
 
-
-    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-	<div class="meta">
-		<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-08-25T16:04:35+08:00" data-updated="true" itemprop="datePublished">Aug 25<sup>th</sup>, 2014</time></div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/hash/'>hash</a>, <a class='category' href='/blog/categories/ha-xi-biao/'>哈希表</a>
-
-
-</div>
-		
-	</div>
-	<h1 class="title" itemprop="name"><a href="/blog/2014/08/25/ha-xi-biao-xiang-guan/" itemprop="url">哈希表相关</a></h1>
-	<div class="entry-content" itemprop="articleBody">
-		<blockquote><p>先从面试题说起：搜索引擎会通过日志文件把用户每次检索使用的所有检索串都记录下来，每个查询串的长度为1-255字节。</p>
-
-<p>假设目前有一千万个记录（这些查询串的重复度比较高，虽然总数是1千万，但如果除去重复后，不超过3百万个。一个查询串的重复度越高，说明查询它的用户越多，也就是越热门。），请你统计最热门的10个查询串，要求使用的内存不能超过1G。</p></blockquote>
-
-<h1>哈希表 （Hash table）</h1>
-
-<p>hash table 是根据关键码值直接访问的数据结构（key value）。也就是说，它通过把关键码值映射到表中一个位置来访问记录，以加快查找的速度。这个映射函数叫做散列函数，存放记录的数组叫做散列表。</p>
-
-<p>hashtable的做法就是把key通过固定的哈希函数转换成一个整型数字，然后将该数字对数组长度取余，取余结果当做key的数组下表，将value存储在下标对应的数组空间里。 使用哈希表进行查询的时候，再次使用哈希函数将key转换为对应的数组下标，并定位到该空间获取value，利用数组的快速定位的性能来进行数据定位。</p>
-
-<p>问题解析：</p>
-
-<p>要统计最热门查询，首先就是要统计每个Query出现的次数，然后根据统计结果，找出Top 10.</p>
-
-<h3>1. Query统计</h3>
-
-<p>Query统计有两种方法：</p>
-
-<ul>
-<li><p>直接排序</p>
-
-<ol>
-<li>首先对日志中所有的Query排序，再遍历排序后的Query，统计每个Query出现的次数。题目中要求内存不超过1G，一千万条记录每条记录255Byte，大概需要2G多内存。不满足要求。当数据量较大内存无法装下时，可以采用外排序的方法，这里了采用归并排序。时间复杂度为O（NlgN）。</li>
-<li>排序后再对已经有序的Query文件进行表里，统计每个Query出现的次数，写入文件中，时间复杂度O（n）。</li>
-<li>综合分析一下，排序的时间复杂度是O(NlgN)，而遍历的时间复杂度是O(N)，因此该算法的总体时间复杂度就是O(N+NlgN)=O（NlgN）。</li>
-</ol>
-</li>
-<li><p>Hash Table法</p>
-
-<ol>
-<li>题目中说明如遇Query重复读较高，实际只有300万的Query，每个Query255Byte，实际占用内存不超过<code>255*3M</code>，1G内存完全够用，因此可以把他们都放在内存中，现在只需要一个合适的数据结构，来降低查询所用的时间，Hash Table是首选，因为Hash Table的时间复杂度几乎为 <code>O(1)</code>。</li>
-<li>维护一个Key为uQuery字串，Value为该Query出现的次数的Hash Table，每次读取一个Query，如果该字串不在Table中，就加入该字串，并将Value付志伟1；如果该字串在Table中，那么该字串的统计次数加一。最终在<code>O(n)</code>的时间复杂度完成了该海量数据的处理。</li>
-<li>与算法1比时间复杂度提高了一个数量级，而且该算法复杂度只需要对数据文件进行一次IO操作，而算法1的IO操作较多，因此算法2更佳。</li>
-</ol>
-</li>
-</ul>
-
-
-<h3>2. 找出Top 10</h3>
-
-<ul>
-<li>算法一 普通排序 <br/>
-我想对于排序算法大家都已经不陌生了，这里不在赘述，我们要注意的是排序算法的时间复杂度是NlgN，在本题目中，三百万条记录，用1G内存是可以存下的。</li>
-<li>算法二 部分排序<br/>
-题目要求是求出Top 10，因此我们没有必要对所有的Query都进行排序，我们只需要维护一个10个大小的数组，初始化放入10个Query，按照每个Query的统计次数由大到小排序，然后遍历这300万条记录，每读一条记录就和数组最后一个Query对比，如果小于这个Query，那么继续遍历，否则，将数组中最后一条数据淘汰，加入当前的Query。最后当所有的数据都遍历完毕之后，那么这个数组中的10个Query便是我们要找的Top10了。这样，算法的最坏时间复杂度是 <code>O(N*K)</code>， 其中K是指top多少。</li>
-<li>算法三 堆  <br/>
-在算法二中，我们已经将时间复杂度由NlogN优化到NK。每次比较完成之后，需要把元素插入到线性表中，而且采用的时顺序比较，如果采用二分查找的话，操作的复杂度就降低到logK，不过数据移动次数没有什么变化。</li>
-</ul>
-
-
-		
-		
-	</div>
-
-</article>
-
-
-    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-	<div class="meta">
-		<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-08-25T11:08:14+08:00" data-updated="true" itemprop="datePublished">Aug 25<sup>th</sup>, 2014</time></div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/leetcode/'>leetcode</a>, <a class='category' href='/blog/categories/map/'>map</a>, <a class='category' href='/blog/categories/two-sum/'>two_sum</a>
-
-
-</div>
-		
-	</div>
-	<h1 class="title" itemprop="name"><a href="/blog/2014/08/25/two-sum/" itemprop="url">Two Sum</a></h1>
-	<div class="entry-content" itemprop="articleBody">
-		<blockquote><p>Given an array of integers, find two numbers such that they add up to a specific target number.</p>
-
-<p>The function twoSum should return indices of the two numbers such that they add up to the target, where index1 must be less than index2. Please note that your returned answers (both index1 and index2) are not zero-based.</p>
-
-<p>You may assume that each input would have exactly one solution.</p>
-
-<p>  Input: numbers={2, 7, 11, 15}, target=9</p>
-
-<p>  Output: index1=1, index2=2</p></blockquote>
-
-
-		
-		<a href="/blog/2014/08/25/two-sum/" class="more-link">read on &rarr;</a>
-	</div>
-
-</article>
-
 </div>
 <nav id="pagenavi">
   
@@ -396,6 +759,10 @@ Here are some examples. Inputs are in the left-hand column and its corresponding
         
         
         <a href="/posts/7">7</a>
+        
+        
+        
+        <a href="/posts/8">8</a>
         
         
         
