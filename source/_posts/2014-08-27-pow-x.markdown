@@ -1,0 +1,30 @@
+---
+layout: post
+title: "Pow(x"
+date: 2014-08-27 23:25:37 +0800
+comments: true
+categories: leetcode 
+---
+>Implement pow(x, n).  
+
+<!--more-->
+
+[leetcode express](https://oj.leetcode.com/problems/powx-n/)  
+
+```c++
+class Solution {
+public:
+    double pow(double x, int n) {
+        if(n == 0) return 1;
+        if(n < 0) return 1 /( x * pow( x , -n-1));
+        double num1 = x, num2 = 1;
+        while(n > 1)
+        {
+            if(n & 0x1) num2 *= num1;
+            num1 *= num1;
+            n >>= 2;
+        }
+       return num1 * num2;
+    }
+};
+```
