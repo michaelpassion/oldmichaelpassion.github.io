@@ -4,7 +4,7 @@
   <title><![CDATA[Category: 笔试 | My Progressing Blog]]></title>
   <link href="http://michaelpassion.github.io/blog/categories/bi-shi/atom.xml" rel="self"/>
   <link href="http://michaelpassion.github.io/"/>
-  <updated>2014-08-28T17:32:05+08:00</updated>
+  <updated>2014-08-28T17:36:39+08:00</updated>
   <id>http://michaelpassion.github.io/</id>
   <author>
     <name><![CDATA[Michael]]></name>
@@ -18,7 +18,10 @@
     <link href="http://michaelpassion.github.io/blog/2014/08/27/ji-chu-zhi-shi-hui-gu/"/>
     <updated>2014-08-27T09:43:47+08:00</updated>
     <id>http://michaelpassion.github.io/blog/2014/08/27/ji-chu-zhi-shi-hui-gu</id>
-    <content type="html"><![CDATA[<ol>
+    <content type="html"><![CDATA[<!--more-->
+
+
+<ol>
 <li>死锁<br/>
 产生死锁的四个必要条件：</li>
 <li>互斥条件：一个资源每次只能被一个进程（线程）使用。</li>

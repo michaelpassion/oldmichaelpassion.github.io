@@ -4,7 +4,7 @@
   <title><![CDATA[Category: c++ | My Progressing Blog]]></title>
   <link href="http://michaelpassion.github.io/blog/categories/c-plus-plus/atom.xml" rel="self"/>
   <link href="http://michaelpassion.github.io/"/>
-  <updated>2014-08-28T17:32:05+08:00</updated>
+  <updated>2014-08-28T17:36:39+08:00</updated>
   <id>http://michaelpassion.github.io/</id>
   <author>
     <name><![CDATA[Michael]]></name>
@@ -18,7 +18,10 @@
     <link href="http://michaelpassion.github.io/blog/2014/08/25/nei-cun-xiang-guan/"/>
     <updated>2014-08-25T22:24:17+08:00</updated>
     <id>http://michaelpassion.github.io/blog/2014/08/25/nei-cun-xiang-guan</id>
-    <content type="html"><![CDATA[<h3>1. 内存对齐：</h3>
+    <content type="html"><![CDATA[<!--more-->
+
+
+<h3>1. 内存对齐：</h3>
 
 <p> 编译器会自动进行成员变量的对齐，以提高运算效率。缺省情况下，编译器为结构体的每个成员按其自然对界（natural alignment）条件分配内存。每个成员按照它们被声明的顺序在内存中存储，第一个成员的地址和整个结构体的地址相同。<br/>
  为什么要进行内存对齐呢，原因在于，为了访问未对齐的内存，处理器需要作两次内存访问；然而，对齐的内存访问仅需要一次访问。所以为了内存的有效利用，我们有必要在定义结构体前考虑下成员的顺序。字，双字，和四字在自然边界上不需要在内存中对齐。（对字，双字，和四字来说，自然边界分别是偶数地址，可以被4 整除的地址，和可以被8 整除的地址。）
