@@ -3,6 +3,18 @@
   
   
   <url>
+    <loc>http://michaelpassion.github.io/blog/2014/09/04/search-a-2d-matrix/</loc>
+    <lastmod>2014-09-04T10:50:42+08:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>http://michaelpassion.github.io/blog/2014/09/02/red-black-trees/</loc>
+    <lastmod>2014-09-02T21:05:51+08:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
     <loc>http://michaelpassion.github.io/blog/2014/08/29/i-dont-have-time/</loc>
     <lastmod>2014-08-29T10:16:11+08:00</lastmod>
     <priority>0.8</priority>
@@ -233,35 +245,35 @@
   
   <url>
     <loc>http://michaelpassion.github.io/blog/archives/</loc>
-    <lastmod>2014-08-29T10:49:38+08:00</lastmod>
+    <lastmod>2014-09-04T11:48:20+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
     <loc>http://michaelpassion.github.io/</loc>
-    <lastmod>2014-08-29T10:49:38+08:00</lastmod>
+    <lastmod>2014-09-04T11:48:20+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   
   <url>
     <loc>http://michaelpassion.github.io/tag-cloud/</loc>
-    <lastmod>2014-08-29T10:49:38+08:00</lastmod>
+    <lastmod>2014-09-04T11:48:20+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
     <loc>http://michaelpassion.github.io/blog/categories/</loc>
-    <lastmod>2014-08-29T10:49:38+08:00</lastmod>
+    <lastmod>2014-09-04T11:48:20+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
     <loc>http://michaelpassion.github.io/about/</loc>
-    <lastmod>2014-08-29T10:49:38+08:00</lastmod>
+    <lastmod>2014-09-04T11:48:20+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: 二分 | My Progressing Blog]]></title>
   <link href="http://michaelpassion.github.io/blog/categories/er-fen/atom.xml" rel="self"/>
   <link href="http://michaelpassion.github.io/"/>
-  <updated>2014-08-29T10:49:38+08:00</updated>
+  <updated>2014-09-04T11:48:20+08:00</updated>
   <id>http://michaelpassion.github.io/</id>
   <author>
     <name><![CDATA[Michael]]></name>
@@ -12,6 +12,120 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Search a 2D Matrix]]></title>
+    <link href="http://michaelpassion.github.io/blog/2014/09/04/search-a-2d-matrix/"/>
+    <updated>2014-09-04T10:50:42+08:00</updated>
+    <id>http://michaelpassion.github.io/blog/2014/09/04/search-a-2d-matrix</id>
+    <content type="html"><![CDATA[<blockquote><p>Write an efficient algorithm that searches for a value in an m x n matrix. This matrix has the following properties:</p>
+
+<ul>
+<li>Integers in each row are sorted from left to right.</li>
+<li>The first integer of each row is greater than the last integer of the previous row.</li>
+</ul>
+
+
+<p>For example,</p>
+
+<p>Consider the following matrix:</p></blockquote>
+
+<pre><code>[
+  [1,   3,  5,  7],
+  [10, 11, 16, 20],
+  [23, 30, 34, 50]
+]
+</code></pre>
+
+<blockquote><p>Given target = <code>3</code>, return <code>true</code>.</p></blockquote>
+
+<!-- more-->
+
+
+<p><a href="https://oj.leetcode.com/problems/search-a-2d-matrix/">leetcode express</a></p>
+
+<p><strong>方法一</strong><br/>
+先查找target可能在的行，再从行中找target</p>
+
+<pre><code class="c++ 二分 时间复杂度 O(logm+logn)">class Solution {
+public:
+    bool searchMatrix(vector&lt;vector&lt;int&gt; &gt; &amp;matrix, int target) {
+        int row = matrix.size() - 1;
+        int col = matrix[0].size() - 1;
+
+        //注意low从1开始
+        int low = 1, high = row;
+        while(low &lt;= high)
+        {
+            int mid = low + (high - low)/2;
+           if (matrix[mid - 1][col] == target)
+                return true;
+            else if (matrix[mid -1][col] &gt; target)
+                high = mid - 1;
+            else
+                low = mid + 1;
+        }
+        row = high;
+        low = 0; high = col;
+        while(low &lt;= high)
+        {
+            int mid = (low+high)/2;
+            if(matrix[row][mid] == target)
+                return true;
+            else if(matrix[row][mid] &gt; target)
+                high = mid -1;
+            else 
+                low = mid + 1;
+        }
+        return false;
+    }
+};
+</code></pre>
+
+<p><strong>方法二</strong></p>
+
+<p>这个方法还没有第一个方法好。</p>
+
+<p>&#8220;`c++ 时间复杂度O(n*logm)
+class Solution {
+public:
+    bool searchMatrix(vector&lt;vector<int> > &amp;matrix, int target) {
+        int row = matrix.size() - 1;
+        int col = matrix[0].size() - 1;</p>
+
+<pre><code>    for(int i = 0 ; i &lt;= row;)
+    {
+        int tmp = matrix[i][col];
+        if(matrix[i][col] == target)
+            return true;
+        if(matrix[i][col] &gt; target)
+        {
+            int l = 0, r = col;
+            while(l &lt;= r)
+            {
+                int mid = (l+r)/2;
+                if(matrix[i][mid] == target)
+                    return true;
+                if(matrix[i][mid] &gt; target)
+                    r = mid - 1;
+                else
+                    l = l + 1;
+            }
+            return false;
+        } else
+        {
+            i++;
+        }
+    }
+
+    return false;
+}
+</code></pre>
+
+<p>};
+&#8220;`</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[sort list]]></title>
@@ -309,86 +423,6 @@ public:
 </code></pre>
 
 <p>&#8220;`</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Search in Rotated Sorted Array.md]]></title>
-    <link href="http://michaelpassion.github.io/blog/2014/08/02/search-in-rotated-sorted-array/"/>
-    <updated>2014-08-02T19:16:49+08:00</updated>
-    <id>http://michaelpassion.github.io/blog/2014/08/02/search-in-rotated-sorted-array</id>
-    <content type="html"><![CDATA[<blockquote><p>Suppose a sorted array is rotated at some pivot unknown to you beforehand.</p>
-
-<p>(i.e., 0 1 2 4 5 6 7 might become 4 5 6 7 0 1 2).</p>
-
-<p>You are given a target value to search. If found in the array return its index, otherwise return -1.</p>
-
-<p>You may assume no duplicate exists in the array</p></blockquote>
-
-<!--more-->
-
-
-<hr />
-
-<pre><code class="c++">class Solution {
-public:
-    int search(int A[], int n, int target) {
-        int p = 0;
-        while(p&lt;n-1)
-        {
-            if(A[p]&lt;A[p+1])
-                p++;
-            else
-                break;
-        }
-
-
-        if(p == n-1 )
-        {
-            int low=0;
-            int high =p;
-            while(low &lt;= high)
-            {
-                int mid = (low + high)/2;
-                if(A[mid] == target)
-                    return mid;
-                else if(A[mid] &gt; target)
-                    high = mid -1;
-                else
-                    low = mid +1;
-            }
-            return -1;
-        }
-        int low=0;
-        int high =p;
-        while(low &lt;= high)
-        {
-            int mid = (low + high)/2;
-            if(A[mid] == target)
-                return mid;
-            else if(A[mid] &gt; target)
-                high = mid -1;
-            else
-                low = mid +1;
-        }
-
-
-        low = p+1;
-        high = n-1;
-        while(low &lt;= high)
-          {
-            int mid = (low + high)/2;
-            if(A[mid] == target)
-                return mid;
-            else if(A[mid] &gt; target)
-                high = mid -1;
-            else
-                low = mid +1;
-        }
-
-        return -1;
-    }
-</code></pre>
 ]]></content>
   </entry>
   
