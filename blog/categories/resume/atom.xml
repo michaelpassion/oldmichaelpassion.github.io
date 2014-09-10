@@ -4,7 +4,7 @@
   <title><![CDATA[Category: resume | My Progressing Blog]]></title>
   <link href="http://michaelpassion.github.io/blog/categories/resume/atom.xml" rel="self"/>
   <link href="http://michaelpassion.github.io/"/>
-  <updated>2014-09-04T11:48:20+08:00</updated>
+  <updated>2014-09-10T19:22:57+08:00</updated>
   <id>http://michaelpassion.github.io/</id>
   <author>
     <name><![CDATA[Michael]]></name>
@@ -28,7 +28,7 @@
 <ul>
 <li>男，汉族，1989年12月生人，现居北京市海淀区 研究生找工作中。</li>
 <li>电话： 186-1152-6680</li>
-<li>邮箱： <a href="&#x6d;&#x61;&#x69;&#x6c;&#116;&#111;&#x3a;&#99;&#97;&#x72;&#x74;&#x65;&#114;&#49;&#51;&#55;&#51;&#48;&#x34;&#51;&#x40;&#x67;&#x6d;&#97;&#105;&#x6c;&#x2e;&#x63;&#x6f;&#x6d;">&#99;&#97;&#114;&#x74;&#101;&#114;&#x31;&#x33;&#x37;&#51;&#48;&#52;&#x33;&#64;&#103;&#x6d;&#97;&#105;&#108;&#x2e;&#99;&#x6f;&#x6d;</a></li>
+<li>邮箱： <a href="&#x6d;&#97;&#x69;&#x6c;&#x74;&#111;&#58;&#99;&#x61;&#114;&#116;&#101;&#114;&#49;&#x33;&#x37;&#51;&#x30;&#x34;&#51;&#x40;&#x67;&#109;&#97;&#105;&#108;&#x2e;&#x63;&#111;&#109;">&#99;&#97;&#114;&#x74;&#x65;&#x72;&#x31;&#x33;&#x37;&#x33;&#48;&#x34;&#x33;&#64;&#103;&#x6d;&#97;&#105;&#108;&#x2e;&#99;&#x6f;&#109;</a></li>
 <li>GitHub: <a href="https://github.com/michaelpassion">github.com/michaelpassion</a></li>
 <li>个人博客：<a href="http://michaelpassion.github.io">michaelpassion.github.io/</a></li>
 </ul>
@@ -62,7 +62,7 @@
 <li><p><a href="https://itunes.apple.com/cn/app/xing-yun-zhuan-pan/id492038522?mt=8">LuckyPoint</a>(iOS, Xcode)</p>
 
 <p>  项目时间：2011/9&ndash;2012/1 <br/>
-  项目描述：ios抽奖类应用，模拟现实生活中的转盘，转动转盘抽奖，转盘中的内容可以自定义<br/>
+  项目描述：ios抽奖类应用，模拟现实生活中的转盘，转动转盘抽奖，转盘中的内容可以自定义。
   项目职责：负责编程工作并自主测试。<br/>
   收获：通过这个项目熟悉了Xcode开发环境和Obj-C语言，并成功发布到APP Store中。</p></li>
 <li><p>PowerPPT(iOS, Xcode)</p>
@@ -80,13 +80,13 @@
 <li><p>漏洞管理系统 (Windows ,IIS8, vs2012, SQL Server2008)</p>
 
 <p>  项目时间：2013/10 &ndash; 2013/11<br/>
-  项目描述：用asp.net实现的B/S管理系统.用以对已知漏洞的查询,和新漏洞的提交.等一些相关的管理功能.<br/>
+  项目描述：用asp.net实现的B/S管理系统.用以对已知漏洞的查询,和新漏洞的提交.等一些相关的管理功能。<br/>
   项目职责：参与项目需求分析，详细设计，负责部分编程工作。<br/>
   收获：了解了asp.net网站开发技术。</p></li>
 <li><p>谐波雷达探测管理与控制主机系统(Windows ,IIS8,vs2012, SQL Server2008)</p>
 
 <p>  项目时间：2014/03 &ndash; 2014/05<br/>
-  项目描述：用asp.net实现的B/S管理系统,用于对谐波雷达探测到的数据进行管理分析,并对相关人员进行管理.<br/>
+  项目描述：用asp.net实现的B/S管理系统,用于对谐波雷达探测到的数据进行管理分析,并对相关人员进行管理。
   项目职责：参与项目需求分析，详细设计，最后实现全部的编程工作。<br/>
   收获：了解了asp.net网站开发和发布，重温了css相关知识，并且学习了一些javascript操作。</p></li>
 </ul>
