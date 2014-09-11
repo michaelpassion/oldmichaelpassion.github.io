@@ -133,81 +133,9 @@
 	<div class="entry-content" itemprop="articleBody">
 		<blockquote><p>Implement an algorithm to determine if a string has all unique characters. What if you cannot use additional data structures?</p></blockquote>
 
-<figure class='code'><figcaption><span>空间复杂度O(1),时间复杂度O(n)</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-</pre></td><td class='code'><pre><code class='c++'><span class='line'><span class="kt">bool</span> <span class="nf">isUnique</span><span class="p">(</span><span class="n">string</span> <span class="n">s</span><span class="p">)</span>
-</span><span class='line'><span class="p">{</span>
-</span><span class='line'>  <span class="kt">int</span> <span class="n">len</span> <span class="o">=</span> <span class="n">s</span><span class="p">.</span><span class="n">length</span><span class="p">();</span>
-</span><span class='line'>  <span class="k">if</span><span class="p">(</span><span class="n">len</span> <span class="o">&gt;</span> <span class="mi">256</span><span class="p">)</span> <span class="k">return</span> <span class="nb">false</span><span class="p">;</span> <span class="c1">//以ASCII讨论，ASCII总数为256，如果字符串的长度大于256，</span>
-</span><span class='line'>                               <span class="c1">//肯定有重复字符</span>
-</span><span class='line'>  <span class="kt">bool</span> <span class="n">check</span><span class="p">[</span><span class="mi">256</span><span class="p">];</span>
-</span><span class='line'>  <span class="n">memset</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="nb">false</span><span class="p">,</span><span class="k">sizeof</span><span class="p">(</span><span class="n">a</span><span class="p">));</span>
-</span><span class='line'>  <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">len</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
-</span><span class='line'>  <span class="p">{</span>
-</span><span class='line'>      <span class="k">if</span><span class="p">(</span><span class="n">check</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
-</span><span class='line'>          <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
-</span><span class='line'>      <span class="n">check</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
-</span><span class='line'>  <span class="p">}</span>
-</span><span class='line'>  <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>
-如果字符串中所有字符全是小写字母（a-z）,字符总数为26，为节省空间，还可以将字符映射到int的每一位上。</p>
-
-<figure class='code'><figcaption><span>空间复杂度O(1),时间复杂度O(n) 位操作</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-</pre></td><td class='code'><pre><code class='c++'><span class='line'><span class="kt">bool</span> <span class="nf">isUnique</span><span class="p">(</span><span class="n">string</span> <span class="n">s</span><span class="p">)</span>
-</span><span class='line'><span class="p">{</span>
-</span><span class='line'>  <span class="kt">int</span> <span class="n">len</span> <span class="o">=</span> <span class="n">s</span><span class="p">.</span><span class="n">length</span><span class="p">();</span>
-</span><span class='line'>  <span class="k">if</span><span class="p">(</span><span class="n">len</span> <span class="o">&gt;</span> <span class="mi">26</span><span class="p">)</span> <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
-</span><span class='line'>  
-</span><span class='line'>  <span class="kt">int</span> <span class="n">checker</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-</span><span class='line'>  
-</span><span class='line'>  <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">len</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
-</span><span class='line'>  <span class="p">{</span>
-</span><span class='line'>      <span class="kt">int</span> <span class="n">val</span> <span class="o">=</span> <span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span class="sc">&#39;a&#39;</span><span class="p">;</span>
-</span><span class='line'>      <span class="k">if</span><span class="p">((</span><span class="n">checker</span> <span class="o">&amp;</span> <span class="p">(</span><span class="mi">1</span><span class="o">&lt;&lt;</span><span class="n">val</span><span class="p">))</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
-</span><span class='line'>          <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
-</span><span class='line'>      <span class="n">checker</span> <span class="o">|=</span> <span class="p">(</span><span class="mi">1</span><span class="o">&lt;&lt;</span><span class="n">val</span><span class="p">);</span>
-</span><span class='line'>  <span class="p">}</span>
-</span><span class='line'>  
-</span><span class='line'>  <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
 
 		
-		
+		<a href="/blog/2014/09/11/unique-character-in-a-string/" class="more-link">read on &rarr;</a>
 	</div>
 
 </article>

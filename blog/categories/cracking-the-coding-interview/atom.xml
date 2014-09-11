@@ -4,7 +4,7 @@
   <title><![CDATA[Category: cracking the coding interview | My Progressing Blog]]></title>
   <link href="http://michaelpassion.github.io/blog/categories/cracking-the-coding-interview/atom.xml" rel="self"/>
   <link href="http://michaelpassion.github.io/"/>
-  <updated>2014-09-11T18:00:07+08:00</updated>
+  <updated>2014-09-11T18:03:54+08:00</updated>
   <id>http://michaelpassion.github.io/</id>
   <author>
     <name><![CDATA[Michael]]></name>
@@ -19,6 +19,9 @@
     <updated>2014-09-11T17:34:37+08:00</updated>
     <id>http://michaelpassion.github.io/blog/2014/09/11/unique-character-in-a-string</id>
     <content type="html"><![CDATA[<blockquote><p>Implement an algorithm to determine if a string has all unique characters. What if you cannot use additional data structures?</p></blockquote>
+
+<!--more-->
+
 
 <pre><code class="c++ 空间复杂度O(1),时间复杂度O(n)">bool isUnique(string s)
 {
