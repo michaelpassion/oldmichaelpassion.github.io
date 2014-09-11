@@ -4,7 +4,7 @@
   <title><![CDATA[Category: permutation | My Progressing Blog]]></title>
   <link href="http://michaelpassion.github.io/blog/categories/permutation/atom.xml" rel="self"/>
   <link href="http://michaelpassion.github.io/"/>
-  <updated>2014-09-11T23:55:13+08:00</updated>
+  <updated>2014-09-11T23:57:24+08:00</updated>
   <id>http://michaelpassion.github.io/</id>
   <author>
     <name><![CDATA[Michael]]></name>
@@ -36,6 +36,9 @@ We get the following sequence (ie, for n = 3):</p>
 <p>Given n and k, return the k-th permutation sequence.</p>
 
 <p>Note: Given n will be between 1 and 9 inclusive.</p></blockquote>
+
+<!--more-->
+
 
 <pre><code class="c++ 时间复杂度O(n),空间复杂度O(1)">class Solution {
 public:

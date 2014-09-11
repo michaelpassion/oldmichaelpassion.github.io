@@ -150,59 +150,9 @@ We get the following sequence (ie, for n = 3):</p>
 
 <p>Note: Given n will be between 1 and 9 inclusive.</p></blockquote>
 
-<figure class='code'><figcaption><span>时间复杂度O(n),空间复杂度O(1)</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-</pre></td><td class='code'><pre><code class='c++'><span class='line'><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
-</span><span class='line'><span class="k">public</span><span class="o">:</span>
-</span><span class='line'>    <span class="kt">int</span> <span class="n">factorial</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span>
-</span><span class='line'>    <span class="p">{</span>
-</span><span class='line'>        <span class="kt">int</span> <span class="n">res</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-</span><span class='line'>        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">2</span> <span class="p">;</span><span class="n">i</span><span class="o">&lt;=</span><span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
-</span><span class='line'>            <span class="n">res</span> <span class="o">*=</span> <span class="n">i</span><span class="p">;</span>
-</span><span class='line'>        <span class="k">return</span> <span class="n">res</span><span class="p">;</span>
-</span><span class='line'>    <span class="p">}</span>
-</span><span class='line'>    <span class="n">string</span> <span class="n">getPermutation</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="kt">int</span> <span class="n">k</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>        <span class="kt">int</span> <span class="n">total</span> <span class="o">=</span> <span class="n">factorial</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
-</span><span class='line'>          <span class="n">string</span> <span class="n">candidate</span> <span class="o">=</span> <span class="n">string</span><span class="p">(</span><span class="s">&quot;123456789&quot;</span><span class="p">).</span><span class="n">substr</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">n</span><span class="p">);</span>
-</span><span class='line'>          <span class="n">string</span> <span class="nf">res</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="sc">&#39; &#39;</span><span class="p">);</span>
-</span><span class='line'>          <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="c1">//依次计算排列的每个位</span>
-</span><span class='line'>          <span class="p">{</span>
-</span><span class='line'>              <span class="n">total</span> <span class="o">/=</span> <span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="n">i</span><span class="p">);</span>
-</span><span class='line'>             <span class="kt">int</span> <span class="n">index</span> <span class="o">=</span> <span class="p">(</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="n">total</span><span class="p">;</span>
-</span><span class='line'>             <span class="n">res</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">candidate</span><span class="p">[</span><span class="n">index</span><span class="p">];</span>
-</span><span class='line'>             <span class="n">candidate</span><span class="p">.</span><span class="n">erase</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
-</span><span class='line'>             <span class="n">k</span> <span class="o">-=</span> <span class="n">index</span><span class="o">*</span><span class="n">total</span><span class="p">;</span>
-</span><span class='line'>         <span class="p">}</span>
-</span><span class='line'>         <span class="k">return</span> <span class="n">res</span><span class="p">;</span>
-</span><span class='line'>    <span class="p">}</span>
-</span><span class='line'><span class="p">};</span>
-</span></code></pre></td></tr></table></div></figure>
-
 
 		
-		
+		<a href="/blog/2014/09/11/permutation-sequence/" class="more-link">read on &rarr;</a>
 	</div>
 
 </article>
