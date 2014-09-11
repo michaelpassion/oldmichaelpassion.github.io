@@ -21,6 +21,7 @@ We get the following sequence (ie, for n = 3):
 
 >Note: Given n will be between 1 and 9 inclusive.  
 
+<!--more-->
 ```c++ 时间复杂度O(n),空间复杂度O(1)
 class Solution {
 public:
