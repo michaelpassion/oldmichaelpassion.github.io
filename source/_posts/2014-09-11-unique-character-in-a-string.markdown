@@ -6,6 +6,7 @@ comments: true
 categories: [算法, Cracking the Coding Interview, 位操作]
 ---
 >Implement an algorithm to determine if a string has all unique characters. What if you cannot use additional data structures?  
+<!--more-->
 
 ```c++ 空间复杂度O(1),时间复杂度O(n)
 bool isUnique(string s)
