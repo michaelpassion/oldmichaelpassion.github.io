@@ -4,7 +4,7 @@
   <title><![CDATA[Category: permutation | My Progressing Blog]]></title>
   <link href="http://michaelpassion.github.io/blog/categories/permutation/atom.xml" rel="self"/>
   <link href="http://michaelpassion.github.io/"/>
-  <updated>2014-09-11T18:03:54+08:00</updated>
+  <updated>2014-09-11T23:55:13+08:00</updated>
   <id>http://michaelpassion.github.io/</id>
   <author>
     <name><![CDATA[Michael]]></name>
@@ -12,6 +12,58 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Permutation Sequence]]></title>
+    <link href="http://michaelpassion.github.io/blog/2014/09/11/permutation-sequence/"/>
+    <updated>2014-09-11T23:48:20+08:00</updated>
+    <id>http://michaelpassion.github.io/blog/2014/09/11/permutation-sequence</id>
+    <content type="html"><![CDATA[<blockquote><p>The set [1,2,3,…,n] contains a total of n! unique permutations.</p>
+
+<p>By listing and labeling all of the permutations in order,
+We get the following sequence (ie, for n = 3):</p>
+
+<ol>
+<li>&ldquo;123&rdquo;</li>
+<li>&ldquo;132&rdquo;</li>
+<li>&ldquo;213&rdquo;</li>
+<li>&ldquo;231&rdquo;</li>
+<li>&ldquo;312&rdquo;</li>
+<li>&ldquo;321&rdquo;</li>
+</ol>
+
+
+<p>Given n and k, return the k-th permutation sequence.</p>
+
+<p>Note: Given n will be between 1 and 9 inclusive.</p></blockquote>
+
+<pre><code class="c++ 时间复杂度O(n),空间复杂度O(1)">class Solution {
+public:
+    int factorial(int n)
+    {
+        int res = 1;
+        for(int i=2 ;i&lt;=n; i++)
+            res *= i;
+        return res;
+    }
+    string getPermutation(int n, int k) {
+        int total = factorial(n);
+          string candidate = string("123456789").substr(0, n);
+          string res(n,' ');
+          for(int i = 0; i &lt; n; i++)//依次计算排列的每个位
+          {
+              total /= (n-i);
+             int index = (k-1) / total;
+             res[i] = candidate[index];
+             candidate.erase(index, 1);
+             k -= index*total;
+         }
+         return res;
+    }
+};
+</code></pre>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[next_permutation]]></title>

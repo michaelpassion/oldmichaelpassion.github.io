@@ -4,7 +4,7 @@
   <title><![CDATA[My Progressing Blog]]></title>
   <link href="http://michaelpassion.github.io/atom.xml" rel="self"/>
   <link href="http://michaelpassion.github.io/"/>
-  <updated>2014-09-11T18:03:54+08:00</updated>
+  <updated>2014-09-11T23:55:13+08:00</updated>
   <id>http://michaelpassion.github.io/</id>
   <author>
     <name><![CDATA[Michael]]></name>
@@ -12,6 +12,83 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Permutation Sequence]]></title>
+    <link href="http://michaelpassion.github.io/blog/2014/09/11/permutation-sequence/"/>
+    <updated>2014-09-11T23:48:20+08:00</updated>
+    <id>http://michaelpassion.github.io/blog/2014/09/11/permutation-sequence</id>
+    <content type="html"><![CDATA[<blockquote><p>The set [1,2,3,…,n] contains a total of n! unique permutations.</p>
+
+<p>By listing and labeling all of the permutations in order,
+We get the following sequence (ie, for n = 3):</p>
+
+<ol>
+<li>&ldquo;123&rdquo;</li>
+<li>&ldquo;132&rdquo;</li>
+<li>&ldquo;213&rdquo;</li>
+<li>&ldquo;231&rdquo;</li>
+<li>&ldquo;312&rdquo;</li>
+<li>&ldquo;321&rdquo;</li>
+</ol>
+
+
+<p>Given n and k, return the k-th permutation sequence.</p>
+
+<p>Note: Given n will be between 1 and 9 inclusive.</p></blockquote>
+
+<figure class='code'><figcaption><span>时间复杂度O(n),空间复杂度O(1)</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+</pre></td><td class='code'><pre><code class='c++'><span class='line'><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+</span><span class='line'><span class="k">public</span><span class="o">:</span>
+</span><span class='line'>    <span class="kt">int</span> <span class="n">factorial</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span>
+</span><span class='line'>    <span class="p">{</span>
+</span><span class='line'>        <span class="kt">int</span> <span class="n">res</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</span><span class='line'>        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">2</span> <span class="p">;</span><span class="n">i</span><span class="o">&lt;=</span><span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+</span><span class='line'>            <span class="n">res</span> <span class="o">*=</span> <span class="n">i</span><span class="p">;</span>
+</span><span class='line'>        <span class="k">return</span> <span class="n">res</span><span class="p">;</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>    <span class="n">string</span> <span class="n">getPermutation</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="kt">int</span> <span class="n">k</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="kt">int</span> <span class="n">total</span> <span class="o">=</span> <span class="n">factorial</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
+</span><span class='line'>          <span class="n">string</span> <span class="n">candidate</span> <span class="o">=</span> <span class="n">string</span><span class="p">(</span><span class="s">&quot;123456789&quot;</span><span class="p">).</span><span class="n">substr</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">n</span><span class="p">);</span>
+</span><span class='line'>          <span class="n">string</span> <span class="nf">res</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="sc">&#39; &#39;</span><span class="p">);</span>
+</span><span class='line'>          <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="c1">//依次计算排列的每个位</span>
+</span><span class='line'>          <span class="p">{</span>
+</span><span class='line'>              <span class="n">total</span> <span class="o">/=</span> <span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="n">i</span><span class="p">);</span>
+</span><span class='line'>             <span class="kt">int</span> <span class="n">index</span> <span class="o">=</span> <span class="p">(</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="n">total</span><span class="p">;</span>
+</span><span class='line'>             <span class="n">res</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">candidate</span><span class="p">[</span><span class="n">index</span><span class="p">];</span>
+</span><span class='line'>             <span class="n">candidate</span><span class="p">.</span><span class="n">erase</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+</span><span class='line'>             <span class="n">k</span> <span class="o">-=</span> <span class="n">index</span><span class="o">*</span><span class="n">total</span><span class="p">;</span>
+</span><span class='line'>         <span class="p">}</span>
+</span><span class='line'>         <span class="k">return</span> <span class="n">res</span><span class="p">;</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'><span class="p">};</span>
+</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Unique Character in a String]]></title>
@@ -1830,7 +1907,7 @@ windows和linux共有的进程间通信方式：1. 消息（linux中叫做信号
 <ul>
 <li>男，汉族，1989年12月生人，现居北京市海淀区 研究生找工作中。</li>
 <li>电话： 186-1152-6680</li>
-<li>邮箱： <a href="&#x6d;&#97;&#105;&#x6c;&#x74;&#x6f;&#58;&#99;&#x61;&#x72;&#116;&#101;&#x72;&#x31;&#x33;&#x37;&#51;&#x30;&#x34;&#x33;&#x40;&#103;&#x6d;&#x61;&#105;&#108;&#46;&#x63;&#x6f;&#109;">&#99;&#97;&#114;&#116;&#101;&#114;&#x31;&#51;&#55;&#51;&#x30;&#52;&#51;&#64;&#x67;&#x6d;&#x61;&#x69;&#108;&#x2e;&#99;&#x6f;&#x6d;</a></li>
+<li>邮箱： <a href="&#109;&#97;&#x69;&#108;&#116;&#111;&#58;&#99;&#97;&#114;&#116;&#x65;&#114;&#x31;&#x33;&#x37;&#51;&#x30;&#52;&#51;&#x40;&#x67;&#x6d;&#97;&#x69;&#108;&#46;&#x63;&#x6f;&#109;">&#99;&#x61;&#x72;&#116;&#101;&#x72;&#49;&#51;&#55;&#51;&#48;&#52;&#x33;&#64;&#x67;&#109;&#x61;&#x69;&#x6c;&#x2e;&#99;&#111;&#109;</a></li>
 <li>GitHub: <a href="https://github.com/michaelpassion">github.com/michaelpassion</a></li>
 <li>个人博客：<a href="http://michaelpassion.github.io">michaelpassion.github.io/</a></li>
 </ul>
@@ -2370,129 +2447,6 @@ p:   1 2 1 2 5 2 1 4 1 2 1 6 1 2 1 2 1
 
 
 <p></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Copy List with Random Pointer]]></title>
-    <link href="http://michaelpassion.github.io/blog/2014/08/19/copy-list-with-random-pointer/"/>
-    <updated>2014-08-19T22:52:45+08:00</updated>
-    <id>http://michaelpassion.github.io/blog/2014/08/19/copy-list-with-random-pointer</id>
-    <content type="html"><![CDATA[<blockquote><p>A linked list is given such that each node contains an additional random pointer which could point to any node in the list or null.</p>
-
-<p>Return a deep copy of the list.</p></blockquote>
-
-<!--more-->
-
-
-<p><a href="http://www.cnblogs.com/TenosDoIt/p/3387000.html">参考JustDoIT的cnblog</a></p>
-
-<hr />
-
-<figure class='code'><figcaption><span>复杂链表的复制</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-<span class='line-number'>39</span>
-<span class='line-number'>40</span>
-<span class='line-number'>41</span>
-<span class='line-number'>42</span>
-<span class='line-number'>43</span>
-<span class='line-number'>44</span>
-<span class='line-number'>45</span>
-<span class='line-number'>46</span>
-<span class='line-number'>47</span>
-<span class='line-number'>48</span>
-<span class='line-number'>49</span>
-<span class='line-number'>50</span>
-<span class='line-number'>51</span>
-</pre></td><td class='code'><pre><code class='c++'><span class='line'><span class="cm">/**</span>
-</span><span class='line'><span class="cm"> * Definition for singly-linked list with a random pointer.</span>
-</span><span class='line'><span class="cm"> * struct RandomListNode {</span>
-</span><span class='line'><span class="cm"> *     int label;</span>
-</span><span class='line'><span class="cm"> *     RandomListNode *next, *random;</span>
-</span><span class='line'><span class="cm"> *     RandomListNode(int x) : label(x), next(NULL), random(NULL) {}</span>
-</span><span class='line'><span class="cm"> * };</span>
-</span><span class='line'><span class="cm"> */</span>
-</span><span class='line'><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
-</span><span class='line'><span class="k">public</span><span class="o">:</span>
-</span><span class='line'>    <span class="n">RandomListNode</span> <span class="o">*</span><span class="n">copyRandomList</span><span class="p">(</span><span class="n">RandomListNode</span> <span class="o">*</span><span class="n">head</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">head</span><span class="p">)</span> <span class="k">return</span> <span class="nb">NULL</span><span class="p">;</span>
-</span><span class='line'>
-</span><span class='line'>        <span class="n">map</span><span class="o">&lt;</span><span class="n">RandomListNode</span> <span class="o">*</span><span class="p">,</span> <span class="n">RandomListNode</span> <span class="o">*&gt;</span> <span class="n">oldListMap</span><span class="p">;</span>
-</span><span class='line'>
-</span><span class='line'>        <span class="n">RandomListNode</span> <span class="o">*</span><span class="n">cur</span> <span class="o">=</span> <span class="n">head</span><span class="p">;</span>
-</span><span class='line'>        <span class="n">RandomListNode</span> <span class="o">*</span><span class="n">copyHead</span> <span class="o">=</span> <span class="k">new</span> <span class="n">RandomListNode</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
-</span><span class='line'>        <span class="n">RandomListNode</span> <span class="o">*</span><span class="n">curCopy</span> <span class="o">=</span> <span class="n">copyHead</span><span class="p">;</span>
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>        <span class="k">while</span><span class="p">(</span><span class="n">cur</span><span class="p">)</span>
-</span><span class='line'>        <span class="p">{</span>
-</span><span class='line'>            <span class="n">oldListMap</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="n">map</span><span class="o">&lt;</span><span class="n">RandomListNode</span> <span class="o">*</span><span class="p">,</span> <span class="n">RandomListNode</span> <span class="o">*&gt;::</span><span class="n">value_type</span><span class="p">(</span><span class="n">cur</span><span class="p">,</span><span class="n">cur</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">));</span>
-</span><span class='line'>            <span class="n">RandomListNode</span> <span class="o">*</span><span class="n">node</span> <span class="o">=</span> <span class="k">new</span> <span class="n">RandomListNode</span><span class="p">(</span><span class="n">cur</span><span class="o">-&gt;</span><span class="n">label</span><span class="p">);</span>
-</span><span class='line'>            <span class="n">node</span><span class="o">-&gt;</span><span class="n">random</span> <span class="o">=</span> <span class="n">cur</span><span class="p">;</span>
-</span><span class='line'>            <span class="n">RandomListNode</span> <span class="o">*</span><span class="n">p</span> <span class="o">=</span> <span class="n">cur</span><span class="p">;</span>
-</span><span class='line'>            <span class="n">cur</span><span class="o">=</span><span class="n">cur</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
-</span><span class='line'>            <span class="n">p</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="n">node</span><span class="p">;</span>
-</span><span class='line'>            <span class="n">curCopy</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="n">node</span><span class="p">;</span>
-</span><span class='line'>            <span class="n">curCopy</span><span class="o">=</span><span class="n">node</span><span class="p">;</span>
-</span><span class='line'>        <span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'>        <span class="n">curCopy</span> <span class="o">=</span> <span class="n">copyHead</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
-</span><span class='line'>        <span class="k">while</span><span class="p">(</span><span class="n">curCopy</span><span class="p">)</span>
-</span><span class='line'>        <span class="p">{</span>
-</span><span class='line'>            <span class="k">if</span><span class="p">(</span><span class="n">curCopy</span><span class="o">-&gt;</span><span class="n">random</span><span class="o">-&gt;</span><span class="n">random</span><span class="p">)</span>
-</span><span class='line'>                 <span class="n">curCopy</span><span class="o">-&gt;</span><span class="n">random</span> <span class="o">=</span> <span class="n">curCopy</span><span class="o">-&gt;</span><span class="n">random</span><span class="o">-&gt;</span><span class="n">random</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
-</span><span class='line'>            <span class="k">else</span>
-</span><span class='line'>                <span class="n">curCopy</span><span class="o">-&gt;</span><span class="n">random</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
-</span><span class='line'>            <span class="n">curCopy</span><span class="o">=</span><span class="n">curCopy</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
-</span><span class='line'>        <span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'>        <span class="n">cur</span> <span class="o">=</span> <span class="n">head</span><span class="p">;</span>
-</span><span class='line'>        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;=</span> <span class="n">oldListMap</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
-</span><span class='line'>        <span class="p">{</span>
-</span><span class='line'>            <span class="n">cur</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="n">oldListMap</span><span class="p">[</span><span class="n">cur</span><span class="p">];</span>
-</span><span class='line'>            <span class="n">cur</span><span class="o">=</span><span class="n">cur</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
-</span><span class='line'>        <span class="p">}</span>
-</span><span class='line'>        <span class="k">return</span> <span class="n">copyHead</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
-</span><span class='line'>    <span class="p">}</span>
-</span><span class='line'><span class="p">};</span>
-</span></code></pre></td></tr></table></div></figure>
-
 ]]></content>
   </entry>
   
