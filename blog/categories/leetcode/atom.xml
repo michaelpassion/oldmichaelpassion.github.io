@@ -4,7 +4,7 @@
   <title><![CDATA[Category: leetcode | My Progressing Blog]]></title>
   <link href="http://michaelpassion.github.io/blog/categories/leetcode/atom.xml" rel="self"/>
   <link href="http://michaelpassion.github.io/"/>
-  <updated>2014-09-12T18:57:32+08:00</updated>
+  <updated>2014-09-14T16:13:58+08:00</updated>
   <id>http://michaelpassion.github.io/</id>
   <author>
     <name><![CDATA[Michael]]></name>
@@ -12,6 +12,65 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Rotate List]]></title>
+    <link href="http://michaelpassion.github.io/blog/2014/09/14/rotate-list/"/>
+    <updated>2014-09-14T16:08:37+08:00</updated>
+    <id>http://michaelpassion.github.io/blog/2014/09/14/rotate-list</id>
+    <content type="html"><![CDATA[<blockquote><p>Given a list, rotate the list to the right by k places, where k is non-negative.<br/>
+For example:
+Given <code>1-&gt;2-&gt;3-&gt;4-&gt;5-&gt;NULL</code> and <code>k = 2</code>,<br/>
+return <code>4-&gt;5-&gt;1-&gt;2-&gt;3-&gt;NULL</code>.</p></blockquote>
+
+<!--more-->
+
+
+<p><strong>思路</strong><br/>
+有点感冒，头晕晕乎乎的，还出冷汗，一开始脑子不够用，竟然套用翻转string的那个算法，还reverse三次，弱爆了。其次就是<code>k</code>的值可能大于链表长度，我没有去算链表长度，直接用快慢指针做的，这样对于特殊输入运行效率可能极其低下，回头修改，写完这点，回宿舍休息会去。</p>
+
+<pre><code class="c++">/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode *rotateRight(ListNode *head, int k) {
+        if(!head || !head-&gt;next || k &lt; 1) return head;
+        ListNode *p = head;
+        for (int i=0; i&lt;k; i++) 
+        {
+            if (p-&gt;next == NULL) 
+            {
+                p = head;
+            }
+            else 
+            {
+                p = p-&gt;next;
+            }
+        }
+
+        ListNode *q = head;
+        while (p-&gt;next)
+        {
+            p = p-&gt;next;
+            q = q-&gt;next;
+        }
+        p-&gt;next = head;
+
+        ListNode *newHead = q-&gt;next;
+        q-&gt;next = NULL;
+
+        return newHead;
+        }
+};
+</code></pre>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Triangle]]></title>
@@ -273,37 +332,6 @@ public:
 
 <p>};
 &#8220;`</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Pow(x,y)]]></title>
-    <link href="http://michaelpassion.github.io/blog/2014/08/27/pow-x/"/>
-    <updated>2014-08-27T23:25:37+08:00</updated>
-    <id>http://michaelpassion.github.io/blog/2014/08/27/pow-x</id>
-    <content type="html"><![CDATA[<blockquote><p>Implement pow(x, n).</p></blockquote>
-
-<!--more-->
-
-
-<p><a href="https://oj.leetcode.com/problems/powx-n/">leetcode express</a></p>
-
-<pre><code class="c++">class Solution {
-public:
-    double pow(double x, int n) {
-        if(n == 0) return 1;
-        if(n &lt; 0) return 1 /( x * pow( x , -n-1));
-        double num1 = x, num2 = 1;
-        while(n &gt; 1)
-        {
-            if(n &amp; 0x1) num2 *= num1;
-            num1 *= num1;
-            n &gt;&gt;= 2;
-        }
-       return num1 * num2;
-    }
-};
-</code></pre>
 ]]></content>
   </entry>
   

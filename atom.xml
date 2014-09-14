@@ -4,7 +4,7 @@
   <title><![CDATA[My Progressing Blog]]></title>
   <link href="http://michaelpassion.github.io/atom.xml" rel="self"/>
   <link href="http://michaelpassion.github.io/"/>
-  <updated>2014-09-12T18:57:32+08:00</updated>
+  <updated>2014-09-14T16:13:58+08:00</updated>
   <id>http://michaelpassion.github.io/</id>
   <author>
     <name><![CDATA[Michael]]></name>
@@ -12,6 +12,105 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Rotate List]]></title>
+    <link href="http://michaelpassion.github.io/blog/2014/09/14/rotate-list/"/>
+    <updated>2014-09-14T16:08:37+08:00</updated>
+    <id>http://michaelpassion.github.io/blog/2014/09/14/rotate-list</id>
+    <content type="html"><![CDATA[<blockquote><p>Given a list, rotate the list to the right by k places, where k is non-negative.<br/>
+For example:
+Given <code>1-&gt;2-&gt;3-&gt;4-&gt;5-&gt;NULL</code> and <code>k = 2</code>,<br/>
+return <code>4-&gt;5-&gt;1-&gt;2-&gt;3-&gt;NULL</code>.</p></blockquote>
+
+<!--more-->
+
+
+<p><strong>思路</strong><br/>
+有点感冒，头晕晕乎乎的，还出冷汗，一开始脑子不够用，竟然套用翻转string的那个算法，还reverse三次，弱爆了。其次就是<code>k</code>的值可能大于链表长度，我没有去算链表长度，直接用快慢指针做的，这样对于特殊输入运行效率可能极其低下，回头修改，写完这点，回宿舍休息会去。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+</pre></td><td class='code'><pre><code class='c++'><span class='line'><span class="cm">/**</span>
+</span><span class='line'><span class="cm"> * Definition for singly-linked list.</span>
+</span><span class='line'><span class="cm"> * struct ListNode {</span>
+</span><span class='line'><span class="cm"> *     int val;</span>
+</span><span class='line'><span class="cm"> *     ListNode *next;</span>
+</span><span class='line'><span class="cm"> *     ListNode(int x) : val(x), next(NULL) {}</span>
+</span><span class='line'><span class="cm"> * };</span>
+</span><span class='line'><span class="cm"> */</span>
+</span><span class='line'><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+</span><span class='line'><span class="k">public</span><span class="o">:</span>
+</span><span class='line'>    <span class="n">ListNode</span> <span class="o">*</span><span class="n">rotateRight</span><span class="p">(</span><span class="n">ListNode</span> <span class="o">*</span><span class="n">head</span><span class="p">,</span> <span class="kt">int</span> <span class="n">k</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">head</span> <span class="o">||</span> <span class="o">!</span><span class="n">head</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">||</span> <span class="n">k</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">)</span> <span class="k">return</span> <span class="n">head</span><span class="p">;</span>
+</span><span class='line'>        <span class="n">ListNode</span> <span class="o">*</span><span class="n">p</span> <span class="o">=</span> <span class="n">head</span><span class="p">;</span>
+</span><span class='line'>        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">k</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+</span><span class='line'>        <span class="p">{</span>
+</span><span class='line'>            <span class="k">if</span> <span class="p">(</span><span class="n">p</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span>
+</span><span class='line'>            <span class="p">{</span>
+</span><span class='line'>                <span class="n">p</span> <span class="o">=</span> <span class="n">head</span><span class="p">;</span>
+</span><span class='line'>            <span class="p">}</span>
+</span><span class='line'>            <span class="k">else</span>
+</span><span class='line'>            <span class="p">{</span>
+</span><span class='line'>                <span class="n">p</span> <span class="o">=</span> <span class="n">p</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+</span><span class='line'>            <span class="p">}</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">ListNode</span> <span class="o">*</span><span class="n">q</span> <span class="o">=</span> <span class="n">head</span><span class="p">;</span>
+</span><span class='line'>        <span class="k">while</span> <span class="p">(</span><span class="n">p</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">)</span>
+</span><span class='line'>        <span class="p">{</span>
+</span><span class='line'>            <span class="n">p</span> <span class="o">=</span> <span class="n">p</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+</span><span class='line'>            <span class="n">q</span> <span class="o">=</span> <span class="n">q</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>        <span class="n">p</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="n">head</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">ListNode</span> <span class="o">*</span><span class="n">newHead</span> <span class="o">=</span> <span class="n">q</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+</span><span class='line'>        <span class="n">q</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="k">return</span> <span class="n">newHead</span><span class="p">;</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'><span class="p">};</span>
+</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Triangle]]></title>
@@ -2036,118 +2135,6 @@ windows和linux共有的进程间通信方式：1. 消息（linux中叫做信号
 </span><span class='line'>    <span class="p">}</span>
 </span><span class='line'><span class="p">};</span>
 </span></code></pre></td></tr></table></div></figure>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[resume]]></title>
-    <link href="http://michaelpassion.github.io/blog/2014/08/21/resume/"/>
-    <updated>2014-08-21T09:49:35+08:00</updated>
-    <id>http://michaelpassion.github.io/blog/2014/08/21/resume</id>
-    <content type="html"><![CDATA[<h2>尹帅的简历    <img src="http://himg.bdimg.com/sys/portrait/item/e93779656c69646f6e67303631337915.jpg" align="right"></img></h2>
-
-<hr />
-
-<!--more-->
-
-
-<ul>
-<li>男，汉族，1989年12月生人，现居北京市海淀区 研究生找工作中。</li>
-<li>电话： 186-1152-6680</li>
-<li>邮箱： <a href="&#109;&#x61;&#x69;&#108;&#116;&#111;&#x3a;&#99;&#97;&#114;&#116;&#x65;&#114;&#x31;&#51;&#55;&#51;&#48;&#52;&#x33;&#x40;&#103;&#109;&#97;&#105;&#x6c;&#x2e;&#x63;&#111;&#109;">&#99;&#97;&#x72;&#x74;&#x65;&#x72;&#x31;&#51;&#x37;&#x33;&#48;&#52;&#51;&#x40;&#x67;&#109;&#x61;&#x69;&#x6c;&#x2e;&#99;&#111;&#x6d;</a></li>
-<li>GitHub: <a href="https://github.com/michaelpassion">github.com/michaelpassion</a></li>
-<li>个人博客：<a href="http://michaelpassion.github.io">michaelpassion.github.io/</a></li>
-</ul>
-
-
-<p><strong>教育背景</strong></p>
-
-<hr />
-
-<ul>
-<li>2013/09 &ndash; 2015/06， 北京理工大学 软件学院 软件工程专业 研究生</li>
-<li>2009/09 &ndash; 2013/06，  河北师范大学 软件学院 软件工程专业 本科</li>
-</ul>
-
-
-<p><strong>技能知识</strong></p>
-
-<hr />
-
-<ul>
-<li>编程语言：Objective-C，C++，ASP.NET, C#, HTML/CSS, Python 等</li>
-<li>开发工具：Xcode，Visual Studio，Git，GitHub，Vim，Instruments 等</li>
-</ul>
-
-
-<p><strong>项目经验</strong></p>
-
-<hr />
-
-<ul>
-<li><p><a href="https://itunes.apple.com/cn/app/xing-yun-zhuan-pan/id492038522?mt=8">LuckyPoint</a>(iOS, Xcode)</p>
-
-<p>  项目时间：2011/9&ndash;2012/1 <br/>
-  项目描述：ios抽奖类应用，模拟现实生活中的转盘，转动转盘抽奖，转盘中的内容可以自定义。
-  项目职责：负责编程工作并自主测试。<br/>
-  收获：通过这个项目熟悉了Xcode开发环境和Obj-C语言，并成功发布到APP Store中。</p></li>
-<li><p>PowerPPT(iOS, Xcode)</p>
-
-<p>  项目时间：2012/3&ndash;2012/5<br/>
-  项目描述：通过ios设备控制局域网中windows主机的ppt播放，具有添加注解，标记重点等功能。<br/>
-  项目职责：此项目是在师兄的基础上修改BUG，并将app从ipad应用适配到iPhone，iTouch应用。<br/>
-  收获：通过这个项目熟悉了Xcode开发环境和Obj-C语言，并成功发布到APP Store中。</p></li>
-<li><p>Leap Motion enabled car（Unity3D， Leap Motion）</p>
-
-<p>  项目时间：2013/10 &ndash; 2013/11<br/>
-  项目描述：使用leap motion来捕捉手部动作，通过手部动作控制赛车，进行赛车游戏。<br/>
-  项目职责：负责编程工作并自主测试。<br/>
-  收获：了解了Unity3D开发环境，尝试了部分Leap motion手势API，实现了较为粗糙的赛车游戏。</p></li>
-<li><p>漏洞管理系统 (Windows ,IIS8, vs2012, SQL Server2008)</p>
-
-<p>  项目时间：2013/10 &ndash; 2013/11<br/>
-  项目描述：用asp.net实现的B/S管理系统.用以对已知漏洞的查询,和新漏洞的提交.等一些相关的管理功能。<br/>
-  项目职责：参与项目需求分析，详细设计，负责部分编程工作。<br/>
-  收获：了解了asp.net网站开发技术。</p></li>
-<li><p>谐波雷达探测管理与控制主机系统(Windows ,IIS8,vs2012, SQL Server2008)</p>
-
-<p>  项目时间：2014/03 &ndash; 2014/05<br/>
-  项目描述：用asp.net实现的B/S管理系统,用于对谐波雷达探测到的数据进行管理分析,并对相关人员进行管理。
-  项目职责：参与项目需求分析，详细设计，最后实现全部的编程工作。<br/>
-  收获：了解了asp.net网站开发和发布，重温了css相关知识，并且学习了一些javascript操作。</p></li>
-</ul>
-
-
-<p><strong>实习与奖励</strong></p>
-
-<hr />
-
-<ul>
-<li>2014/06 &ndash; 2014/07                      宜搜小说iOS开发实习生</li>
-<li>2013/05 &ndash; 2013/07                      石家庄乐峰教育LEGO编程机器人讲师</li>
-<li>2011-2012     院级奖学金</li>
-<li>2010-2011     院级奖学金</li>
-</ul>
-
-
-<p><strong>其他</strong></p>
-
-<hr />
-
-<ul>
-<li>爱好：游泳，乒乓球，美剧 ，琢磨新技术</li>
-<li>特长：英语读写能力较好，轻松阅读英文网站文献。 六级 548分，四级 579分</li>
-</ul>
-
-
-<p><strong>自我评价</strong></p>
-
-<hr />
-
-<ul>
-<li>要强，认真，有一定的自学能力，为人随和，容易相处，一直努力从各方面提升自己(算法，编程能力，人文知识)</li>
-</ul>
 
 ]]></content>
   </entry>
