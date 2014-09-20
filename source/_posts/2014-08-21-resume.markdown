@@ -22,7 +22,7 @@ categories: resume 简历
 **技能知识**
 * * *
 * 编程语言：Objective-C，C++，ASP.NET, C#, HTML/CSS, Python 等
-* 开发工具：Xcode，Visual Studio，Git，GitHub，Vim，Instruments 等  
+* 开发工具：Xcode，Visual Studio，Git，GitHub，Vim 等  
 
 **项目经验**
 * * * 
@@ -33,21 +33,12 @@ categories: resume 简历
 	项目职责：负责编程工作并自主测试。  
     收获：通过这个项目熟悉了Xcode开发环境和Obj-C语言，并成功发布到APP Store中。  
  
-* PowerPPT(iOS, Xcode)  
 
-	项目时间：2012/3--2012/5  
-	项目描述：通过ios设备控制局域网中windows主机的ppt播放，具有添加注解，标记重点等功能。  
-	项目职责：此项目是在师兄的基础上修改BUG，并将app从ipad应用适配到iPhone，iTouch应用。  
-	收获：通过这个项目熟悉了Xcode开发环境和Obj-C语言，并成功发布到APP Store中。 
-
-* Leap Motion enabled car（Unity3D， Leap Motion） 
-
-
+* Leap Motion Enabled Car（Unity3D， Leap Motion） 
 
 	项目时间：2013/10 -- 2013/11  
 	项目描述：使用leap motion来捕捉手部动作，通过手部动作控制赛车，进行赛车游戏。  
 	项目职责：负责编程工作并自主测试。  
-	收获：了解了Unity3D开发环境，尝试了部分Leap motion手势API，实现了较为粗糙的赛车游戏。    
 	
 * 漏洞管理系统 (Windows ,IIS8, vs2012, SQL Server2008)  
 
@@ -55,7 +46,6 @@ categories: resume 简历
 	项目时间：2013/10 -- 2013/11  
 	项目描述：用asp.net实现的B/S管理系统.用以对已知漏洞的查询,和新漏洞的提交.等一些相关的管理功能。  
 	项目职责：参与项目需求分析，详细设计，负责部分编程工作。  
-	收获：了解了asp.net网站开发技术。
 	  
 * 谐波雷达探测管理与控制主机系统(Windows ,IIS8,vs2012, SQL Server2008)  
 
@@ -64,12 +54,10 @@ categories: resume 简历
  	项目时间：2014/03 -- 2014/05  
 	项目描述：用asp.net实现的B/S管理系统,用于对谐波雷达探测到的数据进行管理分析,并对相关人员进行管理。
  	项目职责：参与项目需求分析，详细设计，最后实现全部的编程工作。  
- 	收获：了解了asp.net网站开发和发布，重温了css相关知识，并且学习了一些javascript操作。 
 
 **实习与奖励**
 * * *
  * 2014/06 -- 2014/07                      宜搜小说iOS开发实习生 
- * 2013/05 -- 2013/07                      石家庄乐峰教育LEGO编程机器人讲师  
  * 2011-2012     院级奖学金  
  * 2010-2011     院级奖学金 
 
@@ -80,8 +68,7 @@ categories: resume 简历
 
 **自我评价**
 * * * 
-* 要强，认真，有一定的自学能力，为人随和，容易相处，一直努力从各方面提升自己(算法，编程能力，人文知识)
-                        
+* 要强，态度认真，有一定的自学能力，性格随和，容易相处，一直在不断努力提升自己。                        
 
 
 
