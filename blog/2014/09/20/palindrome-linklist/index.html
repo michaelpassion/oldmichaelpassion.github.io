@@ -1,0 +1,140 @@
+<blockquote><p>2.7 Implement a function to check if a linked list is a palindrome.</p></blockquote>
+
+<!--more-->
+
+
+<h3>解法一  翻转链表得到新链表，再比较两个链表</h3>
+
+<p>翻转链表的方法: 1）头插法  2）遍历加直接修改指针指向  3）递归</p>
+
+<figure class='code'><figcaption><span>遍历加直接修改指针指向</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='c++'><span class='line'><span class="n">ListNode8</span> <span class="n">ReverList</span><span class="err">（</span><span class="n">ListNode</span> <span class="o">*</span><span class="n">pHead</span><span class="err">）</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>  <span class="n">ListNode</span> <span class="o">*</span><span class="n">pNode</span> <span class="o">=</span> <span class="n">pHead</span><span class="p">;</span> <span class="c1">//当前结点</span>
+</span><span class='line'>  <span class="n">ListNode</span> <span class="o">*</span><span class="n">pPrev</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>  <span class="c1">//当前结点的前一个结点</span>
+</span><span class='line'>  <span class="k">while</span><span class="p">(</span><span class="n">pNode</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">)</span>
+</span><span class='line'>  <span class="p">{</span>
+</span><span class='line'>      <span class="n">ListNode</span> <span class="o">*</span><span class="n">pNext</span> <span class="o">=</span> <span class="n">pNode</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+</span><span class='line'>      <span class="n">PNode</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="n">pPrev</span><span class="p">;</span>
+</span><span class='line'>      
+</span><span class='line'>      <span class="n">pPrev</span> <span class="o">=</span> <span class="err"></span><span class="n">pNode</span><span class="p">;</span>
+</span><span class='line'>      <span class="n">pNode</span>  <span class="o">=</span> <span class="n">pNext</span><span class="p">;</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>  <span class="k">return</span> <span class="n">pPrev</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p> <br/>
+比较两个链表时，只需比较一半的元素即可，那么就要知道链表中间结点，可以通过快慢指针遍历一次得到中间结点，或者在比较的同时遍历。</p>
+
+<figure class='code'><figcaption><span>比较到中间元素</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class='c++'><span class='line'><span class="kt">bool</span> <span class="nf">isPalindrome</span><span class="p">(</span><span class="n">ListNode</span> <span class="o">*</span><span class="n">aHead</span><span class="p">.</span> <span class="n">ListNode</span> <span class="o">*</span><span class="n">bHead</span><span class="p">)</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>  <span class="n">ListNode</span> <span class="o">*</span><span class="n">fast</span> <span class="o">=</span> <span class="n">aHead</span><span class="p">;</span>
+</span><span class='line'>  
+</span><span class='line'>  <span class="n">ListNode</span> <span class="o">*</span><span class="n">pa</span> <span class="o">=</span> <span class="n">aHead</span><span class="p">;</span>
+</span><span class='line'>  <span class="n">ListNode</span> <span class="o">*</span><span class="n">pb</span> <span class="o">=</span> <span class="n">bhead</span><span class="p">;</span>     
+</span><span class='line'>  
+</span><span class='line'>  <span class="k">while</span><span class="p">(</span><span class="n">fast</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">!=</span> <span class="nb">NULL</span> <span class="o">&amp;&amp;</span><span class="n">fast</span><span class="o">!</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">)</span>
+</span><span class='line'>  <span class="p">{</span>
+</span><span class='line'>      <span class="k">if</span><span class="p">(</span><span class="o">*</span><span class="n">pa</span> <span class="o">!=</span> <span class="o">*</span><span class="n">pb</span><span class="p">)</span> <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+</span><span class='line'>      <span class="n">pa</span> <span class="o">=</span> <span class="n">pa</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+</span><span class='line'>      <span class="n">pb</span> <span class="o">=</span> <span class="n">pb</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>  <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>解法二 利用栈来逆置前半个链表</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+</pre></td><td class='code'><pre><code class='c++'><span class='line'><span class="kt">bool</span> <span class="nf">isPlindrome</span><span class="p">(</span><span class="n">ListNode</span> <span class="o">*</span><span class="n">head</span><span class="p">)</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>  <span class="n">ListNode</span> <span class="o">*</span><span class="n">fast</span> <span class="o">=</span> <span class="n">head</span><span class="p">;</span>
+</span><span class='line'>  <span class="n">ListNode</span> <span class="o">*</span><span class="n">slow</span> <span class="o">=</span> <span class="n">head</span><span class="p">;</span>
+</span><span class='line'>  
+</span><span class='line'>  <span class="n">stack</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">a</span><span class="p">;</span>
+</span><span class='line'>  <span class="c1">//push elements from first half of linked lsit onto stack. When</span>
+</span><span class='line'>  <span class="c1">//fast runner reaches the end of the linked list, then we know we&#39;re </span>
+</span><span class='line'>  <span class="c1">//at the middle</span>
+</span><span class='line'>  
+</span><span class='line'>  <span class="k">while</span><span class="p">(</span><span class="n">fast</span> <span class="o">!=</span> <span class="nb">NULL</span> <span class="o">&amp;&amp;</span> <span class="n">fast</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">)</span>
+</span><span class='line'>  <span class="p">{</span>
+</span><span class='line'>      <span class="n">a</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">slow</span><span class="o">-&gt;</span><span class="n">val</span><span class="p">);</span>
+</span><span class='line'>      <span class="n">slow</span> <span class="o">=</span> <span class="n">slow</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+</span><span class='line'>      <span class="n">fast</span> <span class="o">=</span> <span class="n">fast</span><span class="o">-&gt;</span><span class="n">next</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>  
+</span><span class='line'>  <span class="c1">//the number of node is odd, skip the middle element</span>
+</span><span class='line'>  <span class="k">if</span><span class="p">(</span><span class="n">fast</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">)</span>
+</span><span class='line'>      <span class="n">slow</span> <span class="o">=</span> <span class="n">slow</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+</span><span class='line'>  <span class="k">while</span><span class="p">(</span><span class="n">slow</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">)</span>
+</span><span class='line'>  <span class="p">{</span>
+</span><span class='line'>      <span class="k">if</span><span class="p">(</span><span class="n">slow</span><span class="o">-&gt;</span><span class="n">val</span> <span class="o">!=</span> <span class="n">a</span><span class="p">.</span><span class="n">top</span><span class="p">())</span>
+</span><span class='line'>          <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+</span><span class='line'>      <span class="n">a</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>
+</span><span class='line'>      <span class="n">slow</span> <span class="o">=</span> <span class="n">slow</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>  <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>算法三 回溯法</h3>
