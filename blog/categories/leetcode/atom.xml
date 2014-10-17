@@ -4,7 +4,7 @@
   <title><![CDATA[Category: leetcode | My Progressing Blog]]></title>
   <link href="http://michaelpassion.github.io/blog/categories/leetcode/atom.xml" rel="self"/>
   <link href="http://michaelpassion.github.io/"/>
-  <updated>2014-10-17T21:38:52+08:00</updated>
+  <updated>2014-10-17T22:00:31+08:00</updated>
   <id>http://michaelpassion.github.io/</id>
   <author>
     <name><![CDATA[Michael]]></name>
@@ -12,6 +12,48 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Find Minimum in Rotated Sorted Array]]></title>
+    <link href="http://michaelpassion.github.io/blog/2014/10/17/find-minimum-in-rotated-sorted-array/"/>
+    <updated>2014-10-17T21:54:04+08:00</updated>
+    <id>http://michaelpassion.github.io/blog/2014/10/17/find-minimum-in-rotated-sorted-array</id>
+    <content type="html"><![CDATA[<blockquote><p>Suppose a sorted array is rotated at some pivot unknown to you beforehand.</p>
+
+<p>(i.e., 0 1 2 4 5 6 7 might become 4 5 6 7 0 1 2).</p>
+
+<p>Find the minimum element.</p>
+
+<p>You may assume no duplicate exists in the array.</p></blockquote>
+
+<!--more-->
+
+
+<p>leetcode 出新题了，看起来是个水题，一时技痒就写了（不害臊，打脸）(￣ε(#￣)☆╰╮(￣▽￣///)</p>
+
+<p><strong>思路</strong><br/>
+因为是旋转的有序数组，所以可以看成是两个分别有序的递增数组，又前一个数组中的值肯定大于后一个数组中的值，所以只需遍历前面数组，找到比指向后一个数组最后一个数字小的第一个数字就是整个旋转有序数组的最小值。<br/>
+<em>特殊情况</em> ：如果原数组并没有旋转，那么<code>num[0] &lt; num[n-1]</code>, 直接返回<code>num[0]</code></p>
+
+<pre><code class="c++">class Solution {
+public:
+    int findMin(vector&lt;int&gt; &amp;num) {
+        if (num.size() &lt;= 1) return num[0];
+
+        int l = 0, r = num.size()-1;
+        while(l &lt; r)
+        {
+            if (num[l] &gt; num[r])
+                l++;
+            else
+                return num[l];
+        }
+        return num[l];
+    }
+};
+</code></pre>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Word Search]]></title>
@@ -240,61 +282,6 @@ public:
         }
 
         return value;
-    }
-};
-</code></pre>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Permutation Sequence]]></title>
-    <link href="http://michaelpassion.github.io/blog/2014/09/11/permutation-sequence/"/>
-    <updated>2014-09-11T23:48:20+08:00</updated>
-    <id>http://michaelpassion.github.io/blog/2014/09/11/permutation-sequence</id>
-    <content type="html"><![CDATA[<blockquote><p>The set [1,2,3,…,n] contains a total of n! unique permutations.</p>
-
-<p>By listing and labeling all of the permutations in order,
-We get the following sequence (ie, for n = 3):</p>
-
-<ol>
-<li>&ldquo;123&rdquo;</li>
-<li>&ldquo;132&rdquo;</li>
-<li>&ldquo;213&rdquo;</li>
-<li>&ldquo;231&rdquo;</li>
-<li>&ldquo;312&rdquo;</li>
-<li>&ldquo;321&rdquo;</li>
-</ol>
-
-
-<p>Given n and k, return the k-th permutation sequence.</p>
-
-<p>Note: Given n will be between 1 and 9 inclusive.</p></blockquote>
-
-<!--more-->
-
-
-<pre><code class="c++ 时间复杂度O(n),空间复杂度O(1)">class Solution {
-public:
-    int factorial(int n)
-    {
-        int res = 1;
-        for(int i=2 ;i&lt;=n; i++)
-            res *= i;
-        return res;
-    }
-    string getPermutation(int n, int k) {
-        int total = factorial(n);
-          string candidate = string("123456789").substr(0, n);
-          string res(n,' ');
-          for(int i = 0; i &lt; n; i++)//依次计算排列的每个位
-          {
-              total /= (n-i);
-             int index = (k-1) / total;
-             res[i] = candidate[index];
-             candidate.erase(index, 1);
-             k -= index*total;
-         }
-         return res;
     }
 };
 </code></pre>
