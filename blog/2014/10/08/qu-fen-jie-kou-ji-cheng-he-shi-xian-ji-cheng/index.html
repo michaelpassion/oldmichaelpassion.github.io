@@ -5,11 +5,14 @@
 
 <head>
 	<meta charset="utf-8">
-	<title>Category: c++ - My Progressing Blog</title>
+	<title>区分接口继承和实现继承 - My Progressing Blog</title>
 	<meta name="author" content="Michael">
 
 	
-	<meta name="description" content="Category: c++">
+	<meta name="description" content="区分接口继承和实现继承 成员函数的结构总是会被继承
+public继承意味is-a,所以对base class为真的任何事情一定也对其derived classes为真。
+声明一个pure virtual函数的目的是为了让 derived classes 只继承函数的接口
+声明impure &hellip;">
 	
 
   <!-- http://t.co/dKP3o1e -->
@@ -19,7 +22,7 @@
 
 	<link href="/atom.xml" rel="alternate" title="My Progressing Blog" type="application/atom+xml">
 	
-	<link rel="canonical" href="http://michaelpassion.github.io/blog/categories/c-plus-plus/">
+	<link rel="canonical" href="http://michaelpassion.github.io/blog/2014/10/08/qu-fen-jie-kou-ji-cheng-he-shi-xian-ji-cheng/">
 	<link href="/favicon.png" rel="shortcut icon">
 	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
 	<link href="/stylesheets/font-awesome.min.css" media="screen, projection" rel="stylesheet" type="text/css">
@@ -101,68 +104,57 @@
 				
 			
 			<div class="mid-col-container">
-				<div id="content" class="inner">
-	
+				<div id="content" class="inner"><article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+	<h1 class="title" itemprop="name">区分接口继承和实现继承</h1>
+	<div class="entry-content" itemprop="articleBody"><!--more-->
 
 
-	
-	
-	<section class="archives"><h1 class="year">2014</h1>
+<p><strong>成员函数的结构总是会被继承</strong><br/>
+public继承意味<strong>is-a</strong>,所以对base class为真的任何事情一定也对其derived classes为真。<br/>
+<strong>声明一个pure virtual函数的目的是为了让 derived classes 只继承函数的接口</strong><br/>
+<strong>声明impure virtual函数是为了让 derived classes 继承该函数的接口和缺省实现</strong><br/>
+<strong> 声明non-virtual函数的目的是为了令 derived classes 继承函数的接口及一份强制性实现 </strong></p>
 
-<article itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-	<div class="meta">
-		<span class="date"><time datetime="2014-10-08T10:20:06+08:00" itemprop="datePublished">Oct  8</time></span>
-		<br>
-		<span class="tags">
+<h2>为多态基类声明 virtual 析构函数</h2>
 
+<hr />
 
-	<a class='category' href='/blog/categories/c-plus-plus/'>c++</a>, <a class='category' href='/blog/categories/effectvie/'>effectvie</a>, <a class='category' href='/blog/categories/ji-cheng/'>继承</a>
+<p>c++明确指出： 当derived class 对象经由一个 base class 指针删除， 而该 base class 带着一个 non-virtual 析构函数，其结果未有定义 &ndash; 实际执行时通常发生的是对象的 derived 成分没有被销毁，然而base class 成分会被销毁，造成一个诡异的“局部销毁”的对象。<br/>
+    消除这个问题的做法是：给 base class 一个virtual 析构函数。此后删除 derived classes 对象就会调用 derived classes的析构函数</p>
 
+<h2>绝对不重新定义继承而来的缺省参数值</h2>
 
-</span>
-	    
-	</div>
-	<h1 class="title" itemprop="name"><a href="/blog/2014/10/08/qu-fen-jie-kou-ji-cheng-he-shi-xian-ji-cheng/">区分接口继承和实现继承</a></h1>
+<hr />
+</div>
+
 </article>
 
+	<div class="share">
+	<div class="addthis_toolbox addthis_default_style ">
 	
-
-
-<article itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-	<div class="meta">
-		<span class="date"><time datetime="2014-08-25T22:24:17+08:00" itemprop="datePublished">Aug 25</time></span>
-		<br>
-		<span class="tags">
-
-
-	<a class='category' href='/blog/categories/c-plus-plus/'>c++</a>, <a class='category' href='/blog/categories/ji-chu-zhi-shi/'>基础知识</a>
-
-
-</span>
-	    
-	</div>
-	<h1 class="title" itemprop="name"><a href="/blog/2014/08/25/nei-cun-xiang-guan/">内存相关</a></h1>
-</article>
-
 	
-
-
-<article itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-	<div class="meta">
-		<span class="date"><time datetime="2014-08-10T16:43:32+08:00" itemprop="datePublished">Aug 10</time></span>
-		<br>
-		<span class="tags">
-
-
-	<a class='category' href='/blog/categories/c-plus-plus/'>c++</a>, <a class='category' href='/blog/categories/hash/'>hash</a>, <a class='category' href='/blog/categories/leetcode/'>leetcode</a>, <a class='category' href='/blog/categories/suan-fa/'>算法</a>
-
-
-</span>
-	    
+	<a class="addthis_button_tweet"></a>
+	
+	
+	<a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+	
+	<a class="addthis_counter addthis_pill_style"></a>
 	</div>
-	<h1 class="title" itemprop="name"><a href="/blog/2014/08/10/two-sum/">Two Sum</a></h1>
-</article>
+  <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid="></script>
+  
+</div>
 
+
+
+<section id="comment">
+    <h1 class="title">Comments</h1>
+    
+<!-- UY BEGIN -->
+<div id="uyan_frame"></div>
+<script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=1956361"></script>
+<!-- UY END -->
+
+</section>
 </div>
 			</div>
 			<footer id="footer" class="inner">Copyright &copy; 2014

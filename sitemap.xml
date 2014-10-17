@@ -3,6 +3,24 @@
   
   
   <url>
+    <loc>http://michaelpassion.github.io/blog/2014/10/17/niu-zi-hen-mang/</loc>
+    <lastmod>2014-10-17T00:00:00+08:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>http://michaelpassion.github.io/blog/2014/10/14/ren-ren-bi-shi/</loc>
+    <lastmod>2014-10-14T22:19:27+08:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>http://michaelpassion.github.io/blog/2014/10/08/qu-fen-jie-kou-ji-cheng-he-shi-xian-ji-cheng/</loc>
+    <lastmod>2014-10-08T10:20:06+08:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
     <loc>http://michaelpassion.github.io/blog/2014/10/07/balanced-binary-tree/</loc>
     <lastmod>2014-10-07T21:54:20+08:00</lastmod>
     <priority>0.8</priority>
@@ -311,35 +329,35 @@
   
   <url>
     <loc>http://michaelpassion.github.io/blog/archives/</loc>
-    <lastmod>2014-10-07T22:01:23+08:00</lastmod>
+    <lastmod>2014-10-17T21:38:52+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
     <loc>http://michaelpassion.github.io/</loc>
-    <lastmod>2014-10-07T22:01:23+08:00</lastmod>
+    <lastmod>2014-10-17T21:38:52+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   
   <url>
     <loc>http://michaelpassion.github.io/tag-cloud/</loc>
-    <lastmod>2014-10-07T22:01:23+08:00</lastmod>
+    <lastmod>2014-10-17T21:38:52+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
     <loc>http://michaelpassion.github.io/blog/categories/</loc>
-    <lastmod>2014-10-07T22:01:23+08:00</lastmod>
+    <lastmod>2014-10-17T21:38:52+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
     <loc>http://michaelpassion.github.io/about/</loc>
-    <lastmod>2014-10-07T22:01:23+08:00</lastmod>
+    <lastmod>2014-10-17T21:38:52+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>

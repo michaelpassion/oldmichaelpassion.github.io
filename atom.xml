@@ -4,7 +4,7 @@
   <title><![CDATA[My Progressing Blog]]></title>
   <link href="http://michaelpassion.github.io/atom.xml" rel="self"/>
   <link href="http://michaelpassion.github.io/"/>
-  <updated>2014-10-07T22:01:23+08:00</updated>
+  <updated>2014-10-17T21:38:52+08:00</updated>
   <id>http://michaelpassion.github.io/</id>
   <author>
     <name><![CDATA[Michael]]></name>
@@ -12,6 +12,52 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Niu Zi Hen Mang]]></title>
+    <link href="http://michaelpassion.github.io/blog/2014/10/17/niu-zi-hen-mang/"/>
+    <updated>2014-10-17T00:00:00+08:00</updated>
+    <id>http://michaelpassion.github.io/blog/2014/10/17/niu-zi-hen-mang</id>
+    <content type="html"><![CDATA[<p>最近笔试太忙，面试太忙，好多东西来不及整理，难熬的求职季，等我拿到好的offer，定来好好整理，虽然博客没有多少读者（甚至没有）。希望有心人能够看到，避免踏入我走过的坑中，也给自己的青春一个总结。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[人人笔试]]></title>
+    <link href="http://michaelpassion.github.io/blog/2014/10/14/ren-ren-bi-shi/"/>
+    <updated>2014-10-14T22:19:27+08:00</updated>
+    <id>http://michaelpassion.github.io/blog/2014/10/14/ren-ren-bi-shi</id>
+    <content type="html"><![CDATA[<p>有难度的题不是很多，一个是进制转换，另一个是比较好的题是大题。 <br/>
+1. 有一种生物，单性繁殖，从出生后第三个月起产生m个后代，第五个月后死亡，求n个月后生物的总量是多少？</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[区分接口继承和实现继承]]></title>
+    <link href="http://michaelpassion.github.io/blog/2014/10/08/qu-fen-jie-kou-ji-cheng-he-shi-xian-ji-cheng/"/>
+    <updated>2014-10-08T10:20:06+08:00</updated>
+    <id>http://michaelpassion.github.io/blog/2014/10/08/qu-fen-jie-kou-ji-cheng-he-shi-xian-ji-cheng</id>
+    <content type="html"><![CDATA[<!--more-->
+
+
+<p><strong>成员函数的结构总是会被继承</strong><br/>
+public继承意味<strong>is-a</strong>,所以对base class为真的任何事情一定也对其derived classes为真。<br/>
+<strong>声明一个pure virtual函数的目的是为了让 derived classes 只继承函数的接口</strong><br/>
+<strong>声明impure virtual函数是为了让 derived classes 继承该函数的接口和缺省实现</strong><br/>
+<strong> 声明non-virtual函数的目的是为了令 derived classes 继承函数的接口及一份强制性实现 </strong></p>
+
+<h2>为多态基类声明 virtual 析构函数</h2>
+
+<hr />
+
+<p>c++明确指出： 当derived class 对象经由一个 base class 指针删除， 而该 base class 带着一个 non-virtual 析构函数，其结果未有定义 &ndash; 实际执行时通常发生的是对象的 derived 成分没有被销毁，然而base class 成分会被销毁，造成一个诡异的“局部销毁”的对象。<br/>
+    消除这个问题的做法是：给 base class 一个virtual 析构函数。此后删除 derived classes 对象就会调用 derived classes的析构函数</p>
+
+<h2>绝对不重新定义继承而来的缺省参数值</h2>
+
+<hr />
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Balanced Binary Tree]]></title>
@@ -24,10 +70,11 @@
 
 <p><a href="https://oj.leetcode.com/problems/balanced-binary-tree/">leetcode express</a></p>
 
-<p><strong>解析</strong><br/>
+<p><strong>解析</strong> <br/>
+<strong>算法一</strong> <br/>
 分别去求左子树的最大深度和右子树的最大深度，若两个子树深度之差不大于1，即为平衡二叉树。</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span>84ms 时间复杂度o(n^2)</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -84,6 +131,89 @@
 </span><span class='line'>            <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 </span><span class='line'>        <span class="k">return</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">max</span><span class="p">(</span><span class="n">dfs</span><span class="p">(</span><span class="n">root</span><span class="o">-&gt;</span><span class="n">left</span><span class="p">),</span><span class="n">dfs</span><span class="p">(</span><span class="n">root</span><span class="o">-&gt;</span><span class="n">right</span><span class="p">));</span>
 </span><span class='line'>    <span class="p">}</span>
+</span><span class='line'><span class="p">};</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><strong>算法二</strong></p>
+
+<figure class='code'><figcaption><span>56 ms 时间复杂度o(n)</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+</pre></td><td class='code'><pre><code class='c++'><span class='line'><span class="cm">/**</span>
+</span><span class='line'><span class="cm"> * Definition for binary tree</span>
+</span><span class='line'><span class="cm"> * struct TreeNode {</span>
+</span><span class='line'><span class="cm"> *     int val;</span>
+</span><span class='line'><span class="cm"> *     TreeNode *left;</span>
+</span><span class='line'><span class="cm"> *     TreeNode *right;</span>
+</span><span class='line'><span class="cm"> *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}</span>
+</span><span class='line'><span class="cm"> * };</span>
+</span><span class='line'><span class="cm"> */</span>
+</span><span class='line'><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+</span><span class='line'><span class="k">public</span><span class="o">:</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="kt">int</span> <span class="n">checkBalance</span><span class="p">(</span><span class="n">TreeNode</span> <span class="o">*</span><span class="n">root</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">root</span><span class="p">)</span> <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'>        <span class="c1">//check left subtree is balanced</span>
+</span><span class='line'>        <span class="kt">int</span> <span class="n">leftCheck</span> <span class="o">=</span> <span class="n">checkBalance</span><span class="p">(</span><span class="n">root</span><span class="o">-&gt;</span><span class="n">left</span><span class="p">);</span>
+</span><span class='line'>        <span class="k">if</span><span class="p">(</span><span class="n">leftCheck</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</span><span class='line'>            <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+</span><span class='line'>        <span class="c1">//check right subtree is balanced</span>
+</span><span class='line'>        <span class="kt">int</span> <span class="n">rightCheck</span> <span class="o">=</span> <span class="n">checkBalance</span><span class="p">(</span><span class="n">root</span><span class="o">-&gt;</span><span class="n">right</span><span class="p">);</span>
+</span><span class='line'>        <span class="k">if</span><span class="p">(</span><span class="n">rightCheck</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</span><span class='line'>            <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+</span><span class='line'>        <span class="c1">//check current node is balanced</span>
+</span><span class='line'>        <span class="k">if</span><span class="p">(</span><span class="n">abs</span><span class="p">(</span><span class="n">leftCheck</span> <span class="o">-</span> <span class="n">rightCheck</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">)</span>
+</span><span class='line'>            <span class="k">return</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">max</span><span class="p">(</span><span class="n">leftCheck</span><span class="p">,</span> <span class="n">rightCheck</span><span class="p">);</span>
+</span><span class='line'>        <span class="k">else</span>
+</span><span class='line'>            <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>    <span class="kt">bool</span> <span class="n">isBalanced</span><span class="p">(</span><span class="n">TreeNode</span> <span class="o">*</span><span class="n">root</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="k">if</span> <span class="p">(</span><span class="n">checkBalance</span><span class="p">(</span><span class="n">root</span><span class="p">)</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</span><span class='line'>            <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+</span><span class='line'>        <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>
 </span><span class='line'><span class="p">};</span>
 </span></code></pre></td></tr></table></div></figure>
 
@@ -1668,476 +1798,6 @@ fork的作用是复制一个与当前一样的进程。新进程的所有数据�
 <li>可变长书的设计</li>
 <li>可变参数的实现</li>
 </ol>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[next_permutation]]></title>
-    <link href="http://michaelpassion.github.io/blog/2014/08/26/next-permutation/"/>
-    <updated>2014-08-26T13:51:45+08:00</updated>
-    <id>http://michaelpassion.github.io/blog/2014/08/26/next-permutation</id>
-    <content type="html"><![CDATA[<blockquote><p>Implement next permutation, which rearranges numbers into the lexicographically next greater permutation of numbers.<br/>
-If such arrangement is not possible, it must rearrange it as the lowest possible order (ie, sorted in ascending order).<br/>
-The replacement must be in-place, do not allocate extra memory.<br/>
-Here are some examples. Inputs are in the left-hand column and its corresponding outputs are in the right-hand column.</p></blockquote>
-
-<pre><code> 1,2,3 → 1,3,2 
- 3,2,1 → 1,2,3 
- 1,1,5 → 1,5,1
-</code></pre>
-
-<!--more-->
-
-
-<p><a href="https://oj.leetcode.com/problems/next-permutation/">leetcode express</a></p>
-
-<p><em>思路</em></p>
-
-<ol>
-<li>从后向前扫描 <code>vector&lt;int&gt; num</code>，寻找后一个数大于前一个数的位置，标记前一个数的index 为 <code>i</code>。</li>
-<li>再从后面开始扫描，寻找第一个大于下标为<code>num[i]</code>的数（必然存在，主意一定是大于没有等于符号），标记符合条件的下标为<code>j</code>,交换<code>num[i]</code> ,<code>num[j]</code>。</li>
-<li>将<code>index[i]</code>后的全部数字逆置，得到结果。</li>
-</ol>
-
-
-<p><strong>exception</strong></p>
-
-<ul>
-<li>若当前数字排序已经是能表示的最大数字，所以符合条件的下一个字典序为所有排列中最小的数字</li>
-</ul>
-
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-</pre></td><td class='code'><pre><code class='c++'><span class='line'><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
-</span><span class='line'><span class="k">public</span><span class="o">:</span>
-</span><span class='line'>    <span class="kt">void</span> <span class="n">nextPermutation</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">num</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>        <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="n">num</span><span class="p">.</span><span class="n">size</span><span class="p">();</span>
-</span><span class='line'>        <span class="k">if</span><span class="p">(</span><span class="n">n</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
-</span><span class='line'>
-</span><span class='line'>        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">n</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="n">ii</span> <span class="o">=</span> <span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">--</span><span class="p">,</span> <span class="n">ii</span><span class="o">--</span><span class="p">)</span>
-</span><span class='line'>        <span class="p">{</span>
-</span><span class='line'>            <span class="k">if</span><span class="p">(</span><span class="n">num</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">num</span><span class="p">[</span><span class="n">ii</span><span class="p">])</span>
-</span><span class='line'>            <span class="p">{</span>
-</span><span class='line'>                <span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span>
-</span><span class='line'>                <span class="k">while</span><span class="p">(</span><span class="n">num</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">num</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
-</span><span class='line'>                    <span class="n">j</span><span class="o">--</span><span class="p">;</span>
-</span><span class='line'>                <span class="n">swap</span><span class="p">(</span><span class="n">num</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">num</span><span class="p">[</span><span class="n">j</span><span class="p">]);</span>
-</span><span class='line'>                <span class="n">reverse</span><span class="p">(</span><span class="n">num</span><span class="p">.</span><span class="n">begin</span><span class="p">()</span><span class="o">+</span><span class="n">ii</span><span class="p">,</span><span class="n">num</span><span class="p">.</span><span class="n">end</span><span class="p">());</span>
-</span><span class='line'>                <span class="k">return</span><span class="p">;</span>
-</span><span class='line'>            <span class="p">}</span>
-</span><span class='line'>        <span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'>        <span class="n">reverse</span><span class="p">(</span><span class="n">num</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">num</span><span class="p">.</span><span class="n">end</span><span class="p">());</span>
-</span><span class='line'>    <span class="p">}</span>
-</span><span class='line'><span class="p">};</span>
-</span></code></pre></td></tr></table></div></figure>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[内存相关]]></title>
-    <link href="http://michaelpassion.github.io/blog/2014/08/25/nei-cun-xiang-guan/"/>
-    <updated>2014-08-25T22:24:17+08:00</updated>
-    <id>http://michaelpassion.github.io/blog/2014/08/25/nei-cun-xiang-guan</id>
-    <content type="html"><![CDATA[<!--more-->
-
-
-<h3>1. 内存对齐：</h3>
-
-<p> 编译器会自动进行成员变量的对齐，以提高运算效率。缺省情况下，编译器为结构体的每个成员按其自然对界（natural alignment）条件分配内存。每个成员按照它们被声明的顺序在内存中存储，第一个成员的地址和整个结构体的地址相同。<br/>
- 为什么要进行内存对齐呢，原因在于，为了访问未对齐的内存，处理器需要作两次内存访问；然而，对齐的内存访问仅需要一次访问。所以为了内存的有效利用，我们有必要在定义结构体前考虑下成员的顺序。字，双字，和四字在自然边界上不需要在内存中对齐。（对字，双字，和四字来说，自然边界分别是偶数地址，可以被4 整除的地址，和可以被8 整除的地址。）
- 除此之外我们还可以利用#pragma pack（）来改变编译器的默认对齐方式。使用伪指令#pragma pack (n)，编译器将按照n个字节对齐；使用伪指令#pragma pack ()，取消自定义字节对齐方式。注意：如果
-/#pragma pack (n)中指定的n大于结构体中最大成员的size，则其不起作用，结构体仍然按照size最大的成员进行对界。其对齐的规则是,每个成员按其类型的对齐参数(通常是这个类型的大小)和指定对齐参数
-(这里是n 字节)中较小的一个对齐，即：min( n, sizeof( item ))</p>
-
-<h3>2. struct与class的区别:</h3>
-
-<p>在C++中，struct与class的区别有两点，一是struct中成员变量和函数的默认访问权限为public，而class的为private。二是由于C++中struct兼容了C中的struct的所有特性，可以定义的时候直接
-以{ }对其成员变量赋初值，而class则不能。</p>
-
-<h3>cpu与外设之间的数据传送方式</h3>
-
-<ol>
-<li><p>程序传送方式</p>
-
-<ul>
-<li>程序查询方式分为无条件传送方式和查询方式（条件传送方式）两种。
-
-<ul>
-<li><p>微机系统中的一些简单的外设，如开关、继电器、数码管、发光二极管等，在它们工作时，可以认为输入设备已随时准备好向CPU提供数据，而输出设备也随时准备好接收CPU送来的数据，这样，在CPU需要同外设交换信息时，就能够用IN或OUT指令直接对这些外设进行输入/输出操作。由于在这种方式下CPU对外设进行输入/输出操作时无需考虑外设的状态，故称之为无条件传送方式。</p></li>
-<li><p>查询传送也称为条件传送，是指在执行输入指令（IN）或输出指令（OUT）前，要先查询相应设备的状态，当输入设备处于准备好状态、输出设备处于空闲状态时，CPU才执行输入/输出指令与外设交换信息。为此，接口电路中既要有数据端口，还要有状态端口。</p>
-
-<p>1．CPU从接口中读取状态字；<br/>
-2．CPU检测相应的状态位是否满足“就绪”条件；<br/>
-3．如果不满足，则重复1、2步；若外设已处于“就绪”状态，则传送数据。</p></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>中断传送方式</p>
-
-<ul>
-<li>中断传送方式是指当外设需要与CPU进行信息交换时，由外设向CPU发出请求信号，使CPU暂停正在执行的程序，转去执行数据的输入/输出操作，数据传送结束后，CPU再继续执行被暂停的程序。</li>
-</ul>
-</li>
-<li><p>直接存储器存取（DMA）</p>
-
-<ul>
-<li>DMA传送方式是在存储器和外设之间、存储器和存储器之间直接进行数据传送(如磁盘与内存间交换数据、高速数据采集、内存和内存间的高速数据块传送等)，传送过程无需CPU介入，这样，在传送时就不必进行保护现场等一系列额外操作，传输速度基本取决于存储器和外设的速度。DMA传送方式需要一个专用接口芯片DMA控制器（DMAC）对传送过程加以控制和管理。进行DMA传送期间，CPU放弃总线控制权，将系统总线交由DMAC控制，由DMAC发出地址及读/写信号来实现高速数据传输。传送结束后DMAC再将总线控制权交还给CPU。</li>
-</ul>
-</li>
-</ol>
-
-
-<h3>map reduce</h3>
-
-<p><img src="http://www.opensourceforu.com/wp-content/uploads/2011/03/MapReduce.jpg" alt="" /></p>
-
-<h3>数据库</h3>
-
-<ol>
-<li>事务的属性包括四大类 ACID <code>atomic 原子性</code> <code>consistency 一致性</code> <code>isolation 隔离性</code> <code>durability 持久性</code></li>
-<li>查询 student 表 第5到10条数据 select * from student limit 5,10</li>
-</ol>
-
-
-<p>MYSQL 操作 出处：<a href="http://jilili.blog.51cto.com/6617089/1190014">http://jilili.blog.51cto.com/6617089/1190014</a><br/>
-3、修改表
-ALTER TABLE tb_name;     <br/>
-mysql>alter table students change course Course varchar(100) after name;  <br/>
-mysql>alter table students add course varchar(100);     <br/>
-向表中插入数据</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>insert into tb_name （col，col2，....) values (val1,val2,....）;      
-</span><span class='line'>insert into tutors （Tname，Gender，Age） values ('jerry','M',24);  -----批量插入方式
-</span><span class='line'>insert into tutors set Tname='Tom',Genser='F',Age=30;            -----只能实现单个字段</span></code></pre></td></tr></table></div></figure>
-
-
-<p> <br/>
-插入</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>insert into tutors （Tname,Gender,Age) select Name,Genser,Age from students where Age &gt;=20  
-</span><span class='line'>select * from tutors order by TID desc limit 1;          -----查看降序的第一行  
-</span><span class='line'>select last_insert_ID（）;      -----查询插入的最后一个序列号 </span></code></pre></td></tr></table></div></figure>
-
-
-<p> <br/>
-更改数据库</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>UPDATE tb_name SET column=value where   
-</span><span class='line'>mysql&gt;update students set Course='wg' where Name='j'; ' -----更改j的课程为wg   </span></code></pre></td></tr></table></div></figure>
-
-
-<p>`
-删除表中的某一字段</p>
-
-<p><code>DELETE FROM students  WHERE Course='';</code></p>
-
-<p>6、select语句练习</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-<span class='line-number'>39</span>
-<span class='line-number'>40</span>
-<span class='line-number'>41</span>
-<span class='line-number'>42</span>
-<span class='line-number'>43</span>
-<span class='line-number'>44</span>
-<span class='line-number'>45</span>
-<span class='line-number'>46</span>
-<span class='line-number'>47</span>
-<span class='line-number'>48</span>
-<span class='line-number'>49</span>
-<span class='line-number'>50</span>
-<span class='line-number'>51</span>
-<span class='line-number'>52</span>
-<span class='line-number'>53</span>
-<span class='line-number'>54</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>select distict Gender from students;         ------相同的内容只显示一次    
-</span><span class='line'> 
-</span><span class='line'>查找年龄大于20的同学并且按降序排列:   
-</span><span class='line'>select Name,Age from students where Age&gt;20 order by Age desc;    
-</span><span class='line'>年龄大于等于20并且是男性的同学:     
-</span><span class='line'>select Name from students where Age&gt;20 and Gender='M';  
-</span><span class='line'>年龄不大于20的同学:  
-</span><span class='line'>select Name,Age,Gender from students where not Age&gt;20;    
-</span><span class='line'>小于等于20的女同学:  
-</span><span class='line'>select Name,Age,Gender from students where not （Age&gt;20 or Gender=‘M’）;  
-</span><span class='line'>年龄在（21-24）之间的同学(以下两种方式）：  
-</span><span class='line'>select Name，Age from students where Age&gt;20 and Age&lt;25;  
-</span><span class='line'>select Name，Age from students where Age between 20 and 25;   
-</span><span class='line'>显示以Y开头的名称（这里限定了姓名的长度）("_"表示任意单个字符):   
-</span><span class='line'>select Name from students where Name like 'Y___';  
-</span><span class='line'>显示以Y开头的姓名：   
-</span><span class='line'>`select Name from students where Name like 'Y%';  `    
-</span><span class='line'>名称中含有ing的名称（“%”表示任意长度的任意字符):    
-</span><span class='line'>`select Name from students where Name like '%ing%';  `     
-</span><span class='line'>显示以M或N或Y开头的名字（支持正则表达式）:  
-</span><span class='line'>`select Name from students where Name rlike '^[MNY].*$'; `    
-</span><span class='line'>显示年龄是18、20、25的同学：  
-</span><span class='line'>`select Name from students where Age IN （18,20,25）; `     
-</span><span class='line'>显示挑选课程号(CID1)为空的同学：   
-</span><span class='line'>`select Name from students where CID1 is null; `   
-</span><span class='line'>把查询后的结果进行降序排序（ASC升序，desc降序）   
-</span><span class='line'>`select Name,CID1 from students where CID1 is not null order by CID1 desc;  ` 
-</span><span class='line'>显示查询的Name表头名变为name    
-</span><span class='line'>`select Name AS Student_Name from students;  `   
-</span><span class='line'>隔两行数据向后取三行数据：  
-</span><span class='line'>`select Name from students limit 2,3;  ` 
-</span><span class='line'>所有同学的平均年龄:  
-</span><span class='line'>`select AVG（age） from students;  `  
-</span><span class='line'>显示年龄最大的同学：  
-</span><span class='line'>select MAX（age） from students;   
-</span><span class='line'>显示年龄最小的同学：   
-</span><span class='line'>`select MIN（age） from students;  `  
-</span><span class='line'>显示所有同学的年龄总和：   
-</span><span class='line'>`select SUM（age） from students;  `  
-</span><span class='line'>显示所有同学的个数：    
-</span><span class='line'>`select count（age） from students; `   
-</span><span class='line'>显示所有男同学的平均年龄：  
-</span><span class='line'>`select AVG（age） from students where Gender=’M‘;`    
-</span><span class='line'>显示所有女同学的平均年龄：   
-</span><span class='line'>`select AVG（age） from students where Gender=’F‘; `  
-</span><span class='line'>显示男女同学的平均年龄：  
-</span><span class='line'>`select Gender,avg(age) from students group by Gender; `  
-</span><span class='line'>显示选修CID1的同学   
-</span><span class='line'>``select count(CID1) AS  Persons,CID1 from students group by CID1;`  
-</span><span class='line'>显示选修人数大于2的课程：   
-</span><span class='line'>``select count(CID1) AS  Persons,CID1 from students group by CID1 having Persons&gt;=2;``
-</span><span class='line'> 
-</span><span class='line'>**多表查询**   
-</span><span class='line'>每位同学及其他所学习的课程名称（以下四种方式）  </span></code></pre></td></tr></table></div></figure>
-
-
-<p>
-select students.Name,courses.Cname from students，courses where   students.CID1=courses.CID;<br/>
-select s.Name,c.Cname from students AS s,courses AS c where s.CID1=c.CID; <br/>
-select s.Name,c.Cname from students AS s left jion courses AS c on s.CID1=c.CID;(左连接）
-select s.Name,c.Cname from students AS s right jion courses AS c on s.CID1=c.CID;（右连接)</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>显示各个同学与他相对应的导师：   
-</span><span class='line'>`select c.Name as student,s.Name as teacher from students as s,students as c where
-</span><span class='line'> s.SID=c.TID;  ` 
-</span><span class='line'>显示每一位老师及其所教授的课程；没有教授的课程保持为NULL:    
-</span><span class='line'>`select t.Tname,c.Cname from tutors as t left join courses as c on t.TID=c.TID; `
-</span><span class='line'>显示每一个课程及其相关的老师，没有老师教授的课程将其老师显示为空:   
-</span><span class='line'>`select t.Tname,c.Cname from tutors as t right jion courses as c on t.TID=c.TID; `
-</span><span class='line'>显示每位同学CID1课程的课程名及其讲授了相关课程的老师的名称：  </span></code></pre></td></tr></table></div></figure>
-
-
-<p>sql
-select Name,Cname,Tname from students,courses,tutors where students.CID1=courses.CID<br/>
-and courses.TID=tutors.TID;</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>查看同学的成绩及姓名，并且按升序排列：  </span></code></pre></td></tr></table></div></figure>
-
-
-<p> sql
-select students.Name,scores.Score from students,scores where students.SID=scores.SID<br/>
-order by scores.Score desc;
-&#8220;`</p>
-
-<p><strong>子查询</strong> <br/>
-挑选出courses表中没有被students中的CID2学习的课程的课程名称：<br/>
-<code>select Cname from courses where CID not IN (select CID2 from students where  
-CID2 is not null);</code>
-挑选出没有教授任何课程的老师，每个老师及其所教授课程的对应关系在courses表中： <br/>
-<code>select Tname from tutors where TID not in (select distinct TID from courses);</code>
-找出students表中CID1有两个或两个以上同学学习了的同一个门课程的课程名称： <br/>
-<code>select Cname from courses where CID in (select CID1 from students group by CID1
- having count(CID1) &gt;=2);</code>
-年龄大于平均年龄的同学：(使用子查询时，子查询只能返回单个值）：<br/>
-<code>select Name,Age from students where Age &gt; (select avg(age) from students); </code>
-查询学生和老师各自的年龄并写在一个表中： <br/>
-<code>(select Name，Age from students) union (select Tname，Age from tutors);</code></p>
-
-<h3>进程</h3>
-
-<p>进程通信<br/>
-windows的进程间的通信方式有:<br/>
-1.文件映射；2. 共享内存（是文件映射的一种特殊情况）；3.邮件槽（mailslot）（点对点消息队列）; 4.匿名管道；5；命名管道； 6. 剪贴板；7.动态数据交换；8.对象链接与嵌入；9.远程过程调用；10.动态链接库；11.socket；12.WM_COPYDATA .<br/>
-linux进程间通信的方式有：1.管道 2.信号量 3.共享内存 4.消息队列 5.套接字 6.信号<br/>
-windows和linux共有的进程间通信方式：1. 消息（linux中叫做信号） 2. 共享内存  3. 邮槽  4. 管道   5.socket</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Unique Binary Search Trees]]></title>
-    <link href="http://michaelpassion.github.io/blog/2014/08/25/unique-binary-search-trees/"/>
-    <updated>2014-08-25T20:17:26+08:00</updated>
-    <id>http://michaelpassion.github.io/blog/2014/08/25/unique-binary-search-trees</id>
-    <content type="html"><![CDATA[<blockquote><p>Given n, how many structurally unique BST&rsquo;s (binary search trees) that store values 1&hellip;n?</p>
-
-<p>For example,</p>
-
-<p>Given n = 3, there are a total of 5 unique BST&rsquo;s.</p></blockquote>
-
-<!--more-->
-
-
-<p><a href="https://oj.leetcode.com/problems/unique-binary-search-trees/">leetcode express</a></p>
-
-<p><em>思路</em><br/>
-二叉搜索树分为左子树，根，右子树。而每一个左子树又可继续划分为以上结构。同理右子树也可以进行同样的划分。使用一个数组来记录n个节点的二叉搜索树有多少种。后面使用时直接查询即可。</p>
-
-<p>依次把每个节点作为根节点，左边节点作为左子树，右边节点作为右子树，那么总的数目等于左子树数目*右子树数目。</p>
-
-<figure class='code'><figcaption><span>DP</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-</pre></td><td class='code'><pre><code class='c++'><span class='line'><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
-</span><span class='line'><span class="k">public</span><span class="o">:</span>
-</span><span class='line'>    <span class="kt">int</span> <span class="n">numTrees</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>        <span class="kt">int</span> <span class="n">array</span><span class="p">[</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">];</span>
-</span><span class='line'>        <span class="n">memset</span><span class="p">(</span><span class="n">array</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="k">sizeof</span><span class="p">(</span><span class="n">array</span><span class="p">));</span>
-</span><span class='line'>        <span class="n">array</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-</span><span class='line'>
-</span><span class='line'>        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;=</span><span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
-</span><span class='line'>            <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">j</span><span class="o">&lt;</span><span class="n">i</span><span class="p">;</span><span class="n">j</span><span class="o">++</span><span class="p">)</span>
-</span><span class='line'>                <span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+=</span> <span class="n">array</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">*</span><span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="o">-</span><span class="n">j</span><span class="p">];</span>
-</span><span class='line'>
-</span><span class='line'>        <span class="k">return</span> <span class="n">array</span><span class="p">[</span><span class="n">n</span><span class="p">];</span>
-</span><span class='line'>    <span class="p">}</span>
-</span><span class='line'><span class="p">};</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p></p>
-
-<p>实际上只需计算前半部分作为根节点的树的数目，然后乘以2（奇数节点还要加上中间节点作为根的二叉搜索树的数目）</p>
-
-<figure class='code'><figcaption><span>只计算前半段划分</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-</pre></td><td class='code'><pre><code class='c++'><span class='line'><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
-</span><span class='line'><span class="k">public</span><span class="o">:</span>
-</span><span class='line'>    <span class="kt">int</span> <span class="n">numTrees</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>        <span class="kt">int</span> <span class="n">array</span><span class="p">[</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">];</span>
-</span><span class='line'>        <span class="n">memset</span><span class="p">(</span><span class="n">array</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="k">sizeof</span><span class="p">(</span><span class="n">array</span><span class="p">));</span>
-</span><span class='line'>        <span class="n">array</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-</span><span class='line'>
-</span><span class='line'>        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;=</span><span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
-</span><span class='line'>        <span class="p">{</span>
-</span><span class='line'>            <span class="kt">int</span> <span class="n">tmp</span> <span class="o">=</span> <span class="n">i</span><span class="o">&gt;&gt;</span><span class="mi">1</span><span class="p">;</span>
-</span><span class='line'>            <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">j</span><span class="o">&lt;=</span><span class="n">tmp</span><span class="p">;</span><span class="n">j</span><span class="o">++</span><span class="p">)</span>
-</span><span class='line'>            <span class="p">{</span>
-</span><span class='line'>                <span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+=</span> <span class="n">array</span><span class="p">[</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="n">j</span><span class="p">];</span>
-</span><span class='line'>            <span class="p">}</span>
-</span><span class='line'>            <span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;&lt;=</span> <span class="mi">1</span><span class="p">;</span>
-</span><span class='line'>            <span class="k">if</span><span class="p">(</span><span class="n">i</span> <span class="o">&amp;</span> <span class="mh">0x1</span><span class="p">)</span>
-</span><span class='line'>                <span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+=</span> <span class="n">array</span><span class="p">[</span><span class="n">tmp</span><span class="p">]</span> <span class="o">*</span> <span class="n">array</span><span class="p">[</span><span class="n">tmp</span><span class="p">];</span>
-</span><span class='line'>        <span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'>        <span class="k">return</span> <span class="n">array</span><span class="p">[</span><span class="n">n</span><span class="p">];</span>
-</span><span class='line'>    <span class="p">}</span>
-</span><span class='line'><span class="p">};</span>
-</span></code></pre></td></tr></table></div></figure>
 
 ]]></content>
   </entry>
