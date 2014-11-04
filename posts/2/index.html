@@ -9,34 +9,7 @@
 	<meta name="author" content="Michael">
 
 	
-	<meta name="description" content="Sep 26th, 2014 Convert Sorted Array to Binary Search Tree 1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-/** * Definition &hellip;">
+	<meta name="description" content="Oct 8th, 2014 c++, effectvie, 继承 区分接口继承和实现继承 “Read More &rarr;&#8221; Oct 7th, 2014 Balanced Binary Tree Given a binary tree, determine if it is &hellip;">
 	
 
   <!-- http://t.co/dKP3o1e -->
@@ -130,6 +103,223 @@
 			<div class="mid-col-container">
 				<div id="content" class="inner">
 <div itemscope itemtype="http://schema.org/Blog">
+
+
+    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+	<div class="meta">
+		<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-10-08T10:20:06+08:00" data-updated="true" itemprop="datePublished">Oct 8<sup>th</sup>, 2014</time></div>
+		<div class="tags">
+
+
+	<a class='category' href='/blog/categories/c-plus-plus/'>c++</a>, <a class='category' href='/blog/categories/effectvie/'>effectvie</a>, <a class='category' href='/blog/categories/ji-cheng/'>继承</a>
+
+
+</div>
+		
+	</div>
+	<h1 class="title" itemprop="name"><a href="/blog/2014/10/08/qu-fen-jie-kou-ji-cheng-he-shi-xian-ji-cheng/" itemprop="url">区分接口继承和实现继承</a></h1>
+	<div class="entry-content" itemprop="articleBody">
+		
+		
+		<a href="/blog/2014/10/08/qu-fen-jie-kou-ji-cheng-he-shi-xian-ji-cheng/" class="more-link">“Read More &rarr;&#8221;</a>
+	</div>
+
+</article>
+
+
+    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+	<div class="meta">
+		<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-10-07T21:54:20+08:00" data-updated="true" itemprop="datePublished">Oct 7<sup>th</sup>, 2014</time></div>
+		<div class="tags">
+
+</div>
+		
+	</div>
+	<h1 class="title" itemprop="name"><a href="/blog/2014/10/07/balanced-binary-tree/" itemprop="url">Balanced Binary Tree</a></h1>
+	<div class="entry-content" itemprop="articleBody">
+		<blockquote><p>Given a binary tree, determine if it is height-balanced.</p>
+
+<p>For this problem, a height-balanced binary tree is defined as a binary tree in which the depth of the two subtrees of every node never differ by more than 1.</p></blockquote>
+
+<p><a href="https://oj.leetcode.com/problems/balanced-binary-tree/">leetcode express</a></p>
+
+<p><strong>解析</strong> <br/>
+<strong>算法一</strong> <br/>
+分别去求左子树的最大深度和右子树的最大深度，若两个子树深度之差不大于1，即为平衡二叉树。</p>
+
+<figure class='code'><figcaption><span>84ms 时间复杂度o(n^2)</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+</pre></td><td class='code'><pre><code class='c++'><span class='line'><span class="cm">/**</span>
+</span><span class='line'><span class="cm"> * Definition for binary tree</span>
+</span><span class='line'><span class="cm"> * struct TreeNode {</span>
+</span><span class='line'><span class="cm"> *     int val;</span>
+</span><span class='line'><span class="cm"> *     TreeNode *left;</span>
+</span><span class='line'><span class="cm"> *     TreeNode *right;</span>
+</span><span class='line'><span class="cm"> *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}</span>
+</span><span class='line'><span class="cm"> * };</span>
+</span><span class='line'><span class="cm"> */</span>
+</span><span class='line'><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+</span><span class='line'><span class="k">public</span><span class="o">:</span>
+</span><span class='line'>    <span class="kt">bool</span> <span class="n">isBalanced</span><span class="p">(</span><span class="n">TreeNode</span> <span class="o">*</span><span class="n">root</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">root</span><span class="p">)</span> <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+</span><span class='line'>        <span class="kt">int</span> <span class="n">left</span> <span class="o">=</span> <span class="n">dfs</span><span class="p">(</span><span class="n">root</span><span class="o">-&gt;</span><span class="n">left</span><span class="p">);</span>
+</span><span class='line'>        <span class="kt">int</span> <span class="n">right</span> <span class="o">=</span> <span class="n">dfs</span><span class="p">(</span><span class="n">root</span><span class="o">-&gt;</span><span class="n">right</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="k">if</span><span class="p">(</span><span class="n">abs</span><span class="p">(</span><span class="n">left</span><span class="o">-</span><span class="n">right</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">1</span><span class="p">)</span>
+</span><span class='line'>            <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="k">return</span> <span class="nf">isBalanced</span><span class="p">(</span><span class="n">root</span><span class="o">-&gt;</span><span class="n">left</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="n">isBalanced</span><span class="p">(</span><span class="n">root</span><span class="o">-&gt;</span><span class="n">right</span><span class="p">);</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="kt">int</span> <span class="n">dfs</span><span class="p">(</span><span class="n">TreeNode</span> <span class="o">*</span><span class="n">root</span><span class="p">)</span>
+</span><span class='line'>    <span class="p">{</span>
+</span><span class='line'>        <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">root</span><span class="p">)</span>
+</span><span class='line'>            <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'>        <span class="k">return</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">max</span><span class="p">(</span><span class="n">dfs</span><span class="p">(</span><span class="n">root</span><span class="o">-&gt;</span><span class="n">left</span><span class="p">),</span><span class="n">dfs</span><span class="p">(</span><span class="n">root</span><span class="o">-&gt;</span><span class="n">right</span><span class="p">));</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'><span class="p">};</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><strong>算法二</strong></p>
+
+<figure class='code'><figcaption><span>56 ms 时间复杂度o(n)</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+</pre></td><td class='code'><pre><code class='c++'><span class='line'><span class="cm">/**</span>
+</span><span class='line'><span class="cm"> * Definition for binary tree</span>
+</span><span class='line'><span class="cm"> * struct TreeNode {</span>
+</span><span class='line'><span class="cm"> *     int val;</span>
+</span><span class='line'><span class="cm"> *     TreeNode *left;</span>
+</span><span class='line'><span class="cm"> *     TreeNode *right;</span>
+</span><span class='line'><span class="cm"> *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}</span>
+</span><span class='line'><span class="cm"> * };</span>
+</span><span class='line'><span class="cm"> */</span>
+</span><span class='line'><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+</span><span class='line'><span class="k">public</span><span class="o">:</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="kt">int</span> <span class="n">checkBalance</span><span class="p">(</span><span class="n">TreeNode</span> <span class="o">*</span><span class="n">root</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">root</span><span class="p">)</span> <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'>        <span class="c1">//check left subtree is balanced</span>
+</span><span class='line'>        <span class="kt">int</span> <span class="n">leftCheck</span> <span class="o">=</span> <span class="n">checkBalance</span><span class="p">(</span><span class="n">root</span><span class="o">-&gt;</span><span class="n">left</span><span class="p">);</span>
+</span><span class='line'>        <span class="k">if</span><span class="p">(</span><span class="n">leftCheck</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</span><span class='line'>            <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+</span><span class='line'>        <span class="c1">//check right subtree is balanced</span>
+</span><span class='line'>        <span class="kt">int</span> <span class="n">rightCheck</span> <span class="o">=</span> <span class="n">checkBalance</span><span class="p">(</span><span class="n">root</span><span class="o">-&gt;</span><span class="n">right</span><span class="p">);</span>
+</span><span class='line'>        <span class="k">if</span><span class="p">(</span><span class="n">rightCheck</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</span><span class='line'>            <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+</span><span class='line'>        <span class="c1">//check current node is balanced</span>
+</span><span class='line'>        <span class="k">if</span><span class="p">(</span><span class="n">abs</span><span class="p">(</span><span class="n">leftCheck</span> <span class="o">-</span> <span class="n">rightCheck</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">)</span>
+</span><span class='line'>            <span class="k">return</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">max</span><span class="p">(</span><span class="n">leftCheck</span><span class="p">,</span> <span class="n">rightCheck</span><span class="p">);</span>
+</span><span class='line'>        <span class="k">else</span>
+</span><span class='line'>            <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>    <span class="kt">bool</span> <span class="n">isBalanced</span><span class="p">(</span><span class="n">TreeNode</span> <span class="o">*</span><span class="n">root</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="k">if</span> <span class="p">(</span><span class="n">checkBalance</span><span class="p">(</span><span class="n">root</span><span class="p">)</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</span><span class='line'>            <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+</span><span class='line'>        <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'><span class="p">};</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+		
+		
+	</div>
+
+</article>
 
 
     <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
@@ -264,7 +454,7 @@ word = <code>"ABCB"</code>, -> returns <code>false</code>.</p></blockquote>
 
 
 		
-		<a href="/blog/2014/09/21/word-search/" class="more-link">read on &rarr;</a>
+		<a href="/blog/2014/09/21/word-search/" class="more-link">“Read More &rarr;&#8221;</a>
 	</div>
 
 </article>
@@ -296,83 +486,7 @@ word = <code>"ABCB"</code>, -> returns <code>false</code>.</p></blockquote>
 
 
 		
-		<a href="/blog/2014/09/20/palindrome-linklist/" class="more-link">read on &rarr;</a>
-	</div>
-
-</article>
-
-
-    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-	<div class="meta">
-		<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-09-19T20:38:30+08:00" data-updated="true" itemprop="datePublished">Sep 19<sup>th</sup>, 2014</time></div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/bi-shi/'>笔试</a>, <a class='category' href='/blog/categories/mian-shi/'>面试</a>
-
-
-</div>
-		
-	</div>
-	<h1 class="title" itemprop="name"><a href="/blog/2014/09/19/iqiyi2014nian-xiao-zhao-bi-shi-ke-hu-duan-kai-fa-gong-cheng-shi/" itemprop="url">Iqiyi2014年校招笔试 客户端开发工程师</a></h1>
-	<div class="entry-content" itemprop="articleBody">
-		<p><img src="http://campus.iqiyi.com/html/images/index/logo.png" alt="" /> <br/>
-先总结一下：考的内容比较基础，概率题不难，排序题不难，语法细节的题目较少，后面大题没有算法题，都是概念性的问题，复习的好的话应该不是问题，问题是我没有复习好<del>(>_&lt;)</del>。</p>
-
-
-		
-		<a href="/blog/2014/09/19/iqiyi2014nian-xiao-zhao-bi-shi-ke-hu-duan-kai-fa-gong-cheng-shi/" class="more-link">read on &rarr;</a>
-	</div>
-
-</article>
-
-
-    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-	<div class="meta">
-		<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-09-14T16:08:37+08:00" data-updated="true" itemprop="datePublished">Sep 14<sup>th</sup>, 2014</time></div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/leetcode/'>leetcode</a>, <a class='category' href='/blog/categories/lian-biao/'>链表</a>
-
-
-</div>
-		
-	</div>
-	<h1 class="title" itemprop="name"><a href="/blog/2014/09/14/rotate-list/" itemprop="url">Rotate List</a></h1>
-	<div class="entry-content" itemprop="articleBody">
-		<blockquote><p>Given a list, rotate the list to the right by k places, where k is non-negative.<br/>
-For example:
-Given <code>1-&gt;2-&gt;3-&gt;4-&gt;5-&gt;NULL</code> and <code>k = 2</code>,<br/>
-return <code>4-&gt;5-&gt;1-&gt;2-&gt;3-&gt;NULL</code>.</p></blockquote>
-
-
-		
-		<a href="/blog/2014/09/14/rotate-list/" class="more-link">read on &rarr;</a>
+		<a href="/blog/2014/09/20/palindrome-linklist/" class="more-link">“Read More &rarr;&#8221;</a>
 	</div>
 
 </article>
@@ -430,6 +544,10 @@ return <code>4-&gt;5-&gt;1-&gt;2-&gt;3-&gt;NULL</code>.</p></blockquote>
         
         
         <a href="/posts/11">11</a>
+        
+        
+        
+        <a href="/posts/12">12</a>
         
         
         
