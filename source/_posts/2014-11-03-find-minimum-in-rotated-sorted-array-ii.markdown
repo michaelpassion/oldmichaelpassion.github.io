@@ -97,7 +97,7 @@ public:
 
 以上两个方法，都不是很优雅，对于特殊情况的判断是根据oj提供的错误信息，经过几次改正才得到的结果，不是很清晰，可能oj提供的case不足以证明这两个方法的正确性，若各位发现错误，或有好的建议，欢迎留言 XD 。
 
-***Much better way***
+***Much better way***  
 
 ```c++
 	class Solution {
