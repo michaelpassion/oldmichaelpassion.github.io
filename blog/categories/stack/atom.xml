@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: stack | My Progressing Blog]]></title>
+  <link href="http://michaelpassion.github.io/blog/categories/stack/atom.xml" rel="self"/>
+  <link href="http://michaelpassion.github.io/"/>
+  <updated>2014-11-14T10:14:00+08:00</updated>
+  <id>http://michaelpassion.github.io/</id>
+  <author>
+    <name><![CDATA[Michael]]></name>
+    <email><![CDATA[carter1373043@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Min Stack]]></title>
+    <link href="http://michaelpassion.github.io/blog/2014/11/14/min-stack/"/>
+    <updated>2014-11-14T10:08:06+08:00</updated>
+    <id>http://michaelpassion.github.io/blog/2014/11/14/min-stack</id>
+    <content type="html"><![CDATA[<blockquote><p>Design a stack that supports push, pop, top, and retrieving the minimum element in constant time.</p>
+
+<p>push(x) &ndash; Push element x onto stack.<br/>
+pop() &ndash; Removes the element on top of the stack.<br/>
+top() &ndash; Get the top element.<br/>
+getMin() &ndash; Retrieve the minimum element in the stack.</p></blockquote>
+
+<!--more-->
+
+
+<p><a href="https://oj.leetcode.com/problems/min-stack/">Leetcode express</a></p>
+
+<pre><code class="c++">class MinStack {
+
+stack&lt;int&gt; nums;
+stack&lt;int&gt; min;
+public:
+    void push(int x) {
+        nums.push(x);
+        if (min.size() == 0 || x &lt;= min.top())
+            min.push(x);
+
+    }
+
+    void pop() {
+        if (nums.top() == min.top())
+            min.pop();
+        nums.pop();
+    }
+
+    int top() {
+        return nums.top();
+    }
+
+    int getMin() {
+        return min.top();
+    }
+};
+</code></pre>
+]]></content>
+  </entry>
+  
+</feed>
