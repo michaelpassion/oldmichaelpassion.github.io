@@ -4,7 +4,7 @@
   <title><![CDATA[Category: leetcode | My Progressing Blog]]></title>
   <link href="http://michaelpassion.github.io/blog/categories/leetcode/atom.xml" rel="self"/>
   <link href="http://michaelpassion.github.io/"/>
-  <updated>2014-11-14T10:14:00+08:00</updated>
+  <updated>2014-11-18T23:01:35+08:00</updated>
   <id>http://michaelpassion.github.io/</id>
   <author>
     <name><![CDATA[Michael]]></name>
@@ -12,6 +12,59 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Count and Say]]></title>
+    <link href="http://michaelpassion.github.io/blog/2014/11/18/count-and-say/"/>
+    <updated>2014-11-18T22:54:58+08:00</updated>
+    <id>http://michaelpassion.github.io/blog/2014/11/18/count-and-say</id>
+    <content type="html"><![CDATA[<blockquote><p>The count-and-say sequence is the sequence of integers beginning as follows:
+<code>1, 11, 21, 1211, 111221, ...</code></p>
+
+<p><code>1</code> is read off as <code>"one 1"</code> or <code>11</code>.<br/>
+<code>11</code> is read off as <code>"two 1s"</code> or<code>21</code>.<br/>
+<code>21</code> is read off as <code>"one 2, then one 1"</code> or <code>1211</code>.<br/>
+Given an integer <code>n</code>, generate the <code>nth</code> sequence.</p>
+
+<p>Note: The sequence of integers will be represented as a string.</p></blockquote>
+
+<!--more-->
+
+
+<p><a href="https://oj.leetcode.com/problems/count-and-say/">leetcode express</a></p>
+
+<p><strong>解题思路</strong>
+最开始想到递归，因为后一个字符串是通过前一个字符串确定的，但是转念一想只需要一个字符串来保存状态即可，以下解法公参考：</p>
+
+<pre><code>class Solution {
+public:
+    string countAndSay(int n) {
+        if (n == 1)  return "1";
+        string a = "1";
+        string tmp = "";
+        for (int i=0; i&lt; n-1; i++) {
+            int count = 1;
+
+            for (int j=0; j&lt;a.length(); j++) {
+                if(a[j] == a[j+1])
+                    count++;
+                else
+                {
+                    tmp += to_string(count) + a[j];
+                    count=1;
+
+                }
+            }
+            a = tmp;
+            tmp = "";
+        }
+
+        return a;
+    }
+};
+</code></pre>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Min Stack]]></title>
@@ -236,53 +289,6 @@ public:
 
         return newHead;
         }
-};
-</code></pre>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Triangle]]></title>
-    <link href="http://michaelpassion.github.io/blog/2014/09/12/triangle/"/>
-    <updated>2014-09-12T17:40:54+08:00</updated>
-    <id>http://michaelpassion.github.io/blog/2014/09/12/triangle</id>
-    <content type="html"><![CDATA[<blockquote><p>Given a triangle, find the minimum path sum from top to bottom. Each step you may move to adjacent numbers on the row below.</p>
-
-<p>For example, given the following triangle</p>
-
-<pre><code>    [
-         [2],       
-        [3,4],  
-       [6,5,7],  
-      [4,1,8,3]  
-    ]   
-</code></pre>
-
-<p>The minimum path sum from top to bottom is 11 (i.e., 2 + 3 + 5 + 1 = 11).</p>
-
-<p>Note:<br/>
-Bonus point if you are able to do this using only O(n) extra space, where n is the total number of rows in the triangle.</p></blockquote>
-
-<!--more-->
-
-
-<pre><code class="c++ ">
-class Solution {
-public:
-    int minimumTotal(vector&lt;vector&lt;int&gt; &gt; &amp;triangle) {
-        int n = triangle.size();
-        vector&lt;int&gt; minNums = triangle[n-1];
-
-        for (int i = n - 2; i &gt;= 0; i--)
-        {
-            for(int j = 0; j &lt;= i; j++)
-            {
-                minNums[j] = min(minNums[j], minNums[j+1]) + triangle[i][j];
-            }
-        }
-
-        return minNums[0];
-    }
 };
 </code></pre>
 ]]></content>
