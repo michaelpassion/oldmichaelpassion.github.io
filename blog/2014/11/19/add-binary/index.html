@@ -1,0 +1,290 @@
+
+<!DOCTYPE HTML>
+
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>Add Binary - My Progressing Blog</title>
+	<meta name="author" content="Michael">
+
+	
+	<meta name="description" content="Add Binary Given two binary strings, return their sum (also a binary string). For example,
+a = "11"
+b = "1"
+Return "100". leetcode express 解题思路 &hellip;">
+	
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link href="/atom.xml" rel="alternate" title="My Progressing Blog" type="application/atom+xml">
+	
+	<link rel="canonical" href="http://michaelpassion.github.io/blog/2014/11/19/add-binary/">
+	<link href="/favicon.png" rel="shortcut icon">
+	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<link href="/stylesheets/font-awesome.min.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<link href='http://fonts.googleapis.com/css?family=Nunito:400,300,700' rel='stylesheet' type='text/css'>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	
+  
+
+</head>
+
+
+<body>
+	<div class="container">
+		<div class="left-col">
+			<div class="intrude-less">
+			<header id="header" class="inner"><div class="profilepic">
+	
+	<script src="/javascripts/md5.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			$('.profilepic').append("<img src='http://www.gravatar.com/avatar/" + MD5("carter1373043@gmail.com") + "?s=160' alt='Profile Picture' style='width: 160px;' />");
+		});
+	</script>
+	
+</div>
+<p>Lord I'm doing what i can to be a </p>
+<h1 style="font-family:Georgia;font-size:150%;color:CornflowerBlue">Better Man</h1>
+<font color="DeepSkyBlue">不要浮躁，要相信自己，通过自己的奋斗，定能拨开这迷雾，奋勇前行!</font>
+
+<font color="#F0F8FF"></font>
+<nav id="main-nav"><ul class="main">
+    <li><a href="/">Blog</a></li>
+    <li><a href="/about">About</a></li>
+    <li><a href="/blog/archives">Archives</a></li>
+    <li><a href="/tag-cloud">tags</a></li>
+
+</ul>
+</nav>
+<nav id="sub-nav">
+	<div class="social">
+		
+			<a class="email" href="mailto:carter1373043@gmail.com" title="Email">Email</a>
+		
+        
+        <a class="weibo" href="http://www.weibo.com/michaelpassion" title="Weibo">Weibo</a>
+        
+        
+		
+		
+			<a class="google" href="https://plus.google.com/carter1373043@gmail.com" rel="author" title="Google+">Google+</a>
+		
+		
+			<a class="twitter" href="http://twitter.com/carter1373043@gmial.com" title="Twitter">Twitter</a>
+		
+		
+			<a class="github" href="https://github.com/michaelpassion" title="GitHub">GitHub</a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+    	
+    	
+			<a class="rss" href="/atom.xml" title="RSS">RSS</a>
+		
+	</div>
+</nav>
+</header>				
+			</div>
+		</div>	
+		<div class="mid-col">
+			
+				
+			
+			<div class="mid-col-container">
+				<div id="content" class="inner"><article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+	<h1 class="title" itemprop="name">Add Binary</h1>
+	<div class="entry-content" itemprop="articleBody"><blockquote><p>Given two binary strings, return their sum (also a binary string).</p>
+
+<p>For example,<br/>
+a = <code>"11"</code><br/>
+b = <code>"1"</code><br/>
+Return <code>"100"</code>.</p></blockquote>
+
+<!--more-->
+
+
+<p><a href="https://oj.leetcode.com/problems/add-binary/">leetcode express</a></p>
+
+<p><strong>解题思路</strong>
+类似于多项式相加，用位运算加速计算，<code>carry</code>用来保存进位，<code>tmp</code>保存两个二进制数第<code>i</code>位的和，再和carry相加，并将结果加入<code>res</code>中，最后因为<code>res</code>是逆序的，再将<code>res</code>翻转一遍。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>class Solution {
+</span><span class='line'>public:
+</span><span class='line'>    string addBinary(string a, string b) {
+</span><span class='line'>        int result=0, carry =0;
+</span><span class='line'>        string res = "";
+</span><span class='line'>        int aLen = a.length()-1;
+</span><span class='line'>        int bLen = b.length()-1;
+</span><span class='line'>        int tmp;
+</span><span class='line'>        
+</span><span class='line'>        while(aLen &gt;=0 && bLen &gt;=0)
+</span><span class='line'>        {
+</span><span class='line'>            result = (a[aLen]-'0')^(b[bLen] - '0');
+</span><span class='line'>            tmp = (result ^ carry);
+</span><span class='line'>            res +=to_string(tmp);
+</span><span class='line'>            carry = (a[aLen--]- '0')+(b[bLen--] - '0')+carry &gt;= 2 ? 1 : 0;
+</span><span class='line'>        }
+</span><span class='line'>        
+</span><span class='line'>        while (aLen&gt;=0) {
+</span><span class='line'>            tmp = ((a[aLen]-'0')^carry);
+</span><span class='line'>            res += to_string(tmp);
+</span><span class='line'>            carry = (a[aLen]-'0')&carry;
+</span><span class='line'>            aLen--;
+</span><span class='line'>        }
+</span><span class='line'>        while (bLen&gt;=0) {
+</span><span class='line'>            tmp = ((b[bLen]-'0')^carry);
+</span><span class='line'>            res += to_string(tmp);
+</span><span class='line'>            carry = (b[bLen]-'0')&carry;
+</span><span class='line'>            bLen--;
+</span><span class='line'>        }
+</span><span class='line'>        if (carry == 1) {
+</span><span class='line'>            res += to_string(carry);
+</span><span class='line'>        }
+</span><span class='line'>        
+</span><span class='line'>        int l =0, r= res.length()-1;
+</span><span class='line'>        while(l &lt; r)
+</span><span class='line'>        {
+</span><span class='line'>            swap(res[l],res[r]);
+</span><span class='line'>            l++;r--;
+</span><span class='line'>        }
+</span><span class='line'>    
+</span><span class='line'>        return res;
+</span><span class='line'>    }
+</span><span class='line'>
+</span><span class='line'>};</span></code></pre></td></tr></table></div></figure>
+
+</div>
+
+</article>
+
+	<div class="share">
+	<div class="addthis_toolbox addthis_default_style ">
+	
+	
+	<a class="addthis_button_tweet"></a>
+	
+	
+	<a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+	
+	<a class="addthis_counter addthis_pill_style"></a>
+	</div>
+  <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid="></script>
+  
+</div>
+
+
+</div>
+			</div>
+			<footer id="footer" class="inner">Copyright &copy; 2014
+
+    Michael
+
+
+Powered by <a href="http://octopress.org">Octopress</a>
+<p>Design credit: <a href="http://shashankmehta.in/archive/2012/greyshade.html">Shashank Mehta</a></p></footer>
+		</div>
+	</div>
+	
+
+<script type="text/javascript">
+      var disqus_shortname = 'xx0000xx';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://michaelpassion.github.io/blog/2014/11/19/add-binary/';
+        var disqus_url = 'http://michaelpassion.github.io/blog/2014/11/19/add-binary/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+</body>
+</html>

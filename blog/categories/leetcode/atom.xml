@@ -4,7 +4,7 @@
   <title><![CDATA[Category: leetcode | My Progressing Blog]]></title>
   <link href="http://michaelpassion.github.io/blog/categories/leetcode/atom.xml" rel="self"/>
   <link href="http://michaelpassion.github.io/"/>
-  <updated>2014-11-18T23:01:35+08:00</updated>
+  <updated>2014-11-19T13:24:20+08:00</updated>
   <id>http://michaelpassion.github.io/</id>
   <author>
     <name><![CDATA[Michael]]></name>
@@ -12,6 +12,75 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Add Binary]]></title>
+    <link href="http://michaelpassion.github.io/blog/2014/11/19/add-binary/"/>
+    <updated>2014-11-19T13:11:32+08:00</updated>
+    <id>http://michaelpassion.github.io/blog/2014/11/19/add-binary</id>
+    <content type="html"><![CDATA[<blockquote><p>Given two binary strings, return their sum (also a binary string).</p>
+
+<p>For example,<br/>
+a = <code>"11"</code><br/>
+b = <code>"1"</code><br/>
+Return <code>"100"</code>.</p></blockquote>
+
+<!--more-->
+
+
+<p><a href="https://oj.leetcode.com/problems/add-binary/">leetcode express</a></p>
+
+<p><strong>解题思路</strong>
+类似于多项式相加，用位运算加速计算，<code>carry</code>用来保存进位，<code>tmp</code>保存两个二进制数第<code>i</code>位的和，再和carry相加，并将结果加入<code>res</code>中，最后因为<code>res</code>是逆序的，再将<code>res</code>翻转一遍。<br/>
+&#8220;`
+class Solution {
+public:
+    string addBinary(string a, string b) {
+        int result=0, carry =0;
+        string res = &ldquo;&rdquo;;
+        int aLen = a.length()-1;
+        int bLen = b.length()-1;
+        int tmp;</p>
+
+<pre><code>    while(aLen &gt;=0 &amp;&amp; bLen &gt;=0)
+    {
+        result = (a[aLen]-'0')^(b[bLen] - '0');
+        tmp = (result ^ carry);
+        res +=to_string(tmp);
+        carry = (a[aLen--]- '0')+(b[bLen--] - '0')+carry &gt;= 2 ? 1 : 0;
+    }
+
+    while (aLen&gt;=0) {
+        tmp = ((a[aLen]-'0')^carry);
+        res += to_string(tmp);
+        carry = (a[aLen]-'0')&amp;carry;
+        aLen--;
+    }
+    while (bLen&gt;=0) {
+        tmp = ((b[bLen]-'0')^carry);
+        res += to_string(tmp);
+        carry = (b[bLen]-'0')&amp;carry;
+        bLen--;
+    }
+    if (carry == 1) {
+        res += to_string(carry);
+    }
+
+    int l =0, r= res.length()-1;
+    while(l &lt; r)
+    {
+        swap(res[l],res[r]);
+        l++;r--;
+    }
+
+    return res;
+}
+</code></pre>
+
+<p>};
+&#8220;`</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Count and Say]]></title>
@@ -230,65 +299,6 @@ public:
 
         return false;
     }
-};
-</code></pre>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Rotate List]]></title>
-    <link href="http://michaelpassion.github.io/blog/2014/09/14/rotate-list/"/>
-    <updated>2014-09-14T16:08:37+08:00</updated>
-    <id>http://michaelpassion.github.io/blog/2014/09/14/rotate-list</id>
-    <content type="html"><![CDATA[<blockquote><p>Given a list, rotate the list to the right by k places, where k is non-negative.<br/>
-For example:
-Given <code>1-&gt;2-&gt;3-&gt;4-&gt;5-&gt;NULL</code> and <code>k = 2</code>,<br/>
-return <code>4-&gt;5-&gt;1-&gt;2-&gt;3-&gt;NULL</code>.</p></blockquote>
-
-<!--more-->
-
-
-<p><strong>思路</strong><br/>
-有点感冒，头晕晕乎乎的，还出冷汗，一开始脑子不够用，竟然套用翻转string的那个算法，还reverse三次，弱爆了。其次就是<code>k</code>的值可能大于链表长度，我没有去算链表长度，直接用快慢指针做的，这样对于特殊输入运行效率可能极其低下，回头修改，写完这点，回宿舍休息会去。</p>
-
-<pre><code class="c++">/**
- * Definition for singly-linked list.
- * struct ListNode {
- *     int val;
- *     ListNode *next;
- *     ListNode(int x) : val(x), next(NULL) {}
- * };
- */
-class Solution {
-public:
-    ListNode *rotateRight(ListNode *head, int k) {
-        if(!head || !head-&gt;next || k &lt; 1) return head;
-        ListNode *p = head;
-        for (int i=0; i&lt;k; i++) 
-        {
-            if (p-&gt;next == NULL) 
-            {
-                p = head;
-            }
-            else 
-            {
-                p = p-&gt;next;
-            }
-        }
-
-        ListNode *q = head;
-        while (p-&gt;next)
-        {
-            p = p-&gt;next;
-            q = q-&gt;next;
-        }
-        p-&gt;next = head;
-
-        ListNode *newHead = q-&gt;next;
-        q-&gt;next = NULL;
-
-        return newHead;
-        }
 };
 </code></pre>
 ]]></content>

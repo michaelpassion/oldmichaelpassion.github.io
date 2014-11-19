@@ -4,7 +4,7 @@
   <title><![CDATA[My Progressing Blog]]></title>
   <link href="http://michaelpassion.github.io/atom.xml" rel="self"/>
   <link href="http://michaelpassion.github.io/"/>
-  <updated>2014-11-18T23:01:35+08:00</updated>
+  <updated>2014-11-19T13:24:20+08:00</updated>
   <id>http://michaelpassion.github.io/</id>
   <author>
     <name><![CDATA[Michael]]></name>
@@ -12,6 +12,118 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Add Binary]]></title>
+    <link href="http://michaelpassion.github.io/blog/2014/11/19/add-binary/"/>
+    <updated>2014-11-19T13:11:32+08:00</updated>
+    <id>http://michaelpassion.github.io/blog/2014/11/19/add-binary</id>
+    <content type="html"><![CDATA[<blockquote><p>Given two binary strings, return their sum (also a binary string).</p>
+
+<p>For example,<br/>
+a = <code>"11"</code><br/>
+b = <code>"1"</code><br/>
+Return <code>"100"</code>.</p></blockquote>
+
+<!--more-->
+
+
+<p><a href="https://oj.leetcode.com/problems/add-binary/">leetcode express</a></p>
+
+<p><strong>解题思路</strong>
+类似于多项式相加，用位运算加速计算，<code>carry</code>用来保存进位，<code>tmp</code>保存两个二进制数第<code>i</code>位的和，再和carry相加，并将结果加入<code>res</code>中，最后因为<code>res</code>是逆序的，再将<code>res</code>翻转一遍。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>class Solution {
+</span><span class='line'>public:
+</span><span class='line'>    string addBinary(string a, string b) {
+</span><span class='line'>        int result=0, carry =0;
+</span><span class='line'>        string res = "";
+</span><span class='line'>        int aLen = a.length()-1;
+</span><span class='line'>        int bLen = b.length()-1;
+</span><span class='line'>        int tmp;
+</span><span class='line'>        
+</span><span class='line'>        while(aLen &gt;=0 && bLen &gt;=0)
+</span><span class='line'>        {
+</span><span class='line'>            result = (a[aLen]-'0')^(b[bLen] - '0');
+</span><span class='line'>            tmp = (result ^ carry);
+</span><span class='line'>            res +=to_string(tmp);
+</span><span class='line'>            carry = (a[aLen--]- '0')+(b[bLen--] - '0')+carry &gt;= 2 ? 1 : 0;
+</span><span class='line'>        }
+</span><span class='line'>        
+</span><span class='line'>        while (aLen&gt;=0) {
+</span><span class='line'>            tmp = ((a[aLen]-'0')^carry);
+</span><span class='line'>            res += to_string(tmp);
+</span><span class='line'>            carry = (a[aLen]-'0')&carry;
+</span><span class='line'>            aLen--;
+</span><span class='line'>        }
+</span><span class='line'>        while (bLen&gt;=0) {
+</span><span class='line'>            tmp = ((b[bLen]-'0')^carry);
+</span><span class='line'>            res += to_string(tmp);
+</span><span class='line'>            carry = (b[bLen]-'0')&carry;
+</span><span class='line'>            bLen--;
+</span><span class='line'>        }
+</span><span class='line'>        if (carry == 1) {
+</span><span class='line'>            res += to_string(carry);
+</span><span class='line'>        }
+</span><span class='line'>        
+</span><span class='line'>        int l =0, r= res.length()-1;
+</span><span class='line'>        while(l &lt; r)
+</span><span class='line'>        {
+</span><span class='line'>            swap(res[l],res[r]);
+</span><span class='line'>            l++;r--;
+</span><span class='line'>        }
+</span><span class='line'>    
+</span><span class='line'>        return res;
+</span><span class='line'>    }
+</span><span class='line'>
+</span><span class='line'>};</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Count and Say]]></title>
@@ -1518,78 +1630,6 @@ We get the following sequence (ie, for n = 3):</p>
 </span><span class='line'><span class="p">}</span>
 </span></code></pre></td></tr></table></div></figure>
 
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Search Insert Position]]></title>
-    <link href="http://michaelpassion.github.io/blog/2014/09/11/search-insert-position/"/>
-    <updated>2014-09-11T11:51:00+08:00</updated>
-    <id>http://michaelpassion.github.io/blog/2014/09/11/search-insert-position</id>
-    <content type="html"><![CDATA[<blockquote><p>Given a sorted array and a target value, return the index if the target is found. If not, return the index where it would be if it were inserted in order.</p>
-
-<p>You may assume no duplicates in the array.</p>
-
-<p>Here are few examples.<br/>
-    [1,3,5,6], 5 → 2<br/>
-    [1,3,5,6], 2 → 1<br/>
-    [1,3,5,6], 7 → 4<br/>
-    [1,3,5,6], 0 → 0</p></blockquote>
-
-<!--more-->
-
-
-<p><a href="https://oj.leetcode.com/problems/search-insert-position/">leetcode express</a></p>
-
-<p><strong>思路</strong><br/>
-首先这题肯定用二分查找，因为给定数组是有序的，与二分不同的是如果数组中没有target要返回target应该插入的位置。在二分查找中如果没有找到target则返回-1，此时，l>r（l,r分别为标记查找范围的左指针和右指针）,而此时l = r+1, 由题目给出几组数据可知，此时l的位置就是target要应该插入的位置。</p>
-
-<figure class='code'><figcaption><span>时间复杂度O(logn),空间复杂度O(1)</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-</pre></td><td class='code'><pre><code class='c++'><span class='line'><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
-</span><span class='line'><span class="k">public</span><span class="o">:</span>
-</span><span class='line'>    <span class="kt">int</span> <span class="n">searchInsert</span><span class="p">(</span><span class="kt">int</span> <span class="n">A</span><span class="p">[],</span> <span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="kt">int</span> <span class="n">target</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>        <span class="k">if</span><span class="p">(</span><span class="n">n</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">)</span> <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-</span><span class='line'>        <span class="kt">int</span> <span class="n">l</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">r</span> <span class="o">=</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
-</span><span class='line'>        <span class="kt">int</span> <span class="n">mid</span><span class="p">;</span>
-</span><span class='line'>
-</span><span class='line'>        <span class="k">while</span><span class="p">(</span><span class="n">l</span> <span class="o">&lt;=</span> <span class="n">r</span><span class="p">)</span>
-</span><span class='line'>        <span class="p">{</span>
-</span><span class='line'>            <span class="n">mid</span> <span class="o">=</span> <span class="n">l</span> <span class="o">+</span> <span class="p">((</span><span class="n">r</span><span class="o">-</span><span class="n">l</span><span class="p">)</span><span class="o">&gt;&gt;</span><span class="mi">1</span><span class="p">);</span>
-</span><span class='line'>            <span class="k">if</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">==</span> <span class="n">target</span><span class="p">)</span> <span class="k">return</span> <span class="n">mid</span><span class="p">;</span>
-</span><span class='line'>            <span class="k">if</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">target</span><span class="p">)</span>
-</span><span class='line'>                <span class="n">r</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
-</span><span class='line'>            <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">target</span><span class="p">)</span>
-</span><span class='line'>                <span class="n">l</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
-</span><span class='line'>        <span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'>        <span class="k">return</span> <span class="n">l</span><span class="p">;</span>
-</span><span class='line'>    <span class="p">}</span>
-</span><span class='line'><span class="p">};</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p><strong>扩展</strong><br/>
-如果数组中有重复数字，且要求将target插入到数组中，并要在相同数字第一个位置之前，怎么设计算法？ <br/>
-to be continued&hellip;</p>
 ]]></content>
   </entry>
   

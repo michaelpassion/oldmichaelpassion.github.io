@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: manipulation | My Progressing Blog]]></title>
+  <link href="http://michaelpassion.github.io/blog/categories/manipulation/atom.xml" rel="self"/>
+  <link href="http://michaelpassion.github.io/"/>
+  <updated>2014-11-19T13:24:20+08:00</updated>
+  <id>http://michaelpassion.github.io/</id>
+  <author>
+    <name><![CDATA[Michael]]></name>
+    <email><![CDATA[carter1373043@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Add Binary]]></title>
+    <link href="http://michaelpassion.github.io/blog/2014/11/19/add-binary/"/>
+    <updated>2014-11-19T13:11:32+08:00</updated>
+    <id>http://michaelpassion.github.io/blog/2014/11/19/add-binary</id>
+    <content type="html"><![CDATA[<blockquote><p>Given two binary strings, return their sum (also a binary string).</p>
+
+<p>For example,<br/>
+a = <code>"11"</code><br/>
+b = <code>"1"</code><br/>
+Return <code>"100"</code>.</p></blockquote>
+
+<!--more-->
+
+
+<p><a href="https://oj.leetcode.com/problems/add-binary/">leetcode express</a></p>
+
+<p><strong>解题思路</strong>
+类似于多项式相加，用位运算加速计算，<code>carry</code>用来保存进位，<code>tmp</code>保存两个二进制数第<code>i</code>位的和，再和carry相加，并将结果加入<code>res</code>中，最后因为<code>res</code>是逆序的，再将<code>res</code>翻转一遍。<br/>
+&#8220;`
+class Solution {
+public:
+    string addBinary(string a, string b) {
+        int result=0, carry =0;
+        string res = &ldquo;&rdquo;;
+        int aLen = a.length()-1;
+        int bLen = b.length()-1;
+        int tmp;</p>
+
+<pre><code>    while(aLen &gt;=0 &amp;&amp; bLen &gt;=0)
+    {
+        result = (a[aLen]-'0')^(b[bLen] - '0');
+        tmp = (result ^ carry);
+        res +=to_string(tmp);
+        carry = (a[aLen--]- '0')+(b[bLen--] - '0')+carry &gt;= 2 ? 1 : 0;
+    }
+
+    while (aLen&gt;=0) {
+        tmp = ((a[aLen]-'0')^carry);
+        res += to_string(tmp);
+        carry = (a[aLen]-'0')&amp;carry;
+        aLen--;
+    }
+    while (bLen&gt;=0) {
+        tmp = ((b[bLen]-'0')^carry);
+        res += to_string(tmp);
+        carry = (b[bLen]-'0')&amp;carry;
+        bLen--;
+    }
+    if (carry == 1) {
+        res += to_string(carry);
+    }
+
+    int l =0, r= res.length()-1;
+    while(l &lt; r)
+    {
+        swap(res[l],res[r]);
+        l++;r--;
+    }
+
+    return res;
+}
+</code></pre>
+
+<p>};
+&#8220;`</p>
+]]></content>
+  </entry>
+  
+</feed>
