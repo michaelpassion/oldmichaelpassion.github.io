@@ -5,13 +5,11 @@
 
 <head>
 	<meta charset="utf-8">
-	<title>resume - My Progressing Blog</title>
+	<title>Valid Sudoku - My Progressing Blog</title>
 	<meta name="author" content="Michael">
 
 	
-	<meta name="description" content="Resume 尹帅的简历 男，汉族，1989年12月生人，现居北京市海淀区 研究生找工作中。
-电话： 186-1152-6680
-邮箱： &#99;&#x61;&#114;&#116;&#101;&#114;&#49;&#x33;&#x37;&#51;&#x30;&#x34;&#51;&#x40 &hellip;">
+	<meta name="description" content="Valid Sudoku Determine if a Sudoku is valid, according to: Sudoku Puzzles - The Rules. The Sudoku board could be partially filled, where empty cells &hellip;">
 	
 
   <!-- http://t.co/dKP3o1e -->
@@ -21,7 +19,7 @@
 
 	<link href="/atom.xml" rel="alternate" title="My Progressing Blog" type="application/atom+xml">
 	
-	<link rel="canonical" href="http://michaelpassion.github.io/blog/2014/08/21/resume/">
+	<link rel="canonical" href="http://michaelpassion.github.io/blog/2014/11/19/valid-sudoku/">
 	<link href="/favicon.png" rel="shortcut icon">
 	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
 	<link href="/stylesheets/font-awesome.min.css" media="screen, projection" rel="stylesheet" type="text/css">
@@ -104,100 +102,82 @@
 			
 			<div class="mid-col-container">
 				<div id="content" class="inner"><article class="post" itemscope itemtype="http://schema.org/BlogPosting">
-	<h1 class="title" itemprop="name">Resume</h1>
-	<div class="entry-content" itemprop="articleBody"><h2>尹帅的简历    <img src="http://himg.bdimg.com/sys/portrait/item/e93779656c69646f6e67303631337915.jpg" align="right"></img></h2>
+	<h1 class="title" itemprop="name">Valid Sudoku</h1>
+	<div class="entry-content" itemprop="articleBody"><blockquote><p>Determine if a Sudoku is valid, according to: <a href="http://sudoku.com.au/TheRules.aspx">Sudoku Puzzles - The Rules</a>.</p>
 
-<hr />
+<p>The Sudoku board could be partially filled, where empty cells are filled with the character <code>'.'</code>.<br/>
+<img src="http://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/Sudoku-by-L2G-20050714.svg/250px-Sudoku-by-L2G-20050714.svg.png" alt="" /></p>
+
+<p>A partially filled sudoku which is valid.<br/>
+Note:A valid Sudoku board (partially filled) is not necessarily solvable. Only the filled cells need to be validated.</p></blockquote>
 
 <!--more-->
 
 
-<ul>
-<li>男，汉族，1989年12月生人，现居北京市海淀区 研究生找工作中。</li>
-<li>电话： 186-1152-6680</li>
-<li>邮箱： <a href="&#109;&#x61;&#x69;&#x6c;&#116;&#111;&#x3a;&#99;&#97;&#114;&#116;&#101;&#114;&#49;&#x33;&#55;&#x33;&#x30;&#52;&#x33;&#64;&#103;&#x6d;&#x61;&#x69;&#x6c;&#46;&#99;&#x6f;&#x6d;">&#99;&#x61;&#114;&#116;&#101;&#114;&#49;&#x33;&#x37;&#51;&#x30;&#x34;&#51;&#x40;&#103;&#109;&#x61;&#x69;&#x6c;&#x2e;&#99;&#x6f;&#x6d;</a></li>
-<li>GitHub: <a href="https://github.com/michaelpassion">github.com/michaelpassion</a></li>
-<li>个人博客：<a href="http://michaelpassion.github.io">michaelpassion.github.io/</a></li>
-</ul>
+<p><strong>解题思路</strong><br/>
+这道题要求检查数独是否有效，既检查数独里的每一行，每一列，每一个九宫格里有没有重复数字，若有，则数独是无效的。通过一个双层循环可以实现以上三种检查，难点在检查九宫格。<br/>
+以下方法定义了三个数组，分别用来检查行，列，九宫格，相当于三个hash table。</p>
 
-
-<p><strong>教育背景</strong></p>
-
-<hr />
-
-<ul>
-<li>2013/09 &ndash; 2015/06， 北京理工大学 软件学院 软件工程专业 研究生</li>
-<li>2009/09 &ndash; 2013/06，  河北师范大学 软件学院 软件工程专业 本科</li>
-</ul>
-
-
-<p><strong>技能知识</strong></p>
-
-<hr />
-
-<ul>
-<li>编程语言：Objective-C，C++，ASP.NET, C#, HTML/CSS, Python 等</li>
-<li>开发工具：Xcode，Visual Studio，Git，GitHub，Vim 等</li>
-</ul>
-
-
-<p><strong>项目经验</strong></p>
-
-<hr />
-
-<ul>
-<li><p><a href="https://itunes.apple.com/cn/app/xing-yun-zhuan-pan/id492038522?mt=8">LuckyPoint</a>(iOS, Xcode)</p>
-
-<p>  项目时间：2011/9&ndash;2012/1 <br/>
-  项目描述：ios抽奖类应用，模拟现实生活中的转盘，转动转盘抽奖，转盘中的内容可以自定义。
-  项目职责：负责编程工作并自主测试。<br/>
-  收获：通过这个项目熟悉了Xcode开发环境和Obj-C语言，并成功发布到APP Store中。</p></li>
-<li><p>Leap Motion Enabled Car（Unity3D， Leap Motion）</p>
-
-<p>  项目时间：2013/10 &ndash; 2013/11<br/>
-  项目描述：使用leap motion来捕捉手部动作，通过手部动作控制赛车，进行赛车游戏。<br/>
-  项目职责：负责编程工作并自主测试。</p></li>
-<li><p>漏洞管理系统 (Windows ,IIS8, vs2012, SQL Server2008)</p>
-
-<p>  项目时间：2013/10 &ndash; 2013/11<br/>
-  项目描述：用asp.net实现的B/S管理系统.用以对已知漏洞的查询,和新漏洞的提交.等一些相关的管理功能。<br/>
-  项目职责：参与项目需求分析，详细设计，负责部分编程工作。</p></li>
-<li><p>谐波雷达探测管理与控制主机系统(Windows ,IIS8,vs2012, SQL Server2008)</p>
-
-<p>  项目时间：2014/03 &ndash; 2014/05<br/>
-  项目描述：用asp.net实现的B/S管理系统,用于对谐波雷达探测到的数据进行管理分析,并对相关人员进行管理。
-  项目职责：参与项目需求分析，详细设计，最后实现全部的编程工作。</p></li>
-</ul>
-
-
-<p><strong>实习与奖励</strong></p>
-
-<hr />
-
-<ul>
-<li>2014/06 &ndash; 2014/07                      宜搜小说iOS开发实习生</li>
-<li>2011-2012     院级奖学金</li>
-<li>2010-2011     院级奖学金</li>
-</ul>
-
-
-<p><strong>其他</strong></p>
-
-<hr />
-
-<ul>
-<li>爱好：游泳，乒乓球，美剧 ，琢磨新技术</li>
-<li>特长：英语读写能力较好，轻松阅读英文网站文献。 六级 548分，四级 579分</li>
-</ul>
-
-
-<p><strong>自我评价</strong></p>
-
-<hr />
-
-<ul>
-<li>要强，态度认真，有一定的自学能力，性格随和，容易相处，一直在不断努力提升自己。</li>
-</ul>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>class Solution {
+</span><span class='line'>public:
+</span><span class='line'>    bool isValidSudoku(vector&lt;vector&lt;char&gt; &gt; &board) {
+</span><span class='line'>        int checkRow[10] = {0};
+</span><span class='line'>        int checkCol[10] = {0};
+</span><span class='line'>        int checkSqu[10] = {0};
+</span><span class='line'>        for(int i=0; i&lt; 9; ++i)
+</span><span class='line'>        {
+</span><span class='line'>            memset(checkRow,0,sizeof(checkRow));
+</span><span class='line'>            memset(checkCol,0,sizeof(checkCol));
+</span><span class='line'>            memset(checkSqu,0,sizeof(checkSqu));
+</span><span class='line'>            for(int j=0; j&lt; 9; ++j)
+</span><span class='line'>            {
+</span><span class='line'>               if(!checkValid(checkRow,board[i][j]-'0') || 
+</span><span class='line'>                  !checkValid(checkCol,board[j][i]-'0') ||
+</span><span class='line'>                  !checkValid (checkSqu,board[3*(i/3)+j/3][3*(i%3)+j%3]-'0'))
+</span><span class='line'>                  return false;
+</span><span class='line'>                
+</span><span class='line'>            }
+</span><span class='line'>        }
+</span><span class='line'>        return true;
+</span><span class='line'>    }
+</span><span class='line'>    bool checkValid(int a[], int val)
+</span><span class='line'>    {
+</span><span class='line'>        if (val &lt; 0) return true;
+</span><span class='line'>        if (a[val] == 1) return false;
+</span><span class='line'>        a[val] = 1;
+</span><span class='line'>        return true;
+</span><span class='line'>    }
+</span><span class='line'>};</span></code></pre></td></tr></table></div></figure>
 
 </div>
 
@@ -237,8 +217,8 @@ Powered by <a href="http://octopress.org">Octopress</a>
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://michaelpassion.github.io/blog/2014/08/21/resume/';
-        var disqus_url = 'http://michaelpassion.github.io/blog/2014/08/21/resume/';
+        var disqus_identifier = 'http://michaelpassion.github.io/blog/2014/11/19/valid-sudoku/';
+        var disqus_url = 'http://michaelpassion.github.io/blog/2014/11/19/valid-sudoku/';
         var disqus_script = 'embed.js';
       
     (function () {

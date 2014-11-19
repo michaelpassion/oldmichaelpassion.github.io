@@ -4,7 +4,7 @@
   <title><![CDATA[Category: leetcode | My Progressing Blog]]></title>
   <link href="http://michaelpassion.github.io/blog/categories/leetcode/atom.xml" rel="self"/>
   <link href="http://michaelpassion.github.io/"/>
-  <updated>2014-11-19T13:24:20+08:00</updated>
+  <updated>2014-11-19T17:45:37+08:00</updated>
   <id>http://michaelpassion.github.io/</id>
   <author>
     <name><![CDATA[Michael]]></name>
@@ -12,6 +12,60 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Valid Sudoku]]></title>
+    <link href="http://michaelpassion.github.io/blog/2014/11/19/valid-sudoku/"/>
+    <updated>2014-11-19T17:38:58+08:00</updated>
+    <id>http://michaelpassion.github.io/blog/2014/11/19/valid-sudoku</id>
+    <content type="html"><![CDATA[<blockquote><p>Determine if a Sudoku is valid, according to: <a href="http://sudoku.com.au/TheRules.aspx">Sudoku Puzzles - The Rules</a>.</p>
+
+<p>The Sudoku board could be partially filled, where empty cells are filled with the character <code>'.'</code>.<br/>
+<img src="http://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/Sudoku-by-L2G-20050714.svg/250px-Sudoku-by-L2G-20050714.svg.png" alt="" /></p>
+
+<p>A partially filled sudoku which is valid.<br/>
+Note:A valid Sudoku board (partially filled) is not necessarily solvable. Only the filled cells need to be validated.</p></blockquote>
+
+<!--more-->
+
+
+<p><strong>解题思路</strong><br/>
+这道题要求检查数独是否有效，既检查数独里的每一行，每一列，每一个九宫格里有没有重复数字，若有，则数独是无效的。通过一个双层循环可以实现以上三种检查，难点在检查九宫格。<br/>
+以下方法定义了三个数组，分别用来检查行，列，九宫格，相当于三个hash table。</p>
+
+<pre><code>class Solution {
+public:
+    bool isValidSudoku(vector&lt;vector&lt;char&gt; &gt; &amp;board) {
+        int checkRow[10] = {0};
+        int checkCol[10] = {0};
+        int checkSqu[10] = {0};
+        for(int i=0; i&lt; 9; ++i)
+        {
+            memset(checkRow,0,sizeof(checkRow));
+            memset(checkCol,0,sizeof(checkCol));
+            memset(checkSqu,0,sizeof(checkSqu));
+            for(int j=0; j&lt; 9; ++j)
+            {
+               if(!checkValid(checkRow,board[i][j]-'0') || 
+                  !checkValid(checkCol,board[j][i]-'0') ||
+                  !checkValid (checkSqu,board[3*(i/3)+j/3][3*(i%3)+j%3]-'0'))
+                  return false;
+
+            }
+        }
+        return true;
+    }
+    bool checkValid(int a[], int val)
+    {
+        if (val &lt; 0) return true;
+        if (a[val] == 1) return false;
+        a[val] = 1;
+        return true;
+    }
+};
+</code></pre>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Add Binary]]></title>
@@ -218,86 +272,6 @@ public:
                 return num[l];
         }
         return num[l];
-    }
-};
-</code></pre>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Word Search]]></title>
-    <link href="http://michaelpassion.github.io/blog/2014/09/21/word-search/"/>
-    <updated>2014-09-21T13:47:52+08:00</updated>
-    <id>http://michaelpassion.github.io/blog/2014/09/21/word-search</id>
-    <content type="html"><![CDATA[<blockquote><p>Given a 2D board and a word, find if the word exists in the grid.</p>
-
-<p>The word can be constructed from letters of sequentially adjacent cell, where &ldquo;adjacent&rdquo; cells are those horizontally or vertically neighboring. The same letter cell may not be used more than once.</p>
-
-<p>For example,<br/>
-Given board =</p>
-
-<pre><code>[
-  ["ABCE"],
-  ["SFCS"],
-  ["ADEE"]
-]   
-</code></pre>
-
-<p>word = <code>"ABCCED"</code>, -> returns <code>true</code>,<br/>
-word = <code>"SEE"</code>, -> returns <code>true</code>,<br/>
-word = <code>"ABCB"</code>, -> returns <code>false</code>.</p></blockquote>
-
-<!--more-->
-
-
-<p><strong>思路</strong><br/>
-先在board中寻找word的首字母，找到后在该位置的相邻位置（上下左右）查看是否能生成word，如果上下左右中有位置符合条件，则继续从该位置的临近位置搜索下一个字符。主要，不能board中的字符不能重复使用，故需要将访问过的字符做标记，下面代码中设置为<code>‘#’</code>,对该位置搜索完后要恢复原来的字母。</p>
-
-<pre><code class="c++">class Solution {
-public:
-
-    bool dfs(vector&lt;vector&lt;char&gt;&gt; &amp;board,int row, int col, string word, int index)
-    {
-        if (index == word.size()-1) return true;
-        char ctmp = board[row][col];
-        board[row][col] = '#';
-
-        //向上查询
-        if (row-1&gt;=0 &amp;&amp; board[row-1][col] == word[index+1])
-            if (dfs(board,row-1,col,word,index+1))
-                return true;
-
-         //向下
-        if (row+1&lt;=board.size()-1 &amp;&amp; board[row+1][col] == word[index+1])
-            if (dfs(board,row+1,col,word,index+1))
-                return true;
-        //向左
-        if (col-1 &gt;= 0 &amp;&amp; board[row][col-1] == word[index+1])
-             if (dfs(board,row,col-1,word,index+1))
-                return true;
-        向右
-        if(col+1 &lt;= board[0].size()-1 &amp;&amp; board[row][col+1] == word[index+1])
-            if (dfs(board,row,col+1,word,index+1))
-                return true;
-
-        //恢复原来的字母        
-        board[row][col] = ctmp;
-        return false;
-    }
-    bool exist(vector&lt;vector&lt;char&gt; &gt; &amp;board, string word) {
-        const int rows = board.size();
-        const int cols = board[0].size();
-
-        for (int i=0; i&lt;rows; i++)
-        {
-            for (int j=0; j&lt;cols; j++)
-            {
-                if (board[i][j] == word[0] &amp;&amp; dfs(board,i,j,word,0))
-                    return true;
-            }
-        }
-
-        return false;
     }
 };
 </code></pre>

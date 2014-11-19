@@ -4,7 +4,7 @@
   <title><![CDATA[My Progressing Blog]]></title>
   <link href="http://michaelpassion.github.io/atom.xml" rel="self"/>
   <link href="http://michaelpassion.github.io/"/>
-  <updated>2014-11-19T13:24:20+08:00</updated>
+  <updated>2014-11-19T17:45:37+08:00</updated>
   <id>http://michaelpassion.github.io/</id>
   <author>
     <name><![CDATA[Michael]]></name>
@@ -12,6 +12,90 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Valid Sudoku]]></title>
+    <link href="http://michaelpassion.github.io/blog/2014/11/19/valid-sudoku/"/>
+    <updated>2014-11-19T17:38:58+08:00</updated>
+    <id>http://michaelpassion.github.io/blog/2014/11/19/valid-sudoku</id>
+    <content type="html"><![CDATA[<blockquote><p>Determine if a Sudoku is valid, according to: <a href="http://sudoku.com.au/TheRules.aspx">Sudoku Puzzles - The Rules</a>.</p>
+
+<p>The Sudoku board could be partially filled, where empty cells are filled with the character <code>'.'</code>.<br/>
+<img src="http://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/Sudoku-by-L2G-20050714.svg/250px-Sudoku-by-L2G-20050714.svg.png" alt="" /></p>
+
+<p>A partially filled sudoku which is valid.<br/>
+Note:A valid Sudoku board (partially filled) is not necessarily solvable. Only the filled cells need to be validated.</p></blockquote>
+
+<!--more-->
+
+
+<p><strong>解题思路</strong><br/>
+这道题要求检查数独是否有效，既检查数独里的每一行，每一列，每一个九宫格里有没有重复数字，若有，则数独是无效的。通过一个双层循环可以实现以上三种检查，难点在检查九宫格。<br/>
+以下方法定义了三个数组，分别用来检查行，列，九宫格，相当于三个hash table。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>class Solution {
+</span><span class='line'>public:
+</span><span class='line'>    bool isValidSudoku(vector&lt;vector&lt;char&gt; &gt; &board) {
+</span><span class='line'>        int checkRow[10] = {0};
+</span><span class='line'>        int checkCol[10] = {0};
+</span><span class='line'>        int checkSqu[10] = {0};
+</span><span class='line'>        for(int i=0; i&lt; 9; ++i)
+</span><span class='line'>        {
+</span><span class='line'>            memset(checkRow,0,sizeof(checkRow));
+</span><span class='line'>            memset(checkCol,0,sizeof(checkCol));
+</span><span class='line'>            memset(checkSqu,0,sizeof(checkSqu));
+</span><span class='line'>            for(int j=0; j&lt; 9; ++j)
+</span><span class='line'>            {
+</span><span class='line'>               if(!checkValid(checkRow,board[i][j]-'0') || 
+</span><span class='line'>                  !checkValid(checkCol,board[j][i]-'0') ||
+</span><span class='line'>                  !checkValid (checkSqu,board[3*(i/3)+j/3][3*(i%3)+j%3]-'0'))
+</span><span class='line'>                  return false;
+</span><span class='line'>                
+</span><span class='line'>            }
+</span><span class='line'>        }
+</span><span class='line'>        return true;
+</span><span class='line'>    }
+</span><span class='line'>    bool checkValid(int a[], int val)
+</span><span class='line'>    {
+</span><span class='line'>        if (val &lt; 0) return true;
+</span><span class='line'>        if (a[val] == 1) return false;
+</span><span class='line'>        a[val] = 1;
+</span><span class='line'>        return true;
+</span><span class='line'>    }
+</span><span class='line'>};</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Add Binary]]></title>
@@ -1541,93 +1625,6 @@ We get the following sequence (ie, for n = 3):</p>
 </span><span class='line'>         <span class="k">return</span> <span class="n">res</span><span class="p">;</span>
 </span><span class='line'>    <span class="p">}</span>
 </span><span class='line'><span class="p">};</span>
-</span></code></pre></td></tr></table></div></figure>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Unique Character in a String]]></title>
-    <link href="http://michaelpassion.github.io/blog/2014/09/11/unique-character-in-a-string/"/>
-    <updated>2014-09-11T17:34:37+08:00</updated>
-    <id>http://michaelpassion.github.io/blog/2014/09/11/unique-character-in-a-string</id>
-    <content type="html"><![CDATA[<blockquote><p>Implement an algorithm to determine if a string has all unique characters. What if you cannot use additional data structures?</p></blockquote>
-
-<!--more-->
-
-
-
-
-<figure class='code'><figcaption><span>空间复杂度O(1),时间复杂度O(n)</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-</pre></td><td class='code'><pre><code class='c++'><span class='line'><span class="kt">bool</span> <span class="nf">isUnique</span><span class="p">(</span><span class="n">string</span> <span class="n">s</span><span class="p">)</span>
-</span><span class='line'><span class="p">{</span>
-</span><span class='line'>  <span class="kt">int</span> <span class="n">len</span> <span class="o">=</span> <span class="n">s</span><span class="p">.</span><span class="n">length</span><span class="p">();</span>
-</span><span class='line'>  <span class="k">if</span><span class="p">(</span><span class="n">len</span> <span class="o">&gt;</span> <span class="mi">256</span><span class="p">)</span> <span class="k">return</span> <span class="nb">false</span><span class="p">;</span> <span class="c1">//以ASCII讨论，ASCII总数为256，如果字符串的长度大于256，</span>
-</span><span class='line'>                               <span class="c1">//肯定有重复字符</span>
-</span><span class='line'>  <span class="kt">bool</span> <span class="n">check</span><span class="p">[</span><span class="mi">256</span><span class="p">];</span>
-</span><span class='line'>  <span class="n">memset</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="nb">false</span><span class="p">,</span><span class="k">sizeof</span><span class="p">(</span><span class="n">a</span><span class="p">));</span>
-</span><span class='line'>  <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">len</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
-</span><span class='line'>  <span class="p">{</span>
-</span><span class='line'>      <span class="k">if</span><span class="p">(</span><span class="n">check</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
-</span><span class='line'>          <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
-</span><span class='line'>      <span class="n">check</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
-</span><span class='line'>  <span class="p">}</span>
-</span><span class='line'>  <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>
-如果字符串中所有字符全是小写字母（a-z）,字符总数为26，为节省空间，还可以将字符映射到int的每一位上。</p>
-
-<figure class='code'><figcaption><span>空间复杂度O(1),时间复杂度O(n) 位操作</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-</pre></td><td class='code'><pre><code class='c++'><span class='line'><span class="kt">bool</span> <span class="nf">isUnique</span><span class="p">(</span><span class="n">string</span> <span class="n">s</span><span class="p">)</span>
-</span><span class='line'><span class="p">{</span>
-</span><span class='line'>  <span class="kt">int</span> <span class="n">len</span> <span class="o">=</span> <span class="n">s</span><span class="p">.</span><span class="n">length</span><span class="p">();</span>
-</span><span class='line'>  <span class="k">if</span><span class="p">(</span><span class="n">len</span> <span class="o">&gt;</span> <span class="mi">26</span><span class="p">)</span> <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
-</span><span class='line'>  
-</span><span class='line'>  <span class="kt">int</span> <span class="n">checker</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-</span><span class='line'>  
-</span><span class='line'>  <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">len</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
-</span><span class='line'>  <span class="p">{</span>
-</span><span class='line'>      <span class="kt">int</span> <span class="n">val</span> <span class="o">=</span> <span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span class="sc">&#39;a&#39;</span><span class="p">;</span>
-</span><span class='line'>      <span class="k">if</span><span class="p">((</span><span class="n">checker</span> <span class="o">&amp;</span> <span class="p">(</span><span class="mi">1</span><span class="o">&lt;&lt;</span><span class="n">val</span><span class="p">))</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
-</span><span class='line'>          <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
-</span><span class='line'>      <span class="n">checker</span> <span class="o">|=</span> <span class="p">(</span><span class="mi">1</span><span class="o">&lt;&lt;</span><span class="n">val</span><span class="p">);</span>
-</span><span class='line'>  <span class="p">}</span>
-</span><span class='line'>  
-</span><span class='line'>  <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
-</span><span class='line'><span class="p">}</span>
 </span></code></pre></td></tr></table></div></figure>
 
 ]]></content>
