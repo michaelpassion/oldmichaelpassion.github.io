@@ -4,7 +4,7 @@
   <title><![CDATA[My Progressing Blog]]></title>
   <link href="http://michaelpassion.github.io/atom.xml" rel="self"/>
   <link href="http://michaelpassion.github.io/"/>
-  <updated>2014-11-19T17:45:37+08:00</updated>
+  <updated>2014-11-19T19:56:16+08:00</updated>
   <id>http://michaelpassion.github.io/</id>
   <author>
     <name><![CDATA[Michael]]></name>
@@ -12,6 +12,80 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[ZigZag Conversion]]></title>
+    <link href="http://michaelpassion.github.io/blog/2014/11/19/zigzag-conversion/"/>
+    <updated>2014-11-19T19:51:18+08:00</updated>
+    <id>http://michaelpassion.github.io/blog/2014/11/19/zigzag-conversion</id>
+    <content type="html"><![CDATA[<blockquote><p>The string <code>"PAYPALISHIRING"</code> is written in a zigzag pattern on a given number of rows like this: (you may want to display this pattern in a fixed font for better legibility)</p>
+
+<p>P   A   H   N<br/>
+A P L S I I G<br/>
+Y   I   R<br/>
+And then read line by line: &ldquo;PAHNAPLSIIGYIR&rdquo;
+Write the code that will take a string and make this conversion given a number of rows:</p>
+
+<p>string convert(string text, int nRows);
+<code>convert("PAYPALISHIRING", 3)</code> should return<code>"PAHNAPLSIIGYIR"</code>.</p></blockquote>
+
+<!--more-->
+
+
+<p><strong>解题思路</strong>
+找了好长时间规律，有点乱，没有分析出合适的公式，看到这个方法，很直观，很赞，用到一个<code>step</code>变量去控制向哪一个<code>string</code>添加。而且有相当好的时间复杂度。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>class Solution {
+</span><span class='line'>public:
+</span><span class='line'>    string convert(string s, int nRows) {
+</span><span class='line'>        if (nRows &lt; 2) return s;
+</span><span class='line'>        const int len = s.length();
+</span><span class='line'>        string res[nRows];
+</span><span class='line'>        int step = 1, row = 0;
+</span><span class='line'>        for (int i =0; i&lt; len; i++)
+</span><span class='line'>        {
+</span><span class='line'>           res[row] += s[i];
+</span><span class='line'>           if (row == 0)
+</span><span class='line'>           {
+</span><span class='line'>               step = 1;
+</span><span class='line'>               
+</span><span class='line'>           }else if (row == nRows-1)
+</span><span class='line'>               step = -1;
+</span><span class='line'>            row += step;
+</span><span class='line'>        }
+</span><span class='line'>        
+</span><span class='line'>        for(int i=1; i&lt; nRows; i++)
+</span><span class='line'>            res[0]+=res[i];
+</span><span class='line'>        return res[0];
+</span><span class='line'>    }
+</span><span class='line'>};</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Valid Sudoku]]></title>
@@ -1546,86 +1620,6 @@ The above elevation map is represented by array [0,1,0,2,1,0,1,3,2,1,2,1]. In th
 </span></code></pre></td></tr></table></div></figure>
 
 
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Permutation Sequence]]></title>
-    <link href="http://michaelpassion.github.io/blog/2014/09/11/permutation-sequence/"/>
-    <updated>2014-09-11T23:48:20+08:00</updated>
-    <id>http://michaelpassion.github.io/blog/2014/09/11/permutation-sequence</id>
-    <content type="html"><![CDATA[<blockquote><p>The set [1,2,3,…,n] contains a total of n! unique permutations.</p>
-
-<p>By listing and labeling all of the permutations in order,
-We get the following sequence (ie, for n = 3):</p>
-
-<ol>
-<li>&ldquo;123&rdquo;</li>
-<li>&ldquo;132&rdquo;</li>
-<li>&ldquo;213&rdquo;</li>
-<li>&ldquo;231&rdquo;</li>
-<li>&ldquo;312&rdquo;</li>
-<li>&ldquo;321&rdquo;</li>
-</ol>
-
-
-<p>Given n and k, return the k-th permutation sequence.</p>
-
-<p>Note: Given n will be between 1 and 9 inclusive.</p></blockquote>
-
-<!--more-->
-
-
-<figure class='code'><figcaption><span>时间复杂度O(n),空间复杂度O(1)</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-</pre></td><td class='code'><pre><code class='c++'><span class='line'><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
-</span><span class='line'><span class="k">public</span><span class="o">:</span>
-</span><span class='line'>    <span class="kt">int</span> <span class="n">factorial</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span>
-</span><span class='line'>    <span class="p">{</span>
-</span><span class='line'>        <span class="kt">int</span> <span class="n">res</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-</span><span class='line'>        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">2</span> <span class="p">;</span><span class="n">i</span><span class="o">&lt;=</span><span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
-</span><span class='line'>            <span class="n">res</span> <span class="o">*=</span> <span class="n">i</span><span class="p">;</span>
-</span><span class='line'>        <span class="k">return</span> <span class="n">res</span><span class="p">;</span>
-</span><span class='line'>    <span class="p">}</span>
-</span><span class='line'>    <span class="n">string</span> <span class="n">getPermutation</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="kt">int</span> <span class="n">k</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>        <span class="kt">int</span> <span class="n">total</span> <span class="o">=</span> <span class="n">factorial</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
-</span><span class='line'>          <span class="n">string</span> <span class="n">candidate</span> <span class="o">=</span> <span class="n">string</span><span class="p">(</span><span class="s">&quot;123456789&quot;</span><span class="p">).</span><span class="n">substr</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">n</span><span class="p">);</span>
-</span><span class='line'>          <span class="n">string</span> <span class="nf">res</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="sc">&#39; &#39;</span><span class="p">);</span>
-</span><span class='line'>          <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="c1">//依次计算排列的每个位</span>
-</span><span class='line'>          <span class="p">{</span>
-</span><span class='line'>              <span class="n">total</span> <span class="o">/=</span> <span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="n">i</span><span class="p">);</span>
-</span><span class='line'>             <span class="kt">int</span> <span class="n">index</span> <span class="o">=</span> <span class="p">(</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="n">total</span><span class="p">;</span>
-</span><span class='line'>             <span class="n">res</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">candidate</span><span class="p">[</span><span class="n">index</span><span class="p">];</span>
-</span><span class='line'>             <span class="n">candidate</span><span class="p">.</span><span class="n">erase</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
-</span><span class='line'>             <span class="n">k</span> <span class="o">-=</span> <span class="n">index</span><span class="o">*</span><span class="n">total</span><span class="p">;</span>
-</span><span class='line'>         <span class="p">}</span>
-</span><span class='line'>         <span class="k">return</span> <span class="n">res</span><span class="p">;</span>
-</span><span class='line'>    <span class="p">}</span>
-</span><span class='line'><span class="p">};</span>
-</span></code></pre></td></tr></table></div></figure>
 
 ]]></content>
   </entry>

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: leetcode | My Progressing Blog]]></title>
   <link href="http://michaelpassion.github.io/blog/categories/leetcode/atom.xml" rel="self"/>
   <link href="http://michaelpassion.github.io/"/>
-  <updated>2014-11-19T17:45:37+08:00</updated>
+  <updated>2014-11-19T19:56:16+08:00</updated>
   <id>http://michaelpassion.github.io/</id>
   <author>
     <name><![CDATA[Michael]]></name>
@@ -12,6 +12,56 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[ZigZag Conversion]]></title>
+    <link href="http://michaelpassion.github.io/blog/2014/11/19/zigzag-conversion/"/>
+    <updated>2014-11-19T19:51:18+08:00</updated>
+    <id>http://michaelpassion.github.io/blog/2014/11/19/zigzag-conversion</id>
+    <content type="html"><![CDATA[<blockquote><p>The string <code>"PAYPALISHIRING"</code> is written in a zigzag pattern on a given number of rows like this: (you may want to display this pattern in a fixed font for better legibility)</p>
+
+<p>P   A   H   N<br/>
+A P L S I I G<br/>
+Y   I   R<br/>
+And then read line by line: &ldquo;PAHNAPLSIIGYIR&rdquo;
+Write the code that will take a string and make this conversion given a number of rows:</p>
+
+<p>string convert(string text, int nRows);
+<code>convert("PAYPALISHIRING", 3)</code> should return<code>"PAHNAPLSIIGYIR"</code>.</p></blockquote>
+
+<!--more-->
+
+
+<p><strong>解题思路</strong>
+找了好长时间规律，有点乱，没有分析出合适的公式，看到这个方法，很直观，很赞，用到一个<code>step</code>变量去控制向哪一个<code>string</code>添加。而且有相当好的时间复杂度。</p>
+
+<pre><code>class Solution {
+public:
+    string convert(string s, int nRows) {
+        if (nRows &lt; 2) return s;
+        const int len = s.length();
+        string res[nRows];
+        int step = 1, row = 0;
+        for (int i =0; i&lt; len; i++)
+        {
+           res[row] += s[i];
+           if (row == 0)
+           {
+               step = 1;
+
+           }else if (row == nRows-1)
+               step = -1;
+            row += step;
+        }
+
+        for(int i=1; i&lt; nRows; i++)
+            res[0]+=res[i];
+        return res[0];
+    }
+};
+</code></pre>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Valid Sudoku]]></title>
@@ -230,48 +280,6 @@ public:
 
     int getMin() {
         return min.top();
-    }
-};
-</code></pre>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Find Minimum in Rotated Sorted Array]]></title>
-    <link href="http://michaelpassion.github.io/blog/2014/10/17/find-minimum-in-rotated-sorted-array/"/>
-    <updated>2014-10-17T21:54:04+08:00</updated>
-    <id>http://michaelpassion.github.io/blog/2014/10/17/find-minimum-in-rotated-sorted-array</id>
-    <content type="html"><![CDATA[<blockquote><p>Suppose a sorted array is rotated at some pivot unknown to you beforehand.</p>
-
-<p>(i.e., 0 1 2 4 5 6 7 might become 4 5 6 7 0 1 2).</p>
-
-<p>Find the minimum element.</p>
-
-<p>You may assume no duplicate exists in the array.</p></blockquote>
-
-<!--more-->
-
-
-<p>leetcode 出新题了，看起来是个水题，一时技痒就写了（不害臊，打脸）(￣ε(#￣)☆╰╮(￣▽￣///)</p>
-
-<p><strong>思路</strong><br/>
-因为是旋转的有序数组，所以可以看成是两个分别有序的递增数组，又前一个数组中的值肯定大于后一个数组中的值，所以只需遍历前面数组，找到比指向后一个数组最后一个数字小的第一个数字就是整个旋转有序数组的最小值。<br/>
-<em>特殊情况</em> ：如果原数组并没有旋转，那么<code>num[0] &lt; num[n-1]</code>, 直接返回<code>num[0]</code></p>
-
-<pre><code class="c++">class Solution {
-public:
-    int findMin(vector&lt;int&gt; &amp;num) {
-        if (num.size() &lt;= 1) return num[0];
-
-        int l = 0, r = num.size()-1;
-        while(l &lt; r)
-        {
-            if (num[l] &gt; num[r])
-                l++;
-            else
-                return num[l];
-        }
-        return num[l];
     }
 };
 </code></pre>
