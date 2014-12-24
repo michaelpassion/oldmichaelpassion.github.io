@@ -4,7 +4,7 @@
   <title><![CDATA[Category: 面试 | My Progressing Blog]]></title>
   <link href="http://michaelpassion.github.io/blog/categories/mian-shi/atom.xml" rel="self"/>
   <link href="http://michaelpassion.github.io/"/>
-  <updated>2014-11-21T21:22:59+08:00</updated>
+  <updated>2014-12-24T22:16:22+08:00</updated>
   <id>http://michaelpassion.github.io/</id>
   <author>
     <name><![CDATA[Michael]]></name>
@@ -12,6 +12,33 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[iOS 面试题]]></title>
+    <link href="http://michaelpassion.github.io/blog/2014/12/09/ios-mian-shi-ti/"/>
+    <updated>2014-12-09T16:49:28+08:00</updated>
+    <id>http://michaelpassion.github.io/blog/2014/12/09/ios-mian-shi-ti</id>
+    <content type="html"><![CDATA[<!--more-->
+
+
+<p>
+Run Loop</p>
+
+<hr />
+
+<p>Run Loop 是一个循环，你的线程进入并使用它来运行响应输入事件的事件处理程序。你需要提供实现循环部分的控制语句，就是要有<code>while</code> <code>for</code>语句驱动 Run Loop。 在你的循环中，是哟高 <code>run loop object</code>来运行事件处理代码，它响应接收到的事件并启动已经安装的处理程序。<br/>
+Run Loop 接受两个来源的输入事件：<strong>输入源</strong> 和 <strong>定时源</strong>。 输入源传递异步事件，通常消息来自于其他线程或程序。 定时源则传递同步事件，发生在特定事件或者重复的事件间隔。两种输入源都使用一个特定的程序处理例程来处理到达的事件。</p>
+
+<p><code>Property</code>的修饰符</p>
+
+<hr />
+
+<ul>
+<li><code>strong</code> : 该属性声明的变量将成为对象的持有者，等同于<code>retain</code></li>
+</ul>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[iqiyi2014年校招笔试 客户端开发工程师]]></title>

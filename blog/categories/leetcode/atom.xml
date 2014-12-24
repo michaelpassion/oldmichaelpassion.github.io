@@ -4,7 +4,7 @@
   <title><![CDATA[Category: leetcode | My Progressing Blog]]></title>
   <link href="http://michaelpassion.github.io/blog/categories/leetcode/atom.xml" rel="self"/>
   <link href="http://michaelpassion.github.io/"/>
-  <updated>2014-11-21T21:22:59+08:00</updated>
+  <updated>2014-12-24T22:16:22+08:00</updated>
   <id>http://michaelpassion.github.io/</id>
   <author>
     <name><![CDATA[Michael]]></name>
@@ -12,6 +12,55 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Majority Element]]></title>
+    <link href="http://michaelpassion.github.io/blog/2014/12/24/majority-element/"/>
+    <updated>2014-12-24T22:04:12+08:00</updated>
+    <id>http://michaelpassion.github.io/blog/2014/12/24/majority-element</id>
+    <content type="html"><![CDATA[<blockquote><p>Given an array of size n, find the majority element. The majority element is the element that appears more than ⌊ n/2 ⌋ times.</p>
+
+<p>You may assume that the array is non-empty and the majority element always exist in the array.</p>
+
+<p>Credits:<br/>
+Special thanks to @ts for adding this problem and creating all test cases.</p></blockquote>
+
+<!--more-->
+
+
+<p><a href="https://oj.leetcode.com/problems/majority-element/">leetcode express</a></p>
+
+<p><strong>解题思路</strong>   <br/>
+* 本题是找数组中的 <em>大部分数</em>， 既出现次数超过数组长度 <code>1/2</code> 的数，于是：<br/>
+* 遍历整个数组，并将第一个数字记为 <code>check</code> , 后面的数字与其相同则加一， 不同则减一 <br/>
+* check记录了遍历过程中，当前遍历状态下出现次数最多的数
+* 最后剩下的数字一定是出现次数超过 <code>1/2</code> 的数</p>
+
+<pre><code class="C++    ">class Solution {
+public:
+    int majorityElement(vector&lt;int&gt; &amp;num) {
+        int check = num[0];
+        int count = 1;
+        for (int i = 1; i&lt; num.size(); i++)
+        {
+            if (num[i] == check)
+                count++;
+            else {
+                count--;
+                if(count == 0)
+                {
+                    check = num[i];
+                    count = 1;
+                }
+            }
+        }
+
+        return check;
+    }
+};
+</code></pre>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[3Sum]]></title>
@@ -265,59 +314,6 @@ public:
 
 <p>};
 &#8220;`</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Count and Say]]></title>
-    <link href="http://michaelpassion.github.io/blog/2014/11/18/count-and-say/"/>
-    <updated>2014-11-18T22:54:58+08:00</updated>
-    <id>http://michaelpassion.github.io/blog/2014/11/18/count-and-say</id>
-    <content type="html"><![CDATA[<blockquote><p>The count-and-say sequence is the sequence of integers beginning as follows:
-<code>1, 11, 21, 1211, 111221, ...</code></p>
-
-<p><code>1</code> is read off as <code>"one 1"</code> or <code>11</code>.<br/>
-<code>11</code> is read off as <code>"two 1s"</code> or<code>21</code>.<br/>
-<code>21</code> is read off as <code>"one 2, then one 1"</code> or <code>1211</code>.<br/>
-Given an integer <code>n</code>, generate the <code>nth</code> sequence.</p>
-
-<p>Note: The sequence of integers will be represented as a string.</p></blockquote>
-
-<!--more-->
-
-
-<p><a href="https://oj.leetcode.com/problems/count-and-say/">leetcode express</a></p>
-
-<p><strong>解题思路</strong>
-最开始想到递归，因为后一个字符串是通过前一个字符串确定的，但是转念一想只需要一个字符串来保存状态即可，以下解法公参考：</p>
-
-<pre><code>class Solution {
-public:
-    string countAndSay(int n) {
-        if (n == 1)  return "1";
-        string a = "1";
-        string tmp = "";
-        for (int i=0; i&lt; n-1; i++) {
-            int count = 1;
-
-            for (int j=0; j&lt;a.length(); j++) {
-                if(a[j] == a[j+1])
-                    count++;
-                else
-                {
-                    tmp += to_string(count) + a[j];
-                    count=1;
-
-                }
-            }
-            a = tmp;
-            tmp = "";
-        }
-
-        return a;
-    }
-};
-</code></pre>
 ]]></content>
   </entry>
   

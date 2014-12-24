@@ -4,7 +4,7 @@
   <title><![CDATA[My Progressing Blog]]></title>
   <link href="http://michaelpassion.github.io/atom.xml" rel="self"/>
   <link href="http://michaelpassion.github.io/"/>
-  <updated>2014-11-21T21:22:59+08:00</updated>
+  <updated>2014-12-24T22:16:22+08:00</updated>
   <id>http://michaelpassion.github.io/</id>
   <author>
     <name><![CDATA[Michael]]></name>
@@ -12,6 +12,154 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Majority Element]]></title>
+    <link href="http://michaelpassion.github.io/blog/2014/12/24/majority-element/"/>
+    <updated>2014-12-24T22:04:12+08:00</updated>
+    <id>http://michaelpassion.github.io/blog/2014/12/24/majority-element</id>
+    <content type="html"><![CDATA[<blockquote><p>Given an array of size n, find the majority element. The majority element is the element that appears more than ⌊ n/2 ⌋ times.</p>
+
+<p>You may assume that the array is non-empty and the majority element always exist in the array.</p>
+
+<p>Credits:<br/>
+Special thanks to @ts for adding this problem and creating all test cases.</p></blockquote>
+
+<!--more-->
+
+
+<p><a href="https://oj.leetcode.com/problems/majority-element/">leetcode express</a></p>
+
+<p><strong>解题思路</strong>   <br/>
+* 本题是找数组中的 <em>大部分数</em>， 既出现次数超过数组长度 <code>1/2</code> 的数，于是：<br/>
+* 遍历整个数组，并将第一个数字记为 <code>check</code> , 后面的数字与其相同则加一， 不同则减一 <br/>
+* check记录了遍历过程中，当前遍历状态下出现次数最多的数
+* 最后剩下的数字一定是出现次数超过 <code>1/2</code> 的数</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+</pre></td><td class='code'><pre><code class='C++'><span class='line'><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+</span><span class='line'><span class="k">public</span><span class="o">:</span>
+</span><span class='line'>    <span class="kt">int</span> <span class="n">majorityElement</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">num</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="kt">int</span> <span class="n">check</span> <span class="o">=</span> <span class="n">num</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+</span><span class='line'>        <span class="kt">int</span> <span class="n">count</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</span><span class='line'>        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span> <span class="n">num</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+</span><span class='line'>        <span class="p">{</span>
+</span><span class='line'>            <span class="k">if</span> <span class="p">(</span><span class="n">num</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">check</span><span class="p">)</span>
+</span><span class='line'>                <span class="n">count</span><span class="o">++</span><span class="p">;</span>
+</span><span class='line'>            <span class="k">else</span> <span class="p">{</span>
+</span><span class='line'>                <span class="n">count</span><span class="o">--</span><span class="p">;</span>
+</span><span class='line'>                <span class="k">if</span><span class="p">(</span><span class="n">count</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+</span><span class='line'>                <span class="p">{</span>
+</span><span class='line'>                    <span class="n">check</span> <span class="o">=</span> <span class="n">num</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+</span><span class='line'>                    <span class="n">count</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</span><span class='line'>                <span class="p">}</span>
+</span><span class='line'>            <span class="p">}</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="k">return</span> <span class="n">check</span><span class="p">;</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'><span class="p">};</span>
+</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[iOS 面试题]]></title>
+    <link href="http://michaelpassion.github.io/blog/2014/12/09/ios-mian-shi-ti/"/>
+    <updated>2014-12-09T16:49:28+08:00</updated>
+    <id>http://michaelpassion.github.io/blog/2014/12/09/ios-mian-shi-ti</id>
+    <content type="html"><![CDATA[<!--more-->
+
+
+<p>
+Run Loop</p>
+
+<hr />
+
+<p>Run Loop 是一个循环，你的线程进入并使用它来运行响应输入事件的事件处理程序。你需要提供实现循环部分的控制语句，就是要有<code>while</code> <code>for</code>语句驱动 Run Loop。 在你的循环中，是哟高 <code>run loop object</code>来运行事件处理代码，它响应接收到的事件并启动已经安装的处理程序。<br/>
+Run Loop 接受两个来源的输入事件：<strong>输入源</strong> 和 <strong>定时源</strong>。 输入源传递异步事件，通常消息来自于其他线程或程序。 定时源则传递同步事件，发生在特定事件或者重复的事件间隔。两种输入源都使用一个特定的程序处理例程来处理到达的事件。</p>
+
+<p><code>Property</code>的修饰符</p>
+
+<hr />
+
+<ul>
+<li><code>strong</code> : 该属性声明的变量将成为对象的持有者，等同于<code>retain</code></li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Developing Applications for iOS 7th]]></title>
+    <link href="http://michaelpassion.github.io/blog/2014/11/22/developing-applications-for-ios-7th/"/>
+    <updated>2014-11-22T21:37:53+08:00</updated>
+    <id>http://michaelpassion.github.io/blog/2014/11/22/developing-applications-for-ios-7th</id>
+    <content type="html"><![CDATA[<h3>怎么实现 <code>drawRect:</code></h3>
+
+<ul>
+<li><p>使用 Core Graphics<br/>
+  get a context to draw into<br/>
+  greate paths
+  set colors<br/>
+  stroke or fill above create path</p></li>
+<li><p>UIBezierPath</p>
+
+<ul>
+<li>begin the path  <code>UIBezierPath *path = [UIbezierPath alloc] init];</code></li>
+<li>move around ,add lines or arcs to the path <br/>
+  <code>  
+  path moveToPoint:CGPointMake(75, 10)];      [path addLineToPoint:CGPointMake(160, 150)];        [path addLineToPoint:CGPointMake(10, 150]);
+ </code></li>
+<li>close the path <code>[path closePath]</code></li>
+<li>now that the ath has been created, we can stroke/fill it<br/>
+  <code>
+  [[UIColor greenColor] setFill];
+  [[UIColor redColor] setStroke];
+  [path fill];
+  [path stroke];     </code></li>
+</ul>
+</li>
+</ul>
+
+
+<h3>UIGestureRecognizer</h3>
+
+<ul>
+<li>This class is &ldquo;abstract&rdquo;, we only use &ldquo;concrete subclasses&rdquo; of it.</li>
+<li>There are two sides to using a gesture recognizer     1. Adding a gesture recognizer to a UIView to ask it to recognize that gesture.     2. Provinding the implementation of a method to &ldquo;handle&rdquo; that gesture when it happens;
+
+<ul>
+<li>通常 第一步由 controller 完成， 但是视图可以给自己添加手势</li>
+</ul>
+</li>
+<li>第二部通常由 UIView 完成，但是 controller 可以决定以不同的方式处理一个gesture</li>
+</ul>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[3Sum]]></title>
@@ -1411,272 +1559,6 @@ word = <code>"ABCB"</code>, -> returns <code>false</code>.</p></blockquote>
 
 
 <h3>算法三 回溯法</h3>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[iqiyi2014年校招笔试 客户端开发工程师]]></title>
-    <link href="http://michaelpassion.github.io/blog/2014/09/19/iqiyi2014nian-xiao-zhao-bi-shi-ke-hu-duan-kai-fa-gong-cheng-shi/"/>
-    <updated>2014-09-19T20:38:30+08:00</updated>
-    <id>http://michaelpassion.github.io/blog/2014/09/19/iqiyi2014nian-xiao-zhao-bi-shi-ke-hu-duan-kai-fa-gong-cheng-shi</id>
-    <content type="html"><![CDATA[<p><img src="http://campus.iqiyi.com/html/images/index/logo.png" alt="" /> <br/>
-先总结一下：考的内容比较基础，概率题不难，排序题不难，语法细节的题目较少，后面大题没有算法题，都是概念性的问题，复习的好的话应该不是问题，问题是我没有复习好<del>(>_&lt;)</del>。</p>
-
-<!--more-->
-
-
-<ol>
-<li><p>在C和C++中，申请和释放内存的基本操作是什么，它们之间区别是什么？</p>
-
-<hr />
-
-<p> C语言提供内存动态分配的函数有：malloc、calloc、realloc，在使用这些念书时必须包含其头文件，分别为：<code>&lt;malloc.h&gt;,&lt;stdlib.h&gt;,&lt;alloc.h&gt;</code></p>
-
-<ul>
-<li>malloc 函数： <code>void *malloc(unsigned int size)</code>
-在内存的动态分配区域中分配一个长度为size的连续空间。如果分配成功，则返回所分配内存空间的首地址，否则返回NULL，申请的内存不会进行初始化。“类型说明符”表示把该区域用于任何数据类型。（类型说明符 *）表示吧返回值强制转换为该类型的指针。 “size”是一个无符号数。</li>
-<li>calloc 函数：<code>void *calloc(unsigned int num, unsigned int size)</code><br/>
-按照所给的数据古树和数据类型所占字节数，分配一个num * size连续的空间。函数返回该存储区的其实地址。calloc函数与malloc函数的区别仅在于一次可以分配n块区域。例如 <code>ps=(struct stu *) calloc(2,sizeof (struct stu))</code>; 其中的<code>sizeof(struct stu)</code>是求stu的结构长度。因此该语句的意思是：按stu的长度分配2块连续区域，强制转换为stu类型，并把其首地址赋予指针变量ps。</li>
-<li>realloc 函数：<code>void *realloc(void *ptr, unsigned int size)</code> <br/>
-重新定义所开辟内存的空间的大小。其中ptr所指的内存空间是签署函数已经开辟的，size为新的空间大小，其值可比原来大或小。函数返回新存储区的起始地址（该地址可能与以前的地址不同）。例如p1=(float *)realloc(p1,16);将原先开辟的8个字节调整为16个字节。<br/>
-<strong>动态申请的内存空间要进行手动用free（）函数释放</strong></li>
-<li>free 函数 <code>void free(void *ptr)</code><br/>
-将以前开辟的某内存空间释放，其中<code>ptr</code>为存放待释放空间起始地址的指针变量，函数无返回值。应注意：<code>ptr</code>指向需要释放的内存空间的首地址<br/>
-<strong>C++</strong><br/>
-在C++中，内存分为5个区，分别是堆，栈，自由存储区，全局/静态存储区，和常量存储区。<br/>
-申请和释放堆中分诶的存储空间，分别使用new 和 delete 两个运算符来完成。<br/>
-对于非内部数据类型对象而言，光用malloc/free无法满足动态对象的要求。对象在创建的同时要自动执行构造函数，对象在消亡之前要自动执行析构函数。由于malloc/free是库函数而不是运算符，不在编译器控制权限之内，不能够把执行构造函数和析构函数的任务强加于malloc/free.</li>
-</ul>
-</li>
-<li><p>分析采用线性表，二叉平衡树和哈希表存储数据的优劣。</p></li>
-</ol>
-
-
-<hr />
-
-<p>   线性表分为顺序存储结构和链式存储结构，顺序存储结构的有点事可以实现随机读取，时间复杂度O(1)，空间利用率高；缺点是进行插入杀出操作时需要移动大量数据，时间复杂度为O(n),同时容量受限制，需要事先去顶容量大小，容量大浪费空间资源，过小产生溢出。链式存储结构有点，插入和删除非常简单，前提条件是知道要插入的位置，时间复杂度为O(1),但如果如果不知道插入位置，定位需要遍历链表，时间复杂度为O(n),优点是没有容量限制，可以在使用过程中动态分配内存，缺点是不能实现随机读取，空间利用率低。<br/>
-二叉平衡树 的查找效率为O(logn),插入删除也是O(logn)，缺点是需要额外的指针空间。<br/>
-哈希表O(1)时间做查找，插入和删除，时间复杂度为O(n)。</p>
-
-<ol>
-<li>strcpy是字符串拷贝函数，原型是<code>char *strcpy(char *strDest, const char *strSrc);</code><br/>
-1) 请实现函数strcpy<br/>
-2）strcpy能把strSrc的内容复制到StrDest，为什么还要 <code>char*</code>类型的返回值</li>
-</ol>
-
-
-<hr />
-
-<p>1） 代码如下：需要注意的点:
-* 检查指针的有效性，古国检查指针的有效性使用<code>((!strDes）&amp;&amp; (!strSrc))</code>,说明对C语言中类型的隐式转换没有深刻认识<code>(!strDest)</code>是将<code>char*</code>转换成bool即是类型隐式转换</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-</pre></td><td class='code'><pre><code class='c++'><span class='line'><span class="kt">char</span> <span class="o">*</span><span class="nf">strcpy</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="n">strDest</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">strSrc</span><span class="p">)</span>
-</span><span class='line'><span class="p">{</span>
-</span><span class='line'>  <span class="n">assert</span><span class="p">((</span><span class="n">strDest</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">strSrc</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">));</span>
-</span><span class='line'>  <span class="kt">char</span> <span class="o">*</span><span class="n">address</span> <span class="o">=</span> <span class="n">strDest</span><span class="p">;</span>
-</span><span class='line'>  <span class="k">while</span><span class="p">(</span><span class="o">*</span><span class="n">strSrc</span> <span class="o">!=</span> <span class="err">&#39;</span><span class="o">/</span><span class="mi">0</span><span class="err">&#39;</span><span class="p">)</span>
-</span><span class='line'>      <span class="o">*</span><span class="n">strDest</span><span class="o">++</span> <span class="o">=</span> <span class="o">*</span><span class="n">strSrc</span><span class="o">++</span><span class="p">;</span>             
-</span><span class='line'>  <span class="o">*++</span><span class="n">strDest</span> <span class="o">=</span> <span class="err">&#39;</span><span class="o">/</span><span class="mi">0</span><span class="err">&#39;</span><span class="p">;</span>
-</span><span class='line'>  <span class="k">return</span> <span class="n">address</span><span class="p">;</span>
-</span><span class='line'><span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="kt">char</span> <span class="o">*</span><span class="nf">strcpy</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="n">strDest</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">strSrc</span><span class="p">)</span>
-</span><span class='line'><span class="p">{</span>
-</span><span class='line'>  <span class="n">assert</span><span class="p">((</span><span class="n">strDest</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">strSrc</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">));</span>
-</span><span class='line'>  <span class="kt">char</span> <span class="o">*</span><span class="n">address</span> <span class="o">=</span> <span class="n">strDest</span><span class="p">;</span>
-</span><span class='line'>  <span class="k">while</span><span class="p">(</span><span class="o">*</span><span class="n">strSrc</span> <span class="o">!=</span> <span class="err">&#39;</span><span class="o">/</span><span class="mi">0</span><span class="err">&#39;</span><span class="p">)</span>
-</span><span class='line'>      <span class="o">*</span><span class="n">strDest</span><span class="o">++</span> <span class="o">=</span> <span class="o">*</span><span class="n">strSrc</span><span class="o">++</span><span class="p">;</span>             
-</span><span class='line'>  <span class="o">*++</span><span class="n">strDest</span> <span class="o">=</span> <span class="err">&#39;</span><span class="o">/</span><span class="mi">0</span><span class="err">&#39;</span><span class="p">;</span>
-</span><span class='line'>  <span class="k">return</span> <span class="n">address</span><span class="p">;</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>2) 返回 <code>char*</code>的指针是为了实现链式表达式。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Rotate List]]></title>
-    <link href="http://michaelpassion.github.io/blog/2014/09/14/rotate-list/"/>
-    <updated>2014-09-14T16:08:37+08:00</updated>
-    <id>http://michaelpassion.github.io/blog/2014/09/14/rotate-list</id>
-    <content type="html"><![CDATA[<blockquote><p>Given a list, rotate the list to the right by k places, where k is non-negative.<br/>
-For example:
-Given <code>1-&gt;2-&gt;3-&gt;4-&gt;5-&gt;NULL</code> and <code>k = 2</code>,<br/>
-return <code>4-&gt;5-&gt;1-&gt;2-&gt;3-&gt;NULL</code>.</p></blockquote>
-
-<!--more-->
-
-
-<p><strong>思路</strong><br/>
-有点感冒，头晕晕乎乎的，还出冷汗，一开始脑子不够用，竟然套用翻转string的那个算法，还reverse三次，弱爆了。其次就是<code>k</code>的值可能大于链表长度，我没有去算链表长度，直接用快慢指针做的，这样对于特殊输入运行效率可能极其低下，回头修改，写完这点，回宿舍休息会去。</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-<span class='line-number'>39</span>
-</pre></td><td class='code'><pre><code class='c++'><span class='line'><span class="cm">/**</span>
-</span><span class='line'><span class="cm"> * Definition for singly-linked list.</span>
-</span><span class='line'><span class="cm"> * struct ListNode {</span>
-</span><span class='line'><span class="cm"> *     int val;</span>
-</span><span class='line'><span class="cm"> *     ListNode *next;</span>
-</span><span class='line'><span class="cm"> *     ListNode(int x) : val(x), next(NULL) {}</span>
-</span><span class='line'><span class="cm"> * };</span>
-</span><span class='line'><span class="cm"> */</span>
-</span><span class='line'><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
-</span><span class='line'><span class="k">public</span><span class="o">:</span>
-</span><span class='line'>    <span class="n">ListNode</span> <span class="o">*</span><span class="n">rotateRight</span><span class="p">(</span><span class="n">ListNode</span> <span class="o">*</span><span class="n">head</span><span class="p">,</span> <span class="kt">int</span> <span class="n">k</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>        <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">head</span> <span class="o">||</span> <span class="o">!</span><span class="n">head</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">||</span> <span class="n">k</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">)</span> <span class="k">return</span> <span class="n">head</span><span class="p">;</span>
-</span><span class='line'>        <span class="n">ListNode</span> <span class="o">*</span><span class="n">p</span> <span class="o">=</span> <span class="n">head</span><span class="p">;</span>
-</span><span class='line'>        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">k</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
-</span><span class='line'>        <span class="p">{</span>
-</span><span class='line'>            <span class="k">if</span> <span class="p">(</span><span class="n">p</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span>
-</span><span class='line'>            <span class="p">{</span>
-</span><span class='line'>                <span class="n">p</span> <span class="o">=</span> <span class="n">head</span><span class="p">;</span>
-</span><span class='line'>            <span class="p">}</span>
-</span><span class='line'>            <span class="k">else</span>
-</span><span class='line'>            <span class="p">{</span>
-</span><span class='line'>                <span class="n">p</span> <span class="o">=</span> <span class="n">p</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
-</span><span class='line'>            <span class="p">}</span>
-</span><span class='line'>        <span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'>        <span class="n">ListNode</span> <span class="o">*</span><span class="n">q</span> <span class="o">=</span> <span class="n">head</span><span class="p">;</span>
-</span><span class='line'>        <span class="k">while</span> <span class="p">(</span><span class="n">p</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">)</span>
-</span><span class='line'>        <span class="p">{</span>
-</span><span class='line'>            <span class="n">p</span> <span class="o">=</span> <span class="n">p</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
-</span><span class='line'>            <span class="n">q</span> <span class="o">=</span> <span class="n">q</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
-</span><span class='line'>        <span class="p">}</span>
-</span><span class='line'>        <span class="n">p</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="n">head</span><span class="p">;</span>
-</span><span class='line'>
-</span><span class='line'>        <span class="n">ListNode</span> <span class="o">*</span><span class="n">newHead</span> <span class="o">=</span> <span class="n">q</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
-</span><span class='line'>        <span class="n">q</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
-</span><span class='line'>
-</span><span class='line'>        <span class="k">return</span> <span class="n">newHead</span><span class="p">;</span>
-</span><span class='line'>        <span class="p">}</span>
-</span><span class='line'><span class="p">};</span>
-</span></code></pre></td></tr></table></div></figure>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Triangle]]></title>
-    <link href="http://michaelpassion.github.io/blog/2014/09/12/triangle/"/>
-    <updated>2014-09-12T17:40:54+08:00</updated>
-    <id>http://michaelpassion.github.io/blog/2014/09/12/triangle</id>
-    <content type="html"><![CDATA[<blockquote><p>Given a triangle, find the minimum path sum from top to bottom. Each step you may move to adjacent numbers on the row below.</p>
-
-<p>For example, given the following triangle</p>
-
-<pre><code>    [
-         [2],       
-        [3,4],  
-       [6,5,7],  
-      [4,1,8,3]  
-    ]   
-</code></pre>
-
-<p>The minimum path sum from top to bottom is 11 (i.e., 2 + 3 + 5 + 1 = 11).</p>
-
-<p>Note:<br/>
-Bonus point if you are able to do this using only O(n) extra space, where n is the total number of rows in the triangle.</p></blockquote>
-
-<!--more-->
-
-
-
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-</pre></td><td class='code'><pre><code class='c++'><span class='line'><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
-</span><span class='line'><span class="k">public</span><span class="o">:</span>
-</span><span class='line'>    <span class="kt">int</span> <span class="n">minimumTotal</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">triangle</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>        <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="n">triangle</span><span class="p">.</span><span class="n">size</span><span class="p">();</span>
-</span><span class='line'>        <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">minNums</span> <span class="o">=</span> <span class="n">triangle</span><span class="p">[</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">];</span>
-</span><span class='line'>
-</span><span class='line'>        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">2</span><span class="p">;</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">--</span><span class="p">)</span>
-</span><span class='line'>        <span class="p">{</span>
-</span><span class='line'>            <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;=</span> <span class="n">i</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span>
-</span><span class='line'>            <span class="p">{</span>
-</span><span class='line'>                <span class="n">minNums</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">min</span><span class="p">(</span><span class="n">minNums</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">minNums</span><span class="p">[</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span> <span class="o">+</span> <span class="n">triangle</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">];</span>
-</span><span class='line'>            <span class="p">}</span>
-</span><span class='line'>        <span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'>        <span class="k">return</span> <span class="n">minNums</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
-</span><span class='line'>    <span class="p">}</span>
-</span><span class='line'><span class="p">};</span>
-</span></code></pre></td></tr></table></div></figure>
-
 ]]></content>
   </entry>
   

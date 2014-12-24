@@ -1,0 +1,224 @@
+
+<!DOCTYPE HTML>
+
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>Developing Applications for iOS 7th - My Progressing Blog</title>
+	<meta name="author" content="Michael">
+
+	
+	<meta name="description" content="Developing Applications for iOS 7th 怎么实现 drawRect: 使用 Core Graphics get a context to draw into greate paths set colors stroke or fill above create &hellip;">
+	
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link href="/atom.xml" rel="alternate" title="My Progressing Blog" type="application/atom+xml">
+	
+	<link rel="canonical" href="http://michaelpassion.github.io/blog/2014/11/22/developing-applications-for-ios-7th/">
+	<link href="/favicon.png" rel="shortcut icon">
+	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<link href="/stylesheets/font-awesome.min.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<link href='http://fonts.googleapis.com/css?family=Nunito:400,300,700' rel='stylesheet' type='text/css'>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	
+  
+
+</head>
+
+
+<body>
+	<div class="container">
+		<div class="left-col">
+			<div class="intrude-less">
+			<header id="header" class="inner"><div class="profilepic">
+	
+	<script src="/javascripts/md5.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			$('.profilepic').append("<img src='http://www.gravatar.com/avatar/" + MD5("carter1373043@gmail.com") + "?s=160' alt='Profile Picture' style='width: 160px;' />");
+		});
+	</script>
+	
+</div>
+<p>Lord I'm doing what i can to be a </p>
+<h1 style="font-family:Georgia;font-size:150%;color:CornflowerBlue">Better Man</h1>
+<font color="DeepSkyBlue">不要浮躁，要相信自己，通过自己的奋斗，定能拨开这迷雾，奋勇前行!</font>
+
+<font color="#F0F8FF"></font>
+<nav id="main-nav"><ul class="main">
+    <li><a href="/">Blog</a></li>
+    <li><a href="/about">About</a></li>
+    <li><a href="/blog/archives">Archives</a></li>
+    <li><a href="/tag-cloud">tags</a></li>
+
+</ul>
+</nav>
+<nav id="sub-nav">
+	<div class="social">
+		
+			<a class="email" href="mailto:carter1373043@gmail.com" title="Email">Email</a>
+		
+        
+        <a class="weibo" href="http://www.weibo.com/michaelpassion" title="Weibo">Weibo</a>
+        
+        
+		
+		
+			<a class="google" href="https://plus.google.com/carter1373043@gmail.com" rel="author" title="Google+">Google+</a>
+		
+		
+			<a class="twitter" href="http://twitter.com/carter1373043@gmial.com" title="Twitter">Twitter</a>
+		
+		
+			<a class="github" href="https://github.com/michaelpassion" title="GitHub">GitHub</a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+    	
+    	
+			<a class="rss" href="/atom.xml" title="RSS">RSS</a>
+		
+	</div>
+</nav>
+</header>				
+			</div>
+		</div>	
+		<div class="mid-col">
+			
+				
+			
+			<div class="mid-col-container">
+				<div id="content" class="inner"><article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+	<h1 class="title" itemprop="name">Developing Applications for iOS 7th</h1>
+	<div class="entry-content" itemprop="articleBody"><h3>怎么实现 <code>drawRect:</code></h3>
+
+<ul>
+<li><p>使用 Core Graphics<br/>
+  get a context to draw into<br/>
+  greate paths
+  set colors<br/>
+  stroke or fill above create path</p></li>
+<li><p>UIBezierPath</p>
+
+<ul>
+<li>begin the path  <code>UIBezierPath *path = [UIbezierPath alloc] init];</code></li>
+<li>move around ,add lines or arcs to the path <br/>
+  <code>  
+  path moveToPoint:CGPointMake(75, 10)];      [path addLineToPoint:CGPointMake(160, 150)];        [path addLineToPoint:CGPointMake(10, 150]);
+ </code></li>
+<li>close the path <code>[path closePath]</code></li>
+<li>now that the ath has been created, we can stroke/fill it<br/>
+  <code>
+  [[UIColor greenColor] setFill];
+  [[UIColor redColor] setStroke];
+  [path fill];
+  [path stroke];     </code></li>
+</ul>
+</li>
+</ul>
+
+
+<h3>UIGestureRecognizer</h3>
+
+<ul>
+<li>This class is &ldquo;abstract&rdquo;, we only use &ldquo;concrete subclasses&rdquo; of it.</li>
+<li>There are two sides to using a gesture recognizer     1. Adding a gesture recognizer to a UIView to ask it to recognize that gesture.     2. Provinding the implementation of a method to &ldquo;handle&rdquo; that gesture when it happens;
+
+<ul>
+<li>通常 第一步由 controller 完成， 但是视图可以给自己添加手势</li>
+</ul>
+</li>
+<li>第二部通常由 UIView 完成，但是 controller 可以决定以不同的方式处理一个gesture</li>
+</ul>
+
+</div>
+
+</article>
+
+	<div class="share">
+	<div class="addthis_toolbox addthis_default_style ">
+	
+	
+	<a class="addthis_button_tweet"></a>
+	
+	
+	<a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+	
+	<a class="addthis_counter addthis_pill_style"></a>
+	</div>
+  <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid="></script>
+  
+</div>
+
+
+</div>
+			</div>
+			<footer id="footer" class="inner">Copyright &copy; 2014
+
+    Michael
+
+
+Powered by <a href="http://octopress.org">Octopress</a>
+<p>Design credit: <a href="http://shashankmehta.in/archive/2012/greyshade.html">Shashank Mehta</a></p></footer>
+		</div>
+	</div>
+	
+
+<script type="text/javascript">
+      var disqus_shortname = 'xx0000xx';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://michaelpassion.github.io/blog/2014/11/22/developing-applications-for-ios-7th/';
+        var disqus_url = 'http://michaelpassion.github.io/blog/2014/11/22/developing-applications-for-ios-7th/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+</body>
+</html>

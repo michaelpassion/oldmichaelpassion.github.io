@@ -9,7 +9,7 @@
 	<meta name="author" content="Michael">
 
 	
-	<meta name="description" content="Nov 21st, 2014 leetcode Comments 3Sum Given an array S of n integers, are there elements a, b, c in S such that a + b + c = 0? Find all unique &hellip;">
+	<meta name="description" content="Dec 24th, 2014 leetcode Comments Majority Element Given an array of size n, find the majority element. The majority element is the element that &hellip;">
 	
 
   <!-- http://t.co/dKP3o1e -->
@@ -119,6 +119,162 @@
   
 
 
+<time datetime="2014-12-24T22:04:12+08:00" data-updated="true" itemprop="datePublished">Dec 24<sup>th</sup>, 2014</time></div>
+		<div class="tags">
+
+
+	<a class='category' href='/blog/categories/leetcode/'>leetcode</a>
+
+
+</div>
+		
+			<span class="comments"><a href="/blog/2014/12/24/majority-element/#disqus_thread">Comments</a></span>
+		
+	</div>
+	<h1 class="title" itemprop="name"><a href="/blog/2014/12/24/majority-element/" itemprop="url">Majority Element</a></h1>
+	<div class="entry-content" itemprop="articleBody">
+		<blockquote><p>Given an array of size n, find the majority element. The majority element is the element that appears more than ⌊ n/2 ⌋ times.</p>
+
+<p>You may assume that the array is non-empty and the majority element always exist in the array.</p>
+
+<p>Credits:<br/>
+Special thanks to @ts for adding this problem and creating all test cases.</p></blockquote>
+
+
+		
+		<a href="/blog/2014/12/24/majority-element/" class="more-link">“Read More &rarr;&#8221;</a>
+	</div>
+
+</article>
+
+
+    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+	<div class="meta">
+		<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-12-09T16:49:28+08:00" data-updated="true" itemprop="datePublished">Dec 9<sup>th</sup>, 2014</time></div>
+		<div class="tags">
+
+
+	<a class='category' href='/blog/categories/ios/'>ios</a>, <a class='category' href='/blog/categories/mian-shi/'>面试</a>
+
+
+</div>
+		
+			<span class="comments"><a href="/blog/2014/12/09/ios-mian-shi-ti/#disqus_thread">Comments</a></span>
+		
+	</div>
+	<h1 class="title" itemprop="name"><a href="/blog/2014/12/09/ios-mian-shi-ti/" itemprop="url">iOS 面试题</a></h1>
+	<div class="entry-content" itemprop="articleBody">
+		
+		
+		<a href="/blog/2014/12/09/ios-mian-shi-ti/" class="more-link">“Read More &rarr;&#8221;</a>
+	</div>
+
+</article>
+
+
+    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+	<div class="meta">
+		<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-11-22T21:37:53+08:00" data-updated="true" itemprop="datePublished">Nov 22<sup>nd</sup>, 2014</time></div>
+		<div class="tags">
+
+
+	<a class='category' href='/blog/categories/stanford-cs193p/'>stanford_cs193p</a>, <a class='category' href='/blog/categories/bi-ji/'>笔记</a>
+
+
+</div>
+		
+			<span class="comments"><a href="/blog/2014/11/22/developing-applications-for-ios-7th/#disqus_thread">Comments</a></span>
+		
+	</div>
+	<h1 class="title" itemprop="name"><a href="/blog/2014/11/22/developing-applications-for-ios-7th/" itemprop="url">Developing Applications for iOS 7th</a></h1>
+	<div class="entry-content" itemprop="articleBody">
+		<h3>怎么实现 <code>drawRect:</code></h3>
+
+<ul>
+<li><p>使用 Core Graphics<br/>
+  get a context to draw into<br/>
+  greate paths
+  set colors<br/>
+  stroke or fill above create path</p></li>
+<li><p>UIBezierPath</p>
+
+<ul>
+<li>begin the path  <code>UIBezierPath *path = [UIbezierPath alloc] init];</code></li>
+<li>move around ,add lines or arcs to the path <br/>
+  <code>  
+  path moveToPoint:CGPointMake(75, 10)];      [path addLineToPoint:CGPointMake(160, 150)];        [path addLineToPoint:CGPointMake(10, 150]);
+ </code></li>
+<li>close the path <code>[path closePath]</code></li>
+<li>now that the ath has been created, we can stroke/fill it<br/>
+  <code>
+  [[UIColor greenColor] setFill];
+  [[UIColor redColor] setStroke];
+  [path fill];
+  [path stroke];     </code></li>
+</ul>
+</li>
+</ul>
+
+
+<h3>UIGestureRecognizer</h3>
+
+<ul>
+<li>This class is &ldquo;abstract&rdquo;, we only use &ldquo;concrete subclasses&rdquo; of it.</li>
+<li>There are two sides to using a gesture recognizer     1. Adding a gesture recognizer to a UIView to ask it to recognize that gesture.     2. Provinding the implementation of a method to &ldquo;handle&rdquo; that gesture when it happens;
+
+<ul>
+<li>通常 第一步由 controller 完成， 但是视图可以给自己添加手势</li>
+</ul>
+</li>
+<li>第二部通常由 UIView 完成，但是 controller 可以决定以不同的方式处理一个gesture</li>
+</ul>
+
+
+		
+		
+	</div>
+
+</article>
+
+
+    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+	<div class="meta">
+		<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
 <time datetime="2014-11-21T21:05:30+08:00" data-updated="true" itemprop="datePublished">Nov 21<sup>st</sup>, 2014</time></div>
 		<div class="tags">
 
@@ -198,139 +354,6 @@ Write the code that will take a string and make this conversion given a number o
 
 </article>
 
-
-    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-	<div class="meta">
-		<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-11-19T17:38:58+08:00" data-updated="true" itemprop="datePublished">Nov 19<sup>th</sup>, 2014</time></div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/leetcode/'>leetcode</a>
-
-
-</div>
-		
-			<span class="comments"><a href="/blog/2014/11/19/valid-sudoku/#disqus_thread">Comments</a></span>
-		
-	</div>
-	<h1 class="title" itemprop="name"><a href="/blog/2014/11/19/valid-sudoku/" itemprop="url">Valid Sudoku</a></h1>
-	<div class="entry-content" itemprop="articleBody">
-		<blockquote><p>Determine if a Sudoku is valid, according to: <a href="http://sudoku.com.au/TheRules.aspx">Sudoku Puzzles - The Rules</a>.</p>
-
-<p>The Sudoku board could be partially filled, where empty cells are filled with the character <code>'.'</code>.<br/>
-<img src="http://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/Sudoku-by-L2G-20050714.svg/250px-Sudoku-by-L2G-20050714.svg.png" alt="" /></p>
-
-<p>A partially filled sudoku which is valid.<br/>
-Note:A valid Sudoku board (partially filled) is not necessarily solvable. Only the filled cells need to be validated.</p></blockquote>
-
-
-		
-		<a href="/blog/2014/11/19/valid-sudoku/" class="more-link">“Read More &rarr;&#8221;</a>
-	</div>
-
-</article>
-
-
-    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-	<div class="meta">
-		<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-11-19T13:11:32+08:00" data-updated="true" itemprop="datePublished">Nov 19<sup>th</sup>, 2014</time></div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/bit/'>bit</a>, <a class='category' href='/blog/categories/leetcode/'>leetcode</a>, <a class='category' href='/blog/categories/manipulation/'>manipulation</a>
-
-
-</div>
-		
-			<span class="comments"><a href="/blog/2014/11/19/add-binary/#disqus_thread">Comments</a></span>
-		
-	</div>
-	<h1 class="title" itemprop="name"><a href="/blog/2014/11/19/add-binary/" itemprop="url">Add Binary</a></h1>
-	<div class="entry-content" itemprop="articleBody">
-		<blockquote><p>Given two binary strings, return their sum (also a binary string).</p>
-
-<p>For example,<br/>
-a = <code>"11"</code><br/>
-b = <code>"1"</code><br/>
-Return <code>"100"</code>.</p></blockquote>
-
-
-		
-		<a href="/blog/2014/11/19/add-binary/" class="more-link">“Read More &rarr;&#8221;</a>
-	</div>
-
-</article>
-
-
-    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-	<div class="meta">
-		<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-11-18T22:54:58+08:00" data-updated="true" itemprop="datePublished">Nov 18<sup>th</sup>, 2014</time></div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/leetcode/'>leetcode</a>
-
-
-</div>
-		
-			<span class="comments"><a href="/blog/2014/11/18/count-and-say/#disqus_thread">Comments</a></span>
-		
-	</div>
-	<h1 class="title" itemprop="name"><a href="/blog/2014/11/18/count-and-say/" itemprop="url">Count and Say</a></h1>
-	<div class="entry-content" itemprop="articleBody">
-		<blockquote><p>The count-and-say sequence is the sequence of integers beginning as follows:
-<code>1, 11, 21, 1211, 111221, ...</code></p>
-
-<p><code>1</code> is read off as <code>"one 1"</code> or <code>11</code>.<br/>
-<code>11</code> is read off as <code>"two 1s"</code> or<code>21</code>.<br/>
-<code>21</code> is read off as <code>"one 2, then one 1"</code> or <code>1211</code>.<br/>
-Given an integer <code>n</code>, generate the <code>nth</code> sequence.</p>
-
-<p>Note: The sequence of integers will be represented as a string.</p></blockquote>
-
-
-		
-		<a href="/blog/2014/11/18/count-and-say/" class="more-link">“Read More &rarr;&#8221;</a>
-	</div>
-
-</article>
-
 </div>
 <nav id="pagenavi">
   
@@ -392,6 +415,10 @@ Given an integer <code>n</code>, generate the <code>nth</code> sequence.</p>
         
         
         <a href="/posts/13">13</a>
+        
+        
+        
+        <a href="/posts/14">14</a>
         
         
         
