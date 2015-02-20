@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: matrix | My Progressing Blog]]></title>
+  <link href="http://michaelpassion.github.io/blog/categories/matrix/atom.xml" rel="self"/>
+  <link href="http://michaelpassion.github.io/"/>
+  <updated>2014-11-04T18:41:08+08:00</updated>
+  <id>http://michaelpassion.github.io/</id>
+  <author>
+    <name><![CDATA[Michael]]></name>
+    <email><![CDATA[carter1373043@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Spiral Matrix II]]></title>
+    <link href="http://michaelpassion.github.io/blog/2014/08/10/spiral-matrix-ii/"/>
+    <updated>2014-08-10T22:15:15+08:00</updated>
+    <id>http://michaelpassion.github.io/blog/2014/08/10/spiral-matrix-ii</id>
+    <content type="html"><![CDATA[<blockquote><p>Given an integer n, generate a square matrix filled with elements from 1 to n2 in spiral order.</p>
+
+<p>For example,
+Given n = 3,</p>
+
+<p>You should return the following matrix:</p></blockquote>
+
+<pre><code>[
+ [ 1, 2, 3 ],
+ [ 8, 9, 4 ],
+ [ 7, 6, 5 ]
+]
+</code></pre>
+
+<!--more-->
+
+
+<p><a href="https://oj.leetcode.com/problems/spiral-matrix-ii/">leetcode 传送</a></p>
+
+<hr />
+
+<p><em>思路</em>
+主要是坐标的计算，在矩阵上比划下，就很清晰了，没有什么算法思想</p>
+
+<pre><code class="c++">class Solution {
+public:
+    vector&lt;vector&lt;int&gt; &gt; generateMatrix(int n) {
+        int level = 0;
+        vector&lt;vector&lt;int&gt; &gt;matrix(n,vector&lt;int&gt;(n,0));
+
+        int num = 1;
+        while(num &lt;= n*n)
+        {
+            for(int i = level; i&lt; n-level; ++i)
+                matrix[level][i] = num++;
+            for(int i = level+1; i&lt;n-level;++i)
+                matrix[i][n-level-1] = num++;
+            for(int i = n-2-level; i&gt;=level;--i)
+                matrix[n-1-level][i] = num++;
+            for(int i = n-2-level; i&gt;level; --i)
+                matrix[i][level] = num++;
+            level++;
+        }
+            return matrix;
+
+    }
+
+};
+</code></pre>
+]]></content>
+  </entry>
+  
+</feed>

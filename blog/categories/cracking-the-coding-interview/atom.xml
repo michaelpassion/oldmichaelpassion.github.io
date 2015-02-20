@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: cracking the coding interview | My Progressing Blog]]></title>
+  <link href="http://michaelpassion.github.io/blog/categories/cracking-the-coding-interview/atom.xml" rel="self"/>
+  <link href="http://michaelpassion.github.io/"/>
+  <updated>2014-11-04T18:41:08+08:00</updated>
+  <id>http://michaelpassion.github.io/</id>
+  <author>
+    <name><![CDATA[Michael]]></name>
+    <email><![CDATA[carter1373043@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Unique Character in a String]]></title>
+    <link href="http://michaelpassion.github.io/blog/2014/09/11/unique-character-in-a-string/"/>
+    <updated>2014-09-11T17:34:37+08:00</updated>
+    <id>http://michaelpassion.github.io/blog/2014/09/11/unique-character-in-a-string</id>
+    <content type="html"><![CDATA[<blockquote><p>Implement an algorithm to determine if a string has all unique characters. What if you cannot use additional data structures?</p></blockquote>
+
+<!--more-->
+
+
+<pre><code class="c++ 空间复杂度O(1),时间复杂度O(n)">bool isUnique(string s)
+{
+    int len = s.length();
+    if(len &gt; 256) return false; //以ASCII讨论，ASCII总数为256，如果字符串的长度大于256，
+                                 //肯定有重复字符
+    bool check[256];
+    memset(a,false,sizeof(a));
+    for(int i=0; i&lt;len; i++)
+    {
+        if(check[i])
+            return false;
+        check[i] = true;
+    }
+    return true;
+}
+</code></pre>
+
+<p>如果字符串中所有字符全是小写字母（a-z）,字符总数为26，为节省空间，还可以将字符映射到int的每一位上。<br/>
+&#8220;`c++ 空间复杂度O(1),时间复杂度O(n) 位操作
+bool isUnique(string s)
+{
+    int len = s.length();
+    if(len > 26) return false;</p>
+
+<pre><code>int checker = 0;
+
+for(int i=0; i&lt;len; i++)
+{
+    int val = s[i]-'a';
+    if((checker &amp; (1&lt;&lt;val)) &gt; 0)
+        return false;
+    checker |= (1&lt;&lt;val);
+}
+
+return true;
+</code></pre>
+
+<p>}
+&#8220;`</p>
+]]></content>
+  </entry>
+  
+</feed>

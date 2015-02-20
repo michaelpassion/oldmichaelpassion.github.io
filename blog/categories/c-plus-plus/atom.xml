@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: c++ | My Progressing Blog]]></title>
+  <link href="http://michaelpassion.github.io/blog/categories/c-plus-plus/atom.xml" rel="self"/>
+  <link href="http://michaelpassion.github.io/"/>
+  <updated>2014-11-04T18:41:08+08:00</updated>
+  <id>http://michaelpassion.github.io/</id>
+  <author>
+    <name><![CDATA[Michael]]></name>
+    <email><![CDATA[carter1373043@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[区分接口继承和实现继承]]></title>
+    <link href="http://michaelpassion.github.io/blog/2014/10/08/qu-fen-jie-kou-ji-cheng-he-shi-xian-ji-cheng/"/>
+    <updated>2014-10-08T10:20:06+08:00</updated>
+    <id>http://michaelpassion.github.io/blog/2014/10/08/qu-fen-jie-kou-ji-cheng-he-shi-xian-ji-cheng</id>
+    <content type="html"><![CDATA[<!--more-->
+
+
+<p><strong>成员函数的结构总是会被继承</strong><br/>
+public继承意味<strong>is-a</strong>,所以对base class为真的任何事情一定也对其derived classes为真。<br/>
+<strong>声明一个pure virtual函数的目的是为了让 derived classes 只继承函数的接口</strong><br/>
+<strong>声明impure virtual函数是为了让 derived classes 继承该函数的接口和缺省实现</strong><br/>
+<strong> 声明non-virtual函数的目的是为了令 derived classes 继承函数的接口及一份强制性实现 </strong></p>
+
+<h2>为多态基类声明 virtual 析构函数</h2>
+
+<hr />
+
+<p>c++明确指出： 当derived class 对象经由一个 base class 指针删除， 而该 base class 带着一个 non-virtual 析构函数，其结果未有定义 &ndash; 实际执行时通常发生的是对象的 derived 成分没有被销毁，然而base class 成分会被销毁，造成一个诡异的“局部销毁”的对象。<br/>
+    消除这个问题的做法是：给 base class 一个virtual 析构函数。此后删除 derived classes 对象就会调用 derived classes的析构函数</p>
+
+<h2>绝对不重新定义继承而来的缺省参数值</h2>
+
+<hr />
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[内存相关]]></title>
+    <link href="http://michaelpassion.github.io/blog/2014/08/25/nei-cun-xiang-guan/"/>
+    <updated>2014-08-25T22:24:17+08:00</updated>
+    <id>http://michaelpassion.github.io/blog/2014/08/25/nei-cun-xiang-guan</id>
+    <content type="html"><![CDATA[<!--more-->
+
+
+<h3>1. 内存对齐：</h3>
+
+<p> 编译器会自动进行成员变量的对齐，以提高运算效率。缺省情况下，编译器为结构体的每个成员按其自然对界（natural alignment）条件分配内存。每个成员按照它们被声明的顺序在内存中存储，第一个成员的地址和整个结构体的地址相同。<br/>
+ 为什么要进行内存对齐呢，原因在于，为了访问未对齐的内存，处理器需要作两次内存访问；然而，对齐的内存访问仅需要一次访问。所以为了内存的有效利用，我们有必要在定义结构体前考虑下成员的顺序。字，双字，和四字在自然边界上不需要在内存中对齐。（对字，双字，和四字来说，自然边界分别是偶数地址，可以被4 整除的地址，和可以被8 整除的地址。）
+ 除此之外我们还可以利用#pragma pack（）来改变编译器的默认对齐方式。使用伪指令#pragma pack (n)，编译器将按照n个字节对齐；使用伪指令#pragma pack ()，取消自定义字节对齐方式。注意：如果
+/#pragma pack (n)中指定的n大于结构体中最大成员的size，则其不起作用，结构体仍然按照size最大的成员进行对界。其对齐的规则是,每个成员按其类型的对齐参数(通常是这个类型的大小)和指定对齐参数
+(这里是n 字节)中较小的一个对齐，即：min( n, sizeof( item ))</p>
+
+<h3>2. struct与class的区别:</h3>
+
+<p>在C++中，struct与class的区别有两点，一是struct中成员变量和函数的默认访问权限为public，而class的为private。二是由于C++中struct兼容了C中的struct的所有特性，可以定义的时候直接
+以{ }对其成员变量赋初值，而class则不能。</p>
+
+<h3>cpu与外设之间的数据传送方式</h3>
+
+<ol>
+<li><p>程序传送方式</p>
+
+<ul>
+<li>程序查询方式分为无条件传送方式和查询方式（条件传送方式）两种。
+
+<ul>
+<li><p>微机系统中的一些简单的外设，如开关、继电器、数码管、发光二极管等，在它们工作时，可以认为输入设备已随时准备好向CPU提供数据，而输出设备也随时准备好接收CPU送来的数据，这样，在CPU需要同外设交换信息时，就能够用IN或OUT指令直接对这些外设进行输入/输出操作。由于在这种方式下CPU对外设进行输入/输出操作时无需考虑外设的状态，故称之为无条件传送方式。</p></li>
+<li><p>查询传送也称为条件传送，是指在执行输入指令（IN）或输出指令（OUT）前，要先查询相应设备的状态，当输入设备处于准备好状态、输出设备处于空闲状态时，CPU才执行输入/输出指令与外设交换信息。为此，接口电路中既要有数据端口，还要有状态端口。</p>
+
+<p>1．CPU从接口中读取状态字；<br/>
+2．CPU检测相应的状态位是否满足“就绪”条件；<br/>
+3．如果不满足，则重复1、2步；若外设已处于“就绪”状态，则传送数据。</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>中断传送方式</p>
+
+<ul>
+<li>中断传送方式是指当外设需要与CPU进行信息交换时，由外设向CPU发出请求信号，使CPU暂停正在执行的程序，转去执行数据的输入/输出操作，数据传送结束后，CPU再继续执行被暂停的程序。</li>
+</ul>
+</li>
+<li><p>直接存储器存取（DMA）</p>
+
+<ul>
+<li>DMA传送方式是在存储器和外设之间、存储器和存储器之间直接进行数据传送(如磁盘与内存间交换数据、高速数据采集、内存和内存间的高速数据块传送等)，传送过程无需CPU介入，这样，在传送时就不必进行保护现场等一系列额外操作，传输速度基本取决于存储器和外设的速度。DMA传送方式需要一个专用接口芯片DMA控制器（DMAC）对传送过程加以控制和管理。进行DMA传送期间，CPU放弃总线控制权，将系统总线交由DMAC控制，由DMAC发出地址及读/写信号来实现高速数据传输。传送结束后DMAC再将总线控制权交还给CPU。</li>
+</ul>
+</li>
+</ol>
+
+
+<h3>map reduce</h3>
+
+<p><img src="http://www.opensourceforu.com/wp-content/uploads/2011/03/MapReduce.jpg" alt="" /></p>
+
+<h3>数据库</h3>
+
+<ol>
+<li>事务的属性包括四大类 ACID <code>atomic 原子性</code> <code>consistency 一致性</code> <code>isolation 隔离性</code> <code>durability 持久性</code></li>
+<li>查询 student 表 第5到10条数据 select * from student limit 5,10</li>
+</ol>
+
+
+<p>MYSQL 操作 出处：<a href="http://jilili.blog.51cto.com/6617089/1190014">http://jilili.blog.51cto.com/6617089/1190014</a><br/>
+3、修改表
+ALTER TABLE tb_name;     <br/>
+mysql>alter table students change course Course varchar(100) after name;  <br/>
+mysql>alter table students add course varchar(100);     <br/>
+向表中插入数据<br/>
+<code>
+insert into tb_name （col，col2，....) values (val1,val2,....）;      
+insert into tutors （Tname，Gender，Age） values ('jerry','M',24);  -----批量插入方式
+insert into tutors set Tname='Tom',Genser='F',Age=30;            -----只能实现单个字段
+</code> <br/>
+插入</p>
+
+<pre><code>insert into tutors （Tname,Gender,Age) select Name,Genser,Age from students where Age &gt;=20  
+select * from tutors order by TID desc limit 1;          -----查看降序的第一行  
+select last_insert_ID（）;      -----查询插入的最后一个序列号 
+</code></pre>
+
+<p>更改数据库</p>
+
+<pre><code>UPDATE tb_name SET column=value where   
+mysql&gt;update students set Course='wg' where Name='j'; ' -----更改j的课程为wg   
+</code></pre>
+
+<p>删除表中的某一字段</p>
+
+<p><code>DELETE FROM students  WHERE Course='';</code></p>
+
+<p>6、select语句练习 <br/>
+&#8220;`
+select distict Gender from students;         &mdash;&mdash;相同的内容只显示一次</p>
+
+<p>查找年龄大于20的同学并且按降序排列: <br/>
+select Name,Age from students where Age>20 order by Age desc;  <br/>
+年龄大于等于20并且是男性的同学:   <br/>
+select Name from students where Age>20 and Gender=&rsquo;M&#8217;;<br/>
+年龄不大于20的同学:<br/>
+select Name,Age,Gender from students where not Age>20;  <br/>
+小于等于20的女同学:<br/>
+select Name,Age,Gender from students where not （Age>20 or Gender=‘M’）;<br/>
+年龄在（21-24）之间的同学(以下两种方式）：<br/>
+select Name，Age from students where Age>20 and Age&lt;25;<br/>
+select Name，Age from students where Age between 20 and 25; <br/>
+显示以Y开头的名称（这里限定了姓名的长度）(&ldquo;<em>&#8220;表示任意单个字符): <br/>
+select Name from students where Name like &lsquo;Y</em>__&rsquo;;<br/>
+显示以Y开头的姓名： <br/>
+<code>select Name from students where Name like 'Y%'; </code>  <br/>
+名称中含有ing的名称（“%”表示任意长度的任意字符):  <br/>
+<code>select Name from students where Name like '%ing%'; </code>   <br/>
+显示以M或N或Y开头的名字（支持正则表达式）:<br/>
+<code>select Name from students where Name rlike '^[MNY].*$';</code>  <br/>
+显示年龄是18、20、25的同学：<br/>
+<code>select Name from students where Age IN （18,20,25）;</code>   <br/>
+显示挑选课程号(CID1)为空的同学： <br/>
+<code>select Name from students where CID1 is null;</code> <br/>
+把查询后的结果进行降序排序（ASC升序，desc降序） <br/>
+<code>select Name,CID1 from students where CID1 is not null order by CID1 desc; </code>
+显示查询的Name表头名变为name  <br/>
+<code>select Name AS Student_Name from students; </code> <br/>
+隔两行数据向后取三行数据：<br/>
+<code>select Name from students limit 2,3; </code>
+所有同学的平均年龄:<br/>
+<code>select AVG（age） from students; </code><br/>
+显示年龄最大的同学：<br/>
+select MAX（age） from students; <br/>
+显示年龄最小的同学： <br/>
+<code>select MIN（age） from students; </code><br/>
+显示所有同学的年龄总和： <br/>
+<code>select SUM（age） from students; </code><br/>
+显示所有同学的个数：  <br/>
+<code>select count（age） from students;</code> <br/>
+显示所有男同学的平均年龄：<br/>
+<code>select AVG（age） from students where Gender=’M‘;</code>  <br/>
+显示所有女同学的平均年龄： <br/>
+<code>select AVG（age） from students where Gender=’F‘;</code><br/>
+显示男女同学的平均年龄：<br/>
+<code>select Gender,avg(age) from students group by Gender;</code><br/>
+显示选修CID1的同学 <br/>
+<code>select count(CID1) AS  Persons,CID1 from students group by CID1;`  
+显示选修人数大于2的课程：   
+</code>select count(CID1) AS  Persons,CID1 from students group by CID1 having Persons>=2;&#8220;</p>
+
+<p><strong>多表查询</strong> <br/>
+每位同学及其他所学习的课程名称（以下四种方式）<br/>
+<code>
+select students.Name,courses.Cname from students，courses where   students.CID1=courses.CID;  
+select s.Name,c.Cname from students AS s,courses AS c where s.CID1=c.CID;   
+select s.Name,c.Cname from students AS s left jion courses AS c on s.CID1=c.CID;(左连接）
+select s.Name,c.Cname from students AS s right jion courses AS c on s.CID1=c.CID;（右连接)
+</code><br/>
+显示各个同学与他相对应的导师： <br/>
+<code>select c.Name as student,s.Name as teacher from students as s,students as c where
+ s.SID=c.TID; </code>
+显示每一位老师及其所教授的课程；没有教授的课程保持为NULL:  <br/>
+<code>select t.Tname,c.Cname from tutors as t left join courses as c on t.TID=c.TID;</code>
+显示每一个课程及其相关的老师，没有老师教授的课程将其老师显示为空: <br/>
+<code>select t.Tname,c.Cname from tutors as t right jion courses as c on t.TID=c.TID;</code>
+显示每位同学CID1课程的课程名及其讲授了相关课程的老师的名称：<br/>
+<code>sql
+select Name,Cname,Tname from students,courses,tutors where students.CID1=courses.CID  
+and courses.TID=tutors.TID;
+</code><br/>
+查看同学的成绩及姓名，并且按升序排列：<br/>
+<code>sql
+select students.Name,scores.Score from students,scores where students.SID=scores.SID  
+order by scores.Score desc;
+</code></p>
+
+<p><strong>子查询</strong> <br/>
+挑选出courses表中没有被students中的CID2学习的课程的课程名称：<br/>
+<code>select Cname from courses where CID not IN (select CID2 from students where  
+CID2 is not null);</code>
+挑选出没有教授任何课程的老师，每个老师及其所教授课程的对应关系在courses表中： <br/>
+<code>select Tname from tutors where TID not in (select distinct TID from courses);</code>
+找出students表中CID1有两个或两个以上同学学习了的同一个门课程的课程名称： <br/>
+<code>select Cname from courses where CID in (select CID1 from students group by CID1
+ having count(CID1) &gt;=2);</code>
+年龄大于平均年龄的同学：(使用子查询时，子查询只能返回单个值）：<br/>
+<code>select Name,Age from students where Age &gt; (select avg(age) from students); </code>
+查询学生和老师各自的年龄并写在一个表中： <br/>
+<code>(select Name，Age from students) union (select Tname，Age from tutors);</code></p>
+
+<h3>进程</h3>
+
+<p>进程通信<br/>
+windows的进程间的通信方式有:<br/>
+1.文件映射；2. 共享内存（是文件映射的一种特殊情况）；3.邮件槽（mailslot）（点对点消息队列）; 4.匿名管道；5；命名管道； 6. 剪贴板；7.动态数据交换；8.对象链接与嵌入；9.远程过程调用；10.动态链接库；11.socket；12.WM_COPYDATA .<br/>
+linux进程间通信的方式有：1.管道 2.信号量 3.共享内存 4.消息队列 5.套接字 6.信号<br/>
+windows和linux共有的进程间通信方式：1. 消息（linux中叫做信号） 2. 共享内存  3. 邮槽  4. 管道   5.socket</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Two Sum]]></title>
+    <link href="http://michaelpassion.github.io/blog/2014/08/10/two-sum/"/>
+    <updated>2014-08-10T16:43:32+08:00</updated>
+    <id>http://michaelpassion.github.io/blog/2014/08/10/two-sum</id>
+    <content type="html"><![CDATA[<blockquote><p>Given an array of integers, find two numbers such that they add up to a specific target number.</p>
+
+<p>The function twoSum should return indices of the two numbers such that they add up to the target, where index1 must be less than index2. Please note that your returned answers (both index1 and index2) are not zero-based.</p>
+
+<p>You may assume that each input would have exactly one solution.</p>
+
+<p>Input: numbers={2, 7, 11, 15}, target=9
+Output: index1=1, index2=2</p></blockquote>
+
+<!--more-->
+
+
+<p><strong>时间复杂度为O(n)</strong>
+&#8220;`C++
+class Solution {
+public:
+    vector<int> twoSum(vector<int> &amp;numbers, int target) {
+        int len = numbers.size();
+        assert(len >= 2); <br/>
+        vector<int> ret(2,0);
+        map&lt;int, int> mapping;
+        vector<long long> mul(len,0);
+        for(int i=0; i&lt;len; ++i)
+        {
+            mul[i] = (target - numbers[i]) * numbers[i];
+            if(mapping[mul[i]] >0)
+            {
+                if(numbers[mapping[mul[i]] -1] + numbers[i] == target)
+                {
+                    ret[0] = mapping[mul[i]];
+                    ret[1] = i+1;
+                    return ret;
+                }
+            }
+            else
+            {
+                mapping[mul[i]] = i+1;
+            }
+        }</p>
+
+<pre><code>}
+</code></pre>
+
+<p>};
+&#8220;`</p>
+]]></content>
+  </entry>
+  
+</feed>

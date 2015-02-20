@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: 继承 | My Progressing Blog]]></title>
+  <link href="http://michaelpassion.github.io/blog/categories/ji-cheng/atom.xml" rel="self"/>
+  <link href="http://michaelpassion.github.io/"/>
+  <updated>2014-11-04T18:41:08+08:00</updated>
+  <id>http://michaelpassion.github.io/</id>
+  <author>
+    <name><![CDATA[Michael]]></name>
+    <email><![CDATA[carter1373043@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[区分接口继承和实现继承]]></title>
+    <link href="http://michaelpassion.github.io/blog/2014/10/08/qu-fen-jie-kou-ji-cheng-he-shi-xian-ji-cheng/"/>
+    <updated>2014-10-08T10:20:06+08:00</updated>
+    <id>http://michaelpassion.github.io/blog/2014/10/08/qu-fen-jie-kou-ji-cheng-he-shi-xian-ji-cheng</id>
+    <content type="html"><![CDATA[<!--more-->
+
+
+<p><strong>成员函数的结构总是会被继承</strong><br/>
+public继承意味<strong>is-a</strong>,所以对base class为真的任何事情一定也对其derived classes为真。<br/>
+<strong>声明一个pure virtual函数的目的是为了让 derived classes 只继承函数的接口</strong><br/>
+<strong>声明impure virtual函数是为了让 derived classes 继承该函数的接口和缺省实现</strong><br/>
+<strong> 声明non-virtual函数的目的是为了令 derived classes 继承函数的接口及一份强制性实现 </strong></p>
+
+<h2>为多态基类声明 virtual 析构函数</h2>
+
+<hr />
+
+<p>c++明确指出： 当derived class 对象经由一个 base class 指针删除， 而该 base class 带着一个 non-virtual 析构函数，其结果未有定义 &ndash; 实际执行时通常发生的是对象的 derived 成分没有被销毁，然而base class 成分会被销毁，造成一个诡异的“局部销毁”的对象。<br/>
+    消除这个问题的做法是：给 base class 一个virtual 析构函数。此后删除 derived classes 对象就会调用 derived classes的析构函数</p>
+
+<h2>绝对不重新定义继承而来的缺省参数值</h2>
+
+<hr />
+]]></content>
+  </entry>
+  
+</feed>

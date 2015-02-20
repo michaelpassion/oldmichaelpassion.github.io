@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: reverse | My Progressing Blog]]></title>
+  <link href="http://michaelpassion.github.io/blog/categories/reverse/atom.xml" rel="self"/>
+  <link href="http://michaelpassion.github.io/"/>
+  <updated>2014-11-04T18:41:08+08:00</updated>
+  <id>http://michaelpassion.github.io/</id>
+  <author>
+    <name><![CDATA[Michael]]></name>
+    <email><![CDATA[carter1373043@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Reverse Words in a String]]></title>
+    <link href="http://michaelpassion.github.io/blog/2014/08/13/reverse-words-in-a-string/"/>
+    <updated>2014-08-13T13:09:26+08:00</updated>
+    <id>http://michaelpassion.github.io/blog/2014/08/13/reverse-words-in-a-string</id>
+    <content type="html"><![CDATA[<blockquote><p>Given an input string, reverse the string word by word.</p>
+
+<p>For example,</p>
+
+<p>Given s = &ldquo;the sky is blue&rdquo;,</p>
+
+<p>return &ldquo;blue is sky the&rdquo;.</p></blockquote>
+
+<!--more-->
+
+
+<blockquote><p>Clarification:
+What constitutes a word?
+A sequence of non-space characters constitutes a word.
+Could the input string contain leading or trailing spaces?
+Yes. However, your reversed string should not contain leading or trailing spaces.
+How about multiple spaces between two words?
+Reduce them to a single space in the reversed string.</p></blockquote>
+
+<p><a href="https://oj.leetcode.com/problems/reverse-words-in-a-string/">leetcode 传送门</a></p>
+
+<p><em>题目解析</em></p>
+
+<p>本来是一个不难的题目，但是做了好久，关于去除多余空格的部分想复杂了，最后参考了一名CSDN的<a href="http://blog.csdn.net/kenden23/article/details/20701069">高手的博客</a>，感觉比较巧妙的地方是从后向前遍历，这样省去了不必要的操作（比如讲整个字符串逆置）。</p>
+
+<pre><code class="c++">class Solution {
+public:
+
+    void reverseWords(string &amp;s) {
+       string ret;
+       for(int i=s.length()-1; i&gt;=0;)
+       {
+           while(i&gt;=0 &amp;&amp; s[i] == ' ')
+                --i;
+            if(i &lt; 0)
+                break;
+            if(!ret.empty()) ret.push_back(' ');
+            string t;
+            while(i&gt;=0 &amp;&amp; s[i] != ' ')
+            {
+                t+=s[i];
+                --i;
+            }
+            reverse(t.begin(),t.end());
+            ret+=t;
+       }
+       s = ret;
+    }
+};
+</code></pre>
+
+<p>剑指offer上有一题是逆置字符串单词，但是没有考虑字符串本身空格不正确的情况，假设给定的字符串是正确的英文句子（单词间有空格），书上给出的做法是先整个字符串逆置，再去从头遍历，逆置每个单词，经过两次逆置得到结果。以上方法完爆 剑指OFFER</p>
+]]></content>
+  </entry>
+  
+</feed>

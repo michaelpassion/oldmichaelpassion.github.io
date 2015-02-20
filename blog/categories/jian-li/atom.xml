@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: 简历 | My Progressing Blog]]></title>
+  <link href="http://michaelpassion.github.io/blog/categories/jian-li/atom.xml" rel="self"/>
+  <link href="http://michaelpassion.github.io/"/>
+  <updated>2014-11-04T18:41:08+08:00</updated>
+  <id>http://michaelpassion.github.io/</id>
+  <author>
+    <name><![CDATA[Michael]]></name>
+    <email><![CDATA[carter1373043@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[resume]]></title>
+    <link href="http://michaelpassion.github.io/blog/2014/08/21/resume/"/>
+    <updated>2014-08-21T09:49:35+08:00</updated>
+    <id>http://michaelpassion.github.io/blog/2014/08/21/resume</id>
+    <content type="html"><![CDATA[<h2>尹帅的简历    <img src="http://himg.bdimg.com/sys/portrait/item/e93779656c69646f6e67303631337915.jpg" align="right"></img></h2>
+
+<hr />
+
+<!--more-->
+
+
+<ul>
+<li>男，汉族，1989年12月生人，现居北京市海淀区 研究生找工作中。</li>
+<li>电话： 186-1152-6680</li>
+<li>邮箱： <a href="&#109;&#97;&#105;&#x6c;&#116;&#111;&#58;&#99;&#x61;&#114;&#x74;&#101;&#x72;&#49;&#51;&#55;&#51;&#48;&#x34;&#51;&#64;&#103;&#109;&#97;&#x69;&#108;&#x2e;&#x63;&#111;&#x6d;">&#99;&#97;&#114;&#116;&#x65;&#114;&#49;&#51;&#x37;&#51;&#48;&#52;&#51;&#64;&#103;&#109;&#97;&#105;&#x6c;&#x2e;&#x63;&#x6f;&#109;</a></li>
+<li>GitHub: <a href="https://github.com/michaelpassion">github.com/michaelpassion</a></li>
+<li>个人博客：<a href="http://michaelpassion.github.io">michaelpassion.github.io/</a></li>
+</ul>
+
+
+<p><strong>教育背景</strong></p>
+
+<hr />
+
+<ul>
+<li>2013/09 &ndash; 2015/06， 北京理工大学 软件学院 软件工程专业 研究生</li>
+<li>2009/09 &ndash; 2013/06，  河北师范大学 软件学院 软件工程专业 本科</li>
+</ul>
+
+
+<p><strong>技能知识</strong></p>
+
+<hr />
+
+<ul>
+<li>编程语言：Objective-C，C++，ASP.NET, C#, HTML/CSS, Python 等</li>
+<li>开发工具：Xcode，Visual Studio，Git，GitHub，Vim 等</li>
+</ul>
+
+
+<p><strong>项目经验</strong></p>
+
+<hr />
+
+<ul>
+<li><p><a href="https://itunes.apple.com/cn/app/xing-yun-zhuan-pan/id492038522?mt=8">LuckyPoint</a>(iOS, Xcode)</p>
+
+<p>  项目时间：2011/9&ndash;2012/1 <br/>
+  项目描述：ios抽奖类应用，模拟现实生活中的转盘，转动转盘抽奖，转盘中的内容可以自定义。
+  项目职责：负责编程工作并自主测试。<br/>
+  收获：通过这个项目熟悉了Xcode开发环境和Obj-C语言，并成功发布到APP Store中。</p></li>
+<li><p>Leap Motion Enabled Car（Unity3D， Leap Motion）</p>
+
+<p>  项目时间：2013/10 &ndash; 2013/11<br/>
+  项目描述：使用leap motion来捕捉手部动作，通过手部动作控制赛车，进行赛车游戏。<br/>
+  项目职责：负责编程工作并自主测试。</p></li>
+<li><p>漏洞管理系统 (Windows ,IIS8, vs2012, SQL Server2008)</p>
+
+<p>  项目时间：2013/10 &ndash; 2013/11<br/>
+  项目描述：用asp.net实现的B/S管理系统.用以对已知漏洞的查询,和新漏洞的提交.等一些相关的管理功能。<br/>
+  项目职责：参与项目需求分析，详细设计，负责部分编程工作。</p></li>
+<li><p>谐波雷达探测管理与控制主机系统(Windows ,IIS8,vs2012, SQL Server2008)</p>
+
+<p>  项目时间：2014/03 &ndash; 2014/05<br/>
+  项目描述：用asp.net实现的B/S管理系统,用于对谐波雷达探测到的数据进行管理分析,并对相关人员进行管理。
+  项目职责：参与项目需求分析，详细设计，最后实现全部的编程工作。</p></li>
+</ul>
+
+
+<p><strong>实习与奖励</strong></p>
+
+<hr />
+
+<ul>
+<li>2014/06 &ndash; 2014/07                      宜搜小说iOS开发实习生</li>
+<li>2011-2012     院级奖学金</li>
+<li>2010-2011     院级奖学金</li>
+</ul>
+
+
+<p><strong>其他</strong></p>
+
+<hr />
+
+<ul>
+<li>爱好：游泳，乒乓球，美剧 ，琢磨新技术</li>
+<li>特长：英语读写能力较好，轻松阅读英文网站文献。 六级 548分，四级 579分</li>
+</ul>
+
+
+<p><strong>自我评价</strong></p>
+
+<hr />
+
+<ul>
+<li>要强，态度认真，有一定的自学能力，性格随和，容易相处，一直在不断努力提升自己。</li>
+</ul>
+
+]]></content>
+  </entry>
+  
+</feed>

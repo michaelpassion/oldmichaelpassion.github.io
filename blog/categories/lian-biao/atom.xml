@@ -1,0 +1,403 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: 链表 | My Progressing Blog]]></title>
+  <link href="http://michaelpassion.github.io/blog/categories/lian-biao/atom.xml" rel="self"/>
+  <link href="http://michaelpassion.github.io/"/>
+  <updated>2014-11-04T18:41:08+08:00</updated>
+  <id>http://michaelpassion.github.io/</id>
+  <author>
+    <name><![CDATA[Michael]]></name>
+    <email><![CDATA[carter1373043@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Rotate List]]></title>
+    <link href="http://michaelpassion.github.io/blog/2014/09/14/rotate-list/"/>
+    <updated>2014-09-14T16:08:37+08:00</updated>
+    <id>http://michaelpassion.github.io/blog/2014/09/14/rotate-list</id>
+    <content type="html"><![CDATA[<blockquote><p>Given a list, rotate the list to the right by k places, where k is non-negative.<br/>
+For example:
+Given <code>1-&gt;2-&gt;3-&gt;4-&gt;5-&gt;NULL</code> and <code>k = 2</code>,<br/>
+return <code>4-&gt;5-&gt;1-&gt;2-&gt;3-&gt;NULL</code>.</p></blockquote>
+
+<!--more-->
+
+
+<p><strong>思路</strong><br/>
+有点感冒，头晕晕乎乎的，还出冷汗，一开始脑子不够用，竟然套用翻转string的那个算法，还reverse三次，弱爆了。其次就是<code>k</code>的值可能大于链表长度，我没有去算链表长度，直接用快慢指针做的，这样对于特殊输入运行效率可能极其低下，回头修改，写完这点，回宿舍休息会去。</p>
+
+<pre><code class="c++">/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode *rotateRight(ListNode *head, int k) {
+        if(!head || !head-&gt;next || k &lt; 1) return head;
+        ListNode *p = head;
+        for (int i=0; i&lt;k; i++) 
+        {
+            if (p-&gt;next == NULL) 
+            {
+                p = head;
+            }
+            else 
+            {
+                p = p-&gt;next;
+            }
+        }
+
+        ListNode *q = head;
+        while (p-&gt;next)
+        {
+            p = p-&gt;next;
+            q = q-&gt;next;
+        }
+        p-&gt;next = head;
+
+        ListNode *newHead = q-&gt;next;
+        q-&gt;next = NULL;
+
+        return newHead;
+        }
+};
+</code></pre>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Remove Nth Node From End of List]]></title>
+    <link href="http://michaelpassion.github.io/blog/2014/08/22/remove-nth-node-from-end-of-list/"/>
+    <updated>2014-08-22T18:03:53+08:00</updated>
+    <id>http://michaelpassion.github.io/blog/2014/08/22/remove-nth-node-from-end-of-list</id>
+    <content type="html"><![CDATA[<blockquote><p>Given a linked list, remove the nth node from the end of list and return its head.</p>
+
+<p>For example,</p></blockquote>
+
+<pre><code> Given linked list: 1-&gt;2-&gt;3-&gt;4-&gt;5, and n = 2.
+ After removing the second node from the end, the linked list becomes 1-&gt;2-&gt;3-&gt;5.
+</code></pre>
+
+<blockquote><p>Note:</p>
+
+<p>Given n will always be valid.</p>
+
+<p>Try to do this in one pass.</p></blockquote>
+
+<!--more-->
+
+
+<p><a href="https://oj.leetcode.com/problems/remove-nth-node-from-end-of-list/">leetcode express</a></p>
+
+<p><em>思路</em></p>
+
+<ul>
+<li>利用快慢指针，慢指针比快指针慢<code>n-1</code>步.</li>
+<li>快指针指向最后一个结点时，慢指针指向倒数第<code>n+1</code>个结点（不能直接找倒数第n个结点，不方便删除）</li>
+<li>为链表加一个多余的头结点，用来处理链表只有一个结点，并且要删除这个结点。</li>
+</ul>
+
+
+<pre><code class="c++ 时间复杂度 O(n)，空间复杂度 O(1)">
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode *removeNthFromEnd(ListNode *head, int n) {
+
+        ListNode *dummy = new ListNode(-1);
+        dummy-&gt;next = head;
+        ListNode *slow = dummy;
+        ListNode *fast = dummy;
+
+        while(n &gt; 0)
+        {
+            fast = fast-&gt;next;
+            n--;
+        }
+
+        while(fast-&gt;next)
+        {
+            fast = fast-&gt;next;
+            slow = slow-&gt;next;
+        }
+
+        ListNode *tmp = slow-&gt;next;
+        slow-&gt;next = tmp-&gt;next;
+        delete(tmp);
+        tmp = dummy-&gt;next;
+        delete(dummy);
+
+        return tmp;
+    }
+};
+</code></pre>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[sort list]]></title>
+    <link href="http://michaelpassion.github.io/blog/2014/08/20/sort-list/"/>
+    <updated>2014-08-20T19:07:30+08:00</updated>
+    <id>http://michaelpassion.github.io/blog/2014/08/20/sort-list</id>
+    <content type="html"><![CDATA[<blockquote><p>Sort a linked list in O(n log n) time using constant space complexity.</p></blockquote>
+
+<p><em>解法一</em></p>
+
+<p>用递归方法将链表分组，再将每一层的分组两两合并。</p>
+
+<pre><code class="c++ 时间复杂度 O(n log n) , 空间复杂度 O(1)">/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+
+    ListNode* mergeList(ListNode *fir, ListNode *sec)
+    {
+        if(!fir) return sec;
+        if(!sec) return fir;
+       ListNode *dummy = new ListNode(-1);
+       ListNode *p = dummy;
+
+       while(fir &amp;&amp; sec)
+       {
+           if(fir-&gt;val &lt; sec-&gt;val)
+           {
+               p-&gt;next = fir;
+               fir = fir-&gt;next;
+           }
+           else 
+           {
+               p-&gt;next = sec;
+               sec = sec-&gt;next;
+           }
+           p = p-&gt;next;
+       }
+
+       if(!fir) 
+            p-&gt;next = sec;
+       else
+            p-&gt;next = fir;
+
+        p=dummy-&gt;next;
+        delete(dummy);
+        return p;
+    }
+
+    ListNode *sortList(ListNode *head) {
+        if(!head || !head-&gt;next) return head;
+        ListNode *slow = head, *fast = head;
+
+        // 防止指针越界
+        while(fast-&gt;next &amp;&amp; fast-&gt;next-&gt;next)
+        {
+            slow = slow-&gt;next;
+            fast = fast-&gt;next-&gt;next;
+        }
+        fast = slow;
+        slow = slow-&gt;next;
+        fast-&gt;next = NULL;
+
+        fast = sortList(head);
+        slow = sortList(slow);
+
+        return mergeList(fast,slow);
+    }
+};
+</code></pre>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Copy List with Random Pointer]]></title>
+    <link href="http://michaelpassion.github.io/blog/2014/08/19/copy-list-with-random-pointer/"/>
+    <updated>2014-08-19T22:52:45+08:00</updated>
+    <id>http://michaelpassion.github.io/blog/2014/08/19/copy-list-with-random-pointer</id>
+    <content type="html"><![CDATA[<blockquote><p>A linked list is given such that each node contains an additional random pointer which could point to any node in the list or null.</p>
+
+<p>Return a deep copy of the list.</p></blockquote>
+
+<!--more-->
+
+
+<p><a href="http://www.cnblogs.com/TenosDoIt/p/3387000.html">参考JustDoIT的cnblog</a></p>
+
+<hr />
+
+<pre><code class="c++ 复杂链表的复制">
+/**
+ * Definition for singly-linked list with a random pointer.
+ * struct RandomListNode {
+ *     int label;
+ *     RandomListNode *next, *random;
+ *     RandomListNode(int x) : label(x), next(NULL), random(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    RandomListNode *copyRandomList(RandomListNode *head) {
+        if (!head) return NULL;
+
+        map&lt;RandomListNode *, RandomListNode *&gt; oldListMap;
+
+        RandomListNode *cur = head;
+        RandomListNode *copyHead = new RandomListNode(-1);
+        RandomListNode *curCopy = copyHead;
+
+
+        while(cur)
+        {
+            oldListMap.insert(map&lt;RandomListNode *, RandomListNode *&gt;::value_type(cur,cur-&gt;next));
+            RandomListNode *node = new RandomListNode(cur-&gt;label);
+            node-&gt;random = cur;
+            RandomListNode *p = cur;
+            cur=cur-&gt;next;
+            p-&gt;next = node;
+            curCopy-&gt;next = node;
+            curCopy=node;
+        }
+
+        curCopy = copyHead-&gt;next;
+        while(curCopy)
+        {
+            if(curCopy-&gt;random-&gt;random)
+                 curCopy-&gt;random = curCopy-&gt;random-&gt;random-&gt;next;
+            else 
+                curCopy-&gt;random = NULL;
+            curCopy=curCopy-&gt;next;
+        }
+
+        cur = head;
+        for(int i = 1; i&lt;= oldListMap.size(); i++)
+        {
+            cur-&gt;next = oldListMap[cur];
+            cur=cur-&gt;next;
+        }
+        return copyHead-&gt;next;
+    }
+};
+</code></pre>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Reorder List]]></title>
+    <link href="http://michaelpassion.github.io/blog/2014/08/17/reorder-list/"/>
+    <updated>2014-08-17T16:32:11+08:00</updated>
+    <id>http://michaelpassion.github.io/blog/2014/08/17/reorder-list</id>
+    <content type="html"><![CDATA[<blockquote><p>Given a singly linked list L: <code>L0→L1→…→Ln-1→Ln,</code></p>
+
+<p>reorder it to: <code>L0→Ln→L1→Ln-1→L2→Ln-2→…</code></p>
+
+<p>You must do this in-place without altering the nodes&#8217; values.</p>
+
+<p>For example,
+Given <code>{1,2,3,4}</code>, reorder it to <code>{1,4,2,3}</code>.</p></blockquote>
+
+<!--more-->
+
+
+<p><a href="https://oj.leetcode.com/problems/reorder-list/">leetcode express</a></p>
+
+<p><em>思路</em></p>
+
+<p> 这题的难度在于问题的规模上，需要把一个字符串划分成两个字符串（快慢指针），将第二个字符串（后半个）逆置（原地逆置，头插法），再将两个字符串合并。代码如下.
+ 
+&#8220;`c++ Reorder List</p>
+
+<p>/<em><em>
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode </em>next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ </em>/
+class Solution {
+public:
+    ListNode<em> findHalfNode(ListNode </em>head)
+    {
+        ListNode <em>fast = head;
+        ListNode </em>slow = head;</p>
+
+<pre><code>    while(fast &amp;&amp; fast-&gt;next)
+    {
+        fast = fast-&gt;next-&gt;next;
+        slow = slow-&gt;next;
+    }
+    return slow;
+}
+
+ListNode* reverseList(ListNode *head)
+{
+    ListNode *dummy = new ListNode(-1);
+    dummy-&gt;next = head;
+
+    ListNode *cur = head-&gt;next;
+    head-&gt;next = NULL;
+    while(cur)
+    {
+        ListNode *tmp = cur;
+        cur =cur-&gt;next;
+        tmp-&gt;next = dummy-&gt;next;
+        dummy-&gt;next = tmp;
+    }
+    head = dummy-&gt;next;
+    delete(dummy);
+    return head;
+}
+
+void mergeTwoList(ListNode *first, ListNode *second)
+{
+    ListNode *pFir = first;
+    ListNode *pSec = second;
+
+    while(pSec)
+    {
+        ListNode *tmp = pSec;
+        pSec = pSec-&gt;next;
+        tmp-&gt;next = pFir-&gt;next;
+        pFir-&gt;next = tmp;
+        pFir = tmp-&gt;next;
+    }
+}
+void reorderList(ListNode *head) {
+    if(!head || !head-&gt;next || !head-&gt;next-&gt;next) return;
+    ListNode *sec, *fir;
+
+    sec = findHalfNode(head);
+    fir = sec;
+    sec = sec-&gt;next;
+    fir-&gt;next = NULL;
+    fir = head;
+    sec = reverseList(sec);
+    mergeTwoList(fir,sec);
+
+}
+</code></pre>
+
+<p>};</p>
+
+<p>&#8220;`</p>
+]]></content>
+  </entry>
+  
+</feed>
