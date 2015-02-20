@@ -1,0 +1,16 @@
+---
+layout: post
+title: "XPath"
+date: 2015-02-18 13:42:58 +0800
+comments: true
+categories: 
+---
+## 什么是 XPAth？  
+
+![http://www.w3schools.com/XPath/xpath1.gif](http://www.w3schools.com/XPath/xpath1.gif)  
+
+<!--mroe-->
+* Xpath 是一门在 XML 文档中查找信息的语言-
+
+
+
